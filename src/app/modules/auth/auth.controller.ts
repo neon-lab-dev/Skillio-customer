@@ -9,6 +9,7 @@ import { UploadImageResponse } from "../../utils/uploadImage";
 
 // sigup controller
 const createUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body)
     const { name , designation , linkedInUrl, writeUp , password , station } = req.body;
     let photo: UploadImageResponse | undefined = undefined;
     

@@ -3,11 +3,13 @@ import validateRequest from "../../middlewares/validateRequest";
 import { AuthValidations } from "./auth.validation";
 import {authControllers} from "./auth.controller";
 import { authorizeRole } from "../../middlewares/authorizeRole";
+import singleUpload from "../../middlewares/multer";
 
 const router = express.Router();
 
 router.post(
     "/signup",
+    singleUpload,
     authControllers.createUser
 );
 

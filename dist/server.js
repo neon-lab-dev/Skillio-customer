@@ -30,7 +30,7 @@ if (config_1.default.node_env === "development") {
 }
 // api route
 app.get("/", (req, res) => {
-    res.send("Welcome to the OSP_broker API");
+    res.send("Welcome to admin API");
 });
 app.use("/api", routes_1.default);
 app.use(notFoundHandler_1.default);

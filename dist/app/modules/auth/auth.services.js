@@ -55,6 +55,9 @@ const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
                 }
             }
         },
+        include: {
+            photo: true
+        }
     });
     const { password: _ } = user, userWithoutPassword = __rest(user, ["password"]);
     return userWithoutPassword;
@@ -69,6 +72,9 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         where: {
             name: name,
         },
+        include: {
+            photo: true
+        }
     });
     if (!user) {
         throw new appError_1.default(401, "Invalid credentials");

@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteImage = exports.uploadImage = void 0;
-const imageKit_js_1 = __importDefault(require("../config/imageKit.js"));
+const imageKit_1 = __importDefault(require("../config/imageKit"));
 const uploadImage = (file, fileName, folder) => {
     return new Promise((resolve, reject) => {
-        imageKit_js_1.default.upload({
+        imageKit_1.default.upload({
             file,
             fileName,
             folder: folder,
@@ -30,7 +30,7 @@ const uploadImage = (file, fileName, folder) => {
 exports.uploadImage = uploadImage;
 const deleteImage = (fileId) => {
     return new Promise((resolve, reject) => {
-        imageKit_js_1.default.deleteFile(fileId, (err, result) => {
+        imageKit_1.default.deleteFile(fileId, (err, result) => {
             if (err) {
                 return reject(err.message);
             }

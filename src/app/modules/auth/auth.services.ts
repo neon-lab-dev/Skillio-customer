@@ -39,6 +39,9 @@ const createUser = async (payload: Partial<TUser>) => {
         }
       }
     },
+    include:{
+        photo: true
+    }
   });
 
   const { password: _, ...userWithoutPassword } = user;
@@ -58,6 +61,9 @@ const loginUser = async (payload: TLoginAuth) => {
         where: {
             name: name,
         },
+        include:{
+            photo: true
+        }
     });
 
     if (!user) {

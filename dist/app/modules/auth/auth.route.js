@@ -9,8 +9,9 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const auth_validation_1 = require("./auth.validation");
 const auth_controller_1 = require("./auth.controller");
 const authorizeRole_1 = require("../../middlewares/authorizeRole");
+const multer_1 = __importDefault(require("../../middlewares/multer"));
 const router = express_1.default.Router();
-router.post("/signup", auth_controller_1.authControllers.createUser);
+router.post("/signup", multer_1.default, auth_controller_1.authControllers.createUser);
 router.post("/login", (0, validateRequest_1.default)(auth_validation_1.AuthValidations.LoginValidationSchema), auth_controller_1.authControllers.loginUser);
 router.post("/refreshToken", (0, validateRequest_1.default)(auth_validation_1.AuthValidations.refreshTokenValidationSchema), auth_controller_1.authControllers.refreshToken);
 router.get("/getAllUsers", (0, authorizeRole_1.authorizeRole)("ADMIN"), auth_controller_1.authControllers.getAllUsers);

@@ -21,6 +21,7 @@ const uploadImage_1 = require("../../utils/uploadImage");
 const getDataUri_1 = __importDefault(require("../../utils/getDataUri"));
 // sigup controller
 const createUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     const { name, designation, linkedInUrl, writeUp, password, station } = req.body;
     let photo = undefined;
     if (req.file) {
