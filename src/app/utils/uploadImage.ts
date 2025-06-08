@@ -1,5 +1,5 @@
 
-import imageKit from "../config/imageKit.js"
+import imageKt from "../config/imageKit";
 
  export interface UploadImageResponse {
     url: string;
@@ -11,7 +11,7 @@ import imageKit from "../config/imageKit.js"
 
 const uploadImage = (file: string, fileName : string, folder: string): Promise<UploadImageResponse> => {
   return new Promise((resolve, reject) => {
-    imageKit.upload(
+    imageKt.upload(
       {
         file,
         fileName,
@@ -36,7 +36,7 @@ const uploadImage = (file: string, fileName : string, folder: string): Promise<U
 
 const deleteImage = (fileId: string) => {
   return new Promise((resolve, reject) => {
-    imageKit.deleteFile(fileId, (err, result) => {
+    imageKt.deleteFile(fileId, (err, result) => {
       if (err) {
         return reject(err.message);
       } else {

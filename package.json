@@ -40,6 +40,7 @@
     "eslint": "^9.25.1",
     "globals": "^16.0.0",
     "http-status": "^2.1.0",
+    "imagekit": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.0",
     "morgan": "^1.10.0",
