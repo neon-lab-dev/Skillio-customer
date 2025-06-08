@@ -1,0 +1,120 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.authControllers = void 0;
+const auth_services_1 = require("./auth.services");
+const catchAsyncError_1 = __importDefault(require("../../utils/catchAsyncError"));
+const config_1 = __importDefault(require("../../config"));
+const sendResponse_1 = __importDefault(require("../../middlewares/sendResponse"));
+const uploadImage_1 = require("../../utils/uploadImage");
+const getDataUri_1 = __importDefault(require("../../utils/getDataUri"));
+// sigup controller
+const createUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, password, station } = req.body;
+    let photo = undefined;
+    if (req.file) {
+        photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
+        if (!photo) {
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 400,
+                success: false,
+                message: "Failed to upload photo",
+            });
+        }
+    }
+    const user = yield auth_services_1.authServices.createUser({ name, designation, linkedInUrl, writeUp, password, station, photo });
+    (0, sendResponse_1.default)(res, {
+        statusCode: 201,
+        success: true,
+        message: "User created successfully",
+        data: user,
+    });
+}));
+// login user controller
+const loginUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, password } = req.body;
+    const result = yield auth_services_1.authServices.loginUser({ name, password });
+    const { accessToken, user } = result;
+    res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: config_1.default.node_env === "production",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+    res.cookie("refreshToken", result.refreshToken, {
+        httpOnly: true,
+        secure: config_1.default.node_env === "production",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    });
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Login successful",
+        data: {
+            user: user,
+            accessToken: accessToken,
+        }
+    });
+}));
+// refresh token to get new access token controller
+const refreshToken = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { refreshToken } = req.cookies;
+    if (!refreshToken) {
+        return (0, sendResponse_1.default)(res, {
+            statusCode: 401,
+            success: false,
+            message: "Please login to access this resource",
+            data: null,
+        });
+    }
+    const result = yield auth_services_1.authServices.refreshToken(refreshToken);
+    const { accessToken } = result;
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Access token refreshed successfully",
+        data: {
+            accessToken: accessToken
+        },
+    });
+}));
+// get all users controller
+const getAllUsers = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield auth_services_1.authServices.getUsers();
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "Users fetched successfully",
+        data: users,
+    });
+}));
+// get single user controller
+const getSingleUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const user = yield auth_services_1.authServices.getUserById(id);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "User fetched successfully",
+        data: user,
+    });
+}));
+exports.authControllers = {
+    createUser,
+    loginUser,
+    refreshToken,
+    getAllUsers,
+    getSingleUser
+};

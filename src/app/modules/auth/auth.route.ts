@@ -35,14 +35,5 @@ router.get(
     authControllers.getSingleUser
 )
 
-router.post(
-    "/google",
-    authControllers.googleSignIn
-)
-
-router.post(
-    "/apple",
-    authControllers.appleSignIn
-)
 
 export const authRouter = router;
