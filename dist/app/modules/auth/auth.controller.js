@@ -112,10 +112,22 @@ const getSingleUser = (0, catchAsyncError_1.default)((req, res, next) => __await
         data: user,
     });
 }));
+// delete user controller
+const deleteUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const deletedUser = yield auth_services_1.authServices.deleteUser(id, res);
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "User deleted successfully",
+        data: deletedUser,
+    });
+}));
 exports.authControllers = {
     createUser,
     loginUser,
     refreshToken,
     getAllUsers,
-    getSingleUser
+    getSingleUser,
+    deleteUser
 };

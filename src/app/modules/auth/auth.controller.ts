@@ -115,6 +115,18 @@ const getSingleUser = catchAsyncError(async (req: Request, res: Response, next: 
         data: user,
     });
 })
+
+// delete user controller
+const deleteUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const deletedUser = await authServices.deleteUser(id , res);
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: "User deleted successfully",
+        data: deletedUser,
+    });
+});
     
 
 
@@ -123,5 +135,6 @@ export const authControllers = {
     loginUser,
     refreshToken,
     getAllUsers,
-    getSingleUser
+    getSingleUser,
+    deleteUser
 };

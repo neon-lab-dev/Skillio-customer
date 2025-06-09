@@ -30,6 +30,7 @@ const auth_utils_1 = require("./auth.utils");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const prismaDb_1 = __importDefault(require("../../db/prismaDb"));
 const config_1 = __importDefault(require("../../config"));
+const sendResponse_1 = __importDefault(require("../../middlewares/sendResponse"));
 // create user
 const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, designation, linkedInUrl, writeUp, password, station, photo } = payload;
@@ -141,10 +142,32 @@ const getUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const { password } = user, userWithoutPassword = __rest(user, ["password"]);
     return userWithoutPassword;
 });
+// delete user
+const deleteUser = (id, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield prismaDb_1.default.user.findFirst({
+        where: {
+            id: id,
+        },
+    });
+    if (!user) {
+        return ((0, sendResponse_1.default)(res, {
+            statusCode: 404,
+            success: false,
+            message: "User not found with this id",
+        }));
+    }
+    yield prismaDb_1.default.user.delete({
+        where: {
+            id: id,
+        },
+    });
+    return { message: "User deleted successfully" };
+});
 exports.authServices = {
     createUser,
     loginUser,
     refreshToken,
     getUsers,
-    getUserById
+    getUserById,
+    deleteUser
 };

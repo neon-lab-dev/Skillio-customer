@@ -3,9 +3,11 @@ import bcrypt from "bcrypt";
 import AppError from "../../errors/appError";
 import {createToken} from "./auth.utils"
 import jwt , {JwtPayload}from "jsonwebtoken";
+import { Response } from "express";
 
 import prismadb from "../../db/prismaDb";
 import config from "../../config";
+import sendResponse from "../../middlewares/sendResponse";
 
 
 
@@ -162,6 +164,34 @@ const getUserById = async (id: string) => {
     return userWithoutPassword;
 }
 
+// delete user
+const deleteUser= async (id: string , res:Response) => {
+    const user = await prismadb.user.findFirst({
+        where: {
+            id: id,
+        },
+    });
+
+    if (!user) {
+       return(
+        sendResponse(res, {
+            statusCode: 404,
+            success: false,
+            message: "User not found with this id",
+        }
+        )
+       )
+    }
+
+    await prismadb.user.delete({
+        where: {
+            id: id,
+        },
+    });
+
+    return { message: "User deleted successfully" };
+}
+
 
 
 export const authServices = {
@@ -169,5 +199,6 @@ export const authServices = {
     loginUser,
     refreshToken,
     getUsers,
-    getUserById
+    getUserById,
+    deleteUser
 };
