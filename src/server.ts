@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173" , "https://forge-admin2.vercel.app"], credentials: true }));
 
 
 app.use(express.json());
