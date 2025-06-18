@@ -123,6 +123,29 @@ const deleteUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(
         data: deletedUser,
     });
 }));
+// update user controller
+const updateUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { name, designation, linkedInUrl, writeUp, station } = req.body;
+    let photo = undefined;
+    if (req.file) {
+        photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
+        if (!photo) {
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 400,
+                success: false,
+                message: "Failed to upload photo",
+            });
+        }
+    }
+    const user = yield auth_services_1.authServices.updateUser(id, { name, designation, linkedInUrl, writeUp, station, photo });
+    (0, sendResponse_1.default)(res, {
+        statusCode: 200,
+        success: true,
+        message: "User updated successfully",
+        data: user,
+    });
+}));
 exports.authControllers = {
     createUser,
     loginUser,

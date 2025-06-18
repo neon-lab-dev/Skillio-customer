@@ -127,6 +127,34 @@ const deleteUser = catchAsyncError(async (req: Request, res: Response, next: Nex
         data: deletedUser,
     });
 });
+
+// update user controller
+const updateUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const { name, designation, linkedInUrl, writeUp, station } = req.body;
+    let photo: UploadImageResponse | undefined = undefined;
+    if (req.file) {
+        photo = await uploadImage(
+            getDataUri(req.file).content,
+            getDataUri(req.file).fileName,
+            "user"
+        );
+        if (!photo) {
+            return sendResponse(res, {
+                statusCode: 400,
+                success: false,
+                message: "Failed to upload photo",
+            });
+        }
+    }
+    const user = await authServices.updateUser(id, { name, designation, linkedInUrl, writeUp, station, photo });
+    sendResponse(res, { 
+        statusCode: 200,
+        success: true,
+        message: "User updated successfully",
+        data: user,
+    });
+});
     
 
 

@@ -163,11 +163,56 @@ const deleteUser = (id, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return { message: "User deleted successfully" };
 });
+// update user
+const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+    if (!name || !designation || !linkedInUrl || !writeUp || !station) {
+        throw new appError_1.default(400, "Please provide all fields");
+    }
+    const user = yield prismaDb_1.default.user.findFirst({
+        where: {
+            id: id,
+        },
+    });
+    if (!user) {
+        throw new appError_1.default(404, "User not found");
+    }
+    yield prismaDb_1.default.photo.delete({
+        where: {
+            userId: user.id
+        },
+    });
+    const updatedUser = yield prismaDb_1.default.user.update({
+        where: {
+            id: id,
+        },
+        data: {
+            name,
+            designation,
+            linkedInUrl,
+            writeUp,
+            station,
+            photo: {
+                create: {
+                    fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
+                    name: photo === null || photo === void 0 ? void 0 : photo.name,
+                    url: photo === null || photo === void 0 ? void 0 : photo.url,
+                    thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
+                }
+            }
+        },
+        include: {
+            photo: true
+        }
+    });
+    return { user: updateUser };
+});
 exports.authServices = {
     createUser,
     loginUser,
     refreshToken,
     getUsers,
     getUserById,
-    deleteUser
+    deleteUser,
+    updateUser
 };

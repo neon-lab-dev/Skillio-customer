@@ -192,6 +192,57 @@ const deleteUser= async (id: string , res:Response) => {
     return { message: "User deleted successfully" };
 }
 
+// update user
+const updateUser= async (id: string, payload: Partial<TUser>) => {
+    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+
+    if (!name || !designation || !linkedInUrl || !writeUp  || !station) {
+        throw new AppError(400, "Please provide all fields");
+    }
+
+    const user = await prismadb.user.findFirst({
+        where: {
+            id: id,
+        },
+    });
+
+    if (!user) {
+        throw new AppError(404, "User not found");
+    }
+
+   await prismadb.photo.delete({
+        where: {
+            userId: user.id
+        },
+   })
+
+    const updatedUser = await prismadb.user.update({
+        where: {
+            id: id,
+        },
+        data: {
+            name,
+            designation,
+            linkedInUrl,
+            writeUp,
+            station,
+            photo: {
+                create: {
+                    fileId: photo?.fileId,
+                    name: photo?.name as string,
+                    url: photo?.url as string,
+                    thumbnailUrl: photo?.thumbnailUrl as string
+                }
+            }
+        },
+        include:{
+            photo: true
+        }
+    });
+
+
+    return {user:updateUser};
+}
 
 
 export const authServices = {
@@ -200,5 +251,6 @@ export const authServices = {
     refreshToken,
     getUsers,
     getUserById,
-    deleteUser
+    deleteUser,
+    updateUser
 };
