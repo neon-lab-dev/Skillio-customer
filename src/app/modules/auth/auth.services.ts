@@ -223,7 +223,7 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
         throw new AppError(404, "User not found");
     }
 
-   await prismadb.photo.delete({
+   await prismadb.photo.deleteMany({
         where: {
             userId: user.id
         },

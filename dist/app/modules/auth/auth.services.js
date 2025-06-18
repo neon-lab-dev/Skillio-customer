@@ -189,7 +189,7 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
     if (!user) {
         throw new appError_1.default(404, "User not found");
     }
-    yield prismaDb_1.default.photo.delete({
+    yield prismaDb_1.default.photo.deleteMany({
         where: {
             userId: user.id
         },
