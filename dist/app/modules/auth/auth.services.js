@@ -213,6 +213,11 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
     });
     let updatedUser;
     if (photo !== undefined) {
+        yield prismaDb_1.default.photo.deleteMany({
+            where: {
+                userId: user.id
+            }
+        });
         updatedUser = yield prismaDb_1.default.user.update({
             where: {
                 id: id,
@@ -224,7 +229,8 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
                 writeUp,
                 station,
                 photo: {
-                    update: {
+                    create: {
+                        fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
                         name: photo === null || photo === void 0 ? void 0 : photo.name,
                         url: photo === null || photo === void 0 ? void 0 : photo.url,
                         thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl

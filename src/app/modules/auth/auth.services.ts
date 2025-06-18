@@ -251,6 +251,12 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
     let updatedUser;
 
     if(photo !== undefined){
+        await prismadb.photo.deleteMany({
+            where:{
+                userId: user.id
+            }
+        })
+
           updatedUser = await prismadb.user.update({
              where: {
                  id: id, 
@@ -262,7 +268,8 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
                  writeUp,
                  station,
                  photo: {
-                     update: {
+                     create: {
+                        fileId: photo?.fileId,
                          name: photo?.name as string,
                          url: photo?.url as string,
                          thumbnailUrl: photo?.thumbnailUrl as string
