@@ -22,8 +22,38 @@ const createUser = async (payload: Partial<TUser>) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
+let user;
+if(photo){
+     user = await prismadb.user.create({
+      data: {
+        name,
+        email,
+        designation,
+        linkedInUrl,
+        writeUp,
+        password: hashedPassword,
+        station,
+        role,
+        photo: {
+          create: {
+            fileId: photo?.fileId,
+            name: photo?.name as string,
+            url: photo?.url as string,
+            thumbnailUrl: photo?.thumbnailUrl as string
+          }
+        }
+      },
+      include:{
+          photo: true
+      }
+    });
 
-  const user = await prismadb.user.create({
+  const { password: _, ...userWithoutPassword } = user;
+
+    return userWithoutPassword
+}
+
+user= await prismadb.user.create({
     data: {
       name,
       email,
@@ -33,17 +63,6 @@ const createUser = async (payload: Partial<TUser>) => {
       password: hashedPassword,
       station,
       role,
-      photo: {
-        create: {
-          fileId: photo?.fileId,
-          name: photo?.name as string,
-          url: photo?.url as string,
-          thumbnailUrl: photo?.thumbnailUrl as string
-        }
-      }
-    },
-    include:{
-        photo: true
     }
   });
 
@@ -223,13 +242,45 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
         throw new AppError(404, "User not found");
     }
 
-   await prismadb.photo.deleteMany({
+    const userPhoto= await prismadb.photo.findFirst({
         where: {
             userId: user.id
-        },
-   })
+        }
+    });
 
-    const updatedUser = await prismadb.user.update({
+    let updatedUser;
+
+    if(photo !== undefined){
+          updatedUser = await prismadb.user.update({
+             where: {
+                 id: id, 
+             },
+             data: {
+                 name,
+                 designation,
+                 linkedInUrl,
+                 writeUp,
+                 station,
+                 photo: {
+                     update: {
+                         name: photo?.name as string,
+                         url: photo?.url as string,
+                         thumbnailUrl: photo?.thumbnailUrl as string
+                     }
+                 }
+             },
+             include:{
+                 photo: {
+                        select: {
+                            url: true
+                        }
+                 }
+             }
+         });
+
+         return {user:updatedUser};
+    }
+    updatedUser= await prismadb.user.update({
         where: {
             id: id,
         },
@@ -239,17 +290,20 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
             linkedInUrl,
             writeUp,
             station,
-            photo: {
-                create: {
-                    fileId: photo?.fileId,
-                    name: photo?.name as string,
-                    url: photo?.url as string,
-                    thumbnailUrl: photo?.thumbnailUrl as string
+            photo:{
+                update:{
+                    name: userPhoto?.name as string,
+                    url: userPhoto?.url as string,
+                    thumbnailUrl: userPhoto?.thumbnailUrl as string
                 }
             }
         },
-        include:{
-            photo: true
+        include: {
+            photo: {
+                select:{
+                    url: true
+                }
+            }
         }
     });
 

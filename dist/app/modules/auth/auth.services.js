@@ -39,7 +39,35 @@ const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const salt = yield bcrypt_1.default.genSalt(10);
     const hashedPassword = yield bcrypt_1.default.hash(password, salt);
-    const user = yield prismaDb_1.default.user.create({
+    let user;
+    if (photo) {
+        user = yield prismaDb_1.default.user.create({
+            data: {
+                name,
+                email,
+                designation,
+                linkedInUrl,
+                writeUp,
+                password: hashedPassword,
+                station,
+                role,
+                photo: {
+                    create: {
+                        fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
+                        name: photo === null || photo === void 0 ? void 0 : photo.name,
+                        url: photo === null || photo === void 0 ? void 0 : photo.url,
+                        thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
+                    }
+                }
+            },
+            include: {
+                photo: true
+            }
+        });
+        const { password: _ } = user, userWithoutPassword = __rest(user, ["password"]);
+        return userWithoutPassword;
+    }
+    user = yield prismaDb_1.default.user.create({
         data: {
             name,
             email,
@@ -49,17 +77,6 @@ const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
             password: hashedPassword,
             station,
             role,
-            photo: {
-                create: {
-                    fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
-                    name: photo === null || photo === void 0 ? void 0 : photo.name,
-                    url: photo === null || photo === void 0 ? void 0 : photo.url,
-                    thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
-                }
-            }
-        },
-        include: {
-            photo: true
         }
     });
     const { password: _ } = user, userWithoutPassword = __rest(user, ["password"]);
@@ -189,12 +206,42 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
     if (!user) {
         throw new appError_1.default(404, "User not found");
     }
-    yield prismaDb_1.default.photo.deleteMany({
+    const userPhoto = yield prismaDb_1.default.photo.findFirst({
         where: {
             userId: user.id
-        },
+        }
     });
-    const updatedUser = yield prismaDb_1.default.user.update({
+    let updatedUser;
+    if (photo !== undefined) {
+        updatedUser = yield prismaDb_1.default.user.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name,
+                designation,
+                linkedInUrl,
+                writeUp,
+                station,
+                photo: {
+                    update: {
+                        name: photo === null || photo === void 0 ? void 0 : photo.name,
+                        url: photo === null || photo === void 0 ? void 0 : photo.url,
+                        thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
+                    }
+                }
+            },
+            include: {
+                photo: {
+                    select: {
+                        url: true
+                    }
+                }
+            }
+        });
+        return { user: updatedUser };
+    }
+    updatedUser = yield prismaDb_1.default.user.update({
         where: {
             id: id,
         },
@@ -205,16 +252,19 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
             writeUp,
             station,
             photo: {
-                create: {
-                    fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
-                    name: photo === null || photo === void 0 ? void 0 : photo.name,
-                    url: photo === null || photo === void 0 ? void 0 : photo.url,
-                    thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
+                update: {
+                    name: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.name,
+                    url: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.url,
+                    thumbnailUrl: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.thumbnailUrl
                 }
             }
         },
         include: {
-            photo: true
+            photo: {
+                select: {
+                    url: true
+                }
+            }
         }
     });
     return { user: updatedUser };
