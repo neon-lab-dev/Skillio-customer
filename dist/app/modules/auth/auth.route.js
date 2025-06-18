@@ -13,7 +13,4 @@ const router = express_1.default.Router();
 router.post("/signup", multer_1.default, auth_controller_1.authControllers.createUser);
 router.post("/login", (0, validateRequest_1.default)(auth_validation_1.AuthValidations.LoginValidationSchema), auth_controller_1.authControllers.loginUser);
 router.post("/refreshToken", (0, validateRequest_1.default)(auth_validation_1.AuthValidations.refreshTokenValidationSchema), auth_controller_1.authControllers.refreshToken);
-router.get("/getAllUsers", auth_controller_1.authControllers.getAllUsers);
-router.get("/getSingleUser/:id", auth_controller_1.authControllers.getSingleUser);
-router.delete("/deleteUser/:id", auth_controller_1.authControllers.deleteUser);
 exports.authRouter = router;

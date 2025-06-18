@@ -22,7 +22,8 @@ const getDataUri_1 = __importDefault(require("../../utils/getDataUri"));
 // sigup controller
 const createUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
-    const { name, designation, linkedInUrl, writeUp, password, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp, email, password, role, station } = req.body;
+    console.log(req.body);
     let photo = undefined;
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
@@ -34,7 +35,7 @@ const createUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(
             });
         }
     }
-    const user = yield auth_services_1.authServices.createUser({ name, designation, linkedInUrl, writeUp, password, station, photo });
+    const user = yield auth_services_1.authServices.createUser({ name, designation, email, linkedInUrl, writeUp, role, password, station, photo });
     (0, sendResponse_1.default)(res, {
         statusCode: 201,
         success: true,
@@ -44,8 +45,8 @@ const createUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(
 }));
 // login user controller
 const loginUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, password } = req.body;
-    const result = yield auth_services_1.authServices.loginUser({ name, password });
+    const { email, password } = req.body;
+    const result = yield auth_services_1.authServices.loginUser({ email, password });
     const { accessToken, user } = result;
     res.cookie("accessToken", accessToken, {
         httpOnly: true,
@@ -152,5 +153,6 @@ exports.authControllers = {
     refreshToken,
     getAllUsers,
     getSingleUser,
-    deleteUser
+    deleteUser,
+    updateUser
 };

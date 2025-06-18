@@ -13,12 +13,11 @@ import sendResponse from "../../middlewares/sendResponse";
 
 // create user
 const createUser = async (payload: Partial<TUser>) => {
-  const { name , designation , linkedInUrl , writeUp ,  password , station ,photo } = payload;
+  const { name , designation , linkedInUrl ,role, writeUp ,  password , station ,photo , email } = payload;
 
-  if (!name || !designation || !linkedInUrl || !writeUp || !password || !station) {
-    throw new AppError(400, "please provide all fields");
-  }
-
+    if(!name || !designation || !linkedInUrl || !writeUp || !password || !station || !email || !role) {
+    throw new AppError(400, "Please provide all fields"); 
+    }
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -27,11 +26,13 @@ const createUser = async (payload: Partial<TUser>) => {
   const user = await prismadb.user.create({
     data: {
       name,
+      email,
       designation,
       linkedInUrl,
       writeUp,
       password: hashedPassword,
       station,
+      role,
       photo: {
         create: {
           fileId: photo?.fileId,
@@ -53,15 +54,18 @@ const createUser = async (payload: Partial<TUser>) => {
 
 // login user
 const loginUser = async (payload: TLoginAuth) => {
-    const { name, password } = payload;
+    const { email, password } = payload;
 
-    if (!name || !password) {
-        throw new AppError(400, "Please provide all fields");
+    if(!email){
+        throw new AppError(400, "Please provide email");
+    }
+    if(!password){
+        throw new AppError(400, "Please provide password");
     }
 
     const user = await prismadb.user.findFirst({
         where: {
-            name: name,
+            email: email,
         },
         include:{
             photo: true
@@ -110,11 +114,11 @@ const refreshToken = async (refreshToken: string) => {
 
     const decoded = jwt.verify(refreshToken, config.jwt_refresh_secret as string) as JwtPayload;
 
-    const {name}= decoded as {name:string};
+    const {email}= decoded as {email:string};
 
     const user = await prismadb.user.findFirst({
         where: {
-            name: name,
+            email: email,
         },
     });
 
@@ -138,7 +142,13 @@ const refreshToken = async (refreshToken: string) => {
 
 // get all users
 const getUsers = async () => {
-    const users = await prismadb.user.findMany();
+    const users = await prismadb.user.findMany(
+        {
+            include:{
+                photo: true
+            }
+        }
+    );
     if (!users || users.length === 0) {
         throw new AppError(404, "No users found");
     }
@@ -154,6 +164,9 @@ const getUserById = async (id: string) => {
         where: {
             id: id,
         },
+        include: {
+            photo: true
+        }
     });
 
     if (!user) {
@@ -241,7 +254,7 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
     });
 
 
-    return {user:updateUser};
+    return {user:updatedUser};
 }
 
 

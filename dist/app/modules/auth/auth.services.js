@@ -33,20 +33,22 @@ const config_1 = __importDefault(require("../../config"));
 const sendResponse_1 = __importDefault(require("../../middlewares/sendResponse"));
 // create user
 const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, password, station, photo } = payload;
-    if (!name || !designation || !linkedInUrl || !writeUp || !password || !station) {
-        throw new appError_1.default(400, "please provide all fields");
+    const { name, designation, linkedInUrl, role, writeUp, password, station, photo, email } = payload;
+    if (!name || !designation || !linkedInUrl || !writeUp || !password || !station || !email || !role) {
+        throw new appError_1.default(400, "Please provide all fields");
     }
     const salt = yield bcrypt_1.default.genSalt(10);
     const hashedPassword = yield bcrypt_1.default.hash(password, salt);
     const user = yield prismaDb_1.default.user.create({
         data: {
             name,
+            email,
             designation,
             linkedInUrl,
             writeUp,
             password: hashedPassword,
             station,
+            role,
             photo: {
                 create: {
                     fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
@@ -65,13 +67,16 @@ const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
 });
 // login user
 const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, password } = payload;
-    if (!name || !password) {
-        throw new appError_1.default(400, "Please provide all fields");
+    const { email, password } = payload;
+    if (!email) {
+        throw new appError_1.default(400, "Please provide email");
+    }
+    if (!password) {
+        throw new appError_1.default(400, "Please provide password");
     }
     const user = yield prismaDb_1.default.user.findFirst({
         where: {
-            name: name,
+            email: email,
         },
         include: {
             photo: true
@@ -102,10 +107,10 @@ const refreshToken = (refreshToken) => __awaiter(void 0, void 0, void 0, functio
         throw new appError_1.default(401, "Please provide refresh token");
     }
     const decoded = jsonwebtoken_1.default.verify(refreshToken, config_1.default.jwt_refresh_secret);
-    const { name } = decoded;
+    const { email } = decoded;
     const user = yield prismaDb_1.default.user.findFirst({
         where: {
-            name: name,
+            email: email,
         },
     });
     if (!user) {
@@ -120,7 +125,11 @@ const refreshToken = (refreshToken) => __awaiter(void 0, void 0, void 0, functio
 });
 // get all users
 const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield prismaDb_1.default.user.findMany();
+    const users = yield prismaDb_1.default.user.findMany({
+        include: {
+            photo: true
+        }
+    });
     if (!users || users.length === 0) {
         throw new appError_1.default(404, "No users found");
     }
@@ -135,6 +144,9 @@ const getUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
         where: {
             id: id,
         },
+        include: {
+            photo: true
+        }
     });
     if (!user) {
         throw new appError_1.default(404, "User not found");
@@ -205,7 +217,7 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
             photo: true
         }
     });
-    return { user: updateUser };
+    return { user: updatedUser };
 });
 exports.authServices = {
     createUser,

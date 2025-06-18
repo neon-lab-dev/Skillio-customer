@@ -10,7 +10,8 @@ import { UploadImageResponse } from "../../utils/uploadImage";
 // sigup controller
 const createUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     console.log(req.body)
-    const { name , designation , linkedInUrl, writeUp , password , station } = req.body;
+    const { name , designation , linkedInUrl, writeUp ,email, password ,role, station } = req.body; 
+    console.log(req.body)
     let photo: UploadImageResponse | undefined = undefined;
     
     if (req.file) {
@@ -27,7 +28,7 @@ const createUser = catchAsyncError(async (req: Request, res: Response, next: Nex
         });
       }
     }
-    const user = await authServices.createUser({ name , designation , linkedInUrl, writeUp , password , station ,photo });
+    const user = await authServices.createUser({ name , designation ,email, linkedInUrl, writeUp ,role, password , station ,photo });
     sendResponse(res, {
         statusCode: 201,
         success: true,
@@ -38,8 +39,8 @@ const createUser = catchAsyncError(async (req: Request, res: Response, next: Nex
 
 // login user controller
 const loginUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
-    const { name, password } = req.body;
-    const result = await authServices.loginUser({ name, password });
+    const { email, password } = req.body;
+    const result = await authServices.loginUser({ email, password });
 
     const { accessToken, user} = result;
     res.cookie("accessToken", accessToken, {
@@ -164,5 +165,6 @@ export const authControllers = {
     refreshToken,
     getAllUsers,
     getSingleUser,
-    deleteUser
+    deleteUser,
+    updateUser
 };

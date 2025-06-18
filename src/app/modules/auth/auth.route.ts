@@ -24,20 +24,7 @@ router.post(
     authControllers.refreshToken
 );
 
-router.get(
-    "/getAllUsers",
-    authControllers.getAllUsers
-)
 
-router.get(
-    "/getSingleUser/:id",
-    authControllers.getSingleUser
-)
-
-router.delete(
-    "/deleteUser/:id",
-    authControllers.deleteUser
-)
 
 
 export const authRouter = router;

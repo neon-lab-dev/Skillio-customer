@@ -1,5 +1,5 @@
 export type TLoginAuth = {
-  name: string;
+  email: string;
   password: string;
 };
 
@@ -12,10 +12,12 @@ export type TPhoto = {
 
 export type TUser = {
   name: string;
+  email: string;
   designation: string;
   linkedInUrl: string;
   writeUp: string;
   password: string;
-  photo?: TPhoto;
+  photo?: TPhoto | null;
   station : string;
+  role: "ADMIN" | "USER";
 };
