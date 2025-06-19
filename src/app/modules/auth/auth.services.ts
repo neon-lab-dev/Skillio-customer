@@ -82,14 +82,15 @@ const loginUser = async (payload: TLoginAuth) => {
         throw new AppError(400, "Please provide password");
     }
 
+    console.log("Login request:", email, password);
+
     const user = await prismadb.user.findFirst({
         where: {
             email: email,
-        },
-        include:{
-            photo: true
         }
     });
+
+    console.log("User found:", user);
 
     if (!user) {
         throw new AppError(401, "Invalid credentials");

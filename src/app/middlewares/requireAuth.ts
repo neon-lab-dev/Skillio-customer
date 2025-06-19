@@ -29,6 +29,15 @@ export const verifyToken = catchAsyncError(async (req: Request, res: Response, n
     return res.status(401).json({ error: 'Invalid authorization token' });
   }
 
+  if(req.cookies.accessToken !== token) {
+    return sendResponse(res, {
+        statusCode: 401,
+        success: false,
+        message: "Unauthorized access",
+        data: null,
+    });
+  }
+
     const decoded = jwt.verify(token, config.jwt_access_secret as string) as DecodedToken;
     req.cookies.user=decoded;
     console.log(req.cookies.user);

@@ -91,14 +91,13 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     if (!password) {
         throw new appError_1.default(400, "Please provide password");
     }
+    console.log("Login request:", email, password);
     const user = yield prismaDb_1.default.user.findFirst({
         where: {
             email: email,
-        },
-        include: {
-            photo: true
         }
     });
+    console.log("User found:", user);
     if (!user) {
         throw new appError_1.default(401, "Invalid credentials");
     }

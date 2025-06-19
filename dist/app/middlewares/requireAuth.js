@@ -31,6 +31,14 @@ exports.verifyToken = (0, catchAsyncError_1.default)((req, res, next) => __await
     if (!token) {
         return res.status(401).json({ error: 'Invalid authorization token' });
     }
+    if (req.cookies.accessToken !== token) {
+        return (0, sendResponse_1.default)(res, {
+            statusCode: 401,
+            success: false,
+            message: "Unauthorized access",
+            data: null,
+        });
+    }
     const decoded = jsonwebtoken_1.default.verify(token, config_1.default.jwt_access_secret);
     req.cookies.user = decoded;
     console.log(req.cookies.user);
