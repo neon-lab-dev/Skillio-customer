@@ -52,7 +52,7 @@ const loginUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(v
         httpOnly: true,
         secure: config_1.default.node_env === "production",
         sameSite: "strict",
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        maxAge: 1 * 24 * 60 * 60 * 1000, // 7 days
     });
     res.cookie("refreshToken", result.refreshToken, {
         httpOnly: true,

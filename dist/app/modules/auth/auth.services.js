@@ -108,7 +108,7 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     }
     const jwtPayload = {
         userId: user.id.toString(),
-        name: user.name,
+        role: user.role
     };
     const accessToken = (0, auth_utils_1.createToken)(jwtPayload, config_1.default.jwt_access_secret, config_1.default.jwt_access_expires_in);
     const refreshToken = (0, auth_utils_1.createToken)(jwtPayload, config_1.default.jwt_refresh_secret, config_1.default.jwt_refresh_expires_in);

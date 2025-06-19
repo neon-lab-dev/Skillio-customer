@@ -1,27 +1,35 @@
 import express from "express";
 import { authControllers } from "../auth/auth.controller";
 import singleUpload from "../../middlewares/multer";
+import { authorizeRole } from "../../middlewares/authorizeRole";
+import { verifyToken } from "../../middlewares/requireAuth";
 
 const router = express.Router();
 
 router.get(
     "/",
-    authControllers.getAllUsers
+    verifyToken,
+    authorizeRole("ADMIN"),
+    authControllers.getAllUsers,
 )
 router.put(
     "/:id",
+    verifyToken,
     singleUpload,
     authControllers.updateUser
 );
 
 router.get(
     "/:id",
+    verifyToken,
     authControllers.getSingleUser
 )
 
 router.delete(
     "/:id",
-    authControllers.deleteUser
+    verifyToken,
+    authorizeRole("ADMIN"),
+    authControllers.deleteUser,
 )
 
 

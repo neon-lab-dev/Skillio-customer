@@ -4,6 +4,7 @@ import { AuthValidations } from "./auth.validation";
 import {authControllers} from "./auth.controller";
 import singleUpload from "../../middlewares/multer";
 
+
 const router = express.Router();
 
 router.post(
