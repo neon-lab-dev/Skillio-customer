@@ -192,8 +192,8 @@ const deleteUser = (id, res) => __awaiter(void 0, void 0, void 0, function* () {
     return { message: "User deleted successfully" };
 });
 // update user
-const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+const updateUser = (id, payload, req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, station, role, photo } = payload;
     if (!name || !designation || !linkedInUrl || !writeUp || !station) {
         throw new appError_1.default(400, "Please provide all fields");
     }
@@ -211,6 +211,72 @@ const updateUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* 
         }
     });
     let updatedUser;
+    if (req.cookies.user.role === "admin") {
+        if (photo !== undefined) {
+            yield prismaDb_1.default.photo.deleteMany({
+                where: {
+                    userId: user.id
+                }
+            });
+            updatedUser = yield prismaDb_1.default.user.update({
+                where: {
+                    id: id,
+                },
+                data: {
+                    name,
+                    designation,
+                    linkedInUrl,
+                    writeUp,
+                    station,
+                    role,
+                    photo: {
+                        create: {
+                            fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
+                            name: photo === null || photo === void 0 ? void 0 : photo.name,
+                            url: photo === null || photo === void 0 ? void 0 : photo.url,
+                            thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
+                        }
+                    }
+                },
+                include: {
+                    photo: {
+                        select: {
+                            url: true
+                        }
+                    }
+                }
+            });
+            return { user: updatedUser };
+        }
+        updatedUser = yield prismaDb_1.default.user.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name,
+                designation,
+                linkedInUrl,
+                writeUp,
+                station,
+                role,
+                photo: {
+                    update: {
+                        name: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.name,
+                        url: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.url,
+                        thumbnailUrl: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.thumbnailUrl
+                    }
+                }
+            },
+            include: {
+                photo: {
+                    select: {
+                        url: true
+                    }
+                }
+            }
+        });
+        return { user: updatedUser };
+    }
     if (photo !== undefined) {
         yield prismaDb_1.default.photo.deleteMany({
             where: {

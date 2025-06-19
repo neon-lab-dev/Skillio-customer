@@ -132,7 +132,7 @@ const deleteUser = catchAsyncError(async (req: Request, res: Response, next: Nex
 // update user controller
 const updateUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp,role, station } = req.body;
     let photo: UploadImageResponse | undefined = undefined;
     if (req.file) {
         photo = await uploadImage(
@@ -148,7 +148,7 @@ const updateUser = catchAsyncError(async (req: Request, res: Response, next: Nex
             });
         }
     }
-    const user = await authServices.updateUser(id, { name, designation, linkedInUrl, writeUp, station, photo });
+    const user = await authServices.updateUser(id, { name, designation, linkedInUrl, writeUp,role, station, photo } , req);
     sendResponse(res, { 
         statusCode: 200,
         success: true,

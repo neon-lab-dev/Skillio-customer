@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import AppError from "../../errors/appError";
 import {createToken} from "./auth.utils"
 import jwt , {JwtPayload}from "jsonwebtoken";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 import prismadb from "../../db/prismaDb";
 import config from "../../config";
@@ -226,8 +226,8 @@ const deleteUser= async (id: string , res:Response) => {
 }
 
 // update user
-const updateUser= async (id: string, payload: Partial<TUser>) => {
-    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+const updateUser= async (id: string, payload: Partial<TUser> , req:Request) => {
+    const { name, designation, linkedInUrl, writeUp, station,role, photo } = payload;
 
     if (!name || !designation || !linkedInUrl || !writeUp  || !station) {
         throw new AppError(400, "Please provide all fields");
@@ -250,6 +250,77 @@ const updateUser= async (id: string, payload: Partial<TUser>) => {
     });
 
     let updatedUser;
+
+    if(req.cookies.user.role==="ADMIN"){
+            if(photo !== undefined){
+        await prismadb.photo.deleteMany({
+            where:{
+                userId: user.id
+            }
+        })
+
+          updatedUser = await prismadb.user.update({
+             where: {
+                 id: id, 
+             },
+             data: {
+                 name,
+                 designation,
+                 linkedInUrl,
+                 writeUp,
+                 station,
+                 role,
+                 photo: {
+                     create: {
+                        fileId: photo?.fileId,
+                         name: photo?.name as string,
+                         url: photo?.url as string,
+                         thumbnailUrl: photo?.thumbnailUrl as string
+                     }
+                 }
+             },
+             include:{
+                 photo: {
+                        select: {
+                            url: true
+                        }
+                 }
+             }
+         });
+
+         return {user:updatedUser};
+    }
+    updatedUser= await prismadb.user.update({
+        where: {
+            id: id,
+        },
+        data: {
+            name,
+            designation,
+            linkedInUrl,
+            writeUp,
+            station,
+            role,
+            photo:{
+                update:{
+                    name: userPhoto?.name as string,
+                    url: userPhoto?.url as string,
+                    thumbnailUrl: userPhoto?.thumbnailUrl as string
+                }
+            }
+        },
+        include: {
+            photo: {
+                select:{
+                    url: true
+                }
+            }
+        }
+    });
+    return {user:updatedUser};
+
+    }
+
 
     if(photo !== undefined){
         await prismadb.photo.deleteMany({
