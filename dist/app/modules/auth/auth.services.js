@@ -211,7 +211,7 @@ const updateUser = (id, payload, req) => __awaiter(void 0, void 0, void 0, funct
         }
     });
     let updatedUser;
-    if (req.cookies.user.role === "admin") {
+    if (req.cookies.user.role === "ADMIN") {
         if (photo !== undefined) {
             yield prismaDb_1.default.photo.deleteMany({
                 where: {
