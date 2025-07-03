@@ -1,4 +1,4 @@
-import { TUser , TLoginAuth } from "./auth.interface";
+import { TUser , TLoginAuth  , Tpeople} from "./auth.interface";
 import bcrypt from "bcrypt";
 import AppError from "../../errors/appError";
 import {createToken} from "./auth.utils"
@@ -13,7 +13,7 @@ import sendResponse from "../../middlewares/sendResponse";
 
 // create user
 const createUser = async (payload: Partial<TUser>) => {
-  const { name , designation , linkedInUrl ,role, writeUp ,  password , station ,photo , email } = payload;
+  const { name , designation , linkedInUrl ,role, writeUp ,  password , station  , email } = payload;
 
     if(!name || !designation || !linkedInUrl || !writeUp || !password || !station || !email || !role) {
     throw new AppError(400, "Please provide all fields"); 
@@ -22,38 +22,8 @@ const createUser = async (payload: Partial<TUser>) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-let user;
-if(photo){
-     user = await prismadb.user.create({
-      data: {
-        name,
-        email,
-        designation,
-        linkedInUrl,
-        writeUp,
-        password: hashedPassword,
-        station,
-        role,
-        photo: {
-          create: {
-            fileId: photo?.fileId,
-            name: photo?.name as string,
-            url: photo?.url as string,
-            thumbnailUrl: photo?.thumbnailUrl as string
-          }
-        }
-      },
-      include:{
-          photo: true
-      }
-    });
 
-  const { password: _, ...userWithoutPassword } = user;
-
-    return userWithoutPassword
-}
-
-user= await prismadb.user.create({
+    const user= await prismadb.user.create({
     data: {
       name,
       email,
@@ -160,176 +130,164 @@ const refreshToken = async (refreshToken: string) => {
     return {accessToken};
 }
 
-// get all users
-const getUsers = async () => {
-    const users = await prismadb.user.findMany(
+// create people
+const createPeople = async (payload: Partial<Tpeople>) => {
+  const { name , designation , linkedInUrl , writeUp  , station ,photo , email } = payload;
+
+    if(!name || !designation || !linkedInUrl || !writeUp  || !station || !email ) {
+    throw new AppError(400, "Please provide all fields"); 
+    }
+
+
+let people;
+if(photo){
+     people = await prismadb.people.create({
+      data: {
+        name,
+        email,
+        designation,
+        linkedInUrl,
+        writeUp,
+        station,
+        photo: {
+          create: {
+            fileId: photo?.fileId ,
+            name: photo?.name as string,
+            url: photo?.url as string,
+            thumbnailUrl: photo?.thumbnailUrl as string
+          }
+        }
+      },
+      include:{
+          photo: true
+      }
+    });
+
+
+    return people;
+}
+
+people= await prismadb.people.create({
+    data: {
+      name,
+      email,
+      designation,
+      linkedInUrl,
+      writeUp,
+      station,
+    }
+  });
+
+
+  return people;
+}
+
+
+// get all people
+const getPeople = async () => {
+    const people = await prismadb.people.findMany(
         {
             include:{
-                photo: true
+                photo: {
+                    select:{
+                        url: true
+                    }
+                }
             }
         }
     );
-    if (!users || users.length === 0) {
-        throw new AppError(404, "No users found");
+    if (!people || people.length === 0) {
+        throw new AppError(404, "No People found");
     }
-    return users.map((user:TUser) => {
-        const { password, ...userWithoutPassword } = user;
-        return userWithoutPassword;
-    });
+    return people
 }
 
-// get user by id
-const getUserById = async (id: string) => {
-    const user = await prismadb.user.findFirst({
+// get people by id
+const getPeopleById = async (id: string) => {
+    const people = await prismadb.people.findFirst({
         where: {
             id: id,
         },
         include: {
-            photo: true
+            photo: {
+                select:{
+                    url: true
+                }
+            }
         }
     });
 
-    if (!user) {
-        throw new AppError(404, "User not found");
+    if (!people) {
+        throw new AppError(404, "People not found");
     }
 
-    const { password, ...userWithoutPassword } = user;
-    return userWithoutPassword;
+    return people;
 }
 
-// delete user
-const deleteUser= async (id: string , res:Response) => {
-    const user = await prismadb.user.findFirst({
+// delete people
+const deletePeople= async (id: string , res:Response) => {
+    const people = await prismadb.people.findFirst({
         where: {
             id: id,
         },
     });
 
-    if (!user) {
+    if (!people) {
        return(
         sendResponse(res, {
             statusCode: 404,
             success: false,
-            message: "User not found with this id",
+            message: "People not found with this id",
         }
         )
        )
     }
 
-    await prismadb.user.delete({
+    await prismadb.people.delete({
         where: {
             id: id,
         },
     });
 
-    return { message: "User deleted successfully" };
+    return { message: "People deleted successfully" };
 }
 
-// update user
-const updateUser= async (id: string, payload: Partial<TUser> , req:Request) => {
-    const { name, designation, linkedInUrl, writeUp, station,role, photo } = payload;
+// update people
+const updatePeople= async (id: string, payload: Partial<Tpeople> , req:Request) => {
+    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
 
     if (!name || !designation || !linkedInUrl || !writeUp  || !station) {
         throw new AppError(400, "Please provide all fields");
     }
 
-    const user = await prismadb.user.findFirst({
+    const people = await prismadb.people.findFirst({
         where: {
             id: id,
         },
     });
 
-    if (!user) {
+    if (!people) {
         throw new AppError(404, "User not found");
     }
 
-    const userPhoto= await prismadb.photo.findFirst({
+    const peoplePhoto= await prismadb.photo.findFirst({
         where: {
-            userId: user.id
+            peopleId: people.id
         }
     });
 
-    let updatedUser;
+    let updatedPeople;
 
-    if(req.cookies.user.role==="ADMIN"){
-            if(photo !== undefined){
-        await prismadb.photo.deleteMany({
-            where:{
-                userId: user.id
-            }
-        })
-
-          updatedUser = await prismadb.user.update({
-             where: {
-                 id: id, 
-             },
-             data: {
-                 name,
-                 designation,
-                 linkedInUrl,
-                 writeUp,
-                 station,
-                 role,
-                 photo: {
-                     create: {
-                        fileId: photo?.fileId,
-                         name: photo?.name as string,
-                         url: photo?.url as string,
-                         thumbnailUrl: photo?.thumbnailUrl as string
-                     }
-                 }
-             },
-             include:{
-                 photo: {
-                        select: {
-                            url: true
-                        }
-                 }
-             }
-         });
-
-         return {user:updatedUser};
-    }
-    updatedUser= await prismadb.user.update({
-        where: {
-            id: id,
-        },
-        data: {
-            name,
-            designation,
-            linkedInUrl,
-            writeUp,
-            station,
-            role,
-            photo:{
-                update:{
-                    name: userPhoto?.name as string,
-                    url: userPhoto?.url as string,
-                    thumbnailUrl: userPhoto?.thumbnailUrl as string
-                }
-            }
-        },
-        include: {
-            photo: {
-                select:{
-                    url: true
-                }
-            }
-        }
-    });
-    return {user:updatedUser};
-
-    }
 
 
     if(photo !== undefined){
         await prismadb.photo.deleteMany({
             where:{
-                userId: user.id
+                peopleId: people.id
             }
         })
 
-          updatedUser = await prismadb.user.update({
+          updatedPeople = await prismadb.people.update({
              where: {
                  id: id, 
              },
@@ -357,9 +315,9 @@ const updateUser= async (id: string, payload: Partial<TUser> , req:Request) => {
              }
          });
 
-         return {user:updatedUser};
+         return {people:updatedPeople};
     }
-    updatedUser= await prismadb.user.update({
+    updatedPeople= await prismadb.people.update({
         where: {
             id: id,
         },
@@ -371,9 +329,9 @@ const updateUser= async (id: string, payload: Partial<TUser> , req:Request) => {
             station,
             photo:{
                 update:{
-                    name: userPhoto?.name as string,
-                    url: userPhoto?.url as string,
-                    thumbnailUrl: userPhoto?.thumbnailUrl as string
+                    name: peoplePhoto?.name as string,
+                    url: peoplePhoto?.url as string,
+                    thumbnailUrl: peoplePhoto?.thumbnailUrl as string
                 }
             }
         },
@@ -387,7 +345,7 @@ const updateUser= async (id: string, payload: Partial<TUser> , req:Request) => {
     });
 
 
-    return {user:updatedUser};
+    return {people:updatedPeople};
 }
 
 
@@ -395,8 +353,9 @@ export const authServices = {
     createUser,
     loginUser,
     refreshToken,
-    getUsers,
-    getUserById,
-    deleteUser,
-    updateUser
+    createPeople,
+    getPeople,
+    getPeopleById,
+    deletePeople,
+    updatePeople
 };

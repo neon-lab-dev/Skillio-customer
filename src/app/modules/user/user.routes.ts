@@ -6,30 +6,36 @@ import { verifyToken } from "../../middlewares/requireAuth";
 
 const router = express.Router();
 
-router.get(
+router.post(
     "/",
     verifyToken,
+    singleUpload,
     authorizeRole("ADMIN"),
-    authControllers.getAllUsers,
+    authControllers.createPeople
+)
+
+router.get(
+    "/",
+    authControllers.getAllPeople,
 )
 router.put(
     "/:id",
     verifyToken,
     singleUpload,
-    authControllers.updateUser
+    authorizeRole("ADMIN"),
+    authControllers.updatePeople
 );
 
 router.get(
     "/:id",
-    verifyToken,
-    authControllers.getSingleUser
+    authControllers.getSinglePeople
 )
 
 router.delete(
     "/:id",
     verifyToken,
     authorizeRole("ADMIN"),
-    authControllers.deleteUser,
+    authControllers.deletePeople,
 )
 
 

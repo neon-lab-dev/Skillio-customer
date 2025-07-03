@@ -33,41 +33,13 @@ const config_1 = __importDefault(require("../../config"));
 const sendResponse_1 = __importDefault(require("../../middlewares/sendResponse"));
 // create user
 const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, role, writeUp, password, station, photo, email } = payload;
+    const { name, designation, linkedInUrl, role, writeUp, password, station, email } = payload;
     if (!name || !designation || !linkedInUrl || !writeUp || !password || !station || !email || !role) {
         throw new appError_1.default(400, "Please provide all fields");
     }
     const salt = yield bcrypt_1.default.genSalt(10);
     const hashedPassword = yield bcrypt_1.default.hash(password, salt);
-    let user;
-    if (photo) {
-        user = yield prismaDb_1.default.user.create({
-            data: {
-                name,
-                email,
-                designation,
-                linkedInUrl,
-                writeUp,
-                password: hashedPassword,
-                station,
-                role,
-                photo: {
-                    create: {
-                        fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
-                        name: photo === null || photo === void 0 ? void 0 : photo.name,
-                        url: photo === null || photo === void 0 ? void 0 : photo.url,
-                        thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
-                    }
-                }
-            },
-            include: {
-                photo: true
-            }
-        });
-        const { password: _ } = user, userWithoutPassword = __rest(user, ["password"]);
-        return userWithoutPassword;
-    }
-    user = yield prismaDb_1.default.user.create({
+    const user = yield prismaDb_1.default.user.create({
         data: {
             name,
             email,
@@ -139,151 +111,132 @@ const refreshToken = (refreshToken) => __awaiter(void 0, void 0, void 0, functio
     const accessToken = (0, auth_utils_1.createToken)(jwtPayload, config_1.default.jwt_access_secret, config_1.default.jwt_access_expires_in);
     return { accessToken };
 });
-// get all users
-const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield prismaDb_1.default.user.findMany({
-        include: {
-            photo: true
-        }
-    });
-    if (!users || users.length === 0) {
-        throw new appError_1.default(404, "No users found");
-    }
-    return users.map((user) => {
-        const { password } = user, userWithoutPassword = __rest(user, ["password"]);
-        return userWithoutPassword;
-    });
-});
-// get user by id
-const getUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield prismaDb_1.default.user.findFirst({
-        where: {
-            id: id,
-        },
-        include: {
-            photo: true
-        }
-    });
-    if (!user) {
-        throw new appError_1.default(404, "User not found");
-    }
-    const { password } = user, userWithoutPassword = __rest(user, ["password"]);
-    return userWithoutPassword;
-});
-// delete user
-const deleteUser = (id, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield prismaDb_1.default.user.findFirst({
-        where: {
-            id: id,
-        },
-    });
-    if (!user) {
-        return ((0, sendResponse_1.default)(res, {
-            statusCode: 404,
-            success: false,
-            message: "User not found with this id",
-        }));
-    }
-    yield prismaDb_1.default.user.delete({
-        where: {
-            id: id,
-        },
-    });
-    return { message: "User deleted successfully" };
-});
-// update user
-const updateUser = (id, payload, req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, station, role, photo } = payload;
-    if (!name || !designation || !linkedInUrl || !writeUp || !station) {
+// create people
+const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, station, photo, email } = payload;
+    if (!name || !designation || !linkedInUrl || !writeUp || !station || !email) {
         throw new appError_1.default(400, "Please provide all fields");
     }
-    const user = yield prismaDb_1.default.user.findFirst({
-        where: {
-            id: id,
-        },
-    });
-    if (!user) {
-        throw new appError_1.default(404, "User not found");
-    }
-    const userPhoto = yield prismaDb_1.default.photo.findFirst({
-        where: {
-            userId: user.id
-        }
-    });
-    let updatedUser;
-    if (req.cookies.user.role === "ADMIN") {
-        if (photo !== undefined) {
-            yield prismaDb_1.default.photo.deleteMany({
-                where: {
-                    userId: user.id
-                }
-            });
-            updatedUser = yield prismaDb_1.default.user.update({
-                where: {
-                    id: id,
-                },
-                data: {
-                    name,
-                    designation,
-                    linkedInUrl,
-                    writeUp,
-                    station,
-                    role,
-                    photo: {
-                        create: {
-                            fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
-                            name: photo === null || photo === void 0 ? void 0 : photo.name,
-                            url: photo === null || photo === void 0 ? void 0 : photo.url,
-                            thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
-                        }
-                    }
-                },
-                include: {
-                    photo: {
-                        select: {
-                            url: true
-                        }
-                    }
-                }
-            });
-            return { user: updatedUser };
-        }
-        updatedUser = yield prismaDb_1.default.user.update({
-            where: {
-                id: id,
-            },
+    let people;
+    if (photo) {
+        people = yield prismaDb_1.default.people.create({
             data: {
                 name,
+                email,
                 designation,
                 linkedInUrl,
                 writeUp,
                 station,
-                role,
                 photo: {
-                    update: {
-                        name: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.name,
-                        url: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.url,
-                        thumbnailUrl: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.thumbnailUrl
+                    create: {
+                        fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
+                        name: photo === null || photo === void 0 ? void 0 : photo.name,
+                        url: photo === null || photo === void 0 ? void 0 : photo.url,
+                        thumbnailUrl: photo === null || photo === void 0 ? void 0 : photo.thumbnailUrl
                     }
                 }
             },
             include: {
-                photo: {
-                    select: {
-                        url: true
-                    }
-                }
+                photo: true
             }
         });
-        return { user: updatedUser };
+        return people;
     }
+    people = yield prismaDb_1.default.people.create({
+        data: {
+            name,
+            email,
+            designation,
+            linkedInUrl,
+            writeUp,
+            station,
+        }
+    });
+    return people;
+});
+// get all people
+const getPeople = () => __awaiter(void 0, void 0, void 0, function* () {
+    const people = yield prismaDb_1.default.people.findMany({
+        include: {
+            photo: {
+                select: {
+                    url: true
+                }
+            }
+        }
+    });
+    if (!people || people.length === 0) {
+        throw new appError_1.default(404, "No People found");
+    }
+    return people;
+});
+// get people by id
+const getPeopleById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const people = yield prismaDb_1.default.people.findFirst({
+        where: {
+            id: id,
+        },
+        include: {
+            photo: {
+                select: {
+                    url: true
+                }
+            }
+        }
+    });
+    if (!people) {
+        throw new appError_1.default(404, "People not found");
+    }
+    return people;
+});
+// delete people
+const deletePeople = (id, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const people = yield prismaDb_1.default.people.findFirst({
+        where: {
+            id: id,
+        },
+    });
+    if (!people) {
+        return ((0, sendResponse_1.default)(res, {
+            statusCode: 404,
+            success: false,
+            message: "People not found with this id",
+        }));
+    }
+    yield prismaDb_1.default.people.delete({
+        where: {
+            id: id,
+        },
+    });
+    return { message: "People deleted successfully" };
+});
+// update people
+const updatePeople = (id, payload, req) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+    if (!name || !designation || !linkedInUrl || !writeUp || !station) {
+        throw new appError_1.default(400, "Please provide all fields");
+    }
+    const people = yield prismaDb_1.default.people.findFirst({
+        where: {
+            id: id,
+        },
+    });
+    if (!people) {
+        throw new appError_1.default(404, "User not found");
+    }
+    const peoplePhoto = yield prismaDb_1.default.photo.findFirst({
+        where: {
+            peopleId: people.id
+        }
+    });
+    let updatedPeople;
     if (photo !== undefined) {
         yield prismaDb_1.default.photo.deleteMany({
             where: {
-                userId: user.id
+                peopleId: people.id
             }
         });
-        updatedUser = yield prismaDb_1.default.user.update({
+        updatedPeople = yield prismaDb_1.default.people.update({
             where: {
                 id: id,
             },
@@ -310,9 +263,9 @@ const updateUser = (id, payload, req) => __awaiter(void 0, void 0, void 0, funct
                 }
             }
         });
-        return { user: updatedUser };
+        return { people: updatedPeople };
     }
-    updatedUser = yield prismaDb_1.default.user.update({
+    updatedPeople = yield prismaDb_1.default.people.update({
         where: {
             id: id,
         },
@@ -324,9 +277,9 @@ const updateUser = (id, payload, req) => __awaiter(void 0, void 0, void 0, funct
             station,
             photo: {
                 update: {
-                    name: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.name,
-                    url: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.url,
-                    thumbnailUrl: userPhoto === null || userPhoto === void 0 ? void 0 : userPhoto.thumbnailUrl
+                    name: peoplePhoto === null || peoplePhoto === void 0 ? void 0 : peoplePhoto.name,
+                    url: peoplePhoto === null || peoplePhoto === void 0 ? void 0 : peoplePhoto.url,
+                    thumbnailUrl: peoplePhoto === null || peoplePhoto === void 0 ? void 0 : peoplePhoto.thumbnailUrl
                 }
             }
         },
@@ -338,14 +291,15 @@ const updateUser = (id, payload, req) => __awaiter(void 0, void 0, void 0, funct
             }
         }
     });
-    return { user: updatedUser };
+    return { people: updatedPeople };
 });
 exports.authServices = {
     createUser,
     loginUser,
     refreshToken,
-    getUsers,
-    getUserById,
-    deleteUser,
-    updateUser
+    createPeople,
+    getPeople,
+    getPeopleById,
+    deletePeople,
+    updatePeople
 };

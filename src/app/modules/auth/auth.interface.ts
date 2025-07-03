@@ -21,3 +21,13 @@ export type TUser = {
   station : string;
   role: "ADMIN" | "USER";
 };
+
+export type Tpeople = {
+  name: string;
+  email: string;
+  designation: string;
+  linkedInUrl: string;
+  writeUp: string;
+  photo?: TPhoto | null ;
+  station : string;
+};

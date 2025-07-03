@@ -9,26 +9,9 @@ import { UploadImageResponse } from "../../utils/uploadImage";
 
 // sigup controller
 const createUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body)
     const { name , designation , linkedInUrl, writeUp ,email, password ,role, station } = req.body; 
-    console.log(req.body)
-    let photo: UploadImageResponse | undefined = undefined;
-    
-    if (req.file) {
-      photo = await uploadImage(
-        getDataUri(req.file).content,
-        getDataUri(req.file).fileName,
-        "user"
-      );
-      if (!photo) {
-        return sendResponse(res, {
-            statusCode: 400,
-            success: false,
-            message: "Failed to upload photo",
-        });
-      }
-    }
-    const user = await authServices.createUser({ name , designation ,email, linkedInUrl, writeUp ,role, password , station ,photo });
+
+    const user = await authServices.createUser({ name , designation ,email, linkedInUrl, writeUp ,role, password , station  });
     sendResponse(res, {
         statusCode: 201,
         success: true,
@@ -94,45 +77,73 @@ const refreshToken = catchAsyncError(async (req: Request, res: Response, next: N
 }
 );
 
+// create people
+const createPeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    const { name , designation , linkedInUrl, writeUp ,email , station } = req.body; 
+    let photo: UploadImageResponse | undefined = undefined;
+    
+    if (req.file) {
+      photo = await uploadImage(
+        getDataUri(req.file).content,
+        getDataUri(req.file).fileName,
+        "people"
+      );
+      if (!photo) {
+        return sendResponse(res, {
+            statusCode: 400,
+            success: false,
+            message: "Failed to upload photo",
+        });
+      }
+    }
+    const poeple = await authServices.createPeople({ name , designation ,email, linkedInUrl, writeUp  , station ,photo });
+    sendResponse(res, {
+        statusCode: 201,
+        success: true,
+        message: "poeple created successfully",
+        data: poeple,
+    });
+});
+
 // get all users controller
-const getAllUsers= catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
-    const users = await authServices.getUsers();
+const getAllPeople= catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    const people = await authServices.getPeople();
     sendResponse(res, {
         statusCode: 200,
         success: true,
-        message: "Users fetched successfully",
-        data: users,
+        message: "people fetched successfully",
+        data: people,
     });
 });
 
 // get single user controller
-const getSingleUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+const getSinglePeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const user = await authServices.getUserById(id);
+    const people = await authServices.getPeopleById(id);
     sendResponse(res, {
         statusCode: 200,
         success: true,
-        message: "User fetched successfully",
-        data: user,
+        message: "people fetched successfully",
+        data: people,
     });
 })
 
 // delete user controller
-const deleteUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+const deletePeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const deletedUser = await authServices.deleteUser(id , res);
+    const deletedPeople = await authServices.deletePeople(id , res);
     sendResponse(res, {
         statusCode: 200,
         success: true,
         message: "User deleted successfully",
-        data: deletedUser,
+        data: deletedPeople,
     });
 });
 
 // update user controller
-const updateUser = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+const updatePeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp,role, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp, station } = req.body;
     let photo: UploadImageResponse | undefined = undefined;
     if (req.file) {
         photo = await uploadImage(
@@ -148,12 +159,12 @@ const updateUser = catchAsyncError(async (req: Request, res: Response, next: Nex
             });
         }
     }
-    const user = await authServices.updateUser(id, { name, designation, linkedInUrl, writeUp,role, station, photo } , req);
+    const people = await authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo } , req);
     sendResponse(res, { 
         statusCode: 200,
         success: true,
-        message: "User updated successfully",
-        data: user,
+        message: "People updated successfully",
+        data: people,
     });
 });
     
@@ -163,8 +174,9 @@ export const authControllers = {
     createUser,
     loginUser,
     refreshToken,
-    getAllUsers,
-    getSingleUser,
-    deleteUser,
-    updateUser
+    createPeople,
+    getAllPeople,
+    getSinglePeople,
+    deletePeople,
+    updatePeople
 };

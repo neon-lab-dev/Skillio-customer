@@ -21,21 +21,8 @@ const uploadImage_1 = require("../../utils/uploadImage");
 const getDataUri_1 = __importDefault(require("../../utils/getDataUri"));
 // sigup controller
 const createUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     const { name, designation, linkedInUrl, writeUp, email, password, role, station } = req.body;
-    console.log(req.body);
-    let photo = undefined;
-    if (req.file) {
-        photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
-        if (!photo) {
-            return (0, sendResponse_1.default)(res, {
-                statusCode: 400,
-                success: false,
-                message: "Failed to upload photo",
-            });
-        }
-    }
-    const user = yield auth_services_1.authServices.createUser({ name, designation, email, linkedInUrl, writeUp, role, password, station, photo });
+    const user = yield auth_services_1.authServices.createUser({ name, designation, email, linkedInUrl, writeUp, role, password, station });
     (0, sendResponse_1.default)(res, {
         statusCode: 201,
         success: true,
@@ -92,42 +79,64 @@ const refreshToken = (0, catchAsyncError_1.default)((req, res, next) => __awaite
         },
     });
 }));
+// create people
+const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, email, station } = req.body;
+    let photo = undefined;
+    if (req.file) {
+        photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "people");
+        if (!photo) {
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 400,
+                success: false,
+                message: "Failed to upload photo",
+            });
+        }
+    }
+    const poeple = yield auth_services_1.authServices.createPeople({ name, designation, email, linkedInUrl, writeUp, station, photo });
+    (0, sendResponse_1.default)(res, {
+        statusCode: 201,
+        success: true,
+        message: "poeple created successfully",
+        data: poeple,
+    });
+}));
 // get all users controller
-const getAllUsers = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield auth_services_1.authServices.getUsers();
+const getAllPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const people = yield auth_services_1.authServices.getPeople();
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: "Users fetched successfully",
-        data: users,
+        message: "people fetched successfully",
+        data: people,
     });
 }));
 // get single user controller
-const getSingleUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getSinglePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const user = yield auth_services_1.authServices.getUserById(id);
+    const people = yield auth_services_1.authServices.getPeopleById(id);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: "User fetched successfully",
-        data: user,
+        message: "people fetched successfully",
+        data: people,
     });
 }));
 // delete user controller
-const deleteUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const deletePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const deletedUser = yield auth_services_1.authServices.deleteUser(id, res);
+    const deletedPeople = yield auth_services_1.authServices.deletePeople(id, res);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
         message: "User deleted successfully",
-        data: deletedUser,
+        data: deletedPeople,
     });
 }));
 // update user controller
-const updateUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, role, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp, station } = req.body;
     let photo = undefined;
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
@@ -139,20 +148,21 @@ const updateUser = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(
             });
         }
     }
-    const user = yield auth_services_1.authServices.updateUser(id, { name, designation, linkedInUrl, writeUp, role, station, photo }, req);
+    const people = yield auth_services_1.authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo }, req);
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,
-        message: "User updated successfully",
-        data: user,
+        message: "People updated successfully",
+        data: people,
     });
 }));
 exports.authControllers = {
     createUser,
     loginUser,
     refreshToken,
-    getAllUsers,
-    getSingleUser,
-    deleteUser,
-    updateUser
+    createPeople,
+    getAllPeople,
+    getSinglePeople,
+    deletePeople,
+    updatePeople
 };

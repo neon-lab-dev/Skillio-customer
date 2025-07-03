@@ -21,7 +21,6 @@ enum Role{
         designation String
         linkedInUrl String
         writeUp String
-        photo Photo? 
         station String
         role Role @default(USER)
 
@@ -29,13 +28,30 @@ enum Role{
         updatedAt DateTime @updatedAt
     }
 
+
+    model People{
+        id      String   @id @default(auto()) @map("_id") @db.ObjectId
+        name    String
+        email  String   @unique
+        designation String
+        linkedInUrl String
+        writeUp String
+        photo Photo?
+        station String
+
+        createdAt DateTime @default(now())
+        updatedAt DateTime @updatedAt
+    }
+
+
     model Photo{
         fileId String @id @default(uuid()) @map("_id")
         name String
         url String
         thumbnailUrl String
-        userId String @unique @db.ObjectId
-        user User @relation(fields: [userId], references: [id] , onDelete: Cascade)
+
+        peopleId String? @unique @db.ObjectId
+        people People? @relation( fields: [peopleId], references: [id], onDelete: Cascade)
     }
 
 model Category{
