@@ -259,6 +259,7 @@ const deletePeople= async (id: string , res:Response) => {
 // update people
 const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
     const { name, designation, linkedInUrl, writeUp, station, photo , verticles , category } = payload;
+    console.log("Update People Payload:", payload);
 
     if (!name || !designation || !linkedInUrl || !writeUp  || !station) {
         throw new AppError(400, "Please provide all fields");

@@ -81,8 +81,17 @@ const refreshToken = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 }));
 // create people
 const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, email, station, verticles, category } = req.body;
+    const { name, designation, linkedInUrl, writeUp, email, station } = req.body;
+    let { verticles, category } = req.body;
     let photo = undefined;
+    try {
+        category = JSON.parse(category);
+        verticles = JSON.parse(verticles);
+    }
+    catch (err) {
+        category = [category];
+        verticles = [verticles];
+    }
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "people");
         if (!photo) {
@@ -136,7 +145,16 @@ const deletePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 // update user controller
 const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station, verticles, category } = req.body;
+    const { name, designation, linkedInUrl, writeUp, station } = req.body;
+    let { verticles, category } = req.body;
+    try {
+        category = JSON.parse(category);
+        verticles = JSON.parse(verticles);
+    }
+    catch (err) {
+        category = [category];
+        verticles = [verticles];
+    }
     let photo = undefined;
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");

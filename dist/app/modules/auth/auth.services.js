@@ -217,6 +217,7 @@ const deletePeople = (id, res) => __awaiter(void 0, void 0, void 0, function* ()
 // update people
 const updatePeople = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, designation, linkedInUrl, writeUp, station, photo, verticles, category } = payload;
+    console.log("Update People Payload:", payload);
     if (!name || !designation || !linkedInUrl || !writeUp || !station) {
         throw new appError_1.default(400, "Please provide all fields");
     }

@@ -79,8 +79,17 @@ const refreshToken = catchAsyncError(async (req: Request, res: Response, next: N
 
 // create people
 const createPeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
-    const { name , designation , linkedInUrl, writeUp ,email , station , verticles , category } = req.body; 
+    const { name , designation , linkedInUrl, writeUp ,email , station  } = req.body; 
+    let { verticles , category } = req.body;
     let photo: UploadImageResponse | undefined = undefined;
+    try {
+  category = JSON.parse(category);
+    verticles = JSON.parse(verticles);
+} catch (err) {
+  category = [category];
+    verticles = [verticles];
+}
+    
     
     if (req.file) {
       photo = await uploadImage(
@@ -143,7 +152,15 @@ const deletePeople = catchAsyncError(async (req: Request, res: Response, next: N
 // update user controller
 const updatePeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station , verticles , category } = req.body;
+    const { name, designation, linkedInUrl, writeUp, station  } = req.body;
+    let { verticles , category } = req.body;
+    try {
+        category = JSON.parse(category);
+        verticles = JSON.parse(verticles);
+    } catch (err) {
+        category = [category];
+        verticles = [verticles];
+    }
     let photo: UploadImageResponse | undefined = undefined;
     if (req.file) {
         photo = await uploadImage(
