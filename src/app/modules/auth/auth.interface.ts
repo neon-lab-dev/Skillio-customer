@@ -30,4 +30,6 @@ export type Tpeople = {
   writeUp: string;
   photo?: TPhoto | null ;
   station : string;
+  verticles?: string[];
+  category?: string[];
 };

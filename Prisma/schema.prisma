@@ -38,6 +38,8 @@ enum Role{
         writeUp String
         photo Photo?
         station String
+        verticles String[]
+        category String[]
 
         createdAt DateTime @default(now())
         updatedAt DateTime @updatedAt

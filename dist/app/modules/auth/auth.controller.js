@@ -81,7 +81,7 @@ const refreshToken = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 }));
 // create people
 const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, email, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp, email, station, verticles, category } = req.body;
     let photo = undefined;
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "people");
@@ -93,7 +93,7 @@ const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
             });
         }
     }
-    const poeple = yield auth_services_1.authServices.createPeople({ name, designation, email, linkedInUrl, writeUp, station, photo });
+    const poeple = yield auth_services_1.authServices.createPeople({ name, designation, email, linkedInUrl, writeUp, station, photo, verticles, category });
     (0, sendResponse_1.default)(res, {
         statusCode: 201,
         success: true,
@@ -136,7 +136,7 @@ const deletePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 // update user controller
 const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp, station, verticles, category } = req.body;
     let photo = undefined;
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
@@ -148,7 +148,7 @@ const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
             });
         }
     }
-    const people = yield auth_services_1.authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo }, req);
+    const people = yield auth_services_1.authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo, verticles, category });
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,

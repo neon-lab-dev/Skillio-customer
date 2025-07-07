@@ -79,7 +79,7 @@ const refreshToken = catchAsyncError(async (req: Request, res: Response, next: N
 
 // create people
 const createPeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
-    const { name , designation , linkedInUrl, writeUp ,email , station } = req.body; 
+    const { name , designation , linkedInUrl, writeUp ,email , station , verticles , category } = req.body; 
     let photo: UploadImageResponse | undefined = undefined;
     
     if (req.file) {
@@ -96,7 +96,7 @@ const createPeople = catchAsyncError(async (req: Request, res: Response, next: N
         });
       }
     }
-    const poeple = await authServices.createPeople({ name , designation ,email, linkedInUrl, writeUp  , station ,photo });
+    const poeple = await authServices.createPeople({ name , designation ,email, linkedInUrl, writeUp  , station ,photo , verticles , category });
     sendResponse(res, {
         statusCode: 201,
         success: true,
@@ -143,7 +143,7 @@ const deletePeople = catchAsyncError(async (req: Request, res: Response, next: N
 // update user controller
 const updatePeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station } = req.body;
+    const { name, designation, linkedInUrl, writeUp, station , verticles , category } = req.body;
     let photo: UploadImageResponse | undefined = undefined;
     if (req.file) {
         photo = await uploadImage(
@@ -159,7 +159,7 @@ const updatePeople = catchAsyncError(async (req: Request, res: Response, next: N
             });
         }
     }
-    const people = await authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo } , req);
+    const people = await authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo , verticles , category} );
     sendResponse(res, { 
         statusCode: 200,
         success: true,

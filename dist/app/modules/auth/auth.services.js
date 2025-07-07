@@ -113,8 +113,8 @@ const refreshToken = (refreshToken) => __awaiter(void 0, void 0, void 0, functio
 });
 // create people
 const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, station, photo, email } = payload;
-    if (!name || !designation || !linkedInUrl || !writeUp || !station || !email) {
+    const { name, designation, linkedInUrl, writeUp, station, photo, email, verticles, category } = payload;
+    if (!name || !designation || !linkedInUrl || !writeUp || !station || !email || !verticles || !category) {
         throw new appError_1.default(400, "Please provide all fields");
     }
     let people;
@@ -127,6 +127,8 @@ const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* ()
                 linkedInUrl,
                 writeUp,
                 station,
+                verticles,
+                category,
                 photo: {
                     create: {
                         fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
@@ -150,6 +152,8 @@ const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* ()
             linkedInUrl,
             writeUp,
             station,
+            verticles,
+            category
         }
     });
     return people;
@@ -211,8 +215,8 @@ const deletePeople = (id, res) => __awaiter(void 0, void 0, void 0, function* ()
     return { message: "People deleted successfully" };
 });
 // update people
-const updatePeople = (id, payload, req) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+const updatePeople = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, designation, linkedInUrl, writeUp, station, photo, verticles, category } = payload;
     if (!name || !designation || !linkedInUrl || !writeUp || !station) {
         throw new appError_1.default(400, "Please provide all fields");
     }
@@ -246,6 +250,8 @@ const updatePeople = (id, payload, req) => __awaiter(void 0, void 0, void 0, fun
                 linkedInUrl,
                 writeUp,
                 station,
+                verticles,
+                category,
                 photo: {
                     create: {
                         fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
@@ -275,6 +281,8 @@ const updatePeople = (id, payload, req) => __awaiter(void 0, void 0, void 0, fun
             linkedInUrl,
             writeUp,
             station,
+            verticles,
+            category,
             photo: {
                 update: {
                     name: peoplePhoto === null || peoplePhoto === void 0 ? void 0 : peoplePhoto.name,

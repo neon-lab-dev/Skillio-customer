@@ -132,9 +132,9 @@ const refreshToken = async (refreshToken: string) => {
 
 // create people
 const createPeople = async (payload: Partial<Tpeople>) => {
-  const { name , designation , linkedInUrl , writeUp  , station ,photo , email } = payload;
+  const { name , designation , linkedInUrl , writeUp  , station ,photo , email , verticles , category } = payload;
 
-    if(!name || !designation || !linkedInUrl || !writeUp  || !station || !email ) {
+    if(!name || !designation || !linkedInUrl || !writeUp  || !station || !email || !verticles || !category) {
     throw new AppError(400, "Please provide all fields"); 
     }
 
@@ -149,6 +149,8 @@ if(photo){
         linkedInUrl,
         writeUp,
         station,
+        verticles , 
+        category,
         photo: {
           create: {
             fileId: photo?.fileId ,
@@ -175,6 +177,8 @@ people= await prismadb.people.create({
       linkedInUrl,
       writeUp,
       station,
+      verticles ,
+      category
     }
   });
 
@@ -253,8 +257,8 @@ const deletePeople= async (id: string , res:Response) => {
 }
 
 // update people
-const updatePeople= async (id: string, payload: Partial<Tpeople> , req:Request) => {
-    const { name, designation, linkedInUrl, writeUp, station, photo } = payload;
+const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
+    const { name, designation, linkedInUrl, writeUp, station, photo , verticles , category } = payload;
 
     if (!name || !designation || !linkedInUrl || !writeUp  || !station) {
         throw new AppError(400, "Please provide all fields");
@@ -297,6 +301,8 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> , req:Request) 
                  linkedInUrl,
                  writeUp,
                  station,
+                 verticles ,
+                 category,
                  photo: {
                      create: {
                         fileId: photo?.fileId,
@@ -327,6 +333,8 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> , req:Request) 
             linkedInUrl,
             writeUp,
             station,
+            verticles,
+            category,
             photo:{
                 update:{
                     name: peoplePhoto?.name as string,
