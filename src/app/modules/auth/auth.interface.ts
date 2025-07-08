@@ -25,11 +25,10 @@ export type TUser = {
 export type Tpeople = {
   name: string;
   email: string;
-  designation: string;
   linkedInUrl: string;
   writeUp: string;
   photo?: TPhoto | null ;
+  role: string;
   station : string;
-  verticles?: string[];
-  category?: string[];
+  attributes: Record<string, any>
 };

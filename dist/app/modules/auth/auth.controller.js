@@ -81,17 +81,10 @@ const refreshToken = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 }));
 // create people
 const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, designation, linkedInUrl, writeUp, email, station } = req.body;
-    let { verticles, category } = req.body;
+    const { name, linkedInUrl, writeUp, email, station, role } = req.body;
+    let { attributes } = req.body;
     let photo = undefined;
-    try {
-        category = JSON.parse(category);
-        verticles = JSON.parse(verticles);
-    }
-    catch (err) {
-        category = [category];
-        verticles = [verticles];
-    }
+    attributes = JSON.parse(attributes);
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "people");
         if (!photo) {
@@ -102,7 +95,7 @@ const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
             });
         }
     }
-    const poeple = yield auth_services_1.authServices.createPeople({ name, designation, email, linkedInUrl, writeUp, station, photo, verticles, category });
+    const poeple = yield auth_services_1.authServices.createPeople({ name, email, linkedInUrl, writeUp, station, photo, role, attributes });
     (0, sendResponse_1.default)(res, {
         statusCode: 201,
         success: true,
@@ -145,16 +138,9 @@ const deletePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 // update user controller
 const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station } = req.body;
-    let { verticles, category } = req.body;
-    try {
-        category = JSON.parse(category);
-        verticles = JSON.parse(verticles);
-    }
-    catch (err) {
-        category = [category];
-        verticles = [verticles];
-    }
+    const { name, role, linkedInUrl, writeUp, station } = req.body;
+    let { attributes } = req.body;
+    attributes = JSON.parse(attributes);
     let photo = undefined;
     if (req.file) {
         photo = yield (0, uploadImage_1.uploadImage)((0, getDataUri_1.default)(req.file).content, (0, getDataUri_1.default)(req.file).fileName, "user");
@@ -166,7 +152,7 @@ const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
             });
         }
     }
-    const people = yield auth_services_1.authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo, verticles, category });
+    const people = yield auth_services_1.authServices.updatePeople(id, { name, role, linkedInUrl, writeUp, station, photo, attributes });
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,

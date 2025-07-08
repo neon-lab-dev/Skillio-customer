@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const auth_route_1 = require("../modules/auth/auth.route");
-const user_routes_1 = require("../modules/user/user.routes");
+const people_routes_1 = require("../modules/people/people.routes");
 const categories_routes_1 = require("../modules/category/categories.routes");
+const verticles_routes_1 = require("../modules/verticles/verticles.routes");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     {
@@ -12,11 +13,15 @@ const moduleRoutes = [
     },
     {
         path: "/people",
-        route: user_routes_1.userRouter
+        route: people_routes_1.userRouter
     },
     {
-        path: "/categories",
+        path: "/category",
         route: categories_routes_1.categoriesRouter
+    },
+    {
+        path: "/verticles",
+        route: verticles_routes_1.verticlesRouter
     }
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

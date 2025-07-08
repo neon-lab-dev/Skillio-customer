@@ -79,17 +79,10 @@ const refreshToken = catchAsyncError(async (req: Request, res: Response, next: N
 
 // create people
 const createPeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
-    const { name , designation , linkedInUrl, writeUp ,email , station  } = req.body; 
-    let { verticles , category } = req.body;
+    const { name , linkedInUrl, writeUp ,email , station  , role } = req.body; 
+    let {  attributes} = req.body;
     let photo: UploadImageResponse | undefined = undefined;
-    try {
-  category = JSON.parse(category);
-    verticles = JSON.parse(verticles);
-} catch (err) {
-  category = [category];
-    verticles = [verticles];
-}
-    
+    attributes = JSON.parse(attributes);
     
     if (req.file) {
       photo = await uploadImage(
@@ -105,7 +98,7 @@ const createPeople = catchAsyncError(async (req: Request, res: Response, next: N
         });
       }
     }
-    const poeple = await authServices.createPeople({ name , designation ,email, linkedInUrl, writeUp  , station ,photo , verticles , category });
+    const poeple = await authServices.createPeople({ name  ,email, linkedInUrl, writeUp  , station ,photo ,role, attributes });
     sendResponse(res, {
         statusCode: 201,
         success: true,
@@ -152,15 +145,9 @@ const deletePeople = catchAsyncError(async (req: Request, res: Response, next: N
 // update user controller
 const updatePeople = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, designation, linkedInUrl, writeUp, station  } = req.body;
-    let { verticles , category } = req.body;
-    try {
-        category = JSON.parse(category);
-        verticles = JSON.parse(verticles);
-    } catch (err) {
-        category = [category];
-        verticles = [verticles];
-    }
+    const { name,role, linkedInUrl, writeUp, station  } = req.body;
+    let { attributes } = req.body;
+    attributes = JSON.parse(attributes);
     let photo: UploadImageResponse | undefined = undefined;
     if (req.file) {
         photo = await uploadImage(
@@ -176,7 +163,7 @@ const updatePeople = catchAsyncError(async (req: Request, res: Response, next: N
             });
         }
     }
-    const people = await authServices.updatePeople(id, { name, designation, linkedInUrl, writeUp, station, photo , verticles , category} );
+    const people = await authServices.updatePeople(id, { name,role, linkedInUrl, writeUp, station, photo , attributes} );
     sendResponse(res, { 
         statusCode: 200,
         success: true,

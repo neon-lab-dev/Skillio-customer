@@ -132,9 +132,9 @@ const refreshToken = async (refreshToken: string) => {
 
 // create people
 const createPeople = async (payload: Partial<Tpeople>) => {
-  const { name , designation , linkedInUrl , writeUp  , station ,photo , email , verticles , category } = payload;
+  const { name  , linkedInUrl , writeUp  , station ,photo , email , attributes , role } = payload;
 
-    if(!name || !designation || !linkedInUrl || !writeUp  || !station || !email || !verticles || !category) {
+    if(!name  || !linkedInUrl || !writeUp  || !station || !email || !role || !attributes) {
     throw new AppError(400, "Please provide all fields"); 
     }
 
@@ -145,12 +145,11 @@ if(photo){
       data: {
         name,
         email,
-        designation,
         linkedInUrl,
         writeUp,
         station,
-        verticles , 
-        category,
+        attributes,
+        role,
         photo: {
           create: {
             fileId: photo?.fileId ,
@@ -173,12 +172,11 @@ people= await prismadb.people.create({
     data: {
       name,
       email,
-      designation,
       linkedInUrl,
       writeUp,
       station,
-      verticles ,
-      category
+    attributes ,
+    role
     }
   });
 
@@ -258,10 +256,10 @@ const deletePeople= async (id: string , res:Response) => {
 
 // update people
 const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
-    const { name, designation, linkedInUrl, writeUp, station, photo , verticles , category } = payload;
+    const { name, linkedInUrl, writeUp, station, photo , attributes, role } = payload;
     console.log("Update People Payload:", payload);
 
-    if (!name || !designation || !linkedInUrl || !writeUp  || !station) {
+    if (!name || attributes || !linkedInUrl || !writeUp  || !station || !role) {
         throw new AppError(400, "Please provide all fields");
     }
 
@@ -298,12 +296,11 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
              },
              data: {
                  name,
-                 designation,
                  linkedInUrl,
                  writeUp,
                  station,
-                 verticles ,
-                 category,
+                 attributes , 
+                 role,
                  photo: {
                      create: {
                         fileId: photo?.fileId,
@@ -330,12 +327,11 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
         },
         data: {
             name,
-            designation,
             linkedInUrl,
             writeUp,
             station,
-            verticles,
-            category,
+            attributes,
+            role,
             photo:{
                 update:{
                     name: peoplePhoto?.name as string,
