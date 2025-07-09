@@ -10,7 +10,7 @@ const categories_controller_1 = require("./categories.controller");
 const authorizeRole_1 = require("../../middlewares/authorizeRole");
 const router = express_1.default.Router();
 router.post('/', requireAuth_1.verifyToken, (0, authorizeRole_1.authorizeRole)("ADMIN"), categories_controller_1.categoriesController.createCategory);
-router.get('/', requireAuth_1.verifyToken, categories_controller_1.categoriesController.getAllCategories);
+router.get('/', categories_controller_1.categoriesController.getAllCategories);
 router.get('/:id', requireAuth_1.verifyToken, categories_controller_1.categoriesController.getCategoryById);
 router.put('/:id', requireAuth_1.verifyToken, (0, authorizeRole_1.authorizeRole)("ADMIN"), categories_controller_1.categoriesController.updateCategory);
 router.delete('/:id', requireAuth_1.verifyToken, (0, authorizeRole_1.authorizeRole)("ADMIN"), categories_controller_1.categoriesController.deleteCategory);
