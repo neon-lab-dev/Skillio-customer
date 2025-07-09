@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
-app.use((0, cors_1.default)({ origin: ["http://localhost:5173", "https://forge-admin2.vercel.app"], credentials: true }));
+app.use((0, cors_1.default)({ origin: ["http://localhost:5173", "http://127.0.0.1:5500", "https://forge-admin2.vercel.app"], credentials: true }));
 app.use(express_1.default.json());
 if (config_1.default.node_env === "development") {
     app.use((0, morgan_1.default)("tiny"));
