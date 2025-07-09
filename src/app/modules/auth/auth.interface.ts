@@ -28,7 +28,6 @@ export type Tpeople = {
   linkedInUrl: string;
   writeUp: string;
   photo?: TPhoto | null ;
-  role: string;
   station : string;
   attributes: Record<string, any>
 };

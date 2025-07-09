@@ -81,7 +81,7 @@ const refreshToken = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 }));
 // create people
 const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, linkedInUrl, writeUp, email, station, role } = req.body;
+    const { name, linkedInUrl, writeUp, email, station } = req.body;
     let { attributes } = req.body;
     let photo = undefined;
     attributes = JSON.parse(attributes);
@@ -95,7 +95,7 @@ const createPeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
             });
         }
     }
-    const poeple = yield auth_services_1.authServices.createPeople({ name, email, linkedInUrl, writeUp, station, photo, role, attributes });
+    const poeple = yield auth_services_1.authServices.createPeople({ name, email, linkedInUrl, writeUp, station, photo, attributes });
     (0, sendResponse_1.default)(res, {
         statusCode: 201,
         success: true,
@@ -138,7 +138,7 @@ const deletePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
 // update user controller
 const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { name, role, linkedInUrl, writeUp, station } = req.body;
+    const { name, linkedInUrl, writeUp, station } = req.body;
     let { attributes } = req.body;
     attributes = JSON.parse(attributes);
     let photo = undefined;
@@ -152,7 +152,7 @@ const updatePeople = (0, catchAsyncError_1.default)((req, res, next) => __awaite
             });
         }
     }
-    const people = yield auth_services_1.authServices.updatePeople(id, { name, role, linkedInUrl, writeUp, station, photo, attributes });
+    const people = yield auth_services_1.authServices.updatePeople(id, { name, linkedInUrl, writeUp, station, photo, attributes });
     (0, sendResponse_1.default)(res, {
         statusCode: 200,
         success: true,

@@ -132,9 +132,9 @@ const refreshToken = async (refreshToken: string) => {
 
 // create people
 const createPeople = async (payload: Partial<Tpeople>) => {
-  const { name  , linkedInUrl , writeUp  , station ,photo , email , attributes , role } = payload;
+  const { name  , linkedInUrl , writeUp  , station ,photo , email , attributes  } = payload;
 
-    if(!name  || !linkedInUrl || !writeUp  || !station || !email || !role || !attributes) {
+    if(!name  || !linkedInUrl || !writeUp  || !station || !email  || !attributes) {
     throw new AppError(400, "Please provide all fields"); 
     }
 
@@ -149,7 +149,6 @@ if(photo){
         writeUp,
         station,
         attributes,
-        role,
         photo: {
           create: {
             fileId: photo?.fileId ,
@@ -176,7 +175,6 @@ people= await prismadb.people.create({
       writeUp,
       station,
     attributes ,
-    role
     }
   });
 
@@ -256,10 +254,10 @@ const deletePeople= async (id: string , res:Response) => {
 
 // update people
 const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
-    const { name, linkedInUrl, writeUp, station, photo , attributes, role } = payload;
+    const { name, linkedInUrl, writeUp, station, photo , attributes } = payload;
     console.log("Update People Payload:", payload);
 
-    if (!name || attributes || !linkedInUrl || !writeUp  || !station || !role) {
+    if (!name || attributes || !linkedInUrl || !writeUp  || !station ) {
         throw new AppError(400, "Please provide all fields");
     }
 
@@ -300,7 +298,6 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
                  writeUp,
                  station,
                  attributes , 
-                 role,
                  photo: {
                      create: {
                         fileId: photo?.fileId,
@@ -331,7 +328,6 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
             writeUp,
             station,
             attributes,
-            role,
             photo:{
                 update:{
                     name: peoplePhoto?.name as string,

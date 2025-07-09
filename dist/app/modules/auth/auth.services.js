@@ -113,8 +113,8 @@ const refreshToken = (refreshToken) => __awaiter(void 0, void 0, void 0, functio
 });
 // create people
 const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, linkedInUrl, writeUp, station, photo, email, attributes, role } = payload;
-    if (!name || !linkedInUrl || !writeUp || !station || !email || !role || !attributes) {
+    const { name, linkedInUrl, writeUp, station, photo, email, attributes } = payload;
+    if (!name || !linkedInUrl || !writeUp || !station || !email || !attributes) {
         throw new appError_1.default(400, "Please provide all fields");
     }
     let people;
@@ -127,7 +127,6 @@ const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* ()
                 writeUp,
                 station,
                 attributes,
-                role,
                 photo: {
                     create: {
                         fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
@@ -151,7 +150,6 @@ const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* ()
             writeUp,
             station,
             attributes,
-            role
         }
     });
     return people;
@@ -214,9 +212,9 @@ const deletePeople = (id, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 // update people
 const updatePeople = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, linkedInUrl, writeUp, station, photo, attributes, role } = payload;
+    const { name, linkedInUrl, writeUp, station, photo, attributes } = payload;
     console.log("Update People Payload:", payload);
-    if (!name || attributes || !linkedInUrl || !writeUp || !station || !role) {
+    if (!name || attributes || !linkedInUrl || !writeUp || !station) {
         throw new appError_1.default(400, "Please provide all fields");
     }
     const people = yield prismaDb_1.default.people.findFirst({
@@ -249,7 +247,6 @@ const updatePeople = (id, payload) => __awaiter(void 0, void 0, void 0, function
                 writeUp,
                 station,
                 attributes,
-                role,
                 photo: {
                     create: {
                         fileId: photo === null || photo === void 0 ? void 0 : photo.fileId,
@@ -279,7 +276,6 @@ const updatePeople = (id, payload) => __awaiter(void 0, void 0, void 0, function
             writeUp,
             station,
             attributes,
-            role,
             photo: {
                 update: {
                     name: peoplePhoto === null || peoplePhoto === void 0 ? void 0 : peoplePhoto.name,

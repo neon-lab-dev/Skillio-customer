@@ -36,7 +36,6 @@ enum Role{
         linkedInUrl String?
         writeUp String
         photo Photo?
-        role String
         station String
         attributes Json
 
