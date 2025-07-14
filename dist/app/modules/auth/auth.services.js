@@ -114,7 +114,7 @@ const refreshToken = (refreshToken) => __awaiter(void 0, void 0, void 0, functio
 // create people
 const createPeople = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, linkedInUrl, writeUp, station, photo, email, attributes } = payload;
-    if (!name || !linkedInUrl || !writeUp || !station || !email || !attributes) {
+    if (!name || !email || !attributes) {
         throw new appError_1.default(400, "Please provide all fields");
     }
     let people;
@@ -214,7 +214,7 @@ const deletePeople = (id, res) => __awaiter(void 0, void 0, void 0, function* ()
 const updatePeople = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, linkedInUrl, writeUp, station, photo, attributes } = payload;
     console.log("Update People Payload:", payload);
-    if (!name || !attributes || !linkedInUrl || !writeUp || !station) {
+    if (!name || !attributes) {
         throw new appError_1.default(400, "Please provide all fields");
     }
     const people = yield prismaDb_1.default.people.findFirst({

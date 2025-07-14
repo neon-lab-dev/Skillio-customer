@@ -34,9 +34,9 @@ enum Role{
         name    String
         email  String   @unique
         linkedInUrl String?
-        writeUp String
+        writeUp String?
         photo Photo?
-        station String
+        station String?
         attributes Json
 
         createdAt DateTime @default(now())

@@ -134,7 +134,7 @@ const refreshToken = async (refreshToken: string) => {
 const createPeople = async (payload: Partial<Tpeople>) => {
   const { name  , linkedInUrl , writeUp  , station ,photo , email , attributes  } = payload;
 
-    if(!name  || !linkedInUrl || !writeUp  || !station || !email  || !attributes) {
+    if(!name || !email  || !attributes) {
     throw new AppError(400, "Please provide all fields"); 
     }
 
@@ -257,7 +257,7 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
     const { name, linkedInUrl, writeUp, station, photo , attributes } = payload;
     console.log("Update People Payload:", payload);
 
-    if (!name || !attributes || !linkedInUrl || !writeUp  || !station ) {
+    if (!name || !attributes ) {
         throw new AppError(400, "Please provide all fields");
     }
 
