@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use(cors({ origin: ["http://localhost:5173" ,"http://127.0.0.1:5500", "https://forge-admin2.vercel.app" , "https://adhikareeprayush.github.io"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173" ,"http://127.0.0.1:5500", "https://forge-admin2.vercel.app" , "https://adhikareeprayush.github.io" , "https://adhikareeprayush.github.io/ForgeNew" , "https://adhikareeprayush.github.io/ForgeNew/forge_people.html"], credentials: true }));
 
 
 app.use(express.json());
