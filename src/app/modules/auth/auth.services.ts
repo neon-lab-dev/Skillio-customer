@@ -257,7 +257,7 @@ const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
     const { name, linkedInUrl, writeUp, station, photo , attributes } = payload;
     console.log("Update People Payload:", payload);
 
-    if (!name || attributes || !linkedInUrl || !writeUp  || !station ) {
+    if (!name || !attributes || !linkedInUrl || !writeUp  || !station ) {
         throw new AppError(400, "Please provide all fields");
     }
 
