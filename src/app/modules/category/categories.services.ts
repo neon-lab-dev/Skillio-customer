@@ -1,5 +1,5 @@
 import { TCategory } from "./categories.interface";
-import prismadb from "../../db/prismaDb";
+import prismadb from "../../db/dataSource";
 import AppError from "../../errors/appError";
 import { Response } from "express";
 import sendResponse from "../../middlewares/sendResponse";

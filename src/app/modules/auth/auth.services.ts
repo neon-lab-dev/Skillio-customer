@@ -5,7 +5,7 @@ import {createToken} from "./auth.utils"
 import jwt , {JwtPayload}from "jsonwebtoken";
 import { Request, Response } from "express";
 
-import prismadb from "../../db/prismaDb";
+import prismadb from "../../db/dataSource";
 import config from "../../config";
 import sendResponse from "../../middlewares/sendResponse";
 

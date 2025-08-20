@@ -4,7 +4,7 @@ import { Request, Response ,NextFunction } from "express";
 import sendResponse from "./sendResponse";
 import config from "../config";
 
-import prismadb from "../db/prismaDb";
+import prismadb from "../db/dataSource";
 
 import jwt , {JwtPayload} from "jsonwebtoken";
 
