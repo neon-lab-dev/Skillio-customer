@@ -1,362 +1,143 @@
-import { TUser , TLoginAuth  , Tpeople} from "./auth.interface";
-import bcrypt from "bcrypt";
+import { AppDataSource } from "../../db/dataSource";
+import { logger } from "../../utils/logger";
 import AppError from "../../errors/appError";
-import {createToken} from "./auth.utils"
-import jwt , {JwtPayload}from "jsonwebtoken";
-import { Request, Response } from "express";
-
-import prismadb from "../../db/dataSource";
-import config from "../../config";
-import sendResponse from "../../middlewares/sendResponse";
+import { Response } from "express";
+import { TUser } from "./auth.interface";
+import { generateOTP, validateOTP } from "../../utils/generateOtp";
+import { Repository } from "typeorm";
 
 
+class AuthService {
+    private userRepository: Repository<any>;
+    private otpRepository: Repository<any>;
 
-// create user
-const createUser = async (payload: Partial<TUser>) => {
-  const { name , designation , linkedInUrl ,role, writeUp ,  password , station  , email } = payload;
-
-    if(!name || !designation || !linkedInUrl || !writeUp || !password || !station || !email || !role) {
-    throw new AppError(400, "Please provide all fields"); 
+    constructor() {
+        this.userRepository = AppDataSource.getRepository("user");
+        this.otpRepository = AppDataSource.getRepository("otp");
     }
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+    /**
+     * Register a new user
+     * @param userData - User data including phoneNumber, email, pin, isVerified
+     * @param res - Express response object
+     * @returns The created user
+     */
+    public async registerUser(userData: TUser, res: Response) {
+        const { phoneNumber, email, pin, isVerified } = userData;
 
-
-    const user= await prismadb.user.create({
-    data: {
-      name,
-      email,
-      designation,
-      linkedInUrl,
-      writeUp,
-      password: hashedPassword,
-      station,
-      role,
-    }
-  });
-
-  const { password: _, ...userWithoutPassword } = user;
-
-  return userWithoutPassword;
-}
-
-// login user
-const loginUser = async (payload: TLoginAuth) => {
-    const { email, password } = payload;
-
-    if(!email){
-        throw new AppError(400, "Please provide email");
-    }
-    if(!password){
-        throw new AppError(400, "Please provide password");
-    }
-
-    console.log("Login request:", email, password);
-
-    const user = await prismadb.user.findFirst({
-        where: {
-            email: email,
+        if (!phoneNumber && !email) {
+            logger.error("Phone number or email is required");
+            throw new AppError(400, "Phone number or email is required");
         }
-    });
 
-    console.log("User found:", user);
+        const existingUser = await this.userRepository.findOne({
+            where: [
+                { phoneNumber },
+                { email }
+            ]
+        });
 
-    if (!user) {
-        throw new AppError(401, "Invalid credentials");
-    }
-
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordMatch) {
-        throw new AppError(401, "Invalid credentials");
-    }
-
-    const jwtPayload = {
-        userId: user.id.toString(),
-        role: user.role
-      };
-    
-      const accessToken = createToken(
-        jwtPayload,
-        config.jwt_access_secret as string,
-        config.jwt_access_expires_in as string
-      );
-    
-      const refreshToken = createToken(
-        jwtPayload,
-        config.jwt_refresh_secret as string,
-        config.jwt_refresh_expires_in as string
-      );
-    
-      return {
-        accessToken,
-        refreshToken,
-        user
-      }
-}
-
-// refresh token service to get new access token using refresh token
-const refreshToken = async (refreshToken: string) => {
-    if (!refreshToken) {
-        throw new AppError(401, "Please provide refresh token");
-    }
-
-    const decoded = jwt.verify(refreshToken, config.jwt_refresh_secret as string) as JwtPayload;
-
-    const {email}= decoded as {email:string};
-
-    const user = await prismadb.user.findFirst({
-        where: {
-            email: email,
-        },
-    });
-
-    if(!user) {
-        throw new AppError(401, "user not found");
-    }
-
-    const jwtPayload = {
-        userId: user.id.toString(),
-        name: user.name
-    };
-
-    const accessToken = createToken(
-        jwtPayload,
-        config.jwt_access_secret as string,
-        config.jwt_access_expires_in as string
-    );
-
-    return {accessToken};
-}
-
-// create people
-const createPeople = async (payload: Partial<Tpeople>) => {
-  const { name  , linkedInUrl , writeUp  , station ,photo , email , attributes  } = payload;
-
-    if(!name || !email  || !attributes) {
-    throw new AppError(400, "Please provide all fields"); 
-    }
-
-
-let people;
-if(photo){
-     people = await prismadb.people.create({
-      data: {
-        name,
-        email,
-        linkedInUrl,
-        writeUp,
-        station,
-        attributes,
-        photo: {
-          create: {
-            fileId: photo?.fileId ,
-            name: photo?.name as string,
-            url: photo?.url as string,
-            thumbnailUrl: photo?.thumbnailUrl as string
-          }
+        if (existingUser) {
+            logger.error("User already exists");
+            throw new AppError(400, "User already exists");
         }
-      },
-      include:{
-          photo: true
-      }
-    });
 
+        const newUser = this.userRepository.create({
+            phoneNumber,
+            email,
+            pin,
+            isVerified
+        });
 
-    return people;
-}
+        const user = await this.userRepository.save(newUser);
 
-people= await prismadb.people.create({
-    data: {
-      name,
-      email,
-      linkedInUrl,
-      writeUp,
-      station,
-    attributes ,
+        if (!user) {
+            logger.error("Failed to create user");
+            throw new AppError(500, "Failed to create user");
+        }
+
+        const otp = generateOTP();
+
+        const newOtp = this.otpRepository.create({
+            otpCode: otp,
+            expirationDate: new Date(Date.now() + 2 * 60 * 1000), // 2 minutes expiration
+            user: user
+        });
+
+        const savedOtp = await this.otpRepository.save(newOtp);
+
+        if (!savedOtp) {
+            logger.error("Failed to create OTP");
+            throw new AppError(500, "Failed to create OTP");
+        }
+
+        logger.info("User created successfully");
+        return user;
     }
-  });
 
+    /**
+     * Verify OTP for user authentication
+     * @param userId - User ID to verify
+     * @param otpCode - OTP code to validate
+     * @returns The verified user
+     */
 
-  return people;
-}
-
-
-// get all people
-const getPeople = async () => {
-    const people = await prismadb.people.findMany(
-        {
-            include:{
-                photo: {
-                    select:{
-                        url: true
-                    }
-                }
+    public async verifyOtp(userId: string, otpCode: string) {
+        const existingOtp = await this.otpRepository.findOne({
+            where: {
+                user: { id: userId },
+                otpCode: otpCode
             }
+        });
+
+        if (!existingOtp) {
+            logger.error("Invalid OTP");
+            throw new AppError(400, "Invalid OTP");
         }
-    );
-    if (!people || people.length === 0) {
-        throw new AppError(404, "No People found");
+
+        if (new Date(existingOtp.expirationDate) < new Date()) {
+            logger.error("OTP has expired");
+            throw new AppError(400, "OTP has expired");
+        }
+
+        const otpValidation = await validateOTP(existingOtp.otpCode, existingOtp.expirationDate, userId);
+
+        if (!otpValidation.isValid) {
+            logger.error(`OTP validation failed: ${otpValidation.reason}`);
+            throw new AppError(400, `OTP validation failed: ${otpValidation.reason}`);
+        }
+
+        // Mark user as verified
+        const user = await this.userRepository.findOneBy({ id: userId });
+
+        if (!user) {
+            logger.error("User not found");
+            throw new AppError(404, "User not found");
+        }
+
+        user.isVerified = true;
+        await this.userRepository.save(user);
+
+        // Optionally delete the OTP after successful verification
+        await this.otpRepository.remove(existingOtp);
+
+        logger.info("OTP verified successfully");
+        return user;
     }
-    return people
+
+    /**
+     * Additional utility method to get user by ID
+     * @param userId - User ID to find
+     * @returns The user object
+     */
+    public async getUserById(userId: string) {
+        const user = await this.userRepository.findOneBy({ id: userId });
+        if (!user) {
+            throw new AppError(404, "User not found");
+        }
+        return user;
+    }
+
 }
 
-// get people by id
-const getPeopleById = async (id: string) => {
-    const people = await prismadb.people.findFirst({
-        where: {
-            id: id,
-        },
-        include: {
-            photo: {
-                select:{
-                    url: true
-                }
-            }
-        }
-    });
-
-    if (!people) {
-        throw new AppError(404, "People not found");
-    }
-
-    return people;
-}
-
-// delete people
-const deletePeople= async (id: string , res:Response) => {
-    const people = await prismadb.people.findFirst({
-        where: {
-            id: id,
-        },
-    });
-
-    if (!people) {
-       return(
-        sendResponse(res, {
-            statusCode: 404,
-            success: false,
-            message: "People not found with this id",
-        }
-        )
-       )
-    }
-
-    await prismadb.people.delete({
-        where: {
-            id: id,
-        },
-    });
-
-    return { message: "People deleted successfully" };
-}
-
-// update people
-const updatePeople= async (id: string, payload: Partial<Tpeople> ) => {
-    const { name, linkedInUrl, writeUp, station, photo , attributes } = payload;
-    console.log("Update People Payload:", payload);
-
-    if (!name || !attributes ) {
-        throw new AppError(400, "Please provide all fields");
-    }
-
-    const people = await prismadb.people.findFirst({
-        where: {
-            id: id,
-        },
-    });
-
-    if (!people) {
-        throw new AppError(404, "User not found");
-    }
-
-    const peoplePhoto= await prismadb.photo.findFirst({
-        where: {
-            peopleId: people.id
-        }
-    });
-
-    let updatedPeople;
-
-
-
-    if(photo !== undefined){
-        await prismadb.photo.deleteMany({
-            where:{
-                peopleId: people.id
-            }
-        })
-
-          updatedPeople = await prismadb.people.update({
-             where: {
-                 id: id, 
-             },
-             data: {
-                 name,
-                 linkedInUrl,
-                 writeUp,
-                 station,
-                 attributes , 
-                 photo: {
-                     create: {
-                        fileId: photo?.fileId,
-                         name: photo?.name as string,
-                         url: photo?.url as string,
-                         thumbnailUrl: photo?.thumbnailUrl as string
-                     }
-                 }
-             },
-             include:{
-                 photo: {
-                        select: {
-                            url: true
-                        }
-                 }
-             }
-         });
-
-         return {people:updatedPeople};
-    }
-    updatedPeople= await prismadb.people.update({
-        where: {
-            id: id,
-        },
-        data: {
-            name,
-            linkedInUrl,
-            writeUp,
-            station,
-            attributes,
-            photo:{
-                update:{
-                    name: peoplePhoto?.name as string,
-                    url: peoplePhoto?.url as string,
-                    thumbnailUrl: peoplePhoto?.thumbnailUrl as string
-                }
-            }
-        },
-        include: {
-            photo: {
-                select:{
-                    url: true
-                }
-            }
-        }
-    });
-
-
-    return {people:updatedPeople};
-}
-
-
-export const authServices = {
-    createUser,
-    loginUser,
-    refreshToken,
-    createPeople,
-    getPeople,
-    getPeopleById,
-    deletePeople,
-    updatePeople
-};
+export default new AuthService();
