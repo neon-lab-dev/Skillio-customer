@@ -1,10 +1,9 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import config from "../config";
+import config from "../config/index";
 
-
-const isTest = process.env.NODE_ENV === 'test';
-const isProduction = process.env.NODE_ENV === 'production';
+const isTest = config.node_env === 'test';
+const isProduction = config.node_env === 'production';
 
 if(!isTest && !(config.db_port_development || config.db_port_production)) {
     throw new Error('Database port is not loaded from .env.dev');

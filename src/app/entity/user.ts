@@ -9,7 +9,6 @@ import {
   OneToMany,
 } from "typeorm";
 
-import { OTP } from "./otp";
 
 @Entity("user")
 export class User {
@@ -27,9 +26,6 @@ export class User {
 
     @Column({default: false})
     isVerified!: boolean;
-
-    @OneToMany(() => OTP, otp => otp.user)
-    opts?: OTP[];
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt!: Date;

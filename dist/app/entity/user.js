@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
-const otp_1 = require("./otp");
 let User = class User {
 };
 exports.User = User;
@@ -35,10 +34,6 @@ __decorate([
     (0, typeorm_1.Column)({ default: false }),
     __metadata("design:type", Boolean)
 ], User.prototype, "isVerified", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => otp_1.OTP, otp => otp.user),
-    __metadata("design:type", Array)
-], User.prototype, "opts", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
     __metadata("design:type", Date)

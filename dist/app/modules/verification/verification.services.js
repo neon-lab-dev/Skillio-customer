@@ -1,0 +1,90 @@
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const dataSource_1 = require("../../db/dataSource");
+const logger_1 = require("../../utils/logger");
+const appError_1 = __importDefault(require("../../errors/appError"));
+const otpConfig_1 = require("../../config/otpConfig");
+const otp_1 = require("../../utils/otp");
+const verification_1 = require("../../entity/verification");
+class VerificationService {
+    constructor() {
+        this.verificationRequest = (verificationData, res) => __awaiter(this, void 0, void 0, function* () {
+            const { phoneNumber, purpose } = verificationData;
+            if (!phoneNumber || !purpose) {
+                logger_1.logger.error("Phone number and purpose are required");
+                throw new appError_1.default(400, "Phone number and purpose are required");
+            }
+            // const existingVerification= await this.verificationRepository.findOne({
+            //     where: {
+            //         phoneNumber: phoneNumber,
+            //         purpose: purpose
+            //     }
+            // });
+            // if(existingVerification){
+            //     logger.info("Verification request already sent");
+            //     return sendResponse(res , {
+            //         statusCode: 200,
+            //         success: true,
+            //         message: "verification request already sent",
+            //         data: existingVerification
+            //     })
+            // }
+            const otpCode = (0, otp_1.generateOTP)();
+            const newVerification = this.verificationRepository.create({
+                phoneNumber: phoneNumber,
+                purpose: purpose,
+                otpCode,
+                expirationDate: new Date(Date.now() + otpConfig_1.otpConfig.otpExpirationTime),
+                otpCodeStatus: verification_1.OtpCodeStatus.SENT
+            });
+            if (!newVerification) {
+                logger_1.logger.error("Failed to create verification");
+                throw new appError_1.default(500, "Failed to create verification");
+            }
+            const verification = yield this.verificationRepository.save(newVerification);
+            if (!verification) {
+                logger_1.logger.error("Failed to save verification");
+                throw new appError_1.default(500, "Failed to save verification");
+            }
+            return { verification: {
+                    id: verification.id,
+                    purpose: verification.purpose,
+                } };
+        });
+        this.verifyOtp = (verificationId, otpCode) => __awaiter(this, void 0, void 0, function* () {
+            if (!verificationId || !otpCode) {
+                logger_1.logger.error("Verification ID and OTP code are required");
+                throw new appError_1.default(400, "Verification ID and OTP code are required");
+            }
+            const existingVerification = yield this.verificationRepository.findOne({
+                where: {
+                    id: verificationId
+                }
+            });
+            if (!existingVerification) {
+                logger_1.logger.error("Verification not found");
+                throw new appError_1.default(404, "Verification not found");
+            }
+            const result = yield (0, otp_1.verifyOTP)(otpCode, existingVerification.phoneNumber);
+            if (!result.isValid) {
+                logger_1.logger.error(`OTP verification failed: ${result.reason}`);
+                throw new appError_1.default(400, `OTP verification failed: ${result.reason}`);
+            }
+            return { verificationId: existingVerification.id };
+        });
+        this.verificationRepository = dataSource_1.AppDataSource.getRepository("Verification");
+    }
+}
+exports.default = new VerificationService();
