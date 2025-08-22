@@ -153,3 +153,7 @@
 {"level":"info","message":"Listening at port number 3000","service":"user-service"}
 {"level":"info","message":"Database connection established successfully at skilio-auth","service":"user-service"}
 {"level":"info","message":"Verification request already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-auth","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-auth","service":"user-service"}

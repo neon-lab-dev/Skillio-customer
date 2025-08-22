@@ -7,7 +7,6 @@ import { otpConfig } from "../../config/otpConfig";
 import { Repository } from "typeorm";
 import { generateOTP  , verifyOTP} from "../../utils/otp";
 import { OtpCodeStatus } from "../../entity/verification";
-import sendResponse from "../../middlewares/sendResponse";
 
 
 class VerificationService {

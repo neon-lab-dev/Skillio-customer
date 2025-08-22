@@ -18,42 +18,42 @@ const globalErrorHandler = (err, req, res, next) => {
         }];
     if (err instanceof zod_1.ZodError) {
         const simplifiedError = (0, zodError_1.default)(err);
-        statusCode = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.statusCode;
-        message = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.message;
-        errorSourse = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.errorSources;
+        statusCode = simplifiedError?.statusCode;
+        message = simplifiedError?.message;
+        errorSourse = simplifiedError?.errorSources;
     }
-    else if ((err === null || err === void 0 ? void 0 : err.name) === "ValidationError") {
+    else if (err?.name === "ValidationError") {
         const simplifiedError = (0, validationError_1.default)(err);
-        statusCode = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.statusCode;
-        message = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.message;
-        errorSourse = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.errorSources;
+        statusCode = simplifiedError?.statusCode;
+        message = simplifiedError?.message;
+        errorSourse = simplifiedError?.errorSources;
     }
-    else if ((err === null || err === void 0 ? void 0 : err.name) === "CastError") {
+    else if (err?.name === "CastError") {
         const simplifiedError = (0, castError_1.default)(err);
-        statusCode = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.statusCode;
-        message = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.message;
-        errorSourse = simplifiedError === null || simplifiedError === void 0 ? void 0 : simplifiedError.errorSources;
+        statusCode = simplifiedError?.statusCode;
+        message = simplifiedError?.message;
+        errorSourse = simplifiedError?.errorSources;
     }
     else if (err instanceof appError_1.default) {
-        statusCode = err === null || err === void 0 ? void 0 : err.statusCode;
-        message = err === null || err === void 0 ? void 0 : err.message;
+        statusCode = err?.statusCode;
+        message = err?.message;
         errorSourse = [{
                 path: "",
-                message: err === null || err === void 0 ? void 0 : err.message
+                message: err?.message
             }];
     }
     else if (err instanceof Error) {
-        message = err === null || err === void 0 ? void 0 : err.message;
+        message = err?.message;
         errorSourse = [{
                 path: "",
-                message: err === null || err === void 0 ? void 0 : err.message
+                message: err?.message
             }];
     }
     res.status(statusCode).json({
         success: false,
         message,
         errorSourse,
-        stack: config_1.default.node_env === "development" ? err === null || err === void 0 ? void 0 : err.stack : null,
+        stack: config_1.default.node_env === "development" ? err?.stack : null,
     });
     return;
 };

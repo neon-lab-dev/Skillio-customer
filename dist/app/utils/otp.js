@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -33,9 +24,9 @@ const generateOTP = () => {
     return otp.substring(0, otpConfig_1.otpConfig.otpLength);
 };
 exports.generateOTP = generateOTP;
-const verifyOTP = (otpCode, phoneNumber) => __awaiter(void 0, void 0, void 0, function* () {
+const verifyOTP = async (otpCode, phoneNumber) => {
     const verification = dataSource_1.AppDataSource.getRepository(verification_1.Verification);
-    const existingOTP = yield verification.findOne({
+    const existingOTP = await verification.findOne({
         where: {
             phoneNumber: phoneNumber,
         },
@@ -50,7 +41,7 @@ const verifyOTP = (otpCode, phoneNumber) => __awaiter(void 0, void 0, void 0, fu
         const now = Date.now();
         const expiresAt = new Date(existingOTP.expirationDate).getTime();
         if (expiresAt < now) {
-            yield verification.update({ phoneNumber: phoneNumber }, { otpCodeStatus: verification_2.OtpCodeStatus.EXPIRED });
+            await verification.update({ phoneNumber: phoneNumber }, { otpCodeStatus: verification_2.OtpCodeStatus.EXPIRED });
             return {
                 isValid: false,
                 reason: "EXPIRED",
@@ -58,7 +49,7 @@ const verifyOTP = (otpCode, phoneNumber) => __awaiter(void 0, void 0, void 0, fu
         }
     }
     if (otpCode == existingOTP.otpCode) {
-        yield verification.update({ phoneNumber: phoneNumber }, { otpCodeStatus: verification_2.OtpCodeStatus.VERIFIED });
+        await verification.update({ phoneNumber: phoneNumber }, { otpCodeStatus: verification_2.OtpCodeStatus.VERIFIED });
         return {
             isValid: true,
         };
@@ -67,5 +58,5 @@ const verifyOTP = (otpCode, phoneNumber) => __awaiter(void 0, void 0, void 0, fu
         isValid: false,
         reason: "MISMATCH",
     };
-});
+};
 exports.verifyOTP = verifyOTP;

@@ -13,14 +13,15 @@ COPY package*.json ./
 # Install dependencies without running project lifecycle scripts (skips prisma postinstall)
 RUN if [ -f package-lock.json ]; then npm ci --ignore-scripts; else npm install --ignore-scripts; fi
 
+COPY .env ./
 COPY . .
 
-RUN npm run build
+# RUN npm run dev
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "dev" ]
 
 

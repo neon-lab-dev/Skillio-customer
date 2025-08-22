@@ -5,8 +5,6 @@ docker-compose*
 .git
 .gitignore
 dist
-.env
-.env.*
 coverage
 logs
 *.log
