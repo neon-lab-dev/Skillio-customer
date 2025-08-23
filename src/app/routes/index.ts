@@ -1,27 +1,13 @@
 import { Router } from "express";
-import { authRouter } from "../modules/auth/auth.route";
-import { userRouter } from "../modules/people/people.routes";
-import { categoriesRouter } from "../modules/category/categories.routes";
-import { verticlesRouter } from "../modules/verticles/verticles.routes";
+import { verificationRoutes } from "../modules/verification/verification.routes";
+
 
 const router = Router();
 
-const moduleRoutes=[
+const moduleRoutes = [
     {
-        path:"/auth",
-        route: authRouter
-    },
-    {
-        path: "/people",
-        route: userRouter
-    },
-    {
-        path: "/category",
-        route: categoriesRouter
-    },
-    {
-        path: "/verticles",
-        route: verticlesRouter
+        path: "/verificationRequest",
+        route: verificationRoutes
     }
 ]
 
