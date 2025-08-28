@@ -6,8 +6,8 @@ import {
   BeforeUpdate,
   AfterInsert,
   AfterUpdate,
-  OneToMany,
 } from "typeorm";
+import { logger } from "../utils/logger";
 
 
 @Entity("user")
@@ -32,4 +32,25 @@ export class User {
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updatedAt!: Date;
+
+    @BeforeInsert()
+        setCreatedAt() {
+            this.createdAt = new Date();
+            this.updatedAt = new Date();
+        }
+    
+        @BeforeUpdate()
+        setUpdatedAt() {
+            this.updatedAt = new Date();
+        }
+    
+        @AfterInsert()
+        logInsert() {
+            logger.info(`Notification with ID ${this.id} has been inserted.`);
+        }
+    
+        @AfterUpdate()
+        logUpdate() {
+            logger.info(`Notification with ID ${this.id} has been updated.`);
+        }
 }

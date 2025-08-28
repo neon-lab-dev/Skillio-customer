@@ -2,12 +2,15 @@ import verificationServices from "./verification.services";
 import catchAsyncError from "../../utils/catchAsyncError";
 import { Request , Response , NextFunction } from "express";
 import sendResponse from "../../middlewares/sendResponse";
+import { VerificationDTO } from "./verifciation.dto";
 
 class VerificationController {
-    verificationRequest= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
-        const {phoneNumber , purpose}=req.body;
 
-        const result= await verificationServices.verificationRequest({phoneNumber , purpose} , res);
+    // verification request controller
+    verificationRequest= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
+        const verificationData= new VerificationDTO(req.body);
+
+        const result= await verificationServices.verificationRequest(verificationData.toJSON() , res);
 
         return sendResponse(res , {
             statusCode: 200,
@@ -17,6 +20,8 @@ class VerificationController {
         })
     })
 
+
+    // verify otp controller
     verifyOtp=catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const {verificationId}=req.params;
         const {otpCode}=req.body;

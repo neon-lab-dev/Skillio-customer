@@ -5,7 +5,7 @@ import { Verification } from "../entity/verification";
 import { OtpCodeStatus } from "../entity/verification";
 
 
-// Generate a 6 digit OTP
+// Generate a 6 digit OTP   
 export const generateOTP = () => {
   if(otpConfig.testMode) {
     return "000000";

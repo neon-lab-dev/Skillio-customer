@@ -157,3 +157,162 @@
 {"level":"info","message":"Database connection established successfully at skilio-auth","service":"user-service"}
 {"level":"info","message":"Listening at port number 3000","service":"user-service"}
 {"level":"info","message":"Database connection established successfully at skilio-auth","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID aaddf83f-56dd-4756-8d02-9296d22ca987 has been inserted.","service":"user-service"}
+{"level":"error","message":"SMS provider configuration not found","service":"user-service"}
+{"level":"error","message":"TwilioSmsProvider: Failed to send SMS to undefined: Failed to send SMS via Twilio","service":"user-service","stack":"Error: Failed to send SMS via Twilio\n    at createMessage (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\twilio.ts:44:15)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at TwilioSmsProvider.send (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\providers\\TwilioSmsProvider.ts:14:23)\n    at communicationService.sendNotification (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\services\\communicationService.ts:22:12)\n    at NotificationService.createNotification (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\notification\\notification.services.ts:72:19)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\notification\\notification.controller.ts:11:24\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\catchAsyncError.ts:8:7","statusCode":500}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID 6394a034-8b9f-4914-8911-cee15516ec28 has been inserted.","service":"user-service"}
+{"level":"error","message":"TwilioSmsProvider: Failed to send SMS to undefined: Failed to send SMS via Twilio","service":"user-service","stack":"Error: Failed to send SMS via Twilio\n    at createMessage (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\twilio.ts:44:15)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at TwilioSmsProvider.send (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\providers\\TwilioSmsProvider.ts:14:23)\n    at communicationService.sendNotification (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\services\\communicationService.ts:22:12)\n    at NotificationService.createNotification (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\notification\\notification.services.ts:72:19)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\notification\\notification.controller.ts:11:24\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\catchAsyncError.ts:8:7","statusCode":500}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID be4c1cf3-8ad4-4092-88c4-eb381f4deb67 has been inserted.","service":"user-service"}
+{"level":"info","message":"TwilioSmsProvider: SMS sent successfully to +18777804236. Message SID: SM0931fd89a153e6d891dfc1fd3757166a","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID ce08c235-6566-4da9-9b63-6022ad5d8c46 has been inserted.","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID 419199cc-8bdf-4a4f-a091-d216cf04de08 has been inserted.","service":"user-service"}
+{"level":"info","message":"TwilioSmsProvider: SMS sent successfully to +18777804236. Message SID: SMa196074cd8b7ac315ee10648f383207b","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID 1fd967f4-0cb5-4e74-bbda-6e6b9a468c64 has been inserted.","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Notification with ID b4b80292-ef7c-40db-be83-e5d012315864 has been inserted.","service":"user-service"}
+{"level":"info","message":"TwilioSmsProvider: SMS sent successfully to +18777804236. Message SID: SM09d3a56316f14957209f3bec9c774883","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}

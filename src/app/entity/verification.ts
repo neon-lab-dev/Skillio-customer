@@ -6,8 +6,8 @@ import {
   BeforeUpdate,
   AfterInsert,
   AfterUpdate,
-  ManyToOne,
 } from "typeorm";
+import { logger } from "../utils/logger";
 
 export enum OtpCodeStatus {
   SENT,
@@ -48,7 +48,7 @@ export class Verification {
     @Column({type: "timestamp"})
     updatedAt!: Date;
 
-    @BeforeInsert()
+@BeforeInsert()
     setCreatedAt() {
         this.createdAt = new Date();
         this.updatedAt = new Date();
@@ -57,5 +57,15 @@ export class Verification {
     @BeforeUpdate()
     setUpdatedAt() {
         this.updatedAt = new Date();
+    }
+
+    @AfterInsert()
+    logInsert() {
+        logger.info(`Notification with ID ${this.id} has been inserted.`);
+    }
+
+    @AfterUpdate()
+    logUpdate() {
+        logger.info(`Notification with ID ${this.id} has been updated.`);
     }
 }

@@ -16,24 +16,13 @@ class VerificationService {
         this.verificationRepository = AppDataSource.getRepository("Verification");
     }
 
+    // create a verification request
     verificationRequest= async (verificationData:Partial<TVerification> , res:Response)=>{
         const{ phoneNumber , purpose}= verificationData;
 
         if(!phoneNumber || !purpose) {
             logger.error("Phone number and purpose are required");
             throw new AppError(400, "Phone number and purpose are required");
-        }
-
-        const existingVerification= await this.verificationRepository.findOne({
-            where: {
-                phoneNumber: phoneNumber,
-                purpose: purpose
-            }
-        });
-
-        if(existingVerification){
-            logger.info("Verification request already exists");
-            throw new AppError(409, "Verification request already exists");
         }
 
         const otpCode= generateOTP();
@@ -64,6 +53,8 @@ class VerificationService {
         }};
     }
 
+
+    // verify otp
     verifyOtp=async(verificationId:string  , otpCode: string)=>{
         if(!verificationId || !otpCode) {
             logger.error("Verification ID and OTP code are required");
@@ -89,7 +80,7 @@ class VerificationService {
         }
 
         return {verificationId: existingVerification.id}
-    }       
+    }
 }
 
 export default new VerificationService();
