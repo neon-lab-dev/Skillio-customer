@@ -1,6 +1,7 @@
 import { AppDataSource } from "../db/dataSource";
 import { SystemConfig } from "../entity/systemConfig";
-import { laodTwilioConfig } from "./twilioConfig";
+import { logger } from "../utils/logger";
+import { loadTwilioConfig } from "../modules/notification/config/twilioConfig";
 
 class SystemConfigStore{
     private static configs: Record<string, SystemConfig> = {};
@@ -16,9 +17,18 @@ class SystemConfigStore{
                 SystemConfigStore.configs[config.medium] = config;
             });
 
-            await laodTwilioConfig(allConfigs);
+            // load twilio config
+            try{
+                await loadTwilioConfig(allConfigs);
+            }catch(error){
+                logger.error("Error loading Twilio configuration:", error);
+            }
+
+            // load other provider configurations similarly
+
 
         } catch (error) {
+            logger.error("Error loading provider configurations:", error);
             console.error("Error loading provider configurations:", error);
         }
     }

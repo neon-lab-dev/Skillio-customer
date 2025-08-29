@@ -1,20 +1,12 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  BeforeUpdate,
-  AfterInsert,
-  AfterUpdate,
+  Column
 } from "typeorm";
-import { logger } from "../utils/logger";
-
-import { Medium } from "./notification";
+import { Medium } from "../enums/notificationEnum";
+import { BaseEntity } from "./baseEntity";
 
 @Entity("system_config")
-export class SystemConfig{
-    @PrimaryGeneratedColumn("uuid")
-    id!: string;
+export class SystemConfig extends BaseEntity{
 
     @Column({type: "varchar"})
     providerName!: string;
@@ -22,32 +14,12 @@ export class SystemConfig{
     @Column({type: "enum", enum: Medium})
     medium! : Medium
 
-    @Column({type: "varchar"})
+    @Column({type: "varchar" , nullable: true})
     apiKey?: string;
 
     @Column({type: "varchar", nullable: true})
     apiSecret?: string;
 
-    @Column()
+    @Column({type: "varchar", nullable: true})
     twilioPhoneNumber?: string;
-
-    @BeforeInsert()
-    logInsert() {
-      logger.info(`About to insert ProviderConfig with providerName: ${this.providerName}`);
-    }
-  
-    @AfterInsert()
-    logInserted() {
-      logger.info(`Inserted ProviderConfig with id: ${this.id}`);
-    }
-  
-    @BeforeUpdate()
-    logUpdate() {
-      logger.info(`About to update ProviderConfig with id: ${this.id}`);
-    }
-  
-    @AfterUpdate()
-    logUpdated() {
-      logger.info(`Updated ProviderConfig with id: ${this.id}`);
-    }
 }

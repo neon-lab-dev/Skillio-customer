@@ -13,7 +13,7 @@ export class ProviderFactory {
         ];
     }
 
-    resolve=(notificaion: Notification): NotificationProvider | null =>{
+    resolve=(notificaion: Partial<Notification>): NotificationProvider | null =>{
         const provider = this.registry.find(p => p.medium === notificaion.medium);
         if(!provider){
             logger.error(`No provider found for medium: ${notificaion.medium}`);

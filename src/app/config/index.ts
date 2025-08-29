@@ -13,12 +13,6 @@ export default {
   db_password_development: process.env.DB_PASSWORD_DEVELOPMENT,
   db_databse_development: process.env.DB_DATABASE_DEVELOPMENT,
 
-  db_port_production: process.env.DB_PORT_PRODUCTION,
-  db_host_production: process.env.DB_HOST_PRODUCTION,
-  db_username_production: process.env.DB_USERNAME_PRODUCTION,
-  db_password_production: process.env.DB_PASSWORD_PRODUCTION, 
-  db_databse_production: process.env.DB_DATABASE_PRODUCTION,
-
 
   jwt_access_secret: process.env.JWT_ACCESS_SECRET,
   jwt_refresh_secret: process.env.JWT_REFRESH_SECRET,

@@ -1,8 +1,8 @@
-import { SystemConfig } from "../entity/systemConfig";
+import { SystemConfig } from "../../../entity/systemConfig";
 
 let twilioConfig: SystemConfig | undefined;
 
-export const laodTwilioConfig= async(configs:SystemConfig[])=>{
+export const loadTwilioConfig= async(configs:SystemConfig[])=>{
     twilioConfig= configs.find(config=>config.medium==="SMS");
 }
 

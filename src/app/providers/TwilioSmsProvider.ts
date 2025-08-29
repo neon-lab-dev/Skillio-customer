@@ -1,7 +1,7 @@
 import { NotificationProvider, ProviderResult } from "./NotificationProvider";
-import { Medium } from "../entity/notification";
 import { logger } from "../utils/logger";
-import { createMessage } from "../utils/twilio";
+import { Medium } from "../enums/notificationEnum";
+import { createMessage } from "../modules/notification/utils/twilio";
 import { Notification } from "../entity/notification";
 
 export class TwilioSmsProvider implements NotificationProvider {
@@ -12,11 +12,11 @@ export class TwilioSmsProvider implements NotificationProvider {
     try {
       
       const message = await createMessage(
-        notification.phone as string, 
-        notification.bodyText?.otp as string
+        notification.to as string, 
+        notification.bodyText as string
       );
       
-      logger.info(`TwilioSmsProvider: SMS sent successfully to ${notification.phone}. Message SID: ${message.sid}`);
+      logger.info(`TwilioSmsProvider: SMS sent successfully to ${notification.to}. Message SID: ${message.sid}`);
 
       return { 
         ok: true, 
@@ -27,7 +27,7 @@ export class TwilioSmsProvider implements NotificationProvider {
         } 
       };
     } catch (error) {
-      logger.error(`TwilioSmsProvider: Failed to send SMS to ${notification.phone}:`, error);
+      logger.error(`TwilioSmsProvider: Failed to send SMS to ${notification.to}:`, error);
       return { 
         ok: false, 
         response: `Failed to send SMS: ${error}` 

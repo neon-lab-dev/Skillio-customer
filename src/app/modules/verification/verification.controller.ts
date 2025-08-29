@@ -10,14 +10,39 @@ class VerificationController {
     verificationRequest= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const verificationData= new VerificationDTO(req.body);
 
-        const result= await verificationServices.verificationRequest(verificationData.toJSON() , res);
+        const result= await verificationServices.verificationRequest(verificationData.toJSON());
 
         return sendResponse(res , {
             statusCode: 200,
             success: true,
-            message: "Verification request sent successfully",
+            message: "Verification request created successfully",
             data: result
         })
+    })
+
+    // resend otp controller
+    reSendOtp=catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
+        const{verificationId}=req.params;
+        const {phoneNumber }=req.body;
+        
+        const result= await verificationServices.reSendOtp(phoneNumber , verificationId);
+
+
+        if(result.success==true){
+            return sendResponse(res , {
+                statusCode: 200,
+                success: true,
+                message: "OTP resent successfully",
+                data: result
+            })
+        }else{
+            return sendResponse(res , {
+                statusCode: 500,
+                success: false,
+                message: "Failed to resend OTP",
+                data: result
+            })
+        }
     })
 
 

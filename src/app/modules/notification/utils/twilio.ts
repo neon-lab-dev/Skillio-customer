@@ -1,5 +1,5 @@
-import AppError from "../errors/appError";
-import { logger } from "./logger";
+import AppError from "../../../errors/appError";
+import { logger } from "../../../utils/logger";
 import { getTwilioConfig } from "../config/twilioConfig";
 import twilio from "twilio";
 
@@ -15,7 +15,6 @@ export const createMessage = async (phone: string, otp: string) => {
         const authToken = systemConfig.apiSecret as string
 
 
-        // Validate credentials before creating client
         if (!accountSid || !authToken) {
             throw new AppError(500, "Twilio credentials are missing. Please check provider configuration for SMS.");
         }

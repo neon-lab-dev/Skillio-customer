@@ -1,14 +1,10 @@
-import { Medium , Status } from "../../entity/notification";
-import { Attachment } from "../../entity/notification";
-import { NotificationBody } from "../../entity/notification";
+import { Medium , Status } from "../../enums/notificationEnum";
 
 
 export interface TNotification {
   medium: Medium;
-  phone?: string;
-  email?: string;
-  deviceToken?: string;
-  bodyText: NotificationBody;
-  attachments?: Attachment[];
+  to?: string;
+  bodyText: string;
+  attachments?: string[];
   status: Status;
 }

@@ -1,6 +1,6 @@
-// dtos/verification.dto.ts
-import { verificationPurpose } from "../../entity/verification";
+import { verificationPurpose } from "../../enums/verificationEnum";
 
+// dto to create a verification request
 export class VerificationDTO {
   phoneNumber: string;
   purpose: verificationPurpose;

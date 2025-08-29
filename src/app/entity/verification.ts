@@ -1,37 +1,21 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  BeforeInsert,
-  BeforeUpdate,
-  AfterInsert,
-  AfterUpdate,
+  Column
 } from "typeorm";
-import { logger } from "../utils/logger";
 
-export enum OtpCodeStatus {
-  SENT,
-  VERIFIED,
-  EXPIRED
-}
+import { OtpCodeStatus } from "../enums/verificationEnum";
+import { verificationPurpose } from "../enums/verificationEnum";
+import { BaseEntity } from "./baseEntity";
 
-export enum verificationPurpose {
-  LOGIN,
-  PHONE_VERIFICATION,
-  EMAIL_VERIFICATION,
-  SIGNUP
-}
 
 @Entity("verification")
-export class Verification {
-    @PrimaryGeneratedColumn("uuid")
-    id!: string;
+export class Verification extends BaseEntity{
 
     @Column()
     phoneNumber!: string;
 
-    @Column()
-    purpose!: string;
+    @Column({type: "enum" , enum: verificationPurpose})
+    purpose!: verificationPurpose;
 
     @Column()
     otpCode!: string;
@@ -39,33 +23,9 @@ export class Verification {
     @Column()
     expirationDate!: Date;
 
-    @Column()
+    @Column({type: "enum", enum: OtpCodeStatus})
     otpCodeStatus!: OtpCodeStatus;
 
-    @Column({ type: 'timestamp' })
-    createdAt!: Date;
-
-    @Column({type: "timestamp"})
-    updatedAt!: Date;
-
-@BeforeInsert()
-    setCreatedAt() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
-
-    @BeforeUpdate()
-    setUpdatedAt() {
-        this.updatedAt = new Date();
-    }
-
-    @AfterInsert()
-    logInsert() {
-        logger.info(`Notification with ID ${this.id} has been inserted.`);
-    }
-
-    @AfterUpdate()
-    logUpdate() {
-        logger.info(`Notification with ID ${this.id} has been updated.`);
-    }
+    @Column({type: "int", default: 0})
+    attempts!: number;
 }

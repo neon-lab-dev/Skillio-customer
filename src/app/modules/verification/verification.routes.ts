@@ -4,6 +4,7 @@ import { Router } from "express";
 const router= Router();
 
 router.post("/" , verificationController.verificationRequest);
+router.post("/resendOtp/:verificationId" , verificationController.reSendOtp);
 router.post("/verifyOtp/:verificationId" , verificationController.verifyOtp);
 
 export const verificationRoutes = router;

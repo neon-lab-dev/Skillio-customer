@@ -9,7 +9,7 @@ const dataSource_1 = require("../db/dataSource");
 const otpConfig_1 = require("../config/otpConfig");
 const verification_1 = require("../entity/verification");
 const verification_2 = require("../entity/verification");
-// Generate a 6 digit OTP
+// Generate a 6 digit OTP   
 const generateOTP = () => {
     if (otpConfig_1.otpConfig.testMode) {
         return "000000";

@@ -8,5 +8,6 @@ const verification_controller_1 = __importDefault(require("./verification.contro
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 router.post("/", verification_controller_1.default.verificationRequest);
-router.post("/:verificationId", verification_controller_1.default.verifyOtp);
+router.post("/resendOtp/:verificationId", verification_controller_1.default.reSendOtp);
+router.post("/verifyOtp/:verificationId", verification_controller_1.default.verifyOtp);
 exports.verificationRoutes = router;
