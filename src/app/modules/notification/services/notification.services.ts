@@ -1,4 +1,4 @@
-import { TNotification } from "../notification.interface";
+import { TNotification } from "../interface/notification.interface";
 import AppError from "../../../errors/appError";
 import { logger } from "../../../utils/logger";
 import {  Status } from "../../../enums/notificationEnum";

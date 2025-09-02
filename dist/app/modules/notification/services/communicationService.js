@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const ProviderFactory_1 = require("../../../providers/ProviderFactory");
+const NotificationProviderFactory_1 = require("../../../providers/NotificationProviderFactory");
 class communicationService {
     constructor() {
-        this.providerFactory = new ProviderFactory_1.ProviderFactory();
+        this.providerFactory = new NotificationProviderFactory_1.ProviderFactory();
     }
     async sendNotification(notification) {
         // 1. Factory resolves correct provider (SMS, EMAIL, PUSH)

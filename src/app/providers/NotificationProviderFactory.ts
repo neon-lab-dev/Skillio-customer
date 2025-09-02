@@ -1,0 +1,24 @@
+import AppError from "../errors/appError";
+import { Notification } from "../entity/notification";
+import { logger } from "../utils/logger";
+import { NotificationProvider } from "./NotificationProvider";
+import { TwoFactorOtpProvider } from "./TwoFactorOtpProvider";
+
+export class ProviderFactory {
+    private static twoFactorOtpProvider: TwoFactorOtpProvider
+
+    static initializeProviders(){
+        ProviderFactory.twoFactorOtpProvider= new TwoFactorOtpProvider();
+    }
+
+    resolve=(notificaion: Partial<Notification>): NotificationProvider | null =>{
+        switch(notificaion.medium){
+            case "SMS":
+                return ProviderFactory.twoFactorOtpProvider;
+
+            default: 
+                logger.error(`ProviderFactory: No provider found for medium ${notificaion.medium}`);
+                throw new AppError(400, "No provider found for the specified medium");
+        }
+    }
+}

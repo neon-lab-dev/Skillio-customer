@@ -51,7 +51,7 @@ class VerificationController {
         const {verificationId}=req.params;
         const {otpCode}=req.body;
 
-        const result= await verificationServices.verifyOtp(verificationId , otpCode);
+        const result= await verificationServices.verifyOtp(verificationId , otpCode , res);
 
         return sendResponse(res , {
             statusCode: 200,

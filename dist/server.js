@@ -14,6 +14,7 @@ const notFoundHandler_1 = __importDefault(require("./app/middlewares/notFoundHan
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
 const logger_1 = require("./app/utils/logger");
 const systemConfigStore_1 = __importDefault(require("./app/config/systemConfigStore"));
+const NotificationProviderFactory_1 = require("./app/providers/NotificationProviderFactory");
 const app = (0, express_1.default)();
 // middlewares
 app.use((0, cookie_parser_1.default)());
@@ -37,6 +38,7 @@ app.use(globalErrorHandler_1.default);
 dataSource_1.AppDataSource.initialize()
     .then(async () => {
     await systemConfigStore_1.default.loadConfigs();
+    NotificationProviderFactory_1.ProviderFactory.initializeProviders();
     app.listen(config_1.default.port, () => {
         logger_1.logger.info(`Listening at port number ${config_1.default.port}`);
         logger_1.logger.info(`Database connection established successfully at ${config_1.default.db_databse_development}`);

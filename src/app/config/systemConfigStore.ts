@@ -1,7 +1,9 @@
 import { AppDataSource } from "../db/dataSource";
 import { SystemConfig } from "../entity/systemConfig";
 import { logger } from "../utils/logger";
-import { loadTwilioConfig } from "../modules/notification/config/twilioConfig";
+import { loadOtpConfig } from "../modules/verification/config/otpConfig";
+import { loadVerificationConfig } from "../modules/verification/config/verificationAttemptsConfig";
+import { loadTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";
 
 class SystemConfigStore{
     private static configs: Record<string, SystemConfig> = {};
@@ -13,23 +15,20 @@ class SystemConfigStore{
 
             SystemConfigStore.configs = {};
 
-            allConfigs.forEach(config => {
-                SystemConfigStore.configs[config.medium] = config;
-            });
+            allConfigs.forEach((config)=>{
+                SystemConfigStore.configs[config.configKey] = config;
+            })
 
-            // load twilio config
-            try{
-                await loadTwilioConfig(allConfigs);
-            }catch(error){
-                logger.error("Error loading Twilio configuration:", error);
-            }
 
-            // load other provider configurations similarly
+            await loadOtpConfig(SystemConfigStore.configs)
 
+            await loadVerificationConfig(SystemConfigStore.configs)
+
+            await loadTwoFactorConfig(SystemConfigStore.configs)
 
         } catch (error) {
-            logger.error("Error loading provider configurations:", error);
-            console.error("Error loading provider configurations:", error);
+            logger.error("Error loading system  configurations:", error);
+            console.error("Error loading system configurations:", error);
         }
     }
  

@@ -9,6 +9,7 @@ import notFoundHandler from "./app/middlewares/notFoundHandler";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import { logger } from "./app/utils/logger";
 import systemConfigStore from "./app/config/systemConfigStore";
+import { ProviderFactory } from "./app/providers/NotificationProviderFactory";
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use(globalErrorHandler)
 AppDataSource.initialize()
   .then(async () => {
     await systemConfigStore.loadConfigs();
+    ProviderFactory.initializeProviders();
 
     app.listen(config.port, () => {
       logger.info(`Listening at port number ${config.port}`);

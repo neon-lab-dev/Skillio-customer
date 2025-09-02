@@ -1,4 +1,4 @@
-import { Medium , Status } from "../../enums/notificationEnum";
+import { Medium , Status } from "../../../enums/notificationEnum";
 
 
 export interface TNotification {

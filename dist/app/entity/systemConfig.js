@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SystemConfig = void 0;
 const typeorm_1 = require("typeorm");
-const notificationEnum_1 = require("../enums/notificationEnum");
 const baseEntity_1 = require("./baseEntity");
 let SystemConfig = class SystemConfig extends baseEntity_1.BaseEntity {
 };
@@ -19,23 +18,11 @@ exports.SystemConfig = SystemConfig;
 __decorate([
     (0, typeorm_1.Column)({ type: "varchar" }),
     __metadata("design:type", String)
-], SystemConfig.prototype, "providerName", void 0);
+], SystemConfig.prototype, "configKey", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "enum", enum: notificationEnum_1.Medium }),
-    __metadata("design:type", String)
-], SystemConfig.prototype, "medium", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "varchar", nullable: true }),
-    __metadata("design:type", String)
-], SystemConfig.prototype, "apiKey", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "varchar", nullable: true }),
-    __metadata("design:type", String)
-], SystemConfig.prototype, "apiSecret", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "varchar", nullable: true }),
-    __metadata("design:type", String)
-], SystemConfig.prototype, "twilioPhoneNumber", void 0);
+    (0, typeorm_1.Column)({ type: "simple-json", nullable: true }),
+    __metadata("design:type", Object)
+], SystemConfig.prototype, "configValue", void 0);
 exports.SystemConfig = SystemConfig = __decorate([
     (0, typeorm_1.Entity)("system_config")
 ], SystemConfig);

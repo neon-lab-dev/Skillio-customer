@@ -46,7 +46,7 @@ class VerificationController {
         this.verifyOtp = (0, catchAsyncError_1.default)(async (req, res, next) => {
             const { verificationId } = req.params;
             const { otpCode } = req.body;
-            const result = await verification_services_1.default.verifyOtp(verificationId, otpCode);
+            const result = await verification_services_1.default.verifyOtp(verificationId, otpCode, res);
             return (0, sendResponse_1.default)(res, {
                 statusCode: 200,
                 success: true,
