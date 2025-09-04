@@ -41,12 +41,6 @@ class VerificationService {
 
     const otpConfig = await getOtpConfig();
 
-    if (!otpConfig) {
-      logger.error("OTP configuration not found");
-      throw new AppError(500, "OTP configuration not found");
-    }
-
-
     const res = await communicationService.sendNotification({
       medium: Medium.SMS,
       to: phoneNumber,
@@ -110,11 +104,6 @@ class VerificationService {
     }
 
     const otpConfig = await getOtpConfig();
-
-    if (!otpConfig) {
-      logger.error("OTP configuration not found");
-      throw new AppError(500, "OTP configuration not found");
-    }
 
 
     const res = await communicationService.sendNotification({

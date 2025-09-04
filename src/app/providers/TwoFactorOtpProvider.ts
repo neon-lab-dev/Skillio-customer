@@ -4,7 +4,6 @@ import { Medium } from "../enums/notificationEnum";
 import { Notification } from "../entity/notification";
 import axios from "axios";
 import { getTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";
-import AppError from "../errors/appError";
 
 export class TwoFactorOtpProvider implements NotificationProvider {
   name = "twoFactor";
@@ -13,10 +12,6 @@ export class TwoFactorOtpProvider implements NotificationProvider {
   async send(notification: Notification): Promise<ProviderResult> {
     try {
         const twoFactorConfig= await getTwoFactorConfig();
-
-        if(!twoFactorConfig){
-            throw new AppError(500, "Two factor configuration not found");
-        }
 
         const url=`${twoFactorConfig.baseUrl}/${twoFactorConfig.apikey}/SMS/${notification.to}/${notification.bodyText}`;
 
