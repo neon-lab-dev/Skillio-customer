@@ -2,7 +2,7 @@ import {
   Entity,
   Column
 } from "typeorm";
-import { Medium , Status } from "../enums/notificationEnum";
+import { Medium , Status } from "../modules/notification/enums/notificationEnum";
 import { BaseEntity } from "./baseEntity";
 
 

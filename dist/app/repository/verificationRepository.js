@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const dataSource_1 = require("../db/dataSource");
 const typeorm_1 = require("typeorm");
-const verificationEnum_1 = require("../enums/verificationEnum");
+const verificationEnum_1 = require("../modules/verification/enums/verificationEnum");
 class VerificationRepository {
     constructor() {
         // create a verification
@@ -24,18 +24,20 @@ class VerificationRepository {
             });
         };
         // findOne by phoneNumber and purpose
-        this.findOneByPhoneNumberAndPurpose = async (phoneNumber, purpose) => {
-            return this.verificationRepository.findOneBy({
-                phoneNumber,
-                purpose,
+        this.findOneByPhoneNumberPurposeAndNonTerminating = async (phoneNumber, purpose) => {
+            return this.verificationRepository.findOne({
+                where: {
+                    phoneNumber,
+                    purpose,
+                    otpCodeStatus: (0, typeorm_1.In)([verificationEnum_1.OtpCodeStatus.SENT, verificationEnum_1.OtpCodeStatus.IN_PROGRESS])
+                }
             });
         };
         // findOne by phoneNumber and otpCodeStatus in progress
-        this.findOneByPhoneNumberAndInProgressOrSent = async (phoneNumber, verificationId) => {
+        this.findOneByIdAndInProgressOrSent = async (verificationId) => {
             return this.verificationRepository.findOne({
                 where: {
                     id: verificationId,
-                    phoneNumber: phoneNumber,
                     otpCodeStatus: (0, typeorm_1.In)([verificationEnum_1.OtpCodeStatus.IN_PROGRESS, verificationEnum_1.OtpCodeStatus.SENT]),
                 },
             });

@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import verificationRepository from "../../../repository/verificationRepository";
-import { OtpCodeStatus } from "../../../enums/verificationEnum";
+import { OtpCodeStatus } from "../enums/verificationEnum";
 import { getOtpConfig } from "../config/otpConfig";
 
 // Generate a 6 digit OTP

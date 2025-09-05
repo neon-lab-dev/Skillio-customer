@@ -1,6 +1,6 @@
 import { NotificationProvider, ProviderResult } from "./NotificationProvider";
 import { logger } from "../utils/logger";
-import { Medium } from "../enums/notificationEnum";
+import { Medium } from "../modules/notification/enums/notificationEnum";
 import { Notification } from "../entity/notification";
 import axios from "axios";
 import { getTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";

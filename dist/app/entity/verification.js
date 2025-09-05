@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Verification = void 0;
 const typeorm_1 = require("typeorm");
-const verificationEnum_1 = require("../enums/verificationEnum");
-const verificationEnum_2 = require("../enums/verificationEnum");
+const verificationEnum_1 = require("../modules/verification/enums/verificationEnum");
+const verificationEnum_2 = require("../modules/verification/enums/verificationEnum");
 const baseEntity_1 = require("./baseEntity");
 let Verification = class Verification extends baseEntity_1.BaseEntity {
 };

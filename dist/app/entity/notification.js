@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Notification = void 0;
 const typeorm_1 = require("typeorm");
-const notificationEnum_1 = require("../enums/notificationEnum");
+const notificationEnum_1 = require("../modules/notification/enums/notificationEnum");
 const baseEntity_1 = require("./baseEntity");
 let Notification = class Notification extends baseEntity_1.BaseEntity {
 };

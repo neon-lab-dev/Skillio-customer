@@ -1,7 +1,7 @@
 import { AppDataSource } from "../db/dataSource";
 import { Repository, In } from "typeorm";
 import { Verification } from "../entity/verification";
-import { OtpCodeStatus, verificationPurpose } from "../enums/verificationEnum";
+import { OtpCodeStatus, verificationPurpose } from "../modules/verification/enums/verificationEnum";
 
 class VerificationRepository {
   private verificationRepository: Repository<Verification>;
@@ -34,25 +34,26 @@ class VerificationRepository {
   };
 
   // findOne by phoneNumber and purpose
-  findOneByPhoneNumberAndPurpose = async (
+  findOneByPhoneNumberPurposeAndNonTerminating = async (
     phoneNumber: string,
     purpose: verificationPurpose
   ) => {
-    return this.verificationRepository.findOneBy({
-      phoneNumber,
-      purpose,
+    return this.verificationRepository.findOne({
+      where:{
+        phoneNumber,
+        purpose,
+        otpCodeStatus: In([OtpCodeStatus.SENT, OtpCodeStatus.IN_PROGRESS])
+      }
     });
   };
 
   // findOne by phoneNumber and otpCodeStatus in progress
-findOneByPhoneNumberAndInProgressOrSent = async (
-  phoneNumber: string,
+findOneByIdAndInProgressOrSent = async (
   verificationId: string
 ) => {
   return this.verificationRepository.findOne({
     where: {
       id: verificationId,
-      phoneNumber: phoneNumber,
       otpCodeStatus: In([OtpCodeStatus.IN_PROGRESS, OtpCodeStatus.SENT]),
     },
   });

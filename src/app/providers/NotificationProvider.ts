@@ -1,5 +1,5 @@
 import { Notification } from "../entity/notification";
-import { Medium } from "../enums/notificationEnum";
+import { Medium } from "../modules/notification/enums/notificationEnum";
 
 export interface ProviderResult{
     ok: boolean;

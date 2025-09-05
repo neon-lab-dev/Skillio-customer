@@ -1,4 +1,4 @@
-import { verificationPurpose } from "../../enums/verificationEnum";
+import { verificationPurpose } from "./enums/verificationEnum";
 
 // dto to create a verification request
 export class VerificationDTO {

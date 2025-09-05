@@ -1,4 +1,4 @@
-import { verificationPurpose, OtpCodeStatus } from "../../../enums/verificationEnum";
+import { verificationPurpose, OtpCodeStatus } from "../enums/verificationEnum";
 
 export type TVerification = {
   phoneNumber: string;

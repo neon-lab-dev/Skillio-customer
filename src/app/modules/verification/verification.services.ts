@@ -1,11 +1,11 @@
 import { logger } from "../../utils/logger";
 import AppError from "../../errors/appError";
-import { OtpCodeStatus } from "../../enums/verificationEnum";
+import { OtpCodeStatus } from "./enums/verificationEnum";
 import { TVerification } from "./interface/verification.interface";
 import { generateOtp, verifyOtp } from "./utils/otp";
 import verificationRepository from "../../repository/verificationRepository";
-import communicationService from "../notification/services/communicationService";
-import { Medium } from "../../enums/notificationEnum";
+import { Medium } from "../notification/enums/notificationEnum";
+import notificationServices from "../notification/services/notification.services";
 import { getOtpConfig } from "./config/otpConfig";
 import { getVerificationConfig } from "./config/verificationAttemptsConfig";
 import sendResponse from "../../middlewares/sendResponse";
@@ -21,19 +21,19 @@ class VerificationService {
       throw new AppError(400, "Phone number and purpose are required");
     }
 
-    const exisitingVerification =
-      await verificationRepository.findOneByPhoneNumberAndPurpose(
+    const exisitingNonTerminatingVerification =
+      await verificationRepository.findOneByPhoneNumberPurposeAndNonTerminating(
         phoneNumber,
         purpose
       );
 
-    if (exisitingVerification) {
+    if (exisitingNonTerminatingVerification) {
       logger.error(
-        "A verification for this phone number and purpose already exists"
+        "A verification for this phone number and purpose already exists and in progress or sent state"
       );
       throw new AppError(
         409,
-        "A verification for this phone number and purpose already exists"
+        "A verification for this phone number and purpose already exists and in progress or sent state"
       );
     }
 
@@ -41,30 +41,29 @@ class VerificationService {
 
     const otpConfig = await getOtpConfig();
 
-    const res = await communicationService.sendNotification({
+    const verification= await verificationRepository.createVerification({
+      phoneNumber: phoneNumber,
+      purpose: purpose,
+      otpCode,
+      expirationDate: new Date(Date.now() + otpConfig.otpExpirationTime),
+      otpCodeStatus: OtpCodeStatus.IN_PROGRESS,
+    });
+
+    const res = await notificationServices.createNotification({
       medium: Medium.SMS,
       to: phoneNumber,
       bodyText: otpCode,
     });
 
-    const verification = await verificationRepository.createVerification({
-      phoneNumber: phoneNumber,
-      purpose: purpose,
-      otpCode,
-      expirationDate: new Date(Date.now() + otpConfig.otpExpirationTime),
-      otpCodeStatus: OtpCodeStatus.SENT,
-    });
-
-    if (!verification) {
-      logger.error("Failed to create verification");
-      throw new AppError(500, "Failed to create verification");
-    }
+     await verificationRepository.update(verification.id,{
+      otpCodeStatus: OtpCodeStatus.SENT
+     });
 
     return {
       verification: {
         id: verification.id,
         purpose: verification.purpose,
-        notificationSent: res.ok,
+        notificationSent: res.notification.res.ok,
       },
     };
   };
@@ -78,10 +77,9 @@ class VerificationService {
 
     // Check for existing verification with otpCodeStatus IN_PROGRESS or sent;
     const existingVerification =
-      await verificationRepository.findOneByPhoneNumberAndInProgressOrSent(
-        phoneNumber,
+      await verificationRepository.findOneByIdAndInProgressOrSent(
         verifciationId
-      );
+    );
 
     if (!existingVerification) {
       logger.error("No existing verification found to resend OTP");
@@ -90,14 +88,7 @@ class VerificationService {
 
     const verificationAttemptsConfig = await getVerificationConfig();
 
-    if (!verificationAttemptsConfig) {
-      logger.error("verification attempts configuration not found");
-      throw new AppError(500, "verification attempts configuration not found");
-    }
-
-    if (
-      existingVerification.attempts >=
-      parseInt(verificationAttemptsConfig?.maxAttempts)
+    if (existingVerification.attempts >= parseInt(verificationAttemptsConfig?.maxAttempts)
     ) {
       logger.error("Maximum resend attempts reached");
       throw new AppError(429, "Maximum resend attempts reached");
@@ -106,13 +97,13 @@ class VerificationService {
     const otpConfig = await getOtpConfig();
 
 
-    const res = await communicationService.sendNotification({
+    const res = await notificationServices.createNotification({
       medium: Medium.SMS,
       to: phoneNumber,
       bodyText: existingVerification.otpCode,
     });
 
-    if (res.ok) {
+    if (res.notification.res.ok) {
       await verificationRepository.update(existingVerification.id, {
         otpCodeStatus: OtpCodeStatus.SENT,
         expirationDate: new Date(Date.now() + otpConfig.otpExpirationTime),

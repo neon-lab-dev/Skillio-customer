@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyOtp = exports.generateOtp = void 0;
 const crypto_1 = __importDefault(require("crypto"));
 const verificationRepository_1 = __importDefault(require("../../../repository/verificationRepository"));
-const verificationEnum_1 = require("../../../enums/verificationEnum");
+const verificationEnum_1 = require("../enums/verificationEnum");
 const otpConfig_1 = require("../config/otpConfig");
 // Generate a 6 digit OTP
 const generateOtp = async () => {

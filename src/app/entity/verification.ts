@@ -3,8 +3,8 @@ import {
   Column
 } from "typeorm";
 
-import { OtpCodeStatus } from "../enums/verificationEnum";
-import { verificationPurpose } from "../enums/verificationEnum";
+import { OtpCodeStatus } from "../modules/verification/enums/verificationEnum";
+import { verificationPurpose } from "../modules/verification/enums/verificationEnum";
 import { BaseEntity } from "./baseEntity";
 
 
