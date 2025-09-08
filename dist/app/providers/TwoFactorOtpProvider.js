@@ -8,6 +8,7 @@ const logger_1 = require("../utils/logger");
 const notificationEnum_1 = require("../modules/notification/enums/notificationEnum");
 const axios_1 = __importDefault(require("axios"));
 const twoFactorConfig_1 = require("../modules/notification/config/twoFactorConfig");
+const otpConfig_1 = require("../modules/verification/config/otpConfig");
 class TwoFactorOtpProvider {
     constructor() {
         this.name = "twoFactor";
@@ -16,12 +17,21 @@ class TwoFactorOtpProvider {
     async send(notification) {
         try {
             const twoFactorConfig = await (0, twoFactorConfig_1.getTwoFactorConfig)();
-            const url = `${twoFactorConfig.baseUrl}/${twoFactorConfig.apikey}/SMS/${notification.to}/${notification.bodyText}`;
-            const res = await axios_1.default.get(url);
-            return {
-                ok: res.status === 200,
-                response: res.data
-            };
+            const otpConfig = await (0, otpConfig_1.getOtpConfig)();
+            let url = `${twoFactorConfig.baseUrl}/${twoFactorConfig.apikey}/SMS/${notification.to}/${notification.bodyText}`;
+            if (otpConfig.testMode) {
+                return {
+                    ok: true,
+                    response: "Test mode is enabled. sms sent."
+                };
+            }
+            else {
+                const res = await axios_1.default.get(url);
+                return {
+                    ok: res.status === 200,
+                    response: res.data
+                };
+            }
         }
         catch (error) {
             logger_1.logger.error(`TwoFactorOtpProvider: Failed to send SMS to ${notification.to}:`, error);

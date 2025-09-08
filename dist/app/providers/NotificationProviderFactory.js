@@ -3,12 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProviderFactory = void 0;
 const appError_1 = __importDefault(require("../errors/appError"));
 const logger_1 = require("../utils/logger");
 const TwoFactorOtpProvider_1 = require("./TwoFactorOtpProvider");
 class ProviderFactory {
     constructor() {
+        // initialize all the providers at runtime
+        this.initializeProviders = () => {
+            ProviderFactory.twoFactorOtpProvider = new TwoFactorOtpProvider_1.TwoFactorOtpProvider();
+        };
         this.resolve = (notificaion) => {
             switch (notificaion.medium) {
                 case "SMS":
@@ -19,8 +22,5 @@ class ProviderFactory {
             }
         };
     }
-    static initializeProviders() {
-        ProviderFactory.twoFactorOtpProvider = new TwoFactorOtpProvider_1.TwoFactorOtpProvider();
-    }
 }
-exports.ProviderFactory = ProviderFactory;
+exports.default = new ProviderFactory();

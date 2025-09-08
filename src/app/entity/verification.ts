@@ -1,6 +1,7 @@
 import {
   Entity,
-  Column
+  Column,
+  Index
 } from "typeorm";
 
 import { OtpCodeStatus } from "../modules/verification/enums/verificationEnum";
@@ -9,6 +10,7 @@ import { BaseEntity } from "./baseEntity";
 
 
 @Entity("verification")
+@Index("IDX_PHONE_PURPOSE",["phoneNumber", "purpose"]) 
 export class Verification extends BaseEntity{
 
     @Column()

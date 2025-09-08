@@ -30,7 +30,6 @@ class NotificationService {
     
             const res=await communicationService.sendNotification(notification)
     
-            // make thesese update functions as private methods
             if(res.ok){
                 await this.updateNotificationStatus(
                     notification.id,

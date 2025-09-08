@@ -23,7 +23,6 @@ class NotificationService {
                 let notification = await notificationRepository_1.default.createNotification({ medium, to, bodyText, attachments });
                 await this.updateNotificationStatus(notification.id, notificationEnum_1.Status.IN_PROGRESS);
                 const res = await communicationService_1.default.sendNotification(notification);
-                // make thesese update functions as private methods
                 if (res.ok) {
                     await this.updateNotificationStatus(notification.id, notificationEnum_1.Status.SENT);
                 }

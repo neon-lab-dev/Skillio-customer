@@ -4,6 +4,7 @@ import { Medium } from "../modules/notification/enums/notificationEnum";
 import { Notification } from "../entity/notification";
 import axios from "axios";
 import { getTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";
+import { getOtpConfig } from "../modules/verification/config/otpConfig";
 
 export class TwoFactorOtpProvider implements NotificationProvider {
   name = "twoFactor";
@@ -12,14 +13,22 @@ export class TwoFactorOtpProvider implements NotificationProvider {
   async send(notification: Notification): Promise<ProviderResult> {
     try {
         const twoFactorConfig= await getTwoFactorConfig();
+        const otpConfig= await getOtpConfig();
 
-        const url=`${twoFactorConfig.baseUrl}/${twoFactorConfig.apikey}/SMS/${notification.to}/${notification.bodyText}`;
+        let url=`${twoFactorConfig.baseUrl}/${twoFactorConfig.apikey}/SMS/${notification.to}/${notification.bodyText}`;
 
-        const res= await axios.get(url);
-
-        return{
-            ok: res.status===200,
-            response: res.data
+        
+        if(otpConfig.testMode){
+          return{
+            ok: true,
+            response: "Test mode is enabled. sms sent."
+          }
+        }else{
+          const res= await axios.get(url);
+          return{
+              ok: res.status===200,
+              response: res.data
+          }
         }
 
     } catch (error) {

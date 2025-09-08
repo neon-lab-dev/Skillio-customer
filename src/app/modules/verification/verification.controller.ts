@@ -22,8 +22,7 @@ class VerificationController {
 
     // resend otp controller
     reSendOtp=catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
-        const{verificationId}=req.params;
-        const {phoneNumber }=req.body;
+        const {phoneNumber , verificationId }=req.body;
         
         const result= await verificationServices.reSendOtp(phoneNumber , verificationId);
 
@@ -48,8 +47,7 @@ class VerificationController {
 
     // verify otp controller
     verifyOtp=catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
-        const {verificationId}=req.params;
-        const {otpCode}=req.body;
+        const {otpCode , verificationId}=req.body;
 
         const result= await verificationServices.verifyOtp(verificationId , otpCode , res);
 

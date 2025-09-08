@@ -94,9 +94,6 @@ class VerificationService {
       throw new AppError(429, "Maximum resend attempts reached");
     }
 
-    const otpConfig = await getOtpConfig();
-
-
     const res = await notificationServices.createNotification({
       medium: Medium.SMS,
       to: phoneNumber,
@@ -106,7 +103,6 @@ class VerificationService {
     if (res.notification.res.ok) {
       await verificationRepository.update(existingVerification.id, {
         otpCodeStatus: OtpCodeStatus.SENT,
-        expirationDate: new Date(Date.now() + otpConfig.otpExpirationTime),
         attempts: existingVerification.attempts + 1,
       });
 

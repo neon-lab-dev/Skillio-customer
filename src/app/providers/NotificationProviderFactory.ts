@@ -4,10 +4,11 @@ import { logger } from "../utils/logger";
 import { NotificationProvider } from "./NotificationProvider";
 import { TwoFactorOtpProvider } from "./TwoFactorOtpProvider";
 
-export class ProviderFactory {
+class ProviderFactory {
     private static twoFactorOtpProvider: TwoFactorOtpProvider
 
-    static initializeProviders(){
+    // initialize all the providers at runtime
+    initializeProviders=()=>{
         ProviderFactory.twoFactorOtpProvider= new TwoFactorOtpProvider();
     }
 
@@ -22,3 +23,5 @@ export class ProviderFactory {
         }
     }
 }
+
+export default new ProviderFactory();

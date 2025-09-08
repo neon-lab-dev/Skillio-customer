@@ -1,18 +1,12 @@
 import { Notification } from "../../../entity/notification";
 import { ProviderResult } from "../../../providers/NotificationProvider";
-import { ProviderFactory } from "../../../providers/NotificationProviderFactory";
-
+import NotificationProviderFactory from "../../../providers/NotificationProviderFactory";
 
 class communicationService {
-  private providerFactory: ProviderFactory;
-
-  constructor() {
-    this.providerFactory = new ProviderFactory();
-  }
 
   async sendNotification(notification: Partial<Notification>): Promise<ProviderResult> {
     // 1. Factory resolves correct provider (SMS, EMAIL, PUSH)
-    const provider = this.providerFactory.resolve(notification);
+    const provider = NotificationProviderFactory.resolve(notification);
 
 
     if(!provider){

@@ -42,5 +42,6 @@ __decorate([
     __metadata("design:type", Number)
 ], Verification.prototype, "attempts", void 0);
 exports.Verification = Verification = __decorate([
-    (0, typeorm_1.Entity)("verification")
+    (0, typeorm_1.Entity)("verification"),
+    (0, typeorm_1.Index)("IDX_PHONE_PURPOSE", ["phoneNumber", "purpose"])
 ], Verification);

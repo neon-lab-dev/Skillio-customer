@@ -22,8 +22,7 @@ class VerificationController {
         });
         // resend otp controller
         this.reSendOtp = (0, catchAsyncError_1.default)(async (req, res, next) => {
-            const { verificationId } = req.params;
-            const { phoneNumber } = req.body;
+            const { phoneNumber, verificationId } = req.body;
             const result = await verification_services_1.default.reSendOtp(phoneNumber, verificationId);
             if (result.success == true) {
                 return (0, sendResponse_1.default)(res, {
@@ -44,8 +43,7 @@ class VerificationController {
         });
         // verify otp controller
         this.verifyOtp = (0, catchAsyncError_1.default)(async (req, res, next) => {
-            const { verificationId } = req.params;
-            const { otpCode } = req.body;
+            const { otpCode, verificationId } = req.body;
             const result = await verification_services_1.default.verifyOtp(verificationId, otpCode, res);
             return (0, sendResponse_1.default)(res, {
                 statusCode: 200,

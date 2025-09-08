@@ -6,9 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const catchAsyncError_1 = __importDefault(require("../utils/catchAsyncError"));
 const validateRequest = (schema) => {
     return (0, catchAsyncError_1.default)(async (req, res, next) => {
-        await schema.parse({
+        await schema.parseAsync({
             body: req.body,
-            cookies: req.cookies,
+            query: req.query,
+            params: req.params,
         });
         return next();
     });
