@@ -15,17 +15,5 @@ exports.default = {
     db_host_development: process.env.DB_HOST_DEVELOPMENT,
     db_username_development: process.env.DB_USERNAME_DEVELOPMENT,
     db_password_development: process.env.DB_PASSWORD_DEVELOPMENT,
-    db_databse_development: process.env.DB_DATABASE_DEVELOPMENT,
-    db_port_production: process.env.DB_PORT_PRODUCTION,
-    db_host_production: process.env.DB_HOST_PRODUCTION,
-    db_username_production: process.env.DB_USERNAME_PRODUCTION,
-    db_password_production: process.env.DB_PASSWORD_PRODUCTION,
-    db_databse_production: process.env.DB_DATABASE_PRODUCTION,
-    jwt_access_secret: process.env.JWT_ACCESS_SECRET,
-    jwt_refresh_secret: process.env.JWT_REFRESH_SECRET,
-    jwt_access_expires_in: process.env.JWT_ACCESS_EXPIRES_IN,
-    jwt_refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,
-    urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+    db_databse_development: process.env.DB_DATABASE_DEVELOPMENT
 };

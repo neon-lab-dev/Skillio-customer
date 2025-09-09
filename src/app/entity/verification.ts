@@ -1,37 +1,23 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
-  BeforeInsert,
-  BeforeUpdate,
-  AfterInsert,
-  AfterUpdate,
-  ManyToOne,
+  Index
 } from "typeorm";
 
-export enum OtpCodeStatus {
-  SENT,
-  VERIFIED,
-  EXPIRED
-}
+import { OtpCodeStatus } from "../modules/verification/enums/verificationEnum";
+import { verificationPurpose } from "../modules/verification/enums/verificationEnum";
+import { BaseEntity } from "./baseEntity";
 
-export enum verificationPurpose {
-  LOGIN,
-  PHONE_VERIFICATION,
-  EMAIL_VERIFICATION,
-  SIGNUP
-}
 
 @Entity("verification")
-export class Verification {
-    @PrimaryGeneratedColumn("uuid")
-    id!: string;
+@Index("IDX_PHONE_PURPOSE",["phoneNumber", "purpose"]) 
+export class Verification extends BaseEntity{
 
     @Column()
     phoneNumber!: string;
 
-    @Column()
-    purpose!: string;
+    @Column({type: "enum" , enum: verificationPurpose})
+    purpose!: verificationPurpose;
 
     @Column()
     otpCode!: string;
@@ -39,23 +25,9 @@ export class Verification {
     @Column()
     expirationDate!: Date;
 
-    @Column()
+    @Column({type: "enum", enum: OtpCodeStatus})
     otpCodeStatus!: OtpCodeStatus;
 
-    @Column({ type: 'timestamp' })
-    createdAt!: Date;
-
-    @Column({type: "timestamp"})
-    updatedAt!: Date;
-
-    @BeforeInsert()
-    setCreatedAt() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
-
-    @BeforeUpdate()
-    setUpdatedAt() {
-        this.updatedAt = new Date();
-    }
+    @Column({type: "int", default: 0})
+    attempts!: number;
 }

@@ -9,41 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Verification = exports.verificationPurpose = exports.OtpCodeStatus = void 0;
+exports.Verification = void 0;
 const typeorm_1 = require("typeorm");
-var OtpCodeStatus;
-(function (OtpCodeStatus) {
-    OtpCodeStatus[OtpCodeStatus["SENT"] = 0] = "SENT";
-    OtpCodeStatus[OtpCodeStatus["VERIFIED"] = 1] = "VERIFIED";
-    OtpCodeStatus[OtpCodeStatus["EXPIRED"] = 2] = "EXPIRED";
-})(OtpCodeStatus || (exports.OtpCodeStatus = OtpCodeStatus = {}));
-var verificationPurpose;
-(function (verificationPurpose) {
-    verificationPurpose[verificationPurpose["LOGIN"] = 0] = "LOGIN";
-    verificationPurpose[verificationPurpose["PHONE_VERIFICATION"] = 1] = "PHONE_VERIFICATION";
-    verificationPurpose[verificationPurpose["EMAIL_VERIFICATION"] = 2] = "EMAIL_VERIFICATION";
-    verificationPurpose[verificationPurpose["SIGNUP"] = 3] = "SIGNUP";
-})(verificationPurpose || (exports.verificationPurpose = verificationPurpose = {}));
-let Verification = class Verification {
-    setCreatedAt() {
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
-    }
-    setUpdatedAt() {
-        this.updatedAt = new Date();
-    }
+const verificationEnum_1 = require("../modules/verification/enums/verificationEnum");
+const verificationEnum_2 = require("../modules/verification/enums/verificationEnum");
+const baseEntity_1 = require("./baseEntity");
+let Verification = class Verification extends baseEntity_1.BaseEntity {
 };
 exports.Verification = Verification;
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
-    __metadata("design:type", String)
-], Verification.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Verification.prototype, "phoneNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: "enum", enum: verificationEnum_2.verificationPurpose }),
     __metadata("design:type", String)
 ], Verification.prototype, "purpose", void 0);
 __decorate([
@@ -55,29 +34,14 @@ __decorate([
     __metadata("design:type", Date)
 ], Verification.prototype, "expirationDate", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.Column)({ type: "enum", enum: verificationEnum_1.OtpCodeStatus }),
+    __metadata("design:type", String)
 ], Verification.prototype, "otpCodeStatus", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp' }),
-    __metadata("design:type", Date)
-], Verification.prototype, "createdAt", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "timestamp" }),
-    __metadata("design:type", Date)
-], Verification.prototype, "updatedAt", void 0);
-__decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], Verification.prototype, "setCreatedAt", null);
-__decorate([
-    (0, typeorm_1.BeforeUpdate)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], Verification.prototype, "setUpdatedAt", null);
+    (0, typeorm_1.Column)({ type: "int", default: 0 }),
+    __metadata("design:type", Number)
+], Verification.prototype, "attempts", void 0);
 exports.Verification = Verification = __decorate([
-    (0, typeorm_1.Entity)("verification")
+    (0, typeorm_1.Entity)("verification"),
+    (0, typeorm_1.Index)("IDX_PHONE_PURPOSE", ["phoneNumber", "purpose"])
 ], Verification);

@@ -8,7 +8,8 @@ import router from "./app/routes";
 import notFoundHandler from "./app/middlewares/notFoundHandler";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import { logger } from "./app/utils/logger";
-
+import systemConfigStore from "./app/config/systemConfigStore";
+import NotificationProviderFactory from "./app/providers/NotificationProviderFactory";
 
 const app = express();
 
@@ -46,12 +47,12 @@ app.use(notFoundHandler);
 
 app.use(globalErrorHandler)
 
-// app.listen(process.env.PORT, () => {
-//     console.log(`Server is running on port ${config.port}`);
-// });
 
 AppDataSource.initialize()
   .then(async () => {
+    await systemConfigStore.loadConfigs();
+    NotificationProviderFactory.initializeProviders();
+
     app.listen(config.port, () => {
       logger.info(`Listening at port number ${config.port}`);
       logger.info(`Database connection established successfully at ${config.db_databse_development}`);

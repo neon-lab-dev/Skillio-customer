@@ -1,0 +1,45 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TwoFactorOtpProvider = void 0;
+const logger_1 = require("../utils/logger");
+const notificationEnum_1 = require("../modules/notification/enums/notificationEnum");
+const axios_1 = __importDefault(require("axios"));
+const twoFactorConfig_1 = require("../modules/notification/config/twoFactorConfig");
+const otpConfig_1 = require("../modules/verification/config/otpConfig");
+class TwoFactorOtpProvider {
+    constructor() {
+        this.name = "twoFactor";
+        this.medium = notificationEnum_1.Medium.SMS;
+    }
+    async send(notification) {
+        try {
+            const twoFactorConfig = await (0, twoFactorConfig_1.getTwoFactorConfig)();
+            const otpConfig = await (0, otpConfig_1.getOtpConfig)();
+            let url = `${twoFactorConfig.baseUrl}/${twoFactorConfig.apikey}/SMS/${notification.to}/${notification.bodyText}`;
+            if (otpConfig.testMode) {
+                return {
+                    ok: true,
+                    response: "Test mode is enabled. sms sent."
+                };
+            }
+            else {
+                const res = await axios_1.default.get(url);
+                return {
+                    ok: res.status === 200,
+                    response: res.data
+                };
+            }
+        }
+        catch (error) {
+            logger_1.logger.error(`TwoFactorOtpProvider: Failed to send SMS to ${notification.to}:`, error);
+            return {
+                ok: false,
+                response: `Failed to send SMS: ${error}`
+            };
+        }
+    }
+}
+exports.TwoFactorOtpProvider = TwoFactorOtpProvider;
