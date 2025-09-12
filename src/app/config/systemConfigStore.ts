@@ -2,6 +2,7 @@ import { logger } from "../utils/logger";
 import { loadOtpConfig } from "../modules/verification/config/otpConfig";
 import { loadVerificationConfig } from "../modules/verification/config/verificationAttemptsConfig";
 import { loadTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";
+import { loadCloudinaryConfig } from "../modules/document/config/cloudinaryConfig";
 
 class SystemConfigStore{
 
@@ -13,6 +14,8 @@ class SystemConfigStore{
             await loadVerificationConfig()
 
             await loadTwoFactorConfig()
+
+            await loadCloudinaryConfig()
 
         } catch (error) {
             logger.error("Error loading system  configurations:", error);

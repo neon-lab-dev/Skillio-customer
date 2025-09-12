@@ -6,17 +6,17 @@ class NotificationRepository {
         // create a notification
         this.createNotification = async (notificationData) => {
             const newNotification = this.notificationRepository.create(notificationData);
-            return this.notificationRepository.save(newNotification);
+            return await this.notificationRepository.save(newNotification);
         };
         // find one by id
         this.findOne = async (id) => {
-            return this.notificationRepository.findOne({
+            return await this.notificationRepository.findOne({
                 where: { id }
             });
         };
         // update notification
         this.update = async (id, updateData) => {
-            return this.notificationRepository.update({ id }, updateData);
+            return await this.notificationRepository.update({ id }, updateData);
         };
         this.notificationRepository = dataSource_1.AppDataSource.getRepository("Notification");
     }

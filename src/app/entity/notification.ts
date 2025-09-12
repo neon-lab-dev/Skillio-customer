@@ -14,7 +14,7 @@ export class Notification extends BaseEntity{
 
     @Column({type: "varchar", nullable: true})
     to? : string;
-
+  
     @Column({type: "text" , nullable: true})
     bodyText?: string;
 
