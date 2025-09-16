@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { DocumentType } from "./enums/documentEnum";
+import { idText } from "typescript";
 
 export const documentRequestSchema = z.object({
   body: z.object({
@@ -56,4 +57,23 @@ export const deleteDocumentSchema = z.object({
     required_error: "query is required",
     invalid_type_error: "query must be an string"
   })
+})
+
+export const deleteDocumentsSchema = z.object({
+  body: z.object({
+    ids: z.array(z.string({
+      invalid_type_error: "Each ID must be a string"
+    }), {
+      required_error: "IDs are required",
+      invalid_type_error: "IDs must be an array of strings"
+    }).min(1, "at least 1 Id must be provided"),
+
+    forceDelete: z.boolean({
+      required_error: "forceDelete is required",
+      invalid_type_error: "forceDelete must be a boolean"
+    })
+  }, {
+    required_error: "Request body is required",
+    invalid_type_error: "Request body must be an object"
+  }),
 })

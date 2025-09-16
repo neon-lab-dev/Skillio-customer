@@ -24,7 +24,7 @@ class DocumentController {
     // update document(profile picture) controller
 
     updateDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
-        const {id}= req.params;
+        const {id}= req.body;
 
         const result= await documentServices.updateDocument(id , req , res);
 
@@ -48,9 +48,22 @@ class DocumentController {
             statusCode: 200,
             success: true,
             message: "Document deleted successfully",
-            data: null
         })
     })
+
+    // delete multiple documents
+    deleteDocuments= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
+        const {ids , forceDelete}= req.body;
+
+        await documentServices.deleteDocuments(ids , res , forceDelete);
+        
+        return sendResponse(res , {
+            statusCode: 200,
+            success: true,
+            message: "Documents deleted successfully",
+        })
+    })
+
 }
 
 export default new DocumentController();

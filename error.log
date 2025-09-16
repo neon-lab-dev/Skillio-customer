@@ -353,3 +353,7 @@
 {"level":"error","message":"Document with this id does not exist","service":"user-service"}
 {"level":"error","message":"Document with this id does not exist","service":"user-service"}
 {"level":"error","message":"Document with this id does not exist","service":"user-service"}
+{"level":"error","message":"Document with this id does not exist","service":"user-service"}
+{"level":"error","message":"Document with this id does not exist","service":"user-service"}
+{"level":"error","message":"All documents are already soft deleted","service":"user-service"}
+{"level":"error","message":"All documents are already soft deleted","service":"user-service"}
