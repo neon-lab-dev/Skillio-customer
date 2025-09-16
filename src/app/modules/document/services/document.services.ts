@@ -6,6 +6,7 @@ import documentRepository from "../../../repository/documentRepository";
 import { getPublicIdFromUrl } from "../utils/getPublicIdFromCloudinaryUrl";
 import cloudinaryServices from "./cloudinaryServices";
 import AppError from "../../../errors/appError";
+import { getDocumentConfig } from "../config/documentConfig";
 
 class DocumentService{
 
@@ -36,11 +37,29 @@ class DocumentService{
         return {fileName , mimeType};
     }
 
+    private checkFileSize= async(file:Express.Multer.File)=>{
+        const documentConfig= await getDocumentConfig();
+
+        if(file.size > documentConfig.maxFileSize){
+            logger.error(`File size exceeds the maximum limit.`);
+            throw new AppError(400, `File size exceeds the maximum limit.`);
+        }
+
+        return true;
+    }
+
 
     // upload a document
     createDocument= async(documentData: Partial<TDocument>  , req: Request)=>{
 
         const {type, remarks}= documentData;
+
+        const isFileSizeValid= await this.checkFileSize(req.file as Express.Multer.File);
+
+        if(!isFileSizeValid){
+            logger.error("Invalid file size");
+            throw new AppError(400, "Invalid file size");
+        }
 
         const res= await cloudinaryServices.uploadFile(req.file as Express.Multer.File);
 
@@ -70,6 +89,13 @@ class DocumentService{
     updateDocument= async(id:string , req:Request , res:Response)=>{
         
         const exisitingDocument=await this.checkExistingDocument(id , res);
+
+        const isFileSizeValid= await this.checkFileSize(req.file as Express.Multer.File);
+
+        if(!isFileSizeValid){
+            logger.error("Invalid file size");
+            throw new AppError(400, "Invalid file size");
+        }
         
         const result= await cloudinaryServices.uploadFile(req.file as Express.Multer.File);
 

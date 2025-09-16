@@ -9,3 +9,8 @@ export interface TDocument {
   status: DocumentStatus;
   profileId?: string;
 };
+
+
+export interface TDocumentConfig{
+  maxFileSize: number;
+}
