@@ -1,31 +1,24 @@
-import { logger } from "../../utils/logger";
-import AppError from "../../errors/appError";
-import { TDocument } from "./interface/document.interface";
-import { Response } from "express";
-import { DocumentStatus } from "./enums/documentEnum";
-import documentRepository from "../../repository/documentRepository";
-import sendResponse from "../../middlewares/sendResponse";
-import { getPublicIdFromUrl } from "./utils/getPublicIdFromCloudinaryUrl";
-import { v2 as cloudinary } from "cloudinary";
+import { logger } from "../../../utils/logger";
+import { TDocument } from "../interface/document.interface";
+import {  Request, Response } from "express";
+import { DocumentStatus } from "../enums/documentEnum";
+import documentRepository from "../../../repository/documentRepository";
+import sendResponse from "../../../middlewares/sendResponse";
+import { getPublicIdFromUrl } from "../utils/getPublicIdFromCloudinaryUrl";
+import cloudinaryServices from "./cloudinaryServices";
 
 class DocumentService{
 
     // upload a document
-    createDocument= async(documentData: Partial<TDocument>)=>{
+    createDocument= async(documentData: Partial<TDocument>  , req: Request)=>{
 
-        const {fileName , url, mimeType ,type, remarks}= documentData;
+        const {type, remarks}= documentData;
 
-        if(!fileName || !url || !mimeType || !type){
-            logger.error("fileName, url and mimeType are required");
-            throw new AppError(400, "fileName, url and mimeType are required");
-        }
+        const res= await cloudinaryServices.uploadFile(req.file as Express.Multer.File);
 
-        const exisitingDocument= await documentRepository.findOneByFileNameAndMimeType(fileName , mimeType);
-
-        if(exisitingDocument){
-            logger.error(`Document with this fileName and mimeType already exists`);
-            throw new AppError(400, `Document with this fileName and mimeType already exists`);
-        }
+        const fileName= req.file?.originalname;
+        const url= res.url;
+        const mimeType= req.file?.mimetype;
 
         const newDocument = await documentRepository.createDocument({
             fileName,
@@ -45,14 +38,13 @@ class DocumentService{
         };
     }
 
-    // update a document 
-    updateDocument= async(id:string , updateData: Partial<TDocument> , res:Response)=>{
-        const { fileName , url , mimeType}= updateData;
+    // update a document(profile picture)
+    updateDocument= async(id:string , req:Request , res:Response)=>{
+        const result= await cloudinaryServices.uploadFile(req.file as Express.Multer.File);
 
-        if(!fileName || !url || !mimeType){
-            logger.error("fileName, url and mimeType are required");
-            throw new AppError(400, "fileName, url and mimeType are required");
-        }
+        const fileName= req.file?.originalname;
+        const url= result.url;
+        const mimeType= req.file?.mimetype;
 
         const exisitingDocument= await documentRepository.findOneById(id);
 
@@ -67,9 +59,7 @@ class DocumentService{
 
         const publicId= getPublicIdFromUrl(exisitingDocument.url);
 
-        cloudinary.uploader
-        .destroy(publicId as string)
-        .then(result => console.log(result));
+        await cloudinaryServices.deleteFile(publicId as string);
 
          await documentRepository.updateDocument(id , {
             fileName,
@@ -89,7 +79,7 @@ class DocumentService{
     }
 
     // delete a document
-    deleteDocument= async(id:string ,forceDelete:boolean, res:Response)=>{
+    deleteDocument= async(id:string , res:Response , forceDelete:string)=>{
         const exisitingDocument= await documentRepository.findOneById(id);
 
         if(!exisitingDocument){
@@ -101,9 +91,20 @@ class DocumentService{
             })
         }
 
-        if(forceDelete==true){
+        if(forceDelete=="true"){
+            const publicId= getPublicIdFromUrl(exisitingDocument.url);
+            await cloudinaryServices.deleteFile(publicId as string);
+
             await documentRepository.deleteDocument(id);
         }else{
+            if(exisitingDocument.status===DocumentStatus.DELETED){
+                logger.error(`Document is already soft deleted`);
+                return sendResponse(res , {
+                    statusCode: 400,
+                    success: false,
+                    message: `Document is already soft deleted`
+                })
+            }
             await documentRepository.updateDocument(id , { status: DocumentStatus.DELETED});
         }
 

@@ -9,7 +9,7 @@ const router= Router();
 
 
 router.post("/" ,singleUpload,validateRequest(documentRequestSchema), documentController.createDocument);
-router.put("/:id" ,singleUpload,validateRequest(updateDocumentSchema), documentController.updateDocument);
+router.put("/:id/profile-picture" ,singleUpload,validateRequest(updateDocumentSchema), documentController.updateDocument);
 router.delete("/:id",validateRequest(deleteDocumentSchema), documentController.deleteDocument);
 
 export const documentRoutes = router;

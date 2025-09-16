@@ -27,28 +27,33 @@ export const documentRequestSchema = z.object({
 }).refine((data)=>{
   return !!data.file;
 } , {
-  message: "At least one file is required."
+  message: " file is required."
 });
 
 
 export const updateDocumentSchema = z.object({
+  body: z.object({
+  },{
+    required_error: "Request body is required",
+    invalid_type_error: "Request body must be an object"
+  }),
   file: z.any({
     required_error: "File is required"
   })
 }).refine((data)=>{
   return !!data.file;
 },{
-  message: "At least one file is required."
+  message: "file is required."
 });
 
 export const deleteDocumentSchema = z.object({
-  body: z.object({
-    forceDelete: z.boolean({
-      required_error: "forceDelete is required",
-      invalid_type_error: "forceDelete must be a boolean"
+  query: z.object({
+    forceDelete: z.string({
+      required_error: "forceDelete query is required",
+      invalid_type_error: "forceDelete query must be a string"
     })
   }, {
-    required_error: "Request body is required",
-    invalid_type_error: "Request body must be an object"
+    required_error: "query is required",
+    invalid_type_error: "query must be an string"
   })
 })

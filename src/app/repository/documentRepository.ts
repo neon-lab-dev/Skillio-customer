@@ -16,13 +16,6 @@ class DocumentRepository{
         return await this.documentRepository.save(newDocument);
     }
 
-    // find one by fileName and mimeType
-    findOneByFileNameAndMimeType= async(fileName:string , mimeType:string)=>{
-        return await this.documentRepository.findOneBy({
-            fileName,
-            mimeType
-        });
-    }
 
     // find one by id
     findOneById= async(id:string)=>{

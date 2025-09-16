@@ -1,11 +1,8 @@
-import documentServices from "./document.services";
+import documentServices from "./services/document.services";
 import catchAsyncError from "../../utils/catchAsyncError";
 import { Request , Response , NextFunction } from "express";
 import sendResponse from "../../middlewares/sendResponse";
 import { DocumentDTO } from "./document.dto";
-import { logger } from "../../utils/logger";
-import AppError from "../../errors/appError";
-import { v2 as cloudinary } from "cloudinary";
 
 
 class DocumentController {
@@ -14,29 +11,7 @@ class DocumentController {
     createDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const documentData= new DocumentDTO(req.body);
 
-        let fileName: string | undefined;
-        let url: string | undefined;
-        let mimeType: string | undefined;
-
-        if(req.file){
-            try{
-                const res= await cloudinary.uploader.upload(
-                     `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`,
-                         {
-                            folder: "skilioDocument"
-                        }
-                )
-                fileName= req.file.originalname;
-                url= res.url;
-                mimeType= req.file.mimetype;
-            }catch(error){
-                logger.error("Error uploading file to Cloudinary:", error);
-                throw new AppError(500, "Error uploading file to Cloudinary");
-            }
-        }
-
-
-        const result= await documentServices.createDocument({...documentData.toJSON() , fileName, url, mimeType});
+        const result= await documentServices.createDocument({...documentData.toJSON()} , req);
 
         return sendResponse(res , {
             statusCode: 200,
@@ -46,34 +21,12 @@ class DocumentController {
         })
     })
 
-    // update document controller
+    // update document(profile picture) controller
 
     updateDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const {id}= req.params;
 
-        let fileName: string | undefined;
-        let url: string | undefined;
-        let mimeType: string | undefined;
-
-        if(req.file){
-            try{
-                const res= await cloudinary.uploader.upload(
-                     `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`,
-                         {
-                            folder: "skilioDocument"
-                        }
-                )
-                fileName= req.file.originalname;
-                url= res.url;
-                mimeType= req.file.mimetype;
-            }catch(error){
-                logger.error("Error uploading file to Cloudinary:", error);
-                throw new AppError(500, "Error uploading file to Cloudinary");
-            }
-        }
-
-        const result= await documentServices.updateDocument(id , { fileName, url, mimeType} , res);
-
+        const result= await documentServices.updateDocument(id , req , res);
 
         return sendResponse(res , {
             statusCode: 200,
@@ -83,12 +36,13 @@ class DocumentController {
         })
     })
 
+    // delete a document
     deleteDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const {id}= req.params;
 
-        const {forceDelete}= req.body;
+        const {forceDelete}= req.query ;
 
-        await documentServices.deleteDocument(id ,forceDelete, res);
+        await documentServices.deleteDocument(id , res , forceDelete as string);
 
         return sendResponse(res , {
             statusCode: 200,
