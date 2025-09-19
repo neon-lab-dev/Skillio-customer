@@ -1,35 +1,15 @@
 import { logger } from "../../../utils/logger";
 import { TDocument } from "../interface/document.interface";
-import {  Request, Response } from "express";
+import {  Request } from "express";
 import { DocumentStatus } from "../enums/documentEnum";
 import documentRepository from "../../../repository/documentRepository";
 import { getPublicIdFromUrl } from "../utils/getPublicIdFromCloudinaryUrl";
 import cloudinaryServices from "./cloudinaryServices";
 import AppError from "../../../errors/appError";
 import { getDocumentConfig } from "../config/documentConfig";
+import { Document } from "../../../entity/documentEntity";
 
 class DocumentService{
-
-    private checkExistingDocument= async(id:string , res:Response)=>{
-        const exisitingDocument= await documentRepository.findOneById(id);
-
-        if(!exisitingDocument){
-            logger.error("Document with this id does not exist");
-            throw new AppError(404, "Document with this id does not exist");
-        }
-
-        return exisitingDocument;
-    }
-
-    private checkExistingDocuments= async(ids:string[] , res:Response)=>{  
-        const existingDocuments= await documentRepository.findByIds(ids);
-        if(!existingDocuments || existingDocuments.length===0){
-            logger.error("No documents found for the provided ids");
-            throw new AppError(404, "No documents found for the provided ids");
-        }
-
-        return existingDocuments;
-    }
 
     private getFileNameAndMimeType=(file:Express.Multer.File)=>{
         const fileName= file?.originalname;
@@ -45,7 +25,7 @@ class DocumentService{
             throw new AppError(400, `File size exceeds the maximum limit.`);
         }
 
-        return true;
+        return;
     }
 
 
@@ -54,12 +34,7 @@ class DocumentService{
 
         const {type, remarks}= documentData;
 
-        const isFileSizeValid= await this.checkFileSize(req.file as Express.Multer.File);
-
-        if(!isFileSizeValid){
-            logger.error("Invalid file size");
-            throw new AppError(400, "Invalid file size");
-        }
+        await this.checkFileSize(req.file as Express.Multer.File);
 
         const res= await cloudinaryServices.uploadFile(req.file as Express.Multer.File);
 
@@ -86,16 +61,9 @@ class DocumentService{
     }
 
     // update a document(profile picture)
-    updateDocument= async(id:string , req:Request , res:Response)=>{
+    updateDocument= async(id:string , req:Request , existingDocument:Document)=>{
         
-        const exisitingDocument=await this.checkExistingDocument(id , res);
-
-        const isFileSizeValid= await this.checkFileSize(req.file as Express.Multer.File);
-
-        if(!isFileSizeValid){
-            logger.error("Invalid file size");
-            throw new AppError(400, "Invalid file size");
-        }
+        await this.checkFileSize(req.file as Express.Multer.File);
         
         const result= await cloudinaryServices.uploadFile(req.file as Express.Multer.File);
 
@@ -103,7 +71,7 @@ class DocumentService{
 
         const{fileName , mimeType}= this.getFileNameAndMimeType(req.file as Express.Multer.File);
 
-        const publicId = getPublicIdFromUrl(exisitingDocument!.url);
+        const publicId = getPublicIdFromUrl(existingDocument!.url);
 
         await cloudinaryServices.deleteFile(publicId as string);
 
@@ -125,16 +93,15 @@ class DocumentService{
     }
 
     // delete a document
-    deleteDocument= async(id:string , res:Response , forceDelete:string)=>{
-        const exisitingDocument=await this.checkExistingDocument(id , res);
+    deleteDocument= async(id:string  , forceDelete:string , existingDocument:Document)=>{
 
         if(forceDelete=="true"){
-            const publicId= getPublicIdFromUrl(exisitingDocument!.url);
+            const publicId= getPublicIdFromUrl(existingDocument!.url);
             await cloudinaryServices.deleteFile(publicId as string);
 
             await documentRepository.deleteDocument(id);
         }else{
-            if(exisitingDocument!.status===DocumentStatus.DELETED){
+            if(existingDocument!.status===DocumentStatus.DELETED){
                 logger.error("Document is already soft deleted");
                 throw new AppError(400, "Document is already soft deleted");
             }
@@ -144,8 +111,7 @@ class DocumentService{
     } 
 
     // delete multiple documents
-    deleteDocuments= async(ids:string[] , res:Response , forceDelete:boolean)=>{
-        const existingDocuments=await this.checkExistingDocuments(ids , res);
+    deleteDocuments= async(ids:string[] , forceDelete:boolean , existingDocuments:Document[])=>{
 
         if(forceDelete==true){
             const publicIds= existingDocuments!.map(doc=> getPublicIdFromUrl(doc.url) as string);

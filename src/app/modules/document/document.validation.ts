@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { DocumentType } from "./enums/documentEnum";
-import { idText } from "typescript";
 
 export const documentRequestSchema = z.object({
   body: z.object({
@@ -34,6 +33,10 @@ export const documentRequestSchema = z.object({
 
 export const updateDocumentSchema = z.object({
   body: z.object({
+    id: z.string({
+      required_error: "Document ID is required",
+      invalid_type_error: "Document ID must be a string"
+    }),
   },{
     required_error: "Request body is required",
     invalid_type_error: "Request body must be an object"

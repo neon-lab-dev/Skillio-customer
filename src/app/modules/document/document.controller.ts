@@ -1,8 +1,8 @@
-import documentServices from "./services/document.services";
 import catchAsyncError from "../../utils/catchAsyncError";
 import { Request , Response , NextFunction } from "express";
 import sendResponse from "../../middlewares/sendResponse";
 import { DocumentDTO } from "./document.dto";
+import documentProxy from "./document.proxy";
 
 
 class DocumentController {
@@ -11,7 +11,7 @@ class DocumentController {
     createDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const documentData= new DocumentDTO(req.body);
 
-        const result= await documentServices.createDocument({...documentData.toJSON()} , req);
+        const result= await documentProxy.createDocument({...documentData.toJSON()} , req);
 
         return sendResponse(res , {
             statusCode: 200,
@@ -26,7 +26,7 @@ class DocumentController {
     updateDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const {id}= req.body;
 
-        const result= await documentServices.updateDocument(id , req , res);
+        const result= await documentProxy.updateDocument(id , req );
 
         return sendResponse(res , {
             statusCode: 200,
@@ -42,7 +42,7 @@ class DocumentController {
 
         const {forceDelete}= req.query ;
 
-        await documentServices.deleteDocument(id , res , forceDelete as string);
+        await documentProxy.deleteDocument(id , forceDelete as string);
 
         return sendResponse(res , {
             statusCode: 200,
@@ -55,7 +55,7 @@ class DocumentController {
     deleteDocuments= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
         const {ids , forceDelete}= req.body;
 
-        await documentServices.deleteDocuments(ids , res , forceDelete);
+        await documentProxy.deleteDocuments(ids , forceDelete);
         
         return sendResponse(res , {
             statusCode: 200,
