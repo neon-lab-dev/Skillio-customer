@@ -15,19 +15,19 @@ class VerificationRepository {
   createVerification = async (verificationData: Partial<Verification>) => {
     const newVerification =
       this.verificationRepository.create(verificationData);
-    return this.verificationRepository.save(newVerification);
+    return await this.verificationRepository.save(newVerification);
   };
 
   // find one by id
   findOneById = async (id: string) => {
-    return this.verificationRepository.findOneBy({
+    return await this.verificationRepository.findOneBy({
       id,
     });
   };
 
   // find One by phone number
   findOneByPhoneNUmberAndId = async (phoneNumber: string , verifciationId:string) => {
-    return this.verificationRepository.findOneBy({
+    return await this.verificationRepository.findOneBy({
       phoneNumber,
         id: verifciationId
     });
@@ -38,7 +38,7 @@ class VerificationRepository {
     phoneNumber: string,
     purpose: verificationPurpose
   ) => {
-    return this.verificationRepository.findOne({
+    return await this.verificationRepository.findOne({
       where:{
         phoneNumber,
         purpose,
@@ -51,7 +51,7 @@ class VerificationRepository {
 findOneByIdAndInProgressOrSent = async (
   verificationId: string
 ) => {
-  return this.verificationRepository.findOne({
+  return await this.verificationRepository.findOne({
     where: {
       id: verificationId,
       otpCodeStatus: In([OtpCodeStatus.IN_PROGRESS, OtpCodeStatus.SENT]),
@@ -61,7 +61,7 @@ findOneByIdAndInProgressOrSent = async (
 
   // update verification
   update = async (id: string, updateData: Partial<Verification>) => {
-    return this.verificationRepository.update({ id }, updateData);
+    return await this.verificationRepository.update({ id }, updateData);
   };
 }
 

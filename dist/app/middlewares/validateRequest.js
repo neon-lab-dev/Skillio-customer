@@ -10,6 +10,7 @@ const validateRequest = (schema) => {
             body: req.body,
             query: req.query,
             params: req.params,
+            file: req.file
         });
         return next();
     });

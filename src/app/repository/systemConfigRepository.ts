@@ -11,7 +11,7 @@ class systemConfigRepository{
 
     // get Configy by key
     getConfigByKey= async (key: string)=>{
-        return this.systemConfigRepository.findOneBy({
+        return await this.systemConfigRepository.findOneBy({
             configKey: key
         });
     }

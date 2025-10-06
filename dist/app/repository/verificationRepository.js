@@ -8,24 +8,24 @@ class VerificationRepository {
         // create a verification
         this.createVerification = async (verificationData) => {
             const newVerification = this.verificationRepository.create(verificationData);
-            return this.verificationRepository.save(newVerification);
+            return await this.verificationRepository.save(newVerification);
         };
         // find one by id
         this.findOneById = async (id) => {
-            return this.verificationRepository.findOneBy({
+            return await this.verificationRepository.findOneBy({
                 id,
             });
         };
         // find One by phone number
         this.findOneByPhoneNUmberAndId = async (phoneNumber, verifciationId) => {
-            return this.verificationRepository.findOneBy({
+            return await this.verificationRepository.findOneBy({
                 phoneNumber,
                 id: verifciationId
             });
         };
         // findOne by phoneNumber and purpose
         this.findOneByPhoneNumberPurposeAndNonTerminating = async (phoneNumber, purpose) => {
-            return this.verificationRepository.findOne({
+            return await this.verificationRepository.findOne({
                 where: {
                     phoneNumber,
                     purpose,
@@ -35,7 +35,7 @@ class VerificationRepository {
         };
         // findOne by phoneNumber and otpCodeStatus in progress
         this.findOneByIdAndInProgressOrSent = async (verificationId) => {
-            return this.verificationRepository.findOne({
+            return await this.verificationRepository.findOne({
                 where: {
                     id: verificationId,
                     otpCodeStatus: (0, typeorm_1.In)([verificationEnum_1.OtpCodeStatus.IN_PROGRESS, verificationEnum_1.OtpCodeStatus.SENT]),
@@ -44,7 +44,7 @@ class VerificationRepository {
         };
         // update verification
         this.update = async (id, updateData) => {
-            return this.verificationRepository.update({ id }, updateData);
+            return await this.verificationRepository.update({ id }, updateData);
         };
         this.verificationRepository =
             dataSource_1.AppDataSource.getRepository("Verification");

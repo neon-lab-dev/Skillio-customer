@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { verificationRoutes } from "../modules/verification/verification.routes";
-
+import { documentRoutes } from "../modules/document/document.routes";
 
 const router = Router();
 
@@ -8,6 +8,10 @@ const moduleRoutes = [
     {
         path: "/verificationRequest",
         route: verificationRoutes
+    },
+    {
+        path: "/document",
+        route: documentRoutes
     }
 ]
 
