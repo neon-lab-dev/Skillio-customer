@@ -7,7 +7,6 @@ import { getPinConfig } from "./config/pinConfig";
 const emailSchema= z.string().email("Invalid email address");
 const phoneSchema= z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number");
 
-
 const validateNicknameUniqueness = (data: {
     nickName: string;
     firstName?: string | null;
@@ -61,6 +60,22 @@ const validateNamesWithProfileType=(data:{
 
     return {valid: true};
 }
+
+const validateCredential = (credential: string): { valid: boolean; type?: 'email' | 'phone' | 'nickname'; message?: string } => {
+
+    if (emailSchema.safeParse(credential).success) {
+        return { valid: true, type: 'email' };
+    }
+
+    if (phoneSchema.safeParse(credential).success) {
+        return { valid: true, type: 'phone' };
+    }
+
+    return {
+        valid: false,
+        message: "Credential must be a valid email, phone number, or nickname (at least 2 characters)"
+    };
+};
 
 const contactSchema = z.object({
     type: z.nativeEnum(contactType, {
@@ -203,7 +218,7 @@ export const registrationSchema= z.object({
         nickName:z.string({
             required_error: "Nick name is required",
             invalid_type_error: "Nick name must be a string"
-        }),
+        }).min(2, "Nick name must be at least 2 characters long"),
         pin: z.string({
             required_error: "Pin is required",
             invalid_type_error: "Pin must be a string of digits"
@@ -237,6 +252,29 @@ export const registrationSchema= z.object({
             message: validateNamesWithProfileType(data).message!,
         })
     ).superRefine(async(data, ctx: z.RefinementCtx) => {
+        const pinConfig= await getPinConfig();
+
+        if(data.pin.toString().length != pinConfig.MAX_LENGTH){
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: `Pin must be ${pinConfig.MAX_LENGTH} digits long`,
+            })
+        }
+    })
+})
+
+export const LoginSchema= z.object({
+    body: z.object({
+        credential: z.string({
+            required_error: "credential is required",
+            invalid_type_error: "credential must be a string"
+        }),
+        pin: z.string({
+            required_error: "Pin is required",
+            invalid_type_error: "Pin must be a string of digits"
+        })
+    })
+    .superRefine(async(data, ctx: z.RefinementCtx) => {
         const pinConfig= await getPinConfig();
 
         if(data.pin.toString().length != pinConfig.MAX_LENGTH){

@@ -15,7 +15,6 @@ class RegistrationRepository{
     }
 
 
-
     // create/register a profile
     createProfile= async(profileData: DeepPartial<Profile>)=>{
         const newProfile=this.profileRepository.create(profileData);
@@ -35,6 +34,14 @@ class RegistrationRepository{
                     types: [contactType.PHONE, contactType.EMAIL] 
                 }
             )
+            .getOne();
+    }
+
+    findProfileByContactValue= async(value:string)=>{
+        return await this.profileRepository
+            .createQueryBuilder("profile")
+            .leftJoinAndSelect("profile.contacts", "contact")
+            .where("contact.value = :value", {value})
             .getOne();
     }
 

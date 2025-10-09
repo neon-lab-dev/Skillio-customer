@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registrationSchema = void 0;
+exports.LoginSchema = exports.registrationSchema = void 0;
 const zod_1 = require("zod");
 const registrationEnum_1 = require("./enums/registrationEnum");
 const addressPinCodeConfig_1 = require("./config/addressPinCodeConfig");
@@ -43,6 +43,18 @@ const validateNamesWithProfileType = (data) => {
         }
     }
     return { valid: true };
+};
+const validateCredential = (credential) => {
+    if (emailSchema.safeParse(credential).success) {
+        return { valid: true, type: 'email' };
+    }
+    if (phoneSchema.safeParse(credential).success) {
+        return { valid: true, type: 'phone' };
+    }
+    return {
+        valid: false,
+        message: "Credential must be a valid email, phone number, or nickname (at least 2 characters)"
+    };
 };
 const contactSchema = zod_1.z.object({
     type: zod_1.z.nativeEnum(registrationEnum_1.contactType, {
@@ -178,7 +190,7 @@ exports.registrationSchema = zod_1.z.object({
         nickName: zod_1.z.string({
             required_error: "Nick name is required",
             invalid_type_error: "Nick name must be a string"
-        }),
+        }).min(2, "Nick name must be at least 2 characters long"),
         pin: zod_1.z.string({
             required_error: "Pin is required",
             invalid_type_error: "Pin must be a string of digits"
@@ -206,6 +218,27 @@ exports.registrationSchema = zod_1.z.object({
         .refine((data) => validateNamesWithProfileType(data).valid, (data) => ({
         message: validateNamesWithProfileType(data).message,
     })).superRefine(async (data, ctx) => {
+        const pinConfig = await (0, pinConfig_1.getPinConfig)();
+        if (data.pin.toString().length != pinConfig.MAX_LENGTH) {
+            ctx.addIssue({
+                code: zod_1.z.ZodIssueCode.custom,
+                message: `Pin must be ${pinConfig.MAX_LENGTH} digits long`,
+            });
+        }
+    })
+});
+exports.LoginSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        credential: zod_1.z.string({
+            required_error: "credential is required",
+            invalid_type_error: "credential must be a string"
+        }),
+        pin: zod_1.z.string({
+            required_error: "Pin is required",
+            invalid_type_error: "Pin must be a string of digits"
+        })
+    })
+        .superRefine(async (data, ctx) => {
         const pinConfig = await (0, pinConfig_1.getPinConfig)();
         if (data.pin.toString().length != pinConfig.MAX_LENGTH) {
             ctx.addIssue({

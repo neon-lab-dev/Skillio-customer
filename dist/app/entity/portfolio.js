@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], Portfolio.prototype, "proficiency", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true, default: 0 }),
     __metadata("design:type", Number)
 ], Portfolio.prototype, "totalEvents", void 0);
 __decorate([
@@ -60,5 +60,7 @@ __decorate([
     __metadata("design:type", profile_1.Profile)
 ], Portfolio.prototype, "profile", void 0);
 exports.Portfolio = Portfolio = __decorate([
-    (0, typeorm_1.Entity)("portfolio")
+    (0, typeorm_1.Entity)("portfolio"),
+    (0, typeorm_1.Index)("IDX_CATEGORY_SUBCATEGORY", ["category", "subCategory"]),
+    (0, typeorm_1.Index)("IDX_CATEGORY_SUBCATEGORY_PROFICIENCY", ["category", "subCategory", "proficiency"])
 ], Portfolio);

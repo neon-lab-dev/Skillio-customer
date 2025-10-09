@@ -21,6 +21,13 @@ class RegistrationRepository {
             })
                 .getOne();
         };
+        this.findProfileByContactValue = async (value) => {
+            return await this.profileRepository
+                .createQueryBuilder("profile")
+                .leftJoinAndSelect("profile.contacts", "contact")
+                .where("contact.value = :value", { value })
+                .getOne();
+        };
         // find contact by value
         this.findContactByValue = async (value) => {
             return await this.contactRepository.findOneBy({ value });

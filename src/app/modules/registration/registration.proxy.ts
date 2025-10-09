@@ -7,13 +7,22 @@ import AppError from "../../errors/appError";
 
 class RegistrationProxy{
     createProfile= async(profileData:TProfile)=>{
-        const { nickName}=profileData;
+        const { nickName , contacts}=profileData;
 
         const existingProfile= await registrationRepository.findProfileByCredential(nickName);
 
         if(existingProfile){
             logger.error("Profile with this nickname already exists");
             throw new AppError(409, "Profile with this nickname already exists");
+        }
+
+        const existingProfileByContact= await Promise.all(contacts.map(async(contact)=>{
+            return await registrationRepository.findProfileByContactValue(contact.value)
+        }));
+
+        if(existingProfileByContact.some(profile=>profile!==null)){
+            logger.error("Profile with these contacts value already exists");
+            throw new AppError(409, `Profile with these contacts already exists`);
         }
 
         return await registrationServices.createProfile(profileData);

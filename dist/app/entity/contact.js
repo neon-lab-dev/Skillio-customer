@@ -43,5 +43,7 @@ __decorate([
     __metadata("design:type", profile_1.Profile)
 ], Contact.prototype, "profile", void 0);
 exports.Contact = Contact = __decorate([
-    (0, typeorm_1.Entity)("contact")
+    (0, typeorm_1.Entity)("contact"),
+    (0, typeorm_1.Index)("IDX_PROFILEID_TYPE", ["profileId", "type"]),
+    (0, typeorm_1.Index)("IDX_PROFILEID", ["profileId"])
 ], Contact);
