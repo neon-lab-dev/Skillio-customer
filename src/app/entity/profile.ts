@@ -16,13 +16,13 @@ import { Portfolio } from "./portfolio";
 @Index("IDX_NICKNAME_PIN" , ["nickName" , "pin"])
 export class Profile extends BaseEntity{
 
-    @Column()
+    @Column({nullable:true})
     firstName?: string;
 
-    @Column()
+    @Column({nullable:true})
     lastName?: string;
 
-    @Column()
+    @Column({nullable:true})
     groupName?:string;
 
     @Column()

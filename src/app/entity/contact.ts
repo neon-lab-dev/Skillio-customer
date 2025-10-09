@@ -1,9 +1,11 @@
-import { Entity , Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity , Column, ManyToOne, JoinColumn, Index } from "typeorm";
 import { BaseEntity } from "./baseEntity";
 import { Profile } from "./profile";
 import { contactType } from "../modules/registration/enums/registrationEnum";
 
 @Entity("contact")
+@Index("IDX_PROFILEID_TYPE" , ["profileId" , "type"])
+@Index("IDX_PROFILEID" , ["profileId"])
 export class Contact extends BaseEntity{
 
     @Column({type:"enum", enum: contactType})

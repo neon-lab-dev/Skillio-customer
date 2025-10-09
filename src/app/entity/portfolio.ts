@@ -1,10 +1,12 @@
-import { Entity , Column, OneToOne, JoinColumn } from "typeorm";
+import { Entity , Column, OneToOne, JoinColumn, Index } from "typeorm";
 import { BaseEntity } from "./baseEntity";
 import { proficiecy } from "../modules/registration/enums/registrationEnum";
 import { Profile } from "./profile";
 import { Document } from "./documentEntity";
 
 @Entity("portfolio")
+@Index("IDX_CATEGORY_SUBCATEGORY" , ["category" , "subCategory"])
+@Index("IDX_CATEGORY_SUBCATEGORY_PROFICIENCY" , ["category" ,"subCategory", "proficiency"])
 export class Portfolio extends BaseEntity{
     @Column()
     category!: string;
@@ -15,7 +17,7 @@ export class Portfolio extends BaseEntity{
     @Column({type:"enum", enum: proficiecy})
     proficiency!: proficiecy;
 
-    @Column({nullable:true})
+    @Column({nullable:true , default:0})
     totalEvents?: number;
 
     @Column({nullable:true})

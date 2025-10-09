@@ -3,7 +3,6 @@ import { contactType, proficiecy, ProfileType } from "../enums/registrationEnum"
 export interface Location {
     latitude: number;
     longitude: number;
-    geoHash?: string;
 }
 
 export interface TJwtConfig{

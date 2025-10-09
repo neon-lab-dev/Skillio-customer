@@ -53,7 +53,7 @@ class RegistraionService{
                 category: portfolio.category,
                 subCategory: portfolio.subCategory,
                 proficiency: portfolio.proficiency,
-                totalEvents: portfolio.totalEvents || 0,
+                totalEvents: portfolio.totalEvents,
                 bio: portfolio.bio || ""
             }
         })
