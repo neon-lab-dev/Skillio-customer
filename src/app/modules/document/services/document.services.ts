@@ -92,23 +92,6 @@ class DocumentService{
         }
     }
 
-    // delete a document
-    deleteDocument= async(id:string  , forceDelete:string , existingDocument:Document)=>{
-
-        if(forceDelete=="true"){
-            const publicId= getPublicIdFromUrl(existingDocument!.url);
-            await cloudinaryServices.deleteFile(publicId as string);
-
-            await documentRepository.deleteDocument(id);
-        }else{
-            if(existingDocument!.status===DocumentStatus.DELETED){
-                logger.error("Document is already soft deleted");
-                throw new AppError(400, "Document is already soft deleted");
-            }
-            await documentRepository.updateDocument(id , { status: DocumentStatus.DELETED});
-        }
-
-    } 
 
     // delete multiple documents
     deleteDocuments= async(ids:string[] , forceDelete:boolean , existingDocuments:Document[])=>{

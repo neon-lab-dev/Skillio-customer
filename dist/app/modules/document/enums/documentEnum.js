@@ -5,6 +5,7 @@ var DocumentType;
 (function (DocumentType) {
     DocumentType["PROFILE_PHOTO"] = "PROFILE_PHOTO";
     DocumentType["CONTENT"] = "CONTENT";
+    DocumentType["EVENT"] = "EVENT";
     DocumentType["OTHERS"] = "OTHERS";
 })(DocumentType || (exports.DocumentType = DocumentType = {}));
 var DocumentStatus;

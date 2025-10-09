@@ -8,6 +8,9 @@ export interface TDocument {
   type: DocumentType;
   status: DocumentStatus;
   profileId?: string;
+  portfolioVideoId?: string;
+  portfolioImageId?: string;
+  portfolioEventsDoneId?: string;
 };
 
 

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const verification_routes_1 = require("../modules/verification/verification.routes");
 const document_routes_1 = require("../modules/document/document.routes");
+const registration_routes_1 = require("../modules/registration/registration.routes");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     {
@@ -12,6 +13,10 @@ const moduleRoutes = [
     {
         path: "/document",
         route: document_routes_1.documentRoutes
+    },
+    {
+        path: "/v1/profile",
+        route: registration_routes_1.registrationRoutes
     }
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

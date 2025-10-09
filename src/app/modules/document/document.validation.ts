@@ -50,18 +50,6 @@ export const updateDocumentSchema = z.object({
   message: "file is required."
 });
 
-export const deleteDocumentSchema = z.object({
-  query: z.object({
-    forceDelete: z.string({
-      required_error: "forceDelete query is required",
-      invalid_type_error: "forceDelete query must be a string"
-    })
-  }, {
-    required_error: "query is required",
-    invalid_type_error: "query must be an string"
-  })
-})
-
 export const deleteDocumentsSchema = z.object({
   body: z.object({
     ids: z.array(z.string({

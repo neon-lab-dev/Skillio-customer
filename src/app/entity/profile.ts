@@ -1,0 +1,56 @@
+import {
+  Entity,
+  Column,
+  OneToOne,
+  OneToMany , Index
+} from "typeorm";
+import { BaseEntity } from "./baseEntity";
+import { ProfileType } from "../modules/registration/enums/registrationEnum";
+import { Document } from "./documentEntity";
+import { Contact } from "./contact";
+import { Address } from "./address";
+import { Portfolio } from "./portfolio";
+
+
+@Entity("profile")
+@Index("IDX_NICKNAME_PIN" , ["nickName" , "pin"])
+export class Profile extends BaseEntity{
+
+    @Column()
+    firstName?: string;
+
+    @Column()
+    lastName?: string;
+
+    @Column()
+    groupName?:string;
+
+    @Column()
+    pin!:string;
+    
+    @Column({unique:true})
+    nickName!: string;
+
+    @Column({type: "enum", enum: ProfileType, default: ProfileType.INDIVIDUAL})
+    profileType!: ProfileType;
+
+    @OneToOne(() => Document, {nullable: true  , 
+      cascade:true,
+    })
+    profilePhoto?: Document;
+
+    @OneToMany(() => Contact, contact => contact.profile , {
+      cascade: true,           
+    })
+    contacts!: Contact[];
+
+    @OneToOne(() => Address , address => address.profile , {
+      cascade: true,
+    })
+    address!: Address;
+
+    @OneToOne(()=>Portfolio , portfolio=> portfolio.profile , {
+      cascade: true,
+    })
+    portfolio!: Portfolio;
+}
