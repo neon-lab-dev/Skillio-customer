@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteDocumentsSchema = exports.updateDocumentSchema = exports.documentRequestSchema = void 0;
+exports.deleteDocumentsSchema = exports.updateDocumentSchema = exports.getDocumentSchema = exports.documentRequestSchema = void 0;
 const zod_1 = require("zod");
 const documentEnum_1 = require("./enums/documentEnum");
 exports.documentRequestSchema = zod_1.z.object({
@@ -26,6 +26,17 @@ exports.documentRequestSchema = zod_1.z.object({
     return !!data.file;
 }, {
     message: " file is required."
+});
+exports.getDocumentSchema = zod_1.z.object({
+    params: zod_1.z.object({
+        id: zod_1.z.string({
+            required_error: "Document ID is required",
+            invalid_type_error: "Document ID must be a string"
+        })
+    }, {
+        required_error: "Request params are required",
+        invalid_type_error: "Request params must be an object"
+    })
 });
 exports.updateDocumentSchema = zod_1.z.object({
     body: zod_1.z.object({

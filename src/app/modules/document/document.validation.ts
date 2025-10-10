@@ -30,6 +30,17 @@ export const documentRequestSchema = z.object({
   message: " file is required."
 });
 
+export const getDocumentSchema = z.object({
+  params: z.object({
+    id: z.string({
+      required_error: "Document ID is required",
+      invalid_type_error: "Document ID must be a string"
+    })
+  } , {
+    required_error: "Request params are required",
+    invalid_type_error: "Request params must be an object"
+  })
+});
 
 export const updateDocumentSchema = z.object({
   body: z.object({

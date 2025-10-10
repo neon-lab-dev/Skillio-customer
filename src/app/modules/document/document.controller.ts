@@ -21,6 +21,19 @@ class DocumentController {
         })
     })
 
+    // get document controller
+    getDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
+        const {id}= req.params;
+        const result= await documentProxy.getDocument(id);
+
+        return sendResponse(res , {
+            statusCode: 200,
+            success: true,
+            message: "Document fetched successfully",
+            data: result
+        })
+    })
+
     // update document(profile picture) controller
 
     updateDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{

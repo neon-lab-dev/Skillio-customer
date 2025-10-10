@@ -20,6 +20,17 @@ class DocumentController {
                 data: result
             });
         });
+        // get document controller
+        this.getDocument = (0, catchAsyncError_1.default)(async (req, res, next) => {
+            const { id } = req.params;
+            const result = await document_proxy_1.default.getDocument(id);
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 200,
+                success: true,
+                message: "Document fetched successfully",
+                data: result
+            });
+        });
         // update document(profile picture) controller
         this.updateDocument = (0, catchAsyncError_1.default)(async (req, res, next) => {
             const { id } = req.body;

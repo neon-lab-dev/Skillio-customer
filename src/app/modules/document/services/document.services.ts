@@ -60,6 +60,22 @@ class DocumentService{
         };
     }
 
+    // get single documnet
+    getDocument= async(id:string)=>{
+        const document= await documentRepository.findOneById(id);
+
+        if(!document){
+            logger.error("Document not found");
+            throw new AppError(404, "Document not found");
+        }
+
+        return { document:{
+            id: document.id,
+            url: document.url,
+            type: document.type
+        } };
+    }
+
     // update a document(profile picture)
     updateDocument= async(id:string , req:Request , existingDocument:Document)=>{
         

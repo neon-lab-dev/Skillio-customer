@@ -12,6 +12,7 @@ const express_1 = require("express");
 const multer_1 = __importDefault(require("../../middlewares/multer"));
 const router = (0, express_1.Router)();
 router.post("/", multer_1.default, (0, validateRequest_1.default)(document_validation_1.documentRequestSchema), document_controller_1.default.createDocument);
+router.get("/:id", (0, validateRequest_1.default)(document_validation_1.getDocumentSchema), document_controller_1.default.getDocument);
 router.put("/profile-picture", multer_1.default, (0, validateRequest_1.default)(document_validation_2.updateDocumentSchema), document_controller_1.default.updateDocument);
 router.post("/delete", (0, validateRequest_1.default)(document_validation_1.deleteDocumentsSchema), document_controller_1.default.deleteDocuments);
 exports.documentRoutes = router;

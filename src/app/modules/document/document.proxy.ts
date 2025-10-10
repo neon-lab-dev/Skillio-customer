@@ -33,6 +33,10 @@ class DocumentProxy{
         return await documentServices.createDocument(documentData , req);
     }
 
+    getDocument= async(id:string)=>{
+        return await documentServices.getDocument(id);
+    }
+
     // update a document(profile picture)
     updateDocument= async(id:string , req:Request)=>{
         const existingDocument=await this.checkExistingDocument(id);

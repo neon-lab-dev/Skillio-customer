@@ -457,3 +457,4 @@
 {"level":"error","message":"Profile doesnot exist.","service":"user-service"}
 {"level":"error","message":"Profile doesnot exist.","service":"user-service"}
 {"level":"error","message":"Pin doesnot match , please try again.","service":"user-service"}
+{"level":"error","message":"Document not found","service":"user-service"}

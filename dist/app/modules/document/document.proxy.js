@@ -29,6 +29,9 @@ class DocumentProxy {
         this.createDocument = async (documentData, req) => {
             return await document_services_1.default.createDocument(documentData, req);
         };
+        this.getDocument = async (id) => {
+            return await document_services_1.default.getDocument(id);
+        };
         // update a document(profile picture)
         this.updateDocument = async (id, req) => {
             const existingDocument = await this.checkExistingDocument(id);

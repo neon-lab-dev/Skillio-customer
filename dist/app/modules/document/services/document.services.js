@@ -48,6 +48,19 @@ class DocumentService {
                 }
             };
         };
+        // get single documnet
+        this.getDocument = async (id) => {
+            const document = await documentRepository_1.default.findOneById(id);
+            if (!document) {
+                logger_1.logger.error("Document not found");
+                throw new appError_1.default(404, "Document not found");
+            }
+            return { document: {
+                    id: document.id,
+                    url: document.url,
+                    type: document.type
+                } };
+        };
         // update a document(profile picture)
         this.updateDocument = async (id, req, existingDocument) => {
             await this.checkFileSize(req.file);
