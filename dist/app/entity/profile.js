@@ -13,7 +13,6 @@ exports.Profile = void 0;
 const typeorm_1 = require("typeorm");
 const baseEntity_1 = require("./baseEntity");
 const registrationEnum_1 = require("../modules/registration/enums/registrationEnum");
-const documentEntity_1 = require("./documentEntity");
 const contact_1 = require("./contact");
 const address_1 = require("./address");
 const portfolio_1 = require("./portfolio");
@@ -41,15 +40,13 @@ __decorate([
     __metadata("design:type", String)
 ], Profile.prototype, "nickName", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: "enum", enum: registrationEnum_1.profileStatus, default: registrationEnum_1.profileStatus.REQUESTED }),
+    __metadata("design:type", String)
+], Profile.prototype, "status", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: "enum", enum: registrationEnum_1.ProfileType, default: registrationEnum_1.ProfileType.INDIVIDUAL }),
     __metadata("design:type", String)
 ], Profile.prototype, "profileType", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => documentEntity_1.Document, { nullable: true,
-        cascade: true,
-    }),
-    __metadata("design:type", documentEntity_1.Document)
-], Profile.prototype, "profilePhoto", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => contact_1.Contact, contact => contact.profile, {
         cascade: true,

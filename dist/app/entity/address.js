@@ -45,7 +45,9 @@ __decorate([
     __metadata("design:type", String)
 ], Address.prototype, "profileId", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => profile_1.Profile, profile => profile.address),
+    (0, typeorm_1.OneToOne)(() => profile_1.Profile, profile => profile.address, {
+        onDelete: "CASCADE"
+    }),
     (0, typeorm_1.JoinColumn)({ name: "profileId" }),
     __metadata("design:type", profile_1.Profile)
 ], Address.prototype, "profile", void 0);

@@ -12,3 +12,8 @@ export enum proficiecy{
     PROFESSIONAL="PROFESSIONAL",
     SKILLED="SKILLED"
 }
+
+export enum profileStatus{
+    CREATED="CREATED",
+    REQUESTED="REQUESTED"
+}

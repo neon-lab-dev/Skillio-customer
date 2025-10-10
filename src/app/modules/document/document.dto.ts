@@ -3,7 +3,7 @@ import { DocumentType  } from "./enums/documentEnum";
 export class DocumentDTO {
   remarks?: string;
   type: DocumentType;
-  profileId?: string;
+  portfolioId?: string;
 
   constructor(data: {
     remarks?: string;
@@ -16,12 +16,12 @@ export class DocumentDTO {
   toJSON(): {
     remarks?: string;
     type: DocumentType;
-    profileId?: string;
+    portfolioId?: string;
   } {
     return {
       remarks: this.remarks,
       type: this.type,
-      profileId: this.profileId
+      portfolioId: this.portfolioId
     };
   }
 }

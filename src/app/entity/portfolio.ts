@@ -1,4 +1,4 @@
-import { Entity , Column, OneToOne, JoinColumn, Index } from "typeorm";
+import { Entity , Column, OneToOne, JoinColumn, Index, OneToMany } from "typeorm";
 import { BaseEntity } from "./baseEntity";
 import { proficiecy } from "../modules/registration/enums/registrationEnum";
 import { Profile } from "./profile";
@@ -23,20 +23,18 @@ export class Portfolio extends BaseEntity{
     @Column({nullable:true})
     bio?: string;
 
-    @OneToOne(()=>Document)
-    video!: Document;
-
-    @OneToOne(()=>Document)
-    image!: Document;
-
-    @OneToOne(()=>Document , {nullable:true})
-    eventsDone?: Document;
+    @OneToMany(()=>Document , document=> document.portfolio , {
+        cascade:true,
+    })
+    document!: Document;
 
     @Column({type:"uuid"})
     profileId!: string;
 
-    @OneToOne(()=>Profile , profile=>profile.portfolio)
+    @OneToOne(()=>Profile , profile=>profile.portfolio , {
+        onDelete: "CASCADE"
+    })
     @JoinColumn({name:"profileId"})
     profile!: Profile;
-
+    
 }

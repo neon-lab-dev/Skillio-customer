@@ -2874,3 +2874,205 @@
 {"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
 {"level":"info","message":"Listening at port number 3000","service":"user-service"}
 {"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","driverError":{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","file":"tuplesortvariants.c","length":275,"line":"1557","name":"error","routine":"comparetup_index_btree_tiebreak","schema":"public","severity":"ERROR","table":"document"},"file":"tuplesortvariants.c","length":275,"level":"error","line":"1557","message":"Database connection error could not create unique index \"UQ_5b835318e40db467656bdd86653\"","query":"ALTER TABLE \"document\" ADD CONSTRAINT \"UQ_5b835318e40db467656bdd86653\" UNIQUE (\"portfolioId\")","routine":"comparetup_index_btree_tiebreak","schema":"public","service":"user-service","severity":"ERROR","stack":"QueryFailedError: could not create unique index \"UQ_5b835318e40db467656bdd86653\"\n    at PostgresQueryRunner.query (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:325:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at PostgresQueryRunner.executeQueries (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-runner\\BaseQueryRunner.ts:681:13)\n    at PostgresQueryRunner.changeColumn (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2307:9)\n    at PostgresQueryRunner.changeColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2319:13)\n    at RdbmsSchemaBuilder.updateExistColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:969:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:229:9)\n    at RdbmsSchemaBuilder.build (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:340:9)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:278:43)","table":"document"}
+{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","driverError":{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","file":"tuplesortvariants.c","length":275,"line":"1557","name":"error","routine":"comparetup_index_btree_tiebreak","schema":"public","severity":"ERROR","table":"document"},"file":"tuplesortvariants.c","length":275,"level":"error","line":"1557","message":"Database connection error could not create unique index \"UQ_5b835318e40db467656bdd86653\"","query":"ALTER TABLE \"document\" ADD CONSTRAINT \"UQ_5b835318e40db467656bdd86653\" UNIQUE (\"portfolioId\")","routine":"comparetup_index_btree_tiebreak","schema":"public","service":"user-service","severity":"ERROR","stack":"QueryFailedError: could not create unique index \"UQ_5b835318e40db467656bdd86653\"\n    at PostgresQueryRunner.query (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:325:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at PostgresQueryRunner.executeQueries (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-runner\\BaseQueryRunner.ts:681:13)\n    at PostgresQueryRunner.changeColumn (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2307:9)\n    at PostgresQueryRunner.changeColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2319:13)\n    at RdbmsSchemaBuilder.updateExistColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:969:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:229:9)\n    at RdbmsSchemaBuilder.build (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:340:9)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:278:43)","table":"document"}
+{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","driverError":{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","file":"tuplesortvariants.c","length":275,"line":"1557","name":"error","routine":"comparetup_index_btree_tiebreak","schema":"public","severity":"ERROR","table":"document"},"file":"tuplesortvariants.c","length":275,"level":"error","line":"1557","message":"Database connection error could not create unique index \"UQ_5b835318e40db467656bdd86653\"","query":"ALTER TABLE \"document\" ADD CONSTRAINT \"UQ_5b835318e40db467656bdd86653\" UNIQUE (\"portfolioId\")","routine":"comparetup_index_btree_tiebreak","schema":"public","service":"user-service","severity":"ERROR","stack":"QueryFailedError: could not create unique index \"UQ_5b835318e40db467656bdd86653\"\n    at PostgresQueryRunner.query (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:325:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at PostgresQueryRunner.executeQueries (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-runner\\BaseQueryRunner.ts:681:13)\n    at PostgresQueryRunner.changeColumn (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2307:9)\n    at PostgresQueryRunner.changeColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2319:13)\n    at RdbmsSchemaBuilder.updateExistColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:969:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:229:9)\n    at RdbmsSchemaBuilder.build (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:340:9)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:278:43)","table":"document"}
+{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","driverError":{"code":"23505","constraint":"UQ_5b835318e40db467656bdd86653","detail":"Key (\"portfolioId\")=(c3e37a4d-df8c-497e-acc9-b3abd12db1ba) is duplicated.","file":"tuplesortvariants.c","length":275,"line":"1557","name":"error","routine":"comparetup_index_btree_tiebreak","schema":"public","severity":"ERROR","table":"document"},"file":"tuplesortvariants.c","length":275,"level":"error","line":"1557","message":"Database connection error could not create unique index \"UQ_5b835318e40db467656bdd86653\"","query":"ALTER TABLE \"document\" ADD CONSTRAINT \"UQ_5b835318e40db467656bdd86653\" UNIQUE (\"portfolioId\")","routine":"comparetup_index_btree_tiebreak","schema":"public","service":"user-service","severity":"ERROR","stack":"QueryFailedError: could not create unique index \"UQ_5b835318e40db467656bdd86653\"\n    at PostgresQueryRunner.query (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:325:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at PostgresQueryRunner.executeQueries (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-runner\\BaseQueryRunner.ts:681:13)\n    at PostgresQueryRunner.changeColumn (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2307:9)\n    at PostgresQueryRunner.changeColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\driver\\postgres\\PostgresQueryRunner.ts:2319:13)\n    at RdbmsSchemaBuilder.updateExistColumns (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:969:13)\n    at RdbmsSchemaBuilder.executeSchemaSyncOperationsInProperOrder (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:229:9)\n    at RdbmsSchemaBuilder.build (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\schema-builder\\RdbmsSchemaBuilder.ts:95:13)\n    at DataSource.synchronize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:340:9)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:278:43)","table":"document"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile photo with this ID doesnot exist","service":"user-service"}
+{"level":"error","message":"video with this ID doesnot exist","service":"user-service"}
+{"level":"error","message":"image with this ID doesnot exist","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"error","message":"Profile with these contacts value already exists","service":"user-service"}
+{"level":"error","message":"Profile photo with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"Profile photo with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"video with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"image with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"event done document with this ID doesnot exist","service":"user-service"}
+{"level":"error","message":"event done document with this ID doesnot exist","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile doesnot exist.","service":"user-service"}
+{"level":"error","message":"Profile doesnot exist.","service":"user-service"}
+{"level":"error","message":"Profile doesnot exist.","service":"user-service"}
+{"level":"error","message":"Pin doesnot match , please try again.","service":"user-service"}

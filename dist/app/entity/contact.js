@@ -38,7 +38,9 @@ __decorate([
     __metadata("design:type", String)
 ], Contact.prototype, "profileId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => profile_1.Profile, profile => profile.contacts),
+    (0, typeorm_1.ManyToOne)(() => profile_1.Profile, profile => profile.contacts, {
+        onDelete: "CASCADE"
+    }),
     (0, typeorm_1.JoinColumn)({ name: "profileId" }),
     __metadata("design:type", profile_1.Profile)
 ], Contact.prototype, "profile", void 0);

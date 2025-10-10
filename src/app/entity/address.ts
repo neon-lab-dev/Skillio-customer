@@ -26,7 +26,9 @@ export class Address extends BaseEntity{
     @Column({type:"uuid"})
     profileId!: string;
 
-    @OneToOne(()=>Profile ,profile=>profile.address)
+    @OneToOne(()=>Profile ,profile=>profile.address , {
+        onDelete:"CASCADE"
+    })
     @JoinColumn({name:"profileId"})
     profile!: Profile;
 

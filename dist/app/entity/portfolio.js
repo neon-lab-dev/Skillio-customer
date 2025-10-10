@@ -39,23 +39,19 @@ __decorate([
     __metadata("design:type", String)
 ], Portfolio.prototype, "bio", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => documentEntity_1.Document),
+    (0, typeorm_1.OneToMany)(() => documentEntity_1.Document, document => document.portfolio, {
+        cascade: true,
+    }),
     __metadata("design:type", documentEntity_1.Document)
-], Portfolio.prototype, "video", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => documentEntity_1.Document),
-    __metadata("design:type", documentEntity_1.Document)
-], Portfolio.prototype, "image", void 0);
-__decorate([
-    (0, typeorm_1.OneToOne)(() => documentEntity_1.Document, { nullable: true }),
-    __metadata("design:type", documentEntity_1.Document)
-], Portfolio.prototype, "eventsDone", void 0);
+], Portfolio.prototype, "document", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "uuid" }),
     __metadata("design:type", String)
 ], Portfolio.prototype, "profileId", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => profile_1.Profile, profile => profile.portfolio),
+    (0, typeorm_1.OneToOne)(() => profile_1.Profile, profile => profile.portfolio, {
+        onDelete: "CASCADE"
+    }),
     (0, typeorm_1.JoinColumn)({ name: "profileId" }),
     __metadata("design:type", profile_1.Profile)
 ], Portfolio.prototype, "profile", void 0);

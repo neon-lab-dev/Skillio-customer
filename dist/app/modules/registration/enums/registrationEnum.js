@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.proficiecy = exports.contactType = exports.ProfileType = void 0;
+exports.profileStatus = exports.proficiecy = exports.contactType = exports.ProfileType = void 0;
 var ProfileType;
 (function (ProfileType) {
     ProfileType["INDIVIDUAL"] = "INDIVIDUAL";
@@ -16,3 +16,8 @@ var proficiecy;
     proficiecy["PROFESSIONAL"] = "PROFESSIONAL";
     proficiecy["SKILLED"] = "SKILLED";
 })(proficiecy || (exports.proficiecy = proficiecy = {}));
+var profileStatus;
+(function (profileStatus) {
+    profileStatus["CREATED"] = "CREATED";
+    profileStatus["REQUESTED"] = "REQUESTED";
+})(profileStatus || (exports.profileStatus = profileStatus = {}));

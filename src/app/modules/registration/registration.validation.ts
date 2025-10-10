@@ -5,7 +5,7 @@ import { getPinConfig } from "./config/pinConfig";
 
 
 const emailSchema= z.string().email("Invalid email address");
-const phoneSchema= z.string().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number");
+const phoneSchema= z.string().regex(/^(?:\+91|91|0)?[6-9]\d{9}$/, "Invalid phone number");
 
 const validateNicknameUniqueness = (data: {
     nickName: string;
@@ -48,6 +48,11 @@ const validateNamesWithProfileType=(data:{
                 valid: false,
                 message: "First name and Last name are required for Individual profile type"
             }
+        }else if(groupName){
+            return {
+                valid: false,
+                message: "Group name should not be provided for Individual profile type"
+            }
         }
     }else if(profileType === ProfileType.GROUP){
         if(!groupName){
@@ -55,27 +60,16 @@ const validateNamesWithProfileType=(data:{
                 valid: false,
                 message: "Group name is required for Group profile type"
             }
+        }else if(firstName || lastName){
+            return {
+                valid: false,
+                message: "First name or Last name should not be provided for Group profile type"
+            }
         }
     }
 
     return {valid: true};
 }
-
-const validateCredential = (credential: string): { valid: boolean; type?: 'email' | 'phone' | 'nickname'; message?: string } => {
-
-    if (emailSchema.safeParse(credential).success) {
-        return { valid: true, type: 'email' };
-    }
-
-    if (phoneSchema.safeParse(credential).success) {
-        return { valid: true, type: 'phone' };
-    }
-
-    return {
-        valid: false,
-        message: "Credential must be a valid email, phone number, or nickname (at least 2 characters)"
-    };
-};
 
 const contactSchema = z.object({
     type: z.nativeEnum(contactType, {
@@ -117,7 +111,7 @@ const addressSchema =z.object({
     streetAddress: z.string({
         required_error: "Street address is required",
         invalid_type_error: "Street address must be a string"
-    }),
+    }).min(3, "Street address must be at least 3 characters long"),
     city: z.string({
         required_error: "City is required",
         invalid_type_error: "City must be a string"
@@ -144,6 +138,9 @@ const addressSchema =z.object({
             invalid_type_error: "Longitude must be a number"
         }),
         geoHash: z.string().optional()
+    } , {
+        required_error: "Location is required",
+        invalid_type_error: "Location must be an object"
     })
 } , {
     required_error: "Address is required",
@@ -195,24 +192,33 @@ const portfolioSchema = z.object({
 } , {
     required_error: "Portfolio is required",
     invalid_type_error: "Portfolio must be an object"
-})
+}).refine(
+    (data) => {
+        if (data.proficiency === proficiecy.PROFESSIONAL) {
+            return !!data.eventsDoneDocumentId;
+        }
+        return true;
+    },
+    {
+        message: "Events done document ID is required for Professional proficiency",
+        path: ["eventsDoneDocumentId"]
+    }
+)
 
 export const registrationSchema= z.object({
     body: z.object({
         firstName: z.string({
             invalid_type_error: "First name must be a string"
         })
-        .regex(/^[A-Za-z]+$/, "First name must contain only alphabets")
         .optional()
         .nullable(),
         lastName: z.string({
             invalid_type_error: "Last name must be a string"
-        }).regex(/^[A-Za-z]+$/, "Last name must contain only alphabets")
+        })
         .optional().nullable(),
         groupName:z.string({
             invalid_type_error: "Group name must be a string"
         })
-        .regex(/^[A-Za-z\s]+$/, "Group name must contain only alphabets and spaces")
         .optional()
         .nullable(),
         nickName:z.string({
@@ -232,13 +238,59 @@ export const registrationSchema= z.object({
             required_error: "Profile document ID is required",
             invalid_type_error: "Profile document ID must be a string"
         }),
-        contacts:z.array(contactSchema),
+        contacts:z.array(contactSchema , {
+            required_error: "contact is required",
+            invalid_type_error: "Contacts must be an array"
+        }),
         address: addressSchema,
         portfolio: portfolioSchema
     } , {
         required_error: "Request body is required",
         invalid_type_error: "Request body must be an object"
     })
+.refine(
+    (data) => {
+        if (data.firstName && !/^[A-Za-z]+$/.test(data.firstName)) {
+            return false;
+        }
+        
+        if (data.lastName && !/^[A-Za-z]+$/.test(data.lastName)) {
+            return false;
+        }
+        
+        if (data.groupName && !/^[A-Za-z\s]+$/.test(data.groupName)) {
+            return false;
+        }
+        
+        return true;
+    },
+    (data) => {
+        if (data.firstName && !/^[A-Za-z]+$/.test(data.firstName)) {
+            return {
+                message: "First name must contain only alphabets",
+                path: ["firstName"]
+            };
+        }
+        
+        if (data.lastName && !/^[A-Za-z]+$/.test(data.lastName)) {
+            return {
+                message: "Last name must contain only alphabets",
+                path: ["lastName"]
+            };
+        }
+        
+        if (data.groupName && !/^[A-Za-z\s]+$/.test(data.groupName)) {
+            return {
+                message: "Group name must contain only alphabets and spaces",
+                path: ["groupName"]
+            };
+        }
+        
+        return {
+            message: "Invalid name format",
+        };
+    }
+)
     .refine(
         (data) => validateNicknameUniqueness(data).valid,
         (data) => ({

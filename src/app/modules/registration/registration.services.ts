@@ -73,20 +73,20 @@ class RegistraionService{
         }))
 
         await this.updateDocument(profileDocumentId , {
-            profileId: newProfile.id
+            portfolioId: newProfile.portfolio.id
         })
 
         await this.updateDocument(portfolio.videoDocumentId, {
-            portfolioVideoId: newProfile.portfolio.id
+            portfolioId: newProfile.portfolio.id
         })
 
         await this.updateDocument(portfolio.imageDocumentId , {
-            portfolioImageId: newProfile.portfolio.id
+            portfolioId: newProfile.portfolio.id
         })
 
         if(portfolio.eventsDoneDocumentId){
             await this.updateDocument(portfolio.eventsDoneDocumentId , {
-                portfolioEventsDoneId: newProfile.portfolio.id
+                portfolioId: newProfile.portfolio.id
             })
         }
 

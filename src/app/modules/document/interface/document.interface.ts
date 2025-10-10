@@ -7,10 +7,7 @@ export interface TDocument {
   remarks?: string;
   type: DocumentType;
   status: DocumentStatus;
-  profileId?: string;
-  portfolioVideoId?: string;
-  portfolioImageId?: string;
-  portfolioEventsDoneId?: string;
+  portfolioId?: string;
 };
 
 

@@ -23,7 +23,9 @@ export class Contact extends BaseEntity{
     @Column({type:"uuid"})
     profileId!: string;
 
-    @ManyToOne(() => Profile, profile => profile.contacts)
+    @ManyToOne(() => Profile, profile => profile.contacts , {
+        onDelete:"CASCADE"
+    })
     @JoinColumn({name: "profileId"})
     profile!: Profile;
 

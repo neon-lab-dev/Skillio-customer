@@ -5,8 +5,7 @@ import {
   OneToMany , Index
 } from "typeorm";
 import { BaseEntity } from "./baseEntity";
-import { ProfileType } from "../modules/registration/enums/registrationEnum";
-import { Document } from "./documentEntity";
+import { profileStatus, ProfileType } from "../modules/registration/enums/registrationEnum";
 import { Contact } from "./contact";
 import { Address } from "./address";
 import { Portfolio } from "./portfolio";
@@ -31,13 +30,11 @@ export class Profile extends BaseEntity{
     @Column({unique:true})
     nickName!: string;
 
+    @Column({type: "enum", enum: profileStatus, default: profileStatus.REQUESTED})
+    status!: profileStatus
+
     @Column({type: "enum", enum: ProfileType, default: ProfileType.INDIVIDUAL})
     profileType!: ProfileType;
-
-    @OneToOne(() => Document, {nullable: true  , 
-      cascade:true,
-    })
-    profilePhoto?: Document;
 
     @OneToMany(() => Contact, contact => contact.profile , {
       cascade: true,           
