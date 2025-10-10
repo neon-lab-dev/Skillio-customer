@@ -1,7 +1,8 @@
 export enum DocumentType{
     PROFILE_PHOTO= "PROFILE_PHOTO",
-    CONTENT= "CONTENT",
-    OTHERS="OTHERS"
+    EVENT= "EVENT",
+    VIDEO= "VIDEO",
+    IMAGE= "IMAGE",
 }
 
 export enum DocumentStatus{

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const dataSource_1 = require("../db/dataSource");
+const typeorm_1 = require("typeorm");
 class DocumentRepository {
     constructor() {
         // create a document
@@ -8,26 +9,34 @@ class DocumentRepository {
             const newDocument = this.documentRepository.create(documentData);
             return await this.documentRepository.save(newDocument);
         };
-        // find one by fileName and mimeType
-        this.findOneByFileNameAndMimeType = async (fileName, mimeType) => {
-            return await this.documentRepository.findOneBy({
-                fileName,
-                mimeType
-            });
-        };
         // find one by id
         this.findOneById = async (id) => {
             return await this.documentRepository.findOneBy({
                 id
             });
         };
+        this.findByIds = async (ids) => {
+            return await this.documentRepository.find({
+                where: {
+                    id: (0, typeorm_1.In)(ids)
+                }
+            });
+        };
         // update a document
         this.updateDocument = async (id, updateData) => {
             return await this.documentRepository.update(id, updateData);
         };
+        // bulk update documents
+        this.updateDocuments = async (ids, updateData) => {
+            return await this.documentRepository.update(ids, updateData);
+        };
         // delete a document by id
         this.deleteDocument = async (id) => {
             return await this.documentRepository.delete(id);
+        };
+        // bulk delete documents by ids
+        this.deleteDocuments = async (ids) => {
+            return await this.documentRepository.delete(ids);
         };
         this.documentRepository = dataSource_1.AppDataSource.getRepository("Document");
     }

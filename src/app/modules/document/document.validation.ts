@@ -30,6 +30,17 @@ export const documentRequestSchema = z.object({
   message: " file is required."
 });
 
+export const getDocumentSchema = z.object({
+  params: z.object({
+    id: z.string({
+      required_error: "Document ID is required",
+      invalid_type_error: "Document ID must be a string"
+    })
+  } , {
+    required_error: "Request params are required",
+    invalid_type_error: "Request params must be an object"
+  })
+});
 
 export const updateDocumentSchema = z.object({
   body: z.object({
@@ -49,18 +60,6 @@ export const updateDocumentSchema = z.object({
 },{
   message: "file is required."
 });
-
-export const deleteDocumentSchema = z.object({
-  query: z.object({
-    forceDelete: z.string({
-      required_error: "forceDelete query is required",
-      invalid_type_error: "forceDelete query must be a string"
-    })
-  }, {
-    required_error: "query is required",
-    invalid_type_error: "query must be an string"
-  })
-})
 
 export const deleteDocumentsSchema = z.object({
   body: z.object({

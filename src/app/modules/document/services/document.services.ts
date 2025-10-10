@@ -60,6 +60,22 @@ class DocumentService{
         };
     }
 
+    // get single documnet
+    getDocument= async(id:string)=>{
+        const document= await documentRepository.findOneById(id);
+
+        if(!document){
+            logger.error("Document not found");
+            throw new AppError(404, "Document not found");
+        }
+
+        return { document:{
+            id: document.id,
+            url: document.url,
+            type: document.type
+        } };
+    }
+
     // update a document(profile picture)
     updateDocument= async(id:string , req:Request , existingDocument:Document)=>{
         
@@ -92,23 +108,6 @@ class DocumentService{
         }
     }
 
-    // delete a document
-    deleteDocument= async(id:string  , forceDelete:string , existingDocument:Document)=>{
-
-        if(forceDelete=="true"){
-            const publicId= getPublicIdFromUrl(existingDocument!.url);
-            await cloudinaryServices.deleteFile(publicId as string);
-
-            await documentRepository.deleteDocument(id);
-        }else{
-            if(existingDocument!.status===DocumentStatus.DELETED){
-                logger.error("Document is already soft deleted");
-                throw new AppError(400, "Document is already soft deleted");
-            }
-            await documentRepository.updateDocument(id , { status: DocumentStatus.DELETED});
-        }
-
-    } 
 
     // delete multiple documents
     deleteDocuments= async(ids:string[] , forceDelete:boolean , existingDocuments:Document[])=>{

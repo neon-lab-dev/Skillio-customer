@@ -1,7 +1,7 @@
-import { Entity , Column , Index } from "typeorm";
+import { Entity , Column , Index, JoinColumn, ManyToOne } from "typeorm";
 import { BaseEntity } from "./baseEntity";
 import { DocumentType ,DocumentStatus  } from "../modules/document/enums/documentEnum";
-
+import { Portfolio } from "./portfolio";
 
 @Entity("document")
 @Index("IDX_TYPE_STATUS" , ["type" , "status"])
@@ -25,7 +25,10 @@ export class Document extends BaseEntity{
     @Column({type:"enum" , enum: DocumentStatus})
     status!: DocumentStatus;
 
-    @Column({nullable: true})
-    profileId?: string;
+    @Column({nullable:true , type:"uuid"})
+    portfolioId?: string;
 
+    @ManyToOne(()=>Portfolio , portfolio=> portfolio.document)
+    @JoinColumn({name:"portfolioId"})
+    portfolio?: Portfolio;
 }

@@ -4,8 +4,9 @@ exports.DocumentStatus = exports.DocumentType = void 0;
 var DocumentType;
 (function (DocumentType) {
     DocumentType["PROFILE_PHOTO"] = "PROFILE_PHOTO";
-    DocumentType["CONTENT"] = "CONTENT";
-    DocumentType["OTHERS"] = "OTHERS";
+    DocumentType["EVENT"] = "EVENT";
+    DocumentType["VIDEO"] = "VIDEO";
+    DocumentType["IMAGE"] = "IMAGE";
 })(DocumentType || (exports.DocumentType = DocumentType = {}));
 var DocumentStatus;
 (function (DocumentStatus) {

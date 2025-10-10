@@ -21,6 +21,19 @@ class DocumentController {
         })
     })
 
+    // get document controller
+    getDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
+        const {id}= req.params;
+        const result= await documentProxy.getDocument(id);
+
+        return sendResponse(res , {
+            statusCode: 200,
+            success: true,
+            message: "Document fetched successfully",
+            data: result
+        })
+    })
+
     // update document(profile picture) controller
 
     updateDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
@@ -33,21 +46,6 @@ class DocumentController {
             success: true,
             message: "Document updated successfully",
             data: result
-        })
-    })
-
-    // delete a document
-    deleteDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
-        const {id}= req.params;
-
-        const {forceDelete}= req.query ;
-
-        await documentProxy.deleteDocument(id , forceDelete as string);
-
-        return sendResponse(res , {
-            statusCode: 200,
-            success: true,
-            message: "Document deleted successfully",
         })
     })
 

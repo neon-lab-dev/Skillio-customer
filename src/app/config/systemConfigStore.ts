@@ -4,6 +4,9 @@ import { loadVerificationConfig } from "../modules/verification/config/verificat
 import { loadTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";
 import { loadCloudinaryConfig } from "../modules/document/config/cloudinaryConfig";
 import { loadDocumentConfig } from "../modules/document/config/documentConfig";
+import { loadJwtConfig } from "../modules/registration/config/jwtConfig";
+import { loadPinConfig } from "../modules/registration/config/pinConfig";
+import { loadAddressPinConfig } from "../modules/registration/config/addressPinCodeConfig";
 
 class SystemConfigStore{
 
@@ -19,6 +22,12 @@ class SystemConfigStore{
             await loadCloudinaryConfig()
 
             await loadDocumentConfig()
+
+            await loadJwtConfig()
+
+            await loadPinConfig()
+
+            await loadAddressPinConfig()
 
         } catch (error) {
             logger.error("Error loading system  configurations:", error);

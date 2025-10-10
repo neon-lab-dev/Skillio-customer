@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteDocumentSchema = exports.updateDocumentSchema = exports.documentRequestSchema = void 0;
+exports.deleteDocumentsSchema = exports.updateDocumentSchema = exports.getDocumentSchema = exports.documentRequestSchema = void 0;
 const zod_1 = require("zod");
 const documentEnum_1 = require("./enums/documentEnum");
 exports.documentRequestSchema = zod_1.z.object({
@@ -25,19 +25,45 @@ exports.documentRequestSchema = zod_1.z.object({
 }).refine((data) => {
     return !!data.file;
 }, {
-    message: "At least one file is required."
+    message: " file is required."
+});
+exports.getDocumentSchema = zod_1.z.object({
+    params: zod_1.z.object({
+        id: zod_1.z.string({
+            required_error: "Document ID is required",
+            invalid_type_error: "Document ID must be a string"
+        })
+    }, {
+        required_error: "Request params are required",
+        invalid_type_error: "Request params must be an object"
+    })
 });
 exports.updateDocumentSchema = zod_1.z.object({
+    body: zod_1.z.object({
+        id: zod_1.z.string({
+            required_error: "Document ID is required",
+            invalid_type_error: "Document ID must be a string"
+        }),
+    }, {
+        required_error: "Request body is required",
+        invalid_type_error: "Request body must be an object"
+    }),
     file: zod_1.z.any({
         required_error: "File is required"
     })
 }).refine((data) => {
     return !!data.file;
 }, {
-    message: "At least one file is required."
+    message: "file is required."
 });
-exports.deleteDocumentSchema = zod_1.z.object({
+exports.deleteDocumentsSchema = zod_1.z.object({
     body: zod_1.z.object({
+        ids: zod_1.z.array(zod_1.z.string({
+            invalid_type_error: "Each ID must be a string"
+        }), {
+            required_error: "IDs are required",
+            invalid_type_error: "IDs must be an array of strings"
+        }).min(1, "at least 1 Id must be provided"),
         forceDelete: zod_1.z.boolean({
             required_error: "forceDelete is required",
             invalid_type_error: "forceDelete must be a boolean"
@@ -45,5 +71,5 @@ exports.deleteDocumentSchema = zod_1.z.object({
     }, {
         required_error: "Request body is required",
         invalid_type_error: "Request body must be an object"
-    })
+    }),
 });

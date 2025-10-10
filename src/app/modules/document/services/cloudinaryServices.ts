@@ -14,8 +14,8 @@ class CloudinaryService {
 
       return res;
     } catch (error) {
-        logger.error("Error uploading file to Cloudinary:", error);
-        throw new AppError(500, "Error uploading file to Cloudinary");
+        logger.error("Error uploading file:", error);
+        throw new AppError(500, "Error uploading file.");
     }
   };
 
@@ -25,7 +25,7 @@ class CloudinaryService {
         .destroy(publicId as string)
         .then(result => console.log(result));
     }catch(error){
-        logger.error("Error deleting file from Cloudinary:", error);
+        logger.error("Error deleting file:", error);
     }
   }
 }

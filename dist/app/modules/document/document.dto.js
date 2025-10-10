@@ -10,7 +10,7 @@ class DocumentDTO {
         return {
             remarks: this.remarks,
             type: this.type,
-            profileId: this.profileId
+            portfolioId: this.portfolioId
         };
     }
 }
