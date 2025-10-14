@@ -2,6 +2,7 @@ import { AppDataSource } from "../db/dataSource";
 import { Repository } from "typeorm";
 import { Document } from "../entity/documentEntity";
 import { In } from "typeorm";
+import { DocumentType } from "../modules/document/enums/documentEnum";
 
 class DocumentRepository{
 
@@ -30,6 +31,25 @@ class DocumentRepository{
             where:{
                 id: In(ids)
             }
+        });
+    }
+
+    // find by id and documen type
+    findByIdAndType= async(id:string , type:DocumentType)=>{
+        return await this.documentRepository.findOneBy({
+            id,
+            type
+        });
+    }
+
+    // find one by portfolioId and type
+    findDocumentIdByPortfolioIdAndType= async(portfolioId:string , type:DocumentType)=>{
+        return await this.documentRepository.findOne({
+            where: {
+                portfolioId,
+                type
+            },
+            select: ["id"]
         });
     }
 

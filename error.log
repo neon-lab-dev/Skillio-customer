@@ -458,3 +458,15 @@
 {"level":"error","message":"Profile doesnot exist.","service":"user-service"}
 {"level":"error","message":"Pin doesnot match , please try again.","service":"user-service"}
 {"level":"error","message":"Document not found","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"video with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"image with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"VIDEO with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"IMAGE with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"EVENT with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"VIDEO with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"IMAGE with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"EVENT with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"Profile with this Id doesnot exist","service":"user-service"}

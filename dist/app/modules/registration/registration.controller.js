@@ -31,6 +31,27 @@ class RegistrationController {
                 data: result
             });
         });
+        // get profile
+        this.getProfile = (0, catchAsyncError_1.default)(async (req, res) => {
+            const { id } = req.params;
+            const result = await registration_proxy_1.default.getProfile(id);
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 200,
+                success: true,
+                message: "Profile fetched successfully",
+                data: result
+            });
+        });
+        // get profiles
+        this.getProfiles = (0, catchAsyncError_1.default)(async (req, res) => {
+            const result = await registration_proxy_1.default.getProfiles();
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 200,
+                success: true,
+                message: "Profiles fetched successfully",
+                data: result
+            });
+        });
     }
 }
 exports.default = new RegistrationController();

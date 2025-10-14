@@ -34,6 +34,32 @@ class RegistrationController{
         })
     })
 
+    // get profile
+    getProfile= catchAsyncError(async(req:Request , res:Response)=>{
+        const {id}= req.params;
+
+        const result= await registrationProxy.getProfile(id);
+
+        return sendResponse(res , {
+            statusCode: 200,
+            success: true,
+            message: "Profile fetched successfully",
+            data: result
+        })
+    })
+
+
+    // get profiles
+    getProfiles= catchAsyncError(async(req:Request , res:Response)=>{
+        const result= await registrationProxy.getProfiles();
+        return sendResponse(res , {
+            statusCode: 200,
+            success: true,
+            message: "Profiles fetched successfully",
+            data: result
+        })
+    })
+    
 }
 
 export default new RegistrationController();

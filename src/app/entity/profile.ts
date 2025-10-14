@@ -36,6 +36,9 @@ export class Profile extends BaseEntity{
     @Column({type: "enum", enum: ProfileType, default: ProfileType.INDIVIDUAL})
     profileType!: ProfileType;
 
+    @Column({type:"boolean",default:false})
+    isSubscribed!: boolean;
+
     @OneToMany(() => Contact, contact => contact.profile , {
       cascade: true,           
     })

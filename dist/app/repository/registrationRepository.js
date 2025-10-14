@@ -9,6 +9,10 @@ class RegistrationRepository {
             const newProfile = this.profileRepository.create(profileData);
             return await this.profileRepository.save(newProfile);
         };
+        // update a profile
+        this.updateProfile = async (id, profileData) => {
+            return await this.profileRepository.update(id, profileData);
+        };
         // findProfileByContactValue
         this.findProfileByCredential = async (credential) => {
             return await this.profileRepository
@@ -27,6 +31,19 @@ class RegistrationRepository {
                 .leftJoinAndSelect("profile.contacts", "contact")
                 .where("contact.value = :value", { value })
                 .getOne();
+        };
+        // find profile by Id
+        this.findProfileById = async (id) => {
+            return await this.profileRepository.findOne({
+                where: { id },
+                relations: ["contacts", "address", "portfolio"]
+            });
+        };
+        // find all profiles
+        this.findAllProfiles = async () => {
+            return await this.profileRepository.find({
+                relations: ["contacts", "address", "portfolio"]
+            });
         };
         // find contact by value
         this.findContactByValue = async (value) => {

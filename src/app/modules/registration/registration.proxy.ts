@@ -4,9 +4,20 @@ import registrationRepository from "../../repository/registrationRepository";
 import { logger } from "../../utils/logger";
 import AppError from "../../errors/appError";
 import documentRepository from "../../repository/documentRepository";
+import { DocumentType } from "../document/enums/documentEnum";
 
 
 class RegistrationProxy{
+
+    private checkExistingDocument= async(documentId:string , documentType:DocumentType)=>{
+        const existingDocument= await documentRepository.findByIdAndType(documentId , documentType);
+
+        if(!existingDocument){
+            logger.error(`${documentType} with this Id doesnot exist`);
+            throw new AppError(404, `${documentType} doesnot exist`);
+        }
+    }
+
     createProfile= async(profileData:TProfile)=>{
         const { nickName , contacts , profileDocumentId , portfolio}=profileData;
 
@@ -26,34 +37,14 @@ class RegistrationProxy{
             throw new AppError(409, `Profile with these contacts already exists`);
         }
 
-        const existingProfilePhoto= await documentRepository.findOneById(profileDocumentId);
+        await this.checkExistingDocument(profileDocumentId , DocumentType.PROFILE_PHOTO);
 
-        if(!existingProfilePhoto){
-            logger.error("Profile photo with this Id doesnot exist");
-            throw new AppError(404, "Profile photo doesnot exist");
-        }
+        await this.checkExistingDocument(portfolio.videoDocumentId , DocumentType.VIDEO);
 
-        const existingPortfolioVideo= await documentRepository.findOneById(portfolio.videoDocumentId);
-
-        if(!existingPortfolioVideo){
-            logger.error("video with this Id doesnot exist");
-            throw new AppError(404, "video doesnot exist");
-        }
- 
-        const existingPortfolioImage= await documentRepository.findOneById(portfolio.imageDocumentId);
-
-        if(!existingPortfolioImage){
-            logger.error("image with this Id doesnot exist");
-            throw new AppError(404, "image doesnot exist");
-        }
+        await this.checkExistingDocument(portfolio.imageDocumentId , DocumentType.IMAGE);
 
         if(portfolio.eventsDoneDocumentId){
-            const existingPortfolioEventsDone= await documentRepository.findOneById(portfolio.eventsDoneDocumentId);
-
-            if(!existingPortfolioEventsDone){
-                logger.error("event done document with this ID doesnot exist");
-                throw new AppError(404, "event doesnot exist");
-            }
+            await this.checkExistingDocument(portfolio.eventsDoneDocumentId , DocumentType.EVENT);
         }
 
         return await registrationServices.createProfile(profileData);
@@ -68,6 +59,16 @@ class RegistrationProxy{
         }
 
         return await registrationServices.loginUser(pin , profile)
+    }
+
+    // get profile
+    getProfile= async(id:string)=>{
+        return await registrationServices.getProfile(id);
+    }
+
+    // get profiles
+    getProfiles= async()=>{
+        return await registrationServices.getProfiles();
     }
 }
 

@@ -3085,3 +3085,57 @@
 {"level":"error","message":"Document not found","service":"user-service"}
 {"level":"info","message":"Listening at port number 3000","service":"user-service"}
 {"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"video with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"image with this Id doesnot exist","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this nickname already exists","service":"user-service"}
+{"level":"error","message":"VIDEO with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"IMAGE with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"EVENT with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"VIDEO with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"IMAGE with this Id doesnot exist","service":"user-service"}
+{"level":"error","message":"EVENT with this Id doesnot exist","service":"user-service"}
+{"level":"info","message":"Listening at port number 3000","service":"user-service"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","service":"user-service"}
+{"level":"error","message":"Profile with this Id doesnot exist","service":"user-service"}

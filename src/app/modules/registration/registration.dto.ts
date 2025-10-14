@@ -272,9 +272,9 @@ export class GetRegistrationDTO {
   groupName?: string;
   nickName: string;
   profileType: ProfileType;
-  contacts?: GetContactDTO[];
-  address?: GetAddressDTO;
-  portfolio?: GetPortfolioDTO;
+  contacts: GetContactDTO[];
+  address: GetAddressDTO;
+  portfolio: GetPortfolioDTO;
 
   constructor(data: {
     firstName?: string;
@@ -282,13 +282,13 @@ export class GetRegistrationDTO {
     groupName?: string;
     nickName: string;
     profileType: ProfileType;
-    contacts?: Array<{
+    contacts: Array<{
       type: contactType;
       value: string;
       primary?: boolean;
       isVerified?: boolean;
     }>;
-    address?: {
+    address: {
       streetAddress: string;
       city: string;
       country: string;
@@ -296,7 +296,7 @@ export class GetRegistrationDTO {
       pinCode: number;
       location: Location;
     };
-    portfolio?: {
+    portfolio: {
       category: string;
       subCategory: string;
       proficiency: proficiecy;
@@ -310,17 +310,13 @@ export class GetRegistrationDTO {
     this.nickName = data.nickName;
     this.profileType = data.profileType;
     
-    this.contacts = data.contacts?.map(
+    this.contacts = data.contacts.map(
       contact => new GetContactDTO(contact)
     );
     
-    this.address = data.address 
-      ? new GetAddressDTO(data.address) 
-      : undefined;
+    this.address = new GetAddressDTO(data.address) 
     
-    this.portfolio = data.portfolio 
-      ? new GetPortfolioDTO(data.portfolio) 
-      : undefined;
+    this.portfolio =  new GetPortfolioDTO(data.portfolio) 
   }
 
   toJSON() {
@@ -330,9 +326,83 @@ export class GetRegistrationDTO {
       groupName: this.groupName,
       nickName: this.nickName,
       profileType: this.profileType,
-      contacts: this.contacts?.map(contact => contact.toJSON()),
-      address: this.address?.toJSON(),
-      portfolio: this.portfolio?.toJSON()
+      contacts: this.contacts.map(contact => contact.toJSON()),
+      address: this.address.toJSON(),
+      portfolio: this.portfolio.toJSON()
     };
+  }
+}
+
+export class GetProfilePortfolioDTO{
+  id:string;
+  bio?: string;
+
+  constructor(data:{
+    id:string;
+    bio?: string;
+  }){
+    this.id=data.id;
+    this.bio=data.bio;
+  }
+
+  toJSON(){
+    return {
+      id: this.id,
+      bio: this.bio
+    }
+  }
+}
+
+// get profile dto
+export class GetProfileDTO{
+  firstName?: string;
+  lastName?: string
+  groupName?: string;
+  profileType!: ProfileType;
+  nickName!: string;
+  portfolio: GetProfilePortfolioDTO;
+  contacts: GetContactDTO[];
+  isSubscribed: boolean;
+
+  constructor(data:{
+    firstName?: string;
+    lastName?: string
+    groupName?: string;
+    nickName: string;
+    profileType:string;
+    isSubscribed: boolean;
+    contacts: Array<{
+      type: contactType;
+      value: string;
+    }>;
+    portfolio:{
+      id:string;
+      bio?: string;
+    }
+  }){
+    this.firstName=data.firstName;
+    this.lastName=data.lastName;
+    this.groupName=data.groupName;
+    this.nickName=data.nickName;
+    this.profileType=data.profileType as ProfileType;
+    this.isSubscribed=data.isSubscribed;
+    this.contacts=data.contacts.map(contact=>new GetContactDTO(contact));
+    this.portfolio=new GetProfilePortfolioDTO({
+      id: data.portfolio.id,
+      bio: data.portfolio.bio || ""
+    })
+  }
+
+  toJSON(){
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      groupName: this.groupName,
+      nickName: this.nickName,
+      profileType: this.profileType,
+      isSubscribed: this.isSubscribed,
+      contacts: this.contacts.map(contact=>contact.toJSON()),
+      portfolio: this.portfolio.toJSON()
+    }
   }
 }

@@ -21,6 +21,11 @@ class RegistrationRepository{
         return await this.profileRepository.save(newProfile);
     }
 
+    // update a profile
+    updateProfile= async(id:string , profileData: DeepPartial<Profile>)=>{
+        return await this.profileRepository.update(id , profileData);
+    }
+
     // findProfileByContactValue
     findProfileByCredential = async(credential: string) => {
         return await this.profileRepository
@@ -43,6 +48,21 @@ class RegistrationRepository{
             .leftJoinAndSelect("profile.contacts", "contact")
             .where("contact.value = :value", {value})
             .getOne();
+    }
+
+    // find profile by Id
+    findProfileById= async(id:string)=>{
+        return await this.profileRepository.findOne({
+            where:{id},
+            relations:["contacts" , "address" , "portfolio"]
+        });
+    }
+
+    // find all profiles
+    findAllProfiles= async()=>{
+        return await this.profileRepository.find({
+            relations:["contacts" , "address" , "portfolio"]
+        });
     }
 
     // find contact by value

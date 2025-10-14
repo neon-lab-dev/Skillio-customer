@@ -4,13 +4,16 @@ import verificationRepository from "../../repository/verificationRepository";
 import { logger } from "../../utils/logger";
 import { getJwtConfig } from "./config/jwtConfig";
 import { TProfile } from "./interface/registration.interface";
-import { GetRegistrationDTO } from "./registration.dto";
+import { GetProfileDTO, GetRegistrationDTO } from "./registration.dto";
 import bcrypt from "bcrypt";
 import { createToken } from "./utils/registrationUtils";
 import { TDocument } from "../document/interface/document.interface";
 import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
+import { DocumentType } from "../document/enums/documentEnum";
+import { ProfileType } from "./enums/registrationEnum";
+import { getFullName } from "./utils/getFullName";
 
 class RegistraionService{
     private updateContactVerificationStatus= async(id:string , contactData: Partial<Contact>)=>{
@@ -135,6 +138,91 @@ class RegistraionService{
             refreshToken: refreshToken
         }
     }
+
+    // get profile
+    getProfile= async(id:string)=>{
+        const profile= await registrationRepository.findProfileById(id);
+
+        if(!profile){
+            logger.error("Profile with this Id doesnot exist");
+            throw new AppError(404, "Profile doesnot exist");
+        }
+
+        const fetchedProfile= new GetProfileDTO(profile).toJSON();
+
+        const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.PROFILE_PHOTO);
+
+
+        if(fetchedProfile.profileType===ProfileType.INDIVIDUAL){
+            const name= getFullName(fetchedProfile.firstName as string, fetchedProfile.lastName as string);
+            
+                return {
+                    name: name,
+                    nickName: fetchedProfile.nickName,
+                    portfolioId: fetchedProfile.portfolio.id,
+                    bio: fetchedProfile.portfolio.bio || "",
+                    isSubscribed:  fetchedProfile.isSubscribed,
+                    profilePictureId: profilePhotoId,
+                    propritaryDetails:{
+                        firstName: profile.firstName,
+                        lastName: profile.lastName,
+                        phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
+                        email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
+                    } 
+                } 
+            }
+        else{
+                return{
+                    profile:{
+                        groupName: fetchedProfile.groupName,
+                        nickName: fetchedProfile.nickName,
+                        portfolioId: fetchedProfile.portfolio.id,
+                        bio: fetchedProfile.portfolio.bio || "",
+                        isSubscribed: fetchedProfile.isSubscribed
+                    },
+                    profilePictureId: profilePhotoId,
+                    propritaryDetails:{
+                        groupName: profile.groupName,
+                        phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
+                        email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
+                    }
+                }
+        }
+    }
+
+    // get profiles
+    getProfiles= async()=>{
+        const profiles= await  registrationRepository.findAllProfiles();
+
+        if(!profiles || profiles.length===0){
+            logger.error("No profiles found");
+            throw new AppError(404, "No profiles found");
+        }
+
+        const fetchedProfiles= profiles.map(profile=> new GetProfileDTO(profile).toJSON());
+
+        const shortProfiles=  Promise.all(fetchedProfiles.map(async(profile)=>{
+            if(profile.profileType===ProfileType.INDIVIDUAL){
+                const name= getFullName(profile.firstName as string, profile.lastName as string);
+                const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(profile.portfolio.id , DocumentType.PROFILE_PHOTO);
+                return{
+                        name: name,
+                        nickName: profile.nickName,
+                        profilePcitureId: profilePhotoId,
+                }
+            }else{
+                const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(profile.portfolio.id , DocumentType.PROFILE_PHOTO);
+                return{
+                    groupName: profile.groupName,
+                    nickName: profile.nickName,
+                    profilePcitureId: profilePhotoId,
+                }
+            }
+        }))
+
+        return shortProfiles;
+    }
+
 }
 
 export default new RegistraionService();
