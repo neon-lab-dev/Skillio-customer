@@ -5,6 +5,7 @@ import { logger } from "../../utils/logger";
 import AppError from "../../errors/appError";
 import documentRepository from "../../repository/documentRepository";
 import { DocumentType } from "../document/enums/documentEnum";
+import { proxyLogging } from "../../utils/proxyLogging";
 
 
 class RegistrationProxy{
@@ -18,7 +19,10 @@ class RegistrationProxy{
         }
     }
 
-    createProfile= async(profileData:TProfile)=>{
+    createProfile= proxyLogging(
+        "RegistrationProxy",
+        "createProfile",
+        async(profileData:TProfile)=>{
         const { nickName , contacts , profileDocumentId , portfolio}=profileData;
 
         const existingProfile= await registrationRepository.findProfileByCredential(nickName);
@@ -48,28 +52,37 @@ class RegistrationProxy{
         }
 
         return await registrationServices.createProfile(profileData);
-    }
+    })
 
-    loginUser= async(credential:string , pin:string)=>{
+    loginUser= proxyLogging(
+        "RegistrationProxy",
+        "loginUser",
+        async(credential:string , pin:string)=>{
         const profile= await registrationRepository.findProfileByCredential(credential);
         
         if(!profile){
-            logger.error(`Profile doesnot exist.`);
+            logger.error(`  Profile doesnot exist.`);
             throw new AppError(404, `Profile doesnot exist.`);
         }
 
         return await registrationServices.loginUser(pin , profile)
-    }
+    })
 
     // get profile
-    getProfile= async(id:string)=>{
+    getProfile= proxyLogging(
+        "RegistrationProxy",
+        "getProfile",
+        async(id:string)=>{
         return await registrationServices.getProfile(id);
-    }
+    })
 
     // get profiles
-    getProfiles= async()=>{
+    getProfiles= proxyLogging(
+        "RegistrationProxy",
+        "getProfiles",
+        async()=>{
         return await registrationServices.getProfiles();
-    }
+    })
 }
 
 export default new RegistrationProxy();

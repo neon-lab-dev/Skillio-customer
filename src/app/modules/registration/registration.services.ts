@@ -14,6 +14,7 @@ import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
 import { ProfileType } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
+import { serviceLogging } from "../../utils/serviceLogging";
 
 class RegistraionService{
     private updateContactVerificationStatus= async(id:string , contactData: Partial<Contact>)=>{
@@ -26,7 +27,10 @@ class RegistraionService{
 
 
     // create/register a profile
-    createProfile= async(profileData:TProfile)=>{
+    createProfile= serviceLogging(
+        "RegistrationService",
+        "createProfile",
+        async(profileData:TProfile)=>{
         const {firstName , lastName , groupName , nickName , pin , profileType , contacts , address , portfolio , profileDocumentId}=profileData;
 
         const salt = await bcrypt.genSalt(10);
@@ -96,11 +100,14 @@ class RegistraionService{
         const profile= new GetRegistrationDTO(newProfile).toJSON();
 
         return profile;
-    }
+    })
 
 
     // login a user
-    loginUser= async( pin:string , profile:Profile)=>{
+    loginUser= serviceLogging(
+        "RegistrationService",
+        "loginUser",
+        async( pin:string , profile:Profile)=>{
 
         const isPinMatch= await bcrypt.compare(pin, profile.pin);
 
@@ -137,10 +144,13 @@ class RegistraionService{
             accessToken: acessToken,
             refreshToken: refreshToken
         }
-    }
+    })
 
     // get profile
-    getProfile= async(id:string)=>{
+    getProfile= serviceLogging(
+        "RegistrationService",
+        "getProfile",
+        async(id:string)=>{
         const profile= await registrationRepository.findProfileById(id);
 
         if(!profile){
@@ -188,10 +198,13 @@ class RegistraionService{
                     }
                 }
         }
-    }
+    })
 
     // get profiles
-    getProfiles= async()=>{
+    getProfiles= serviceLogging(
+        "RegistrationService",
+        "getProfiles",
+        async()=>{
         const profiles= await  registrationRepository.findAllProfiles();
 
         if(!profiles || profiles.length===0){
@@ -221,7 +234,7 @@ class RegistraionService{
         }))
 
         return shortProfiles;
-    }
+    })
 
 }
 

@@ -9,6 +9,7 @@ const logger_1 = require("../../utils/logger");
 const appError_1 = __importDefault(require("../../errors/appError"));
 const documentRepository_1 = __importDefault(require("../../repository/documentRepository"));
 const documentEnum_1 = require("../document/enums/documentEnum");
+const proxyLogging_1 = require("../../utils/proxyLogging");
 class RegistrationProxy {
     constructor() {
         this.checkExistingDocument = async (documentId, documentType) => {
@@ -18,7 +19,7 @@ class RegistrationProxy {
                 throw new appError_1.default(404, `${documentType} doesnot exist`);
             }
         };
-        this.createProfile = async (profileData) => {
+        this.createProfile = (0, proxyLogging_1.proxyLogging)("RegistrationProxy", "createProfile", async (profileData) => {
             const { nickName, contacts, profileDocumentId, portfolio } = profileData;
             const existingProfile = await registrationRepository_1.default.findProfileByCredential(nickName);
             if (existingProfile) {
@@ -39,23 +40,23 @@ class RegistrationProxy {
                 await this.checkExistingDocument(portfolio.eventsDoneDocumentId, documentEnum_1.DocumentType.EVENT);
             }
             return await registration_services_1.default.createProfile(profileData);
-        };
-        this.loginUser = async (credential, pin) => {
+        });
+        this.loginUser = (0, proxyLogging_1.proxyLogging)("RegistrationProxy", "loginUser", async (credential, pin) => {
             const profile = await registrationRepository_1.default.findProfileByCredential(credential);
             if (!profile) {
-                logger_1.logger.error(`Profile doesnot exist.`);
+                logger_1.logger.error(`  Profile doesnot exist.`);
                 throw new appError_1.default(404, `Profile doesnot exist.`);
             }
             return await registration_services_1.default.loginUser(pin, profile);
-        };
+        });
         // get profile
-        this.getProfile = async (id) => {
+        this.getProfile = (0, proxyLogging_1.proxyLogging)("RegistrationProxy", "getProfile", async (id) => {
             return await registration_services_1.default.getProfile(id);
-        };
+        });
         // get profiles
-        this.getProfiles = async () => {
+        this.getProfiles = (0, proxyLogging_1.proxyLogging)("RegistrationProxy", "getProfiles", async () => {
             return await registration_services_1.default.getProfiles();
-        };
+        });
     }
 }
 exports.default = new RegistrationProxy();

@@ -15,6 +15,7 @@ const appError_1 = __importDefault(require("../../errors/appError"));
 const documentEnum_1 = require("../document/enums/documentEnum");
 const registrationEnum_1 = require("./enums/registrationEnum");
 const getFullName_1 = require("./utils/getFullName");
+const serviceLogging_1 = require("../../utils/serviceLogging");
 class RegistraionService {
     constructor() {
         this.updateContactVerificationStatus = async (id, contactData) => {
@@ -24,7 +25,7 @@ class RegistraionService {
             await documentRepository_1.default.updateDocument(id, documentData);
         };
         // create/register a profile
-        this.createProfile = async (profileData) => {
+        this.createProfile = (0, serviceLogging_1.serviceLogging)("RegistrationService", "createProfile", async (profileData) => {
             const { firstName, lastName, groupName, nickName, pin, profileType, contacts, address, portfolio, profileDocumentId } = profileData;
             const salt = await bcrypt_1.default.genSalt(10);
             const hashedPin = await bcrypt_1.default.hash(pin, salt);
@@ -86,9 +87,9 @@ class RegistraionService {
             }
             const profile = new registration_dto_1.GetRegistrationDTO(newProfile).toJSON();
             return profile;
-        };
+        });
         // login a user
-        this.loginUser = async (pin, profile) => {
+        this.loginUser = (0, serviceLogging_1.serviceLogging)("RegistrationService", "loginUser", async (pin, profile) => {
             const isPinMatch = await bcrypt_1.default.compare(pin, profile.pin);
             if (!isPinMatch) {
                 logger_1.logger.error(`Pin doesnot match , please try again.`);
@@ -110,9 +111,9 @@ class RegistraionService {
                 accessToken: acessToken,
                 refreshToken: refreshToken
             };
-        };
+        });
         // get profile
-        this.getProfile = async (id) => {
+        this.getProfile = (0, serviceLogging_1.serviceLogging)("RegistrationService", "getProfile", async (id) => {
             const profile = await registrationRepository_1.default.findProfileById(id);
             if (!profile) {
                 logger_1.logger.error("Profile with this Id doesnot exist");
@@ -154,9 +155,9 @@ class RegistraionService {
                     }
                 };
             }
-        };
+        });
         // get profiles
-        this.getProfiles = async () => {
+        this.getProfiles = (0, serviceLogging_1.serviceLogging)("RegistrationService", "getProfiles", async () => {
             const profiles = await registrationRepository_1.default.findAllProfiles();
             if (!profiles || profiles.length === 0) {
                 logger_1.logger.error("No profiles found");
@@ -183,7 +184,7 @@ class RegistraionService {
                 }
             }));
             return shortProfiles;
-        };
+        });
     }
 }
 exports.default = new RegistraionService();

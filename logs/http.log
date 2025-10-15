@@ -1,0 +1,235 @@
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:22:34"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:22:34"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:16"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:16"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:33"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:33"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:47"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:47"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:51"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:23:51"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:12"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:12"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:26"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:26"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:39"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:39"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:48"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:24:48"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:25:02"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:25:02"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:25:27"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:25:27"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer-service","timestamp":"2025-10-15 12:25:39"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer-service","timestamp":"2025-10-15 12:25:39"}
+{"environment":"development","level":"info","message":"Listening at port number 3000","service":"skilio-customer","timestamp":"2025-10-15 12:28:00"}
+{"environment":"development","level":"info","message":"Database connection established successfully at skilio-customer","service":"skilio-customer","timestamp":"2025-10-15 12:28:00"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:28:11"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:28:11"}
+{"level":"error","message":"Profile with this Id doesnot exist","timestamp":"2025-10-15 12:33:05"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:33:53"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:33:53"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:38:29"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:38:29"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:39:23"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:39:23"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:39:28"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:39:28"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:39:36"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:39:36"}
+{"controller":"RegistrationController.getProfile","input":{},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:39:39"}
+{"0":"R","1":"e","10":"o","11":"n","12":"C","13":"o","14":"n","15":"t","16":"r","17":"o","18":"l","19":"l","2":"g","20":"e","21":"r","22":".","23":"g","24":"e","25":"t","26":"P","27":"r","28":"o","29":"f","3":"i","30":"i","31":"l","32":"e","33":" ","34":"c","35":"o","36":"m","37":"p","38":"l","39":"e","4":"s","40":"t","41":"e","42":"d","43":" ","44":"s","45":"u","46":"c","47":"c","48":"e","49":"s","5":"t","50":"s","51":"f","52":"u","53":"l","54":"l","55":"y","6":"r","7":"a","8":"t","9":"i","controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed","responseTime":"79.07ms","status":200,"timestamp":"2025-10-15 12:39:40"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:40:25"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:40:25"}
+{"controller":"RegistrationController.getProfile","input":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:40:33"}
+{"0":"R","1":"e","10":"o","11":"n","12":"C","13":"o","14":"n","15":"t","16":"r","17":"o","18":"l","19":"l","2":"g","20":"e","21":"r","22":".","23":"g","24":"e","25":"t","26":"P","27":"r","28":"o","29":"f","3":"i","30":"i","31":"l","32":"e","33":" ","34":"c","35":"o","36":"m","37":"p","38":"l","39":"e","4":"s","40":"t","41":"e","42":"d","43":" ","44":"s","45":"u","46":"c","47":"c","48":"e","49":"s","5":"t","50":"s","51":"f","52":"u","53":"l","54":"l","55":"y","6":"r","7":"a","8":"t","9":"i","controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed","responseTime":"57.06ms","status":200,"timestamp":"2025-10-15 12:40:33"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:43:09"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:43:09"}
+{"controller":"RegistrationController.getProfile","input":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:43:12"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"68.03ms","status":200,"timestamp":"2025-10-15 12:43:12"}
+{"controller":"RegistrationController.getProfile","input":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:44:23"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"355.81ms","status":200,"timestamp":"2025-10-15 12:44:24"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:46:41"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:46:41"}
+{"controller":"RegistrationController.getProfile","input":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:46:44"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"83.71ms","status":200,"timestamp":"2025-10-15 12:46:44"}
+{"controller":"RegistrationController.getProfile","input":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:47:44"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"176.81ms","status":200,"timestamp":"2025-10-15 12:47:44"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:48:09"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:48:09"}
+{"controller":"RegistrationController.getProfile","input":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 12:48:14"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"169.00ms","status":200,"timestamp":"2025-10-15 12:48:14"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:50:40"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:50:40"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:50:58"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:50:58"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:51:06"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:51:06"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:51:19"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:51:19"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","pin":"****"},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:51:25"}
+{"level":"error","message":"Pin doesnot match , please try again.","timestamp":"2025-10-15 12:51:25"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"261.58ms","status":200,"timestamp":"2025-10-15 12:51:25"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","pin":"****"},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:51:31"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"180.88ms","status":200,"timestamp":"2025-10-15 12:51:31"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:52:49"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:52:49"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:53:06"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:53:06"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:54:05"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:54:05"}
+{"controller":"RegistrationController.loginUser","input":{"body":{"credential":"+919876543127","pin":"****"},"params":{},"qurey":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:54:10"}
+{"level":"error","message":"Pin doesnot match , please try again.","timestamp":"2025-10-15 12:54:11"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"365.88ms","status":200,"timestamp":"2025-10-15 12:54:11"}
+{"controller":"RegistrationController.loginUser","input":{"body":{"credential":"+919876543127","pin":"****"},"params":{},"qurey":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:54:16"}
+{"level":"error","message":"Pin doesnot match , please try again.","timestamp":"2025-10-15 12:54:17"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"229.18ms","status":200,"timestamp":"2025-10-15 12:54:17"}
+{"controller":"RegistrationController.loginUser","input":{"body":{"credential":"+919876543127","pin":"****"},"params":{},"qurey":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:54:23"}
+{"level":"error","message":"Pin doesnot match , please try again.","timestamp":"2025-10-15 12:54:23"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"186.35ms","status":200,"timestamp":"2025-10-15 12:54:23"}
+{"controller":"RegistrationController.loginUser","input":{"body":{"credential":"+919876543127","pin":"****"},"params":{},"qurey":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:54:58"}
+{"level":"error","message":"Pin doesnot match , please try again.","timestamp":"2025-10-15 12:54:59"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"294.30ms","status":200,"timestamp":"2025-10-15 12:54:59"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:55:42"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:55:42"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","pin":"****"},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:55:45"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"187.61ms","status":200,"timestamp":"2025-10-15 12:55:45"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:57:07"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:57:07"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:57:21"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:57:21"}
+{"controller":"RegistrationController.loginUser","input":{"body":{"credential":"+919876543127","pin":"****"}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:57:23"}
+{"level":"error","message":"Pin doesnot match , please try again.","timestamp":"2025-10-15 12:57:23"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"256.83ms","status":200,"timestamp":"2025-10-15 12:57:23"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:58:25"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:58:25"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:58:29"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:58:29"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","pin":"****"},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:58:42"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"431.78ms","status":200,"timestamp":"2025-10-15 12:58:43"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 12:59:10"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 12:59:10"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"pin":"****","query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 12:59:18"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"209.86ms","status":200,"timestamp":"2025-10-15 12:59:18"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:34:20"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:34:20"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:35:20"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:35:20"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 13:35:28"}
+{"input":["2fe16619-b0fc-45c6-aa80-11aa328dff09"],"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-15 13:35:28"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"126.26ms","service":"RegistrationService","timestamp":"2025-10-15 13:35:28"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"145.12ms","status":200,"timestamp":"2025-10-15 13:35:28"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:46:17"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:46:17"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:46:35"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:46:35"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:46:53"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:46:53"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:50:24"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:50:24"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 13:53:44"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 13:53:44"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 13:53:51"}
+{"input":["2fe16619-b0fc-45c6-aa80-11aa328dff09"],"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-15 13:53:51"}
+{"input":["2fe16619-b0fc-45c6-aa80-11aa328dff09"],"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-15 13:53:51"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"92.86ms","service":"RegistrationService","timestamp":"2025-10-15 13:53:51"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"100.19ms","timestamp":"2025-10-15 13:53:51"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"111.59ms","status":200,"timestamp":"2025-10-15 13:53:51"}
+{"controller":"RegistrationController.createProfile","input":{"address":{"city":"Kathmandu","country":"India","location":{"latitude":27.7172,"longitude":85.324},"pinCode":323433,"state":"Bagmati","streetAddress":"Baneshwor Road"},"contacts":[{"type":"PHONE","value":"+919876543113","verificationId":"137793d3-14eb-4c18-9fbc-8f3cf78b7b25"},{"type":"EMAIL","value":"doe13@gmail.com","verificationId":"137793d3-14eb-4c18-9fbc-8f3cf78b7b25"}],"firstName":"john","groupName":"","lastName":"doee","nickName":"doe13","params":{},"pin":"****","portfolio":{"bio":"I have been performing for over 5 years in local events and studios.","category":"Music","eventsDoneDocumentId":"551f8eb8-bcc9-435b-96d6-67cab62f8703","imageDocumentId":"fffdf949-11d7-47d0-8ae5-2c311f532fbe","proficiency":"PROFESSIONAL","subCategory":"Guitarist","totalEvents":25,"videoDocumentId":"3e61a5fa-6d91-431c-b078-b70b9cea234c"},"profileDocumentId":"b6890f46-703b-47b8-b7be-f09563db1549","profileType":"INDIVIDUAL","query":{}},"layer":"controller","level":"info","message":"RegistrationController.createProfile started","timestamp":"2025-10-15 13:54:39"}
+{"input":[{"address":{"city":"Kathmandu","country":"India","location":{"latitude":27.7172,"longitude":85.324},"pinCode":323433,"state":"Bagmati","streetAddress":"Baneshwor Road"},"contacts":[{"isVerified":false,"primary":true,"type":"PHONE","value":"+919876543113","verificationId":"137793d3-14eb-4c18-9fbc-8f3cf78b7b25"},{"isVerified":false,"primary":true,"type":"EMAIL","value":"doe13@gmail.com","verificationId":"137793d3-14eb-4c18-9fbc-8f3cf78b7b25"}],"firstName":"john","groupName":"","lastName":"doee","nickName":"doe13","pin":"****","portfolio":{"bio":"I have been performing for over 5 years in local events and studios.","category":"Music","eventsDoneDocumentId":"551f8eb8-bcc9-435b-96d6-67cab62f8703","imageDocumentId":"fffdf949-11d7-47d0-8ae5-2c311f532fbe","proficiency":"PROFESSIONAL","subCategory":"Guitarist","totalEvents":25,"videoDocumentId":"3e61a5fa-6d91-431c-b078-b70b9cea234c"},"profileDocumentId":"b6890f46-703b-47b8-b7be-f09563db1549","profileType":"INDIVIDUAL"}],"layer":"proxy","level":"info","message":"RegistrationProxy.createProfile started","method":"createProfile","proxy":"RegistrationProxy","timestamp":"2025-10-15 13:54:39"}
+{"input":[{"address":{"city":"Kathmandu","country":"India","location":{"latitude":27.7172,"longitude":85.324},"pinCode":323433,"state":"Bagmati","streetAddress":"Baneshwor Road"},"contacts":[{"isVerified":false,"primary":true,"type":"PHONE","value":"+919876543113","verificationId":"137793d3-14eb-4c18-9fbc-8f3cf78b7b25"},{"isVerified":false,"primary":true,"type":"EMAIL","value":"doe13@gmail.com","verificationId":"137793d3-14eb-4c18-9fbc-8f3cf78b7b25"}],"firstName":"john","groupName":"","lastName":"doee","nickName":"doe13","pin":"****","portfolio":{"bio":"I have been performing for over 5 years in local events and studios.","category":"Music","eventsDoneDocumentId":"551f8eb8-bcc9-435b-96d6-67cab62f8703","imageDocumentId":"fffdf949-11d7-47d0-8ae5-2c311f532fbe","proficiency":"PROFESSIONAL","subCategory":"Guitarist","totalEvents":25,"videoDocumentId":"3e61a5fa-6d91-431c-b078-b70b9cea234c"},"profileDocumentId":"b6890f46-703b-47b8-b7be-f09563db1549","profileType":"INDIVIDUAL"}],"layer":"service","level":"info","message":"RegistrationService.createProfile started","method":"createProfile","service":"RegistrationService","timestamp":"2025-10-15 13:54:39"}
+{"layer":"service","level":"info","message":"RegistrationService.createProfile completed successfully","method":"createProfile","responseTime":"302.47ms","service":"RegistrationService","timestamp":"2025-10-15 13:54:40"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.createProfile completed successfully","method":"createProfile","proxy":"RegistrationProxy","responseTime":"544.66ms","timestamp":"2025-10-15 13:54:40"}
+{"controller":"RegistrationController.createProfile","layer":"controller","level":"info","message":"RegistrationController.createProfile completed successfully","responseTime":"551.25ms","status":200,"timestamp":"2025-10-15 13:54:40"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"pin":"****","query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 14:01:52"}
+{"input":["+919876543127","1234"],"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:01:52"}
+{"input":["1234",{"contacts":[{"createdAt":"2025-10-10T09:35:13.166Z","id":"11d96603-8cb9-4ead-9c1e-d2bc40b6c910","isVerified":true,"primary":true,"profileId":"41cb3737-4f5a-4160-9372-d4f1dca430bd","type":"PHONE","updatedAt":"2025-10-10T09:35:13.166Z","value":"+919876543127"}],"createdAt":"2025-10-10T09:35:13.166Z","firstName":"john","groupName":"","id":"41cb3737-4f5a-4160-9372-d4f1dca430bd","isSubscribed":false,"lastName":"doee","nickName":"doe7","pin":"****","profileType":"INDIVIDUAL","status":"REQUESTED","updatedAt":"2025-10-10T09:35:13.166Z"}],"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-15 14:01:52"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"93.58ms","service":"RegistrationService","timestamp":"2025-10-15 14:01:52"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"189.81ms","timestamp":"2025-10-15 14:01:52"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"194.38ms","status":200,"timestamp":"2025-10-15 14:01:52"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:05:53"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:05:53"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:06:13"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:06:13"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:07:08"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:07:08"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:07:22"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:07:22"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:08:09"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:08:09"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:08:16"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:08:16"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:08:23"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:08:23"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 14:08:25"}
+{"input":["+919876543127","1234"],"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:08:25"}
+{"input":["1234",{"contacts":[{"createdAt":"2025-10-10T09:35:13.166Z","id":"11d96603-8cb9-4ead-9c1e-d2bc40b6c910","isVerified":true,"primary":true,"profileId":"41cb3737-4f5a-4160-9372-d4f1dca430bd","type":"PHONE","updatedAt":"2025-10-10T09:35:13.166Z","value":"+919876543127"}],"createdAt":"2025-10-10T09:35:13.166Z","firstName":"john","groupName":"","id":"41cb3737-4f5a-4160-9372-d4f1dca430bd","isSubscribed":false,"lastName":"doee","nickName":"doe7","profileType":"INDIVIDUAL","status":"REQUESTED","updatedAt":"2025-10-10T09:35:13.166Z"}],"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-15 14:08:25"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"99.18ms","service":"RegistrationService","timestamp":"2025-10-15 14:08:25"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"129.23ms","timestamp":"2025-10-15 14:08:25"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"139.03ms","status":200,"timestamp":"2025-10-15 14:08:25"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:08:42"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:08:42"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:13:42"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:13:42"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:13:53"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:13:53"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:14:04"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:14:04"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 14:15:14"}
+{"input":{"0":"+919876543127","1":"1234"},"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:15:14"}
+{"input":{"0":"1234","1":{"contacts":[{"createdAt":"2025-10-10T09:35:13.166Z","id":"11d96603-8cb9-4ead-9c1e-d2bc40b6c910","isVerified":true,"primary":true,"profileId":"41cb3737-4f5a-4160-9372-d4f1dca430bd","type":"PHONE","updatedAt":"2025-10-10T09:35:13.166Z","value":"+919876543127"}],"createdAt":"2025-10-10T09:35:13.166Z","firstName":"john","groupName":"","id":"41cb3737-4f5a-4160-9372-d4f1dca430bd","isSubscribed":false,"lastName":"doee","nickName":"doe7","pin":"$2b$10$1bFYnrO.3vNELlBslfRukOBpymdVJ3PHSHZlObL8el//7G.l5FZre","profileType":"INDIVIDUAL","status":"REQUESTED","updatedAt":"2025-10-10T09:35:13.166Z"}},"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-15 14:15:14"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"104.90ms","service":"RegistrationService","timestamp":"2025-10-15 14:15:14"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"399.41ms","timestamp":"2025-10-15 14:15:14"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"410.84ms","status":200,"timestamp":"2025-10-15 14:15:14"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:15:46"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:15:46"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:15:51"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:15:51"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:17:01"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:17:01"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:17:08"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:17:08"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 14:17:13"}
+{"input":["+919876543127","1234"],"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:17:13"}
+{"input":["1234",{"contacts":[{"createdAt":"2025-10-10T09:35:13.166Z","id":"11d96603-8cb9-4ead-9c1e-d2bc40b6c910","isVerified":true,"primary":true,"profileId":"41cb3737-4f5a-4160-9372-d4f1dca430bd","type":"PHONE","updatedAt":"2025-10-10T09:35:13.166Z","value":"+919876543127"}],"createdAt":"2025-10-10T09:35:13.166Z","firstName":"john","groupName":"","id":"41cb3737-4f5a-4160-9372-d4f1dca430bd","isSubscribed":false,"lastName":"doee","nickName":"doe7","profileType":"INDIVIDUAL","status":"REQUESTED","updatedAt":"2025-10-10T09:35:13.166Z"}],"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-15 14:17:13"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"156.95ms","service":"RegistrationService","timestamp":"2025-10-15 14:17:13"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"206.63ms","timestamp":"2025-10-15 14:17:13"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"236.97ms","status":200,"timestamp":"2025-10-15 14:17:13"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:22:05"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:22:05"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:25:18"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:25:18"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 14:25:31"}
+{"input":["+919876543127","1234"],"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:25:31"}
+{"input":["1234",{"contacts":[{"createdAt":"2025-10-10T09:35:13.166Z","id":"11d96603-8cb9-4ead-9c1e-d2bc40b6c910","isVerified":true,"primary":true,"profileId":"41cb3737-4f5a-4160-9372-d4f1dca430bd","type":"PHONE","updatedAt":"2025-10-10T09:35:13.166Z","value":"+919876543127"}],"createdAt":"2025-10-10T09:35:13.166Z","firstName":"john","groupName":"","id":"41cb3737-4f5a-4160-9372-d4f1dca430bd","isSubscribed":false,"lastName":"doee","nickName":"doe7","profileType":"INDIVIDUAL","status":"REQUESTED","updatedAt":"2025-10-10T09:35:13.166Z"}],"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-15 14:25:31"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"144.58ms","service":"RegistrationService","timestamp":"2025-10-15 14:25:31"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"480.31ms","timestamp":"2025-10-15 14:25:31"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"527.77ms","status":200,"timestamp":"2025-10-15 14:25:31"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:26:42"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:26:42"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:26:52"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:26:52"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:26:59"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:26:59"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:27:20"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:27:20"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-15 14:27:34"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-15 14:27:34"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"+919876543127","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-15 14:27:37"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:27:37"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-15 14:27:37"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"115.26ms","service":"RegistrationService","timestamp":"2025-10-15 14:27:37"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"146.03ms","timestamp":"2025-10-15 14:27:37"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"159.48ms","status":200,"timestamp":"2025-10-15 14:27:37"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-15 14:28:42"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:28:42"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-15 14:28:42"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"177.22ms","service":"RegistrationService","timestamp":"2025-10-15 14:28:42"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"186.36ms","timestamp":"2025-10-15 14:28:42"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"193.92ms","status":200,"timestamp":"2025-10-15 14:28:42"}
+{"controller":"RegistrationController.getProfiles","input":{"params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfiles started","timestamp":"2025-10-15 14:31:23"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfiles started","method":"getProfiles","proxy":"RegistrationProxy","timestamp":"2025-10-15 14:31:23"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfiles started","method":"getProfiles","service":"RegistrationService","timestamp":"2025-10-15 14:31:23"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfiles completed successfully","method":"getProfiles","responseTime":"492.20ms","service":"RegistrationService","timestamp":"2025-10-15 14:31:23"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfiles completed successfully","method":"getProfiles","proxy":"RegistrationProxy","responseTime":"494.57ms","timestamp":"2025-10-15 14:31:23"}
+{"controller":"RegistrationController.getProfiles","layer":"controller","level":"info","message":"RegistrationController.getProfiles completed successfully","responseTime":"497.78ms","status":200,"timestamp":"2025-10-15 14:31:23"}
