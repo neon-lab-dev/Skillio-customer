@@ -40,9 +40,14 @@ class RegistrationRepository {
             });
         };
         // find all profiles
-        this.findAllProfiles = async () => {
+        this.findAllProfiles = async (page, limit) => {
+            const profilesLimit = parseInt(limit) || 10;
+            const profilesPage = parseInt(page) || 1;
+            const skip = (profilesPage - 1) * profilesLimit;
             return await this.profileRepository.find({
-                relations: ["contacts", "address", "portfolio"]
+                relations: ["contacts", "address", "portfolio"],
+                take: profilesLimit,
+                skip: skip
             });
         };
         // find contact by value

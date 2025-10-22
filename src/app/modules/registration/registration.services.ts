@@ -155,7 +155,7 @@ class RegistraionService{
 
         if(!profile){
             logger.error("Profile with this Id doesnot exist");
-            throw new AppError(404, "Profile doesnot exist");
+            throw new AppError(404, "Profile does not exist");
         }
 
         const fetchedProfile= new GetProfileDTO(profile).toJSON();
@@ -166,7 +166,8 @@ class RegistraionService{
         if(fetchedProfile.profileType===ProfileType.INDIVIDUAL){
             const name= getFullName(fetchedProfile.firstName as string, fetchedProfile.lastName as string);
             
-                return {
+                if(fetchedProfile.isSubscribed){
+                    return {
                     name: name,
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
@@ -178,11 +179,22 @@ class RegistraionService{
                         lastName: profile.lastName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
                         email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
+                        } 
                     } 
-                } 
+                }else{
+                    return{
+                    name: name,
+                    nickName: fetchedProfile.nickName,
+                    portfolioId: fetchedProfile.portfolio.id,
+                    bio: fetchedProfile.portfolio.bio || "",
+                    isSubscribed:  fetchedProfile.isSubscribed,
+                    profilePictureId: profilePhotoId,
+                    }
+                }
             }
         else{
-                return{
+                if(fetchedProfile.isSubscribed){
+                    return{
                     profile:{
                         groupName: fetchedProfile.groupName,
                         nickName: fetchedProfile.nickName,
@@ -195,6 +207,18 @@ class RegistraionService{
                         groupName: profile.groupName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
                         email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
+                        }
+                    }
+                }else{
+                    return{
+                    profile:{
+                        groupName: fetchedProfile.groupName,
+                        nickName: fetchedProfile.nickName,
+                        portfolioId: fetchedProfile.portfolio.id,
+                        bio: fetchedProfile.portfolio.bio || "",
+                        isSubscribed: fetchedProfile.isSubscribed
+                        },
+                    profilePictureId: profilePhotoId
                     }
                 }
         }
@@ -204,13 +228,8 @@ class RegistraionService{
     getProfiles= serviceLogging(
         "RegistrationService",
         "getProfiles",
-        async()=>{
-        const profiles= await  registrationRepository.findAllProfiles();
-
-        if(!profiles || profiles.length===0){
-            logger.error("No profiles found");
-            throw new AppError(404, "No profiles found");
-        }
+        async(page: string , limit: string)=>{
+        const profiles= await  registrationRepository.findAllProfiles(page , limit);
 
         const fetchedProfiles= profiles.map(profile=> new GetProfileDTO(profile).toJSON());
 

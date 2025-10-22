@@ -59,9 +59,15 @@ class RegistrationRepository{
     }
 
     // find all profiles
-    findAllProfiles= async()=>{
+    findAllProfiles= async(page: string , limit:string)=>{
+        const profilesLimit= parseInt(limit) || 10;
+        const profilesPage= parseInt(page) || 1;
+        const skip= (profilesPage - 1) * profilesLimit;
+
         return await this.profileRepository.find({
-            relations:["contacts" , "address" , "portfolio"]
+            relations:["contacts" , "address" , "portfolio"],
+            take: profilesLimit,
+            skip: skip
         });
     }
 

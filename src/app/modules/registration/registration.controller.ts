@@ -62,7 +62,10 @@ class RegistrationController{
     getProfiles= controllerLogging(
         "RegistrationController.getProfiles",
         catchAsyncError(async(req:Request , res:Response)=>{
-        const result= await registrationProxy.getProfiles();
+        const page= req.query.page as string;
+        const limit= req.query.limit as string;
+
+        const result= await registrationProxy.getProfiles(page , limit);
         return sendResponse(res , {
             statusCode: 200,
             success: true,

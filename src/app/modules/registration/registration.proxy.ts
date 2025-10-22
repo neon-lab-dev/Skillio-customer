@@ -80,8 +80,8 @@ class RegistrationProxy{
     getProfiles= proxyLogging(
         "RegistrationProxy",
         "getProfiles",
-        async()=>{
-        return await registrationServices.getProfiles();
+        async(page:string , limit: string)=>{
+        return await registrationServices.getProfiles(page , limit);
     })
 }
 

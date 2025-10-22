@@ -45,7 +45,9 @@ class RegistrationController {
         }));
         // get profiles
         this.getProfiles = (0, controllerLogging_1.controllerLogging)("RegistrationController.getProfiles", (0, catchAsyncError_1.default)(async (req, res) => {
-            const result = await registration_proxy_1.default.getProfiles();
+            const page = req.query.page;
+            const limit = req.query.limit;
+            const result = await registration_proxy_1.default.getProfiles(page, limit);
             return (0, sendResponse_1.default)(res, {
                 statusCode: 200,
                 success: true,

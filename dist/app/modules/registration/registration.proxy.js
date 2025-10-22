@@ -54,8 +54,8 @@ class RegistrationProxy {
             return await registration_services_1.default.getProfile(id);
         });
         // get profiles
-        this.getProfiles = (0, proxyLogging_1.proxyLogging)("RegistrationProxy", "getProfiles", async () => {
-            return await registration_services_1.default.getProfiles();
+        this.getProfiles = (0, proxyLogging_1.proxyLogging)("RegistrationProxy", "getProfiles", async (page, limit) => {
+            return await registration_services_1.default.getProfiles(page, limit);
         });
     }
 }
