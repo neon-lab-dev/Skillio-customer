@@ -22,6 +22,23 @@ class DocumentRepository {
                 }
             });
         };
+        // find by id and documen type
+        this.findByIdAndType = async (id, type) => {
+            return await this.documentRepository.findOneBy({
+                id,
+                type
+            });
+        };
+        // find one by portfolioId and type
+        this.findDocumentIdByPortfolioIdAndType = async (portfolioId, type) => {
+            return await this.documentRepository.findOne({
+                where: {
+                    portfolioId,
+                    type
+                },
+                select: ["id"]
+            });
+        };
         // update a document
         this.updateDocument = async (id, updateData) => {
             return await this.documentRepository.update(id, updateData);

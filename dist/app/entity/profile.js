@@ -48,6 +48,10 @@ __decorate([
     __metadata("design:type", String)
 ], Profile.prototype, "profileType", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: "boolean", default: false }),
+    __metadata("design:type", Boolean)
+], Profile.prototype, "isSubscribed", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => contact_1.Contact, contact => contact.profile, {
         cascade: true,
     }),
