@@ -3,13 +3,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import config from "./app/config";
 import cookieParser from "cookie-parser";
-import { AppDataSource } from "./app/db/dataSource";
 import router from "./app/routes";
 import notFoundHandler from "./app/middlewares/notFoundHandler";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
-import { logger } from "./app/utils/logger";
-import systemConfigStore from "./app/config/systemConfigStore";
-import NotificationProviderFactory from "./app/providers/NotificationProviderFactory";
 
 const app = express();
 
@@ -46,21 +42,5 @@ app.use("/api", router);
 app.use(notFoundHandler);
 
 app.use(globalErrorHandler)
-
-
-AppDataSource.initialize()
-  .then(async () => {
-    await systemConfigStore.loadConfigs();
-    NotificationProviderFactory.initializeProviders();
-
-    app.listen(config.port, () => {
-      logger.info(`Listening at port number ${config.port}`);
-      logger.info(`Database connection established successfully at ${config.db_databse_development}`);
-    }); 
-  })
-  .catch((error) => {
-    logger.error("Database connection error", error);
-  });
-
 
 export default app;

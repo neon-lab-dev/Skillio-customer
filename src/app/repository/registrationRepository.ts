@@ -54,7 +54,7 @@ class RegistrationRepository{
     findProfileById= async(id:string)=>{
         return await this.profileRepository.findOne({
             where:{id},
-            relations:["contacts" , "address" , "portfolio"]
+            relations:["contacts" , "address" , "portfolio" , "online"]
         });
     }
 

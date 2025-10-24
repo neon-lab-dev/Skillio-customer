@@ -1,4 +1,4 @@
-import { ProfileType, contactType, proficiecy } from "./enums/registrationEnum";
+import { ProfileType, contactType, onlineStatus, proficiecy } from "./enums/registrationEnum";
 import { Location } from "./interface/registration.interface";
 
 // Contact DTO
@@ -363,6 +363,10 @@ export class GetProfileDTO{
   portfolio: GetProfilePortfolioDTO;
   contacts: GetContactDTO[];
   isSubscribed: boolean;
+  online?:{
+    status: onlineStatus;
+    lastSeen: Date | null;
+  }
 
   constructor(data:{
     firstName?: string;
@@ -378,6 +382,10 @@ export class GetProfileDTO{
     portfolio:{
       id:string;
       bio?: string;
+    };
+    online?:{
+      status: onlineStatus;
+      lastSeen: Date | null;
     }
   }){
     this.firstName=data.firstName;
@@ -391,6 +399,10 @@ export class GetProfileDTO{
       id: data.portfolio.id,
       bio: data.portfolio.bio || ""
     })
+    this.online=data.online?{
+      status: data.online.status,
+      lastSeen: data.online.lastSeen
+    } : undefined;
   }
 
   toJSON(){
@@ -402,7 +414,8 @@ export class GetProfileDTO{
       profileType: this.profileType,
       isSubscribed: this.isSubscribed,
       contacts: this.contacts.map(contact=>contact.toJSON()),
-      portfolio: this.portfolio.toJSON()
+      portfolio: this.portfolio.toJSON(),
+      online: this.online
     }
   }
 }

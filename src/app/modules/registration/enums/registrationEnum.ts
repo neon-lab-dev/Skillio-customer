@@ -17,3 +17,8 @@ export enum profileStatus{
     CREATED="CREATED",
     REQUESTED="REQUESTED"
 }
+
+export enum onlineStatus{
+    ONLINE="ONLINE",
+    OFFLINE="OFFLINE"
+}
