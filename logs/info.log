@@ -367,3 +367,331 @@
 {"layer":"service","level":"info","message":"RegistrationService.getProfiles completed successfully","method":"getProfiles","responseTime":"145.56ms","service":"RegistrationService","timestamp":"2025-10-22 15:31:42"}
 {"layer":"proxy","level":"info","message":"RegistrationProxy.getProfiles completed successfully","method":"getProfiles","proxy":"RegistrationProxy","responseTime":"147.95ms","timestamp":"2025-10-22 15:31:42"}
 {"controller":"RegistrationController.getProfiles","layer":"controller","level":"info","message":"RegistrationController.getProfiles completed successfully","responseTime":"153.79ms","status":200,"timestamp":"2025-10-22 15:31:42"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-23 15:53:15"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-23 15:53:15"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-23 16:28:52"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-23 16:28:52"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-23 16:28:52"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 10:40:02"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 10:40:02"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 10:40:02"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:05:58"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:05:58"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:05:58"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:09:53"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:09:53"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:09:53"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:29:45"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:29:45"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:29:45"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:29:58"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:29:58"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:29:58"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:30:54"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:30:54"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:30:54"}
+{"level":"error","message":"Database connection error BaseEntity is not defined","stack":"ReferenceError: BaseEntity is not defined\n    at Object.<anonymous> (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\entity\\online.ts:7:8)\n    at Module.<anonymous> (node:internal/modules/cjs/loader:1730:14)\n    at Module._compile (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\source-map-support\\source-map-support.js:568:25)\n    at Module.m._compile (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:69:33)\n    at node:internal/modules/cjs/loader:1895:10\n    at require.extensions..jsx.require.extensions..js (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:114:20)\n    at require.extensions.<computed> (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:71:20)\n    at Object.nodeDevHook [as .ts] (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\ts-node-dev\\lib\\hook.js:63:13)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)","timestamp":"2025-10-24 11:36:33"}
+{"level":"error","message":"Database connection error Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.","stack":"MissingPrimaryColumnError: Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.\n    at EntityMetadataValidator.validate (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:59:19)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:43:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataValidator.validateMany (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:42:25)\n    at DataSource.buildMetadatas (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:753:33)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:264:13)","timestamp":"2025-10-24 11:36:39"}
+{"level":"error","message":"Database connection error Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.","stack":"MissingPrimaryColumnError: Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.\n    at EntityMetadataValidator.validate (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:59:19)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:43:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataValidator.validateMany (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:42:25)\n    at DataSource.buildMetadatas (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:753:33)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:264:13)","timestamp":"2025-10-24 11:37:01"}
+{"level":"error","message":"Database connection error Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.","stack":"MissingPrimaryColumnError: Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.\n    at EntityMetadataValidator.validate (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:59:19)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:43:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataValidator.validateMany (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:42:25)\n    at DataSource.buildMetadatas (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:753:33)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:264:13)","timestamp":"2025-10-24 11:37:12"}
+{"level":"error","message":"Database connection error Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.","stack":"MissingPrimaryColumnError: Entity \"Online\" does not have a primary column. Primary column is required to have in all your entities. Use @PrimaryColumn decorator to add a primary column to your entity.\n    at EntityMetadataValidator.validate (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:59:19)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:43:18\n    at Array.forEach (<anonymous>)\n    at EntityMetadataValidator.validateMany (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\metadata-builder\\EntityMetadataValidator.ts:42:25)\n    at DataSource.buildMetadatas (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:753:33)\n    at DataSource.initialize (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\data-source\\DataSource.ts:264:13)","timestamp":"2025-10-24 11:39:05"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:39:38"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:39:38"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:39:38"}
+{"level":"error","message":"Database connection error ⨯ Unable to compile TypeScript:\nsrc/app/entity/online.ts(1,50): error TS1005: ',' expected.\r\n","stack":"Error: ⨯ Unable to compile TypeScript:\nsrc/app/entity/online.ts(1,50): error TS1005: ',' expected.\r\n\n    at Object.<anonymous> (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\entity\\online.ts:1:7)\n    at Module.<anonymous> (node:internal/modules/cjs/loader:1730:14)\n    at Module._compile (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\source-map-support\\source-map-support.js:568:25)\n    at Module.m._compile (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:69:33)\n    at node:internal/modules/cjs/loader:1895:10\n    at require.extensions..jsx.require.extensions..js (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:114:20)\n    at require.extensions.<computed> (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:71:20)\n    at Object.nodeDevHook [as .ts] (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\ts-node-dev\\lib\\hook.js:63:13)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)","timestamp":"2025-10-24 11:39:49"}
+{"level":"error","message":"Database connection error ⨯ Unable to compile TypeScript:\nsrc/app/entity/online.ts(8,42): error TS1002: Unterminated string literal.\r\nsrc/app/entity/online.ts(9,5): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(9,16): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(11,5): error TS1136: Property assignment expected.\r\nsrc/app/entity/online.ts(11,79): error TS1109: Expression expected.\r\nsrc/app/entity/online.ts(12,5): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(12,12): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(12,26): error TS1005: ')' expected.\r\n","stack":"Error: ⨯ Unable to compile TypeScript:\nsrc/app/entity/online.ts(8,42): error TS1002: Unterminated string literal.\r\nsrc/app/entity/online.ts(9,5): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(9,16): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(11,5): error TS1136: Property assignment expected.\r\nsrc/app/entity/online.ts(11,79): error TS1109: Expression expected.\r\nsrc/app/entity/online.ts(12,5): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(12,12): error TS1005: ',' expected.\r\nsrc/app/entity/online.ts(12,26): error TS1005: ')' expected.\r\n\n    at Object.<anonymous> (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\entity\\online.ts:1:7)\n    at Module.<anonymous> (node:internal/modules/cjs/loader:1730:14)\n    at Module._compile (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\source-map-support\\source-map-support.js:568:25)\n    at Module.m._compile (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:69:33)\n    at node:internal/modules/cjs/loader:1895:10\n    at require.extensions..jsx.require.extensions..js (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:114:20)\n    at require.extensions.<computed> (C:\\Users\\ROSHAN~1\\AppData\\Local\\Temp\\ts-node-dev-hook-5021721880444727.js:71:20)\n    at Object.nodeDevHook [as .ts] (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\ts-node-dev\\lib\\hook.js:63:13)\n    at Module.load (node:internal/modules/cjs/loader:1465:32)\n    at Function._load (node:internal/modules/cjs/loader:1282:12)","timestamp":"2025-10-24 11:39:59"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:40:14"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:40:14"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:40:14"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:41:15"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:41:15"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:41:15"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:41:25"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:41:25"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:41:25"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 11:48:18"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 11:48:18"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 11:48:18"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 12:05:09"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 12:05:09"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 12:05:09"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:20:49"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:20:49"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:20:49"}
+{"level":"info","message":"Socket connected: SEwASW7vECqBE-BJAAAB","timestamp":"2025-10-24 13:26:27"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 13:28:46"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 13:28:46"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 13:28:46"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"287.68ms","service":"RegistrationService","timestamp":"2025-10-24 13:28:47"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"294.30ms","timestamp":"2025-10-24 13:28:47"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"311.84ms","status":200,"timestamp":"2025-10-24 13:28:47"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:30:40"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:30:40"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:30:40"}
+{"level":"info","message":"Socket connected: 3KFotu1kXTm6AjrAAAAB","timestamp":"2025-10-24 13:30:44"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:31:50"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:31:50"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:31:50"}
+{"level":"info","message":"Socket connected: 7GNW4r1RMwRRzdfsAAAB","timestamp":"2025-10-24 13:31:52"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:33:49"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:33:49"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:33:49"}
+{"level":"info","message":"Socket connected: SMTMHxMoJyygjbmyAAAB","timestamp":"2025-10-24 13:33:51"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:34:13"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:34:13"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:34:13"}
+{"level":"info","message":"Socket connected: iW-tKUcZQ4EYLz55AAAB","timestamp":"2025-10-24 13:34:15"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:48:05"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:48:05"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:48:05"}
+{"level":"info","message":"Socket connected: Q30xMzHMEEVAjm52AAAB","timestamp":"2025-10-24 13:48:52"}
+{"level":"info","message":"hello","timestamp":"2025-10-24 13:48:52"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 13:48:52"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:49:24"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:49:24"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:49:24"}
+{"level":"info","message":"Socket connected: M9TKr7mMOadEvJIEAAAB","timestamp":"2025-10-24 13:49:27"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 13:49:27"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 13:49:53"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 13:49:53"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 13:49:53"}
+{"level":"info","message":"Socket connected: -Y5z1gRkowkaue5UAAAB","timestamp":"2025-10-24 13:49:57"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 13:49:57"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now offline","timestamp":"2025-10-24 13:58:23"}
+{"level":"info","message":"Socket connected: zfOLr9wIe_DWYNSmAAAD","timestamp":"2025-10-24 13:58:50"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 13:58:50"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:05:29"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:05:29"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:05:29"}
+{"level":"info","message":"Socket connected: 6qbseK2o1178AbXtAAAB","timestamp":"2025-10-24 14:05:31"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:05:31"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:05:40"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:05:40"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:05:40"}
+{"level":"info","message":"Socket connected: QyoRiSJNXG0kVcQhAAAB","timestamp":"2025-10-24 14:05:44"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:05:44"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:05:48"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:05:48"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:05:48"}
+{"level":"info","message":"Socket connected: XsGT_evvnD2EF_FTAAAB","timestamp":"2025-10-24 14:05:52"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:05:52"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:06:39"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:06:39"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:06:39"}
+{"level":"info","message":"Socket connected: t4xiMN1dLnUMLzyoAAAB","timestamp":"2025-10-24 14:06:41"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:06:41"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:06:59"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:06:59"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:06:59"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:07:04"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:07:04"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:07:04"}
+{"level":"info","message":"Socket connected: IWdLLKbwJCk5LOuOAAAB","timestamp":"2025-10-24 14:07:06"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:07:06"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:08:09"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:08:09"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:08:09"}
+{"level":"info","message":"Socket connected: dGUUmank7pWI0D_AAAAB","timestamp":"2025-10-24 14:08:10"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:08:10"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:08:35"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:08:35"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:08:35"}
+{"level":"info","message":"Socket connected: -eGqkNDD-apCt7J5AAAB","timestamp":"2025-10-24 14:08:35"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:08:35"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:09:14"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:09:14"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:09:14"}
+{"level":"info","message":"Socket connected: gXFcEsauORy983uaAAAB","timestamp":"2025-10-24 14:09:18"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:09:18"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:09:22"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:09:22"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:09:22"}
+{"level":"info","message":"Socket connected: wBukNnmMuPY2d2paAAAB","timestamp":"2025-10-24 14:09:24"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:09:24"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:09:28"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:09:28"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:09:28"}
+{"level":"info","message":"Socket connected: kxCCgTN3cS4vI_bwAAAB","timestamp":"2025-10-24 14:09:32"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:09:32"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:11:32"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:11:32"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:11:32"}
+{"level":"info","message":"Socket connected: DTHx8J4GWV8cJfteAAAB","timestamp":"2025-10-24 14:11:33"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:11:33"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:11:56"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:11:56"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:11:56"}
+{"level":"info","message":"Socket connected: JaRONDkr0LZPqCLRAAAB","timestamp":"2025-10-24 14:11:59"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:11:59"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:17:57"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:17:57"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:17:57"}
+{"level":"info","message":"Socket connected: IZ72Jttby2_Lx6KkAAAB","timestamp":"2025-10-24 14:17:59"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:17:59"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:18:20"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:18:20"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:18:20"}
+{"error":"Relation Profile.online does not have join columns.","layer":"service","level":"error","message":"RegistrationService.getProfile failed","method":"getProfile","responseTime":"6.37ms","service":"RegistrationService","stack":"TypeORMError: Relation Profile.online does not have join columns.\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:2408:27\n    at Array.map (<anonymous>)\n    at SelectQueryBuilder.createJoinExpression (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:2313:57)\n    at SelectQueryBuilder.getQuery (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:88:21)\n    at SelectQueryBuilder.executeEntitiesAndRawResults (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:3535:26)\n    at SelectQueryBuilder.getRawAndEntities (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:1671:40)\n    at SelectQueryBuilder.getOne (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:1698:36)\n    at EntityManager.findOne (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\entity-manager\\EntityManager.ts:1229:14)\n    at Repository.findOne (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\repository\\Repository.ts:626:29)\n    at RegistrationRepository.findProfileById (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\repository\\registrationRepository.ts:55:45)","timestamp":"2025-10-24 14:18:20"}
+{"error":"Relation Profile.online does not have join columns.","layer":"proxy","level":"error","message":"RegistrationProxy.getProfile failed","method":"getProfile","proxy":"RegistrationProxy","responseTime":"94.12ms","stack":"TypeORMError: Relation Profile.online does not have join columns.\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:2408:27\n    at Array.map (<anonymous>)\n    at SelectQueryBuilder.createJoinExpression (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:2313:57)\n    at SelectQueryBuilder.getQuery (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:88:21)\n    at SelectQueryBuilder.executeEntitiesAndRawResults (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:3535:26)\n    at SelectQueryBuilder.getRawAndEntities (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:1671:40)\n    at SelectQueryBuilder.getOne (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\query-builder\\SelectQueryBuilder.ts:1698:36)\n    at EntityManager.findOne (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\entity-manager\\EntityManager.ts:1229:14)\n    at Repository.findOne (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\repository\\Repository.ts:626:29)\n    at RegistrationRepository.findProfileById (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\repository\\registrationRepository.ts:55:45)","timestamp":"2025-10-24 14:18:20"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"104.32ms","status":200,"timestamp":"2025-10-24 14:18:20"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:19:11"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:19:11"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:19:11"}
+{"level":"info","message":"Socket connected: uwvEqzkxTu6lCpkJAAAB","timestamp":"2025-10-24 14:19:14"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:19:14"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:19:46"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:19:46"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:19:46"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"273.77ms","service":"RegistrationService","timestamp":"2025-10-24 14:19:46"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"277.94ms","timestamp":"2025-10-24 14:19:46"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"290.35ms","status":200,"timestamp":"2025-10-24 14:19:46"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now offline","timestamp":"2025-10-24 14:19:55"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:20:01"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:20:01"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:20:01"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"55.49ms","service":"RegistrationService","timestamp":"2025-10-24 14:20:01"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"58.05ms","timestamp":"2025-10-24 14:20:01"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"62.22ms","status":200,"timestamp":"2025-10-24 14:20:01"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:35:28"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:35:28"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:35:28"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 14:37:11"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 14:37:11"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 14:37:11"}
+{"level":"info","message":"Socket connected: VZ9JCnGDZjjnTRe3AAAB","timestamp":"2025-10-24 14:38:09"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:38:09"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now offline","timestamp":"2025-10-24 14:42:54"}
+{"level":"info","message":"Socket connected: Z-0DRCBKd0dXY4KmAAAD","timestamp":"2025-10-24 14:50:48"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:50:48"}
+{"level":"info","message":"Socket connected: P3OtGsOrJr5xPnKPAAAF","timestamp":"2025-10-24 14:51:26"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 14:51:26"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:03"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:03"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:03"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"273.30ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:03"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"284.78ms","timestamp":"2025-10-24 14:52:03"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"295.35ms","status":200,"timestamp":"2025-10-24 14:52:03"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now offline","timestamp":"2025-10-24 14:52:09"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:12"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:12"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:12"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"32.56ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:12"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"35.10ms","timestamp":"2025-10-24 14:52:12"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"37.21ms","status":200,"timestamp":"2025-10-24 14:52:12"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:18"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:18"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:19"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"34.82ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:19"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"36.63ms","timestamp":"2025-10-24 14:52:19"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"39.02ms","status":200,"timestamp":"2025-10-24 14:52:19"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:26"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:26"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:26"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"44.99ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:26"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"47.49ms","timestamp":"2025-10-24 14:52:26"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"55.89ms","status":200,"timestamp":"2025-10-24 14:52:26"}
+{"level":"info","message":"Socket connected: GMiJTj4RqPxjCao3AAAH","timestamp":"2025-10-24 14:52:31"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 14:52:31"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:34"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:34"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:34"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"28.46ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:34"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"29.90ms","timestamp":"2025-10-24 14:52:34"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"32.76ms","status":200,"timestamp":"2025-10-24 14:52:34"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:43"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:43"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:43"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"36.06ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:43"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"37.72ms","timestamp":"2025-10-24 14:52:43"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"41.37ms","status":200,"timestamp":"2025-10-24 14:52:43"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:52:47"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:52:47"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:52:47"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"34.60ms","service":"RegistrationService","timestamp":"2025-10-24 14:52:47"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"36.84ms","timestamp":"2025-10-24 14:52:47"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"39.61ms","status":200,"timestamp":"2025-10-24 14:52:47"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now offline","timestamp":"2025-10-24 14:52:52"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now offline","timestamp":"2025-10-24 14:52:56"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:53:26"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:53:26"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:53:26"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"138.78ms","service":"RegistrationService","timestamp":"2025-10-24 14:53:27"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"141.54ms","timestamp":"2025-10-24 14:53:27"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"147.37ms","status":200,"timestamp":"2025-10-24 14:53:27"}
+{"level":"info","message":"Socket connected: 6kek58XQOmCVYsiJAAAJ","timestamp":"2025-10-24 14:53:32"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 14:53:32"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:53:37"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:53:37"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:53:37"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"32.00ms","service":"RegistrationService","timestamp":"2025-10-24 14:53:37"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"35.56ms","timestamp":"2025-10-24 14:53:37"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"39.88ms","status":200,"timestamp":"2025-10-24 14:53:37"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"ad099607-428e-4d98-9184-b97495bf9064"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 14:53:41"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 14:53:41"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 14:53:41"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"27.15ms","service":"RegistrationService","timestamp":"2025-10-24 14:53:41"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"28.71ms","timestamp":"2025-10-24 14:53:41"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"31.89ms","status":200,"timestamp":"2025-10-24 14:53:41"}
+{"level":"info","message":"Socket connected: lbBwd4W81SfnKf71AAAL","timestamp":"2025-10-24 14:53:54"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 14:53:54"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:07:03"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:07:03"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:07:03"}
+{"level":"info","message":"Socket connected: TxgJr3fBIV0XRVvoAAAB","timestamp":"2025-10-24 15:07:07"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 15:07:07"}
+{"level":"info","message":"Socket connected: b1KAGcFEmfPtj1WsAAAD","timestamp":"2025-10-24 15:07:07"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 15:07:07"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:23:16"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:23:16"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:23:16"}
+{"level":"info","message":"Socket connected: ViimdQ_hNhfsk4ziAAAB","timestamp":"2025-10-24 15:23:17"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:24:10"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:24:10"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:24:10"}
+{"level":"info","message":"Socket connected: 04cb5BPlof1nbmqSAAAB","timestamp":"2025-10-24 15:24:14"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 15:24:14"}
+{"level":"info","message":"Socket connected: tDXhIO-ahdvG0N81AAAD","timestamp":"2025-10-24 15:24:14"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 15:24:14"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:24:45"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:24:45"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:24:45"}
+{"level":"info","message":"Socket connected: j9wIuOZuR5kyKhrwAAAB","timestamp":"2025-10-24 15:24:45"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 15:24:45"}
+{"level":"info","message":"Socket connected: 11MoeyzvseBqSHNGAAAD","timestamp":"2025-10-24 15:24:49"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 15:24:49"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:27:18"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:27:18"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:27:18"}
+{"level":"info","message":"Socket connected: iEfTEc55ngYngYG_AAAB","timestamp":"2025-10-24 15:27:19"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 15:27:19"}
+{"level":"info","message":"Socket connected: 2z-yBiHBZygkEgqjAAAD","timestamp":"2025-10-24 15:27:22"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 15:27:22"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:27:33"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:27:33"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:27:33"}
+{"level":"info","message":"Socket connected: 10ZzkdjQ4DUGu7xCAAAB","timestamp":"2025-10-24 15:27:34"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now online","timestamp":"2025-10-24 15:27:34"}
+{"level":"info","message":"Socket connected: 0BCb1dzVUUwyHljmAAAD","timestamp":"2025-10-24 15:27:37"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now online","timestamp":"2025-10-24 15:27:37"}
+{"level":"info","message":"User ad099607-428e-4d98-9184-b97495bf9064 is now offline","timestamp":"2025-10-24 15:28:00"}
+{"level":"info","message":"Socket connected: Sqk16YsfXqQ37UA5AAAF","timestamp":"2025-10-24 15:28:03"}
+{"level":"info","message":"User df559e5f-128c-490f-9cee-501b5ab95c7d is now online","timestamp":"2025-10-24 15:28:03"}
+{"level":"info","message":"User 2fe16619-b0fc-45c6-aa80-11aa328dff09 is now offline","timestamp":"2025-10-24 15:28:25"}
+{"level":"info","message":"Socket connected: kBK7RoxBPQfAn207AAAH","timestamp":"2025-10-24 15:28:27"}
+{"level":"info","message":"User df559e5f-128c-490f-9cee-501b5ab95c7d is now online","timestamp":"2025-10-24 15:28:27"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"df559e5f-128c-490f-9cee-501b5ab95c7d"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 15:28:44"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 15:28:44"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 15:28:44"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"393.64ms","service":"RegistrationService","timestamp":"2025-10-24 15:28:45"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"401.83ms","timestamp":"2025-10-24 15:28:45"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"418.18ms","status":200,"timestamp":"2025-10-24 15:28:45"}
+{"level":"info","message":"User df559e5f-128c-490f-9cee-501b5ab95c7d is now offline","timestamp":"2025-10-24 15:29:46"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-24 15:30:04"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-24 15:30:04"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-24 15:30:04"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-24 15:31:15"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-24 15:31:15"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-24 15:31:15"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"142.45ms","service":"RegistrationService","timestamp":"2025-10-24 15:31:15"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"146.13ms","timestamp":"2025-10-24 15:31:15"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"164.45ms","status":200,"timestamp":"2025-10-24 15:31:15"}

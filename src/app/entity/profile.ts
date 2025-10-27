@@ -9,6 +9,7 @@ import { profileStatus, ProfileType } from "../modules/registration/enums/regist
 import { Contact } from "./contact";
 import { Address } from "./address";
 import { Portfolio } from "./portfolio";
+import { Online } from "./online";
 
 
 @Entity("profile")
@@ -53,4 +54,9 @@ export class Profile extends BaseEntity{
       cascade: true,
     })
     portfolio!: Portfolio;
+
+    @OneToOne(()=>Online, online=>online.profile,{
+      cascade:true,
+    })
+    online?: Online;
 }

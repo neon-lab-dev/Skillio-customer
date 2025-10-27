@@ -174,13 +174,14 @@ class RegistraionService{
                     bio: fetchedProfile.portfolio.bio || "",
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
+                    online:fetchedProfile.online,
                     propritaryDetails:{
                         firstName: profile.firstName,
                         lastName: profile.lastName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
                         email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
                         } 
-                    } 
+                    }
                 }else{
                     return{
                     name: name,
@@ -189,6 +190,7 @@ class RegistraionService{
                     bio: fetchedProfile.portfolio.bio || "",
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
+                    online:fetchedProfile.online,
                     }
                 }
             }
@@ -200,7 +202,8 @@ class RegistraionService{
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
                         bio: fetchedProfile.portfolio.bio || "",
-                        isSubscribed: fetchedProfile.isSubscribed
+                        isSubscribed: fetchedProfile.isSubscribed,
+                        online:fetchedProfile.online,
                     },
                     profilePictureId: profilePhotoId,
                     propritaryDetails:{
@@ -215,6 +218,7 @@ class RegistraionService{
                         groupName: fetchedProfile.groupName,
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
+                        online:fetchedProfile.online,
                         bio: fetchedProfile.portfolio.bio || "",
                         isSubscribed: fetchedProfile.isSubscribed
                         },
