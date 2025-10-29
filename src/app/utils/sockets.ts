@@ -20,6 +20,7 @@ export const initializeSocket = (app: Application) => {
     },
   });
 
+
   io.on("connection", (socket) => {
     logger.info(`Socket connected: ${socket.id}`);
 
@@ -31,10 +32,25 @@ export const initializeSocket = (app: Application) => {
 
       await onlineRepository.upsertOnlineStatus(profileId,{
         status: onlineStatus.ONLINE
-      })
+      }) 
       
       logger.info(`User ${profileId} is now online`);
     })
+
+    socket.on("typing", ({ senderId, recipientId }) => {
+        const recipientSocketId = onlineUsers.get(recipientId);
+      if (recipientSocketId) {
+        io.to(recipientSocketId).emit("typing", { senderId, isTyping: true });
+      }
+    });
+
+    socket.on("stopTyping", ({ senderId, recipientId }) => {
+      const recipientSocketId = onlineUsers.get(recipientId);
+      if (recipientSocketId) {
+        io.to(recipientSocketId).emit("typing", { senderId, isTyping: false });
+      }
+    });
+
 
     socket.on("disconnect", async() => {
       for (const [profileId, id] of onlineUsers.entries()) {

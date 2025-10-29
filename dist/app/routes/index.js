@@ -4,6 +4,7 @@ const express_1 = require("express");
 const verification_routes_1 = require("../modules/verification/verification.routes");
 const document_routes_1 = require("../modules/document/document.routes");
 const registration_routes_1 = require("../modules/registration/registration.routes");
+const chat_routes_1 = require("../modules/chat/chat.routes");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     {
@@ -17,6 +18,10 @@ const moduleRoutes = [
     {
         path: "/v1/profile",
         route: registration_routes_1.registrationRoutes
+    },
+    {
+        path: "/v1/chat",
+        route: chat_routes_1.chatRoutes
     }
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));

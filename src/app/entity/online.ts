@@ -1,9 +1,10 @@
-import { Entity , Column ,PrimaryGeneratedColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity , Column ,PrimaryGeneratedColumn, OneToOne, JoinColumn, Index } from "typeorm";
 import { Profile } from "./profile";
 import { onlineStatus } from "../modules/registration/enums/registrationEnum";
 
 
 @Entity("online")
+@Index("IDX_ONLINE_PROFILEID" , ["profileId"])
 export class Online{
     @PrimaryGeneratedColumn("uuid")
     id!: string;

@@ -208,6 +208,10 @@ class GetProfileDTO {
             id: data.portfolio.id,
             bio: data.portfolio.bio || ""
         });
+        this.online = data.online ? {
+            status: data.online.status,
+            lastSeen: data.online.lastSeen
+        } : undefined;
     }
     toJSON() {
         return {
@@ -218,7 +222,8 @@ class GetProfileDTO {
             profileType: this.profileType,
             isSubscribed: this.isSubscribed,
             contacts: this.contacts.map(contact => contact.toJSON()),
-            portfolio: this.portfolio.toJSON()
+            portfolio: this.portfolio.toJSON(),
+            online: this.online
         };
     }
 }

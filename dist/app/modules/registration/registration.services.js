@@ -131,6 +131,7 @@ class RegistraionService {
                         bio: fetchedProfile.portfolio.bio || "",
                         isSubscribed: fetchedProfile.isSubscribed,
                         profilePictureId: profilePhotoId,
+                        online: fetchedProfile.online,
                         propritaryDetails: {
                             firstName: profile.firstName,
                             lastName: profile.lastName,
@@ -147,6 +148,7 @@ class RegistraionService {
                         bio: fetchedProfile.portfolio.bio || "",
                         isSubscribed: fetchedProfile.isSubscribed,
                         profilePictureId: profilePhotoId,
+                        online: fetchedProfile.online,
                     };
                 }
             }
@@ -158,7 +160,8 @@ class RegistraionService {
                             nickName: fetchedProfile.nickName,
                             portfolioId: fetchedProfile.portfolio.id,
                             bio: fetchedProfile.portfolio.bio || "",
-                            isSubscribed: fetchedProfile.isSubscribed
+                            isSubscribed: fetchedProfile.isSubscribed,
+                            online: fetchedProfile.online,
                         },
                         profilePictureId: profilePhotoId,
                         propritaryDetails: {
@@ -174,6 +177,7 @@ class RegistraionService {
                             groupName: fetchedProfile.groupName,
                             nickName: fetchedProfile.nickName,
                             portfolioId: fetchedProfile.portfolio.id,
+                            online: fetchedProfile.online,
                             bio: fetchedProfile.portfolio.bio || "",
                             isSubscribed: fetchedProfile.isSubscribed
                         },

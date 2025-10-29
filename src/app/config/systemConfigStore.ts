@@ -7,6 +7,7 @@ import { loadDocumentConfig } from "../modules/document/config/documentConfig";
 import { loadJwtConfig } from "../modules/registration/config/jwtConfig";
 import { loadPinConfig } from "../modules/registration/config/pinConfig";
 import { loadAddressPinConfig } from "../modules/registration/config/addressPinCodeConfig";
+import { loadFcmServiceAccountConfig } from "../modules/chat/config/fcmServiceAccountConfig";
 
 class SystemConfigStore{
 
@@ -28,6 +29,8 @@ class SystemConfigStore{
             await loadPinConfig()
 
             await loadAddressPinConfig()
+
+            await loadFcmServiceAccountConfig()
 
         } catch (error) {
             logger.error("Error loading system  configurations:", error);
