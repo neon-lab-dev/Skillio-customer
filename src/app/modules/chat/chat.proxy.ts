@@ -5,44 +5,72 @@ import { TMessage } from "./interface/chat.interface";
 import registrationRepository from "../../repository/registrationRepository";
 import logger from "../../utils/logger";
 import AppError from "../../errors/appError";
+import chatRepository from "../../repository/chatRepository";
 
+class ChatProxy {
+  private checkIfProfileExists = async (profileId: string, type: string) => {
+    const existingProfile = await registrationRepository.findProfileById(
+      profileId
+    );
 
-class ChatProxy{
-
-    private checkIfProfileExists= async(profileId: string , type: string)=>{
-        const existingProfile= await registrationRepository.findProfileById(profileId);
-
-        if(!existingProfile){
-            logger.error(`${type} Profile with this Id doesnot exist`);
-            throw new AppError(404, `${type} Profile doesnot exist`);
-        }
+    if (!existingProfile) {
+      logger.error(`${type} Profile with this Id doesnot exist`);
+      throw new AppError(404, `${type} Profile doesnot exist`);
     }
+  };
 
-    // create/send message
-    createMessage= proxyLogging(
-        "ChatProxy",
-        "createMessage",
-        async(messageData: TMessage, req: Request)=>{
-            const { recipientId }= messageData;
+  // create/send message
+  createMessage = proxyLogging(
+    "ChatProxy",
+    "createMessage",
+    async (messageData: TMessage, req: Request) => {
+      const { recipientId } = messageData;
 
-            await this.checkIfProfileExists(recipientId , "Recipient");
+      await this.checkIfProfileExists(recipientId, "Recipient");
 
-            return await chatServices.createMessage(messageData , req);
-        }
-    )
+      return await chatServices.createMessage(messageData, req);
+    }
+  );
 
-    // get messages between two users
-    getMesssages= proxyLogging(
-        "ChatProxy",
-        "getMesssages",
-        async( recipientId:string , before: Date , limit: string , req:Request)=>{
+  // get messages between two users
+  getMesssages = proxyLogging(
+    "ChatProxy",
+    "getMesssages",
+    async (recipientId: string, before: Date, limit: string, req: Request) => {
+      await this.checkIfProfileExists(recipientId, "Recipient");
 
-            await this.checkIfProfileExists(recipientId , "Recipient");
+      return await chatServices.getMesssages(recipientId, before, limit, req);
+    }
+  );
 
-            return await chatServices.getMesssages( recipientId , before , limit , req);
-        }
-    )
+  // soft delete message
+  softDeleteMessage = proxyLogging(
+    "ChatProxy",
+    "softDeleteMessage",
+    async (id: string, req: Request) => {
+      const message = await chatRepository.findMessageById(id);
 
+      if (!message) {
+        logger.error("Message not found");
+        throw new AppError(404, "Message not found");
+      }
+
+      const profileId = req.user.profileId;
+
+      if (message.senderId !== profileId) {
+        logger.error("unauthorized access");
+        throw new AppError(403, "unauthorized access");
+      }
+      
+      if (message.isDeleted === true) {
+        logger.error("Message already deleted");
+        throw new AppError(400, "Message already deleted");
+      }
+
+
+      return await chatServices.softDeleteMessage(message);
+    }
+  );
 }
 
 export default new ChatProxy();

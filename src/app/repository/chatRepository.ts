@@ -44,6 +44,13 @@ class ChatRepostory {
     });
   };
 
+  // find message by Id
+  findMessageById = async (id: string) => {
+    return await this.chatRepository.findOne({
+      where: { id },
+    });
+  }
+
   // update messageById
   updateMessageById = async (id: string, messageData: DeepPartial<Message>) => {
     return await this.chatRepository.update(id, messageData);

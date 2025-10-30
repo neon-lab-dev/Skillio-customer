@@ -1701,3 +1701,243 @@
 {"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-29 17:51:35"}
 {"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-29 17:51:35"}
 {"level":"info","message":"socket.io server ready","timestamp":"2025-10-29 17:51:35"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 11:37:48"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 11:37:48"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 11:37:48"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"doe8","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-30 11:39:44"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-30 11:39:44"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-30 11:39:45"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"201.32ms","service":"RegistrationService","timestamp":"2025-10-30 11:39:45"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"542.08ms","timestamp":"2025-10-30 11:39:45"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"550.06ms","status":200,"timestamp":"2025-10-30 11:39:45"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-29 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 11:40:24"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 11:40:24"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 11:40:24"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"30.13ms","service":"ChatService","timestamp":"2025-10-30 11:40:24"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"116.31ms","timestamp":"2025-10-30 11:40:24"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"132.69ms","status":200,"timestamp":"2025-10-30 11:40:24"}
+{"controller":"ChatController.createMessage","input":{"content":"{\"text\": \"hello\",\n\"postId\":\"\"\n  }","params":{},"query":{},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.createMessage started","timestamp":"2025-10-30 11:40:36"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage started","method":"createMessage","proxy":"ChatProxy","timestamp":"2025-10-30 11:40:36"}
+{"layer":"service","level":"info","message":"ChatService.createMessage started","method":"createMessage","service":"ChatService","timestamp":"2025-10-30 11:40:36"}
+{"layer":"service","level":"info","message":"ChatService.createMessage completed successfully","method":"createMessage","responseTime":"79.55ms","service":"ChatService","timestamp":"2025-10-30 11:40:36"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage completed successfully","method":"createMessage","proxy":"ChatProxy","responseTime":"179.01ms","timestamp":"2025-10-30 11:40:36"}
+{"controller":"ChatController.createMessage","layer":"controller","level":"info","message":"ChatController.createMessage completed successfully","responseTime":"187.03ms","status":200,"timestamp":"2025-10-30 11:40:36"}
+{"codePrefix":"app","errorInfo":{"code":"app/invalid-credential","message":"Failed to parse private key: Error: Invalid PEM formatted message."},"level":"error","message":" Failed to initialize Firebase: Failed to parse private key: Error: Invalid PEM formatted message.","stack":"Error: Failed to parse private key: Error: Invalid PEM formatted message.\n    at new ServiceAccount (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\firebase-admin\\lib\\app\\credential-internal.js:182:19)\n    at new ServiceAccountCredential (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\firebase-admin\\lib\\app\\credential-internal.js:118:15)\n    at Object.cert (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\node_modules\\firebase-admin\\lib\\app\\credential-factory.js:105:54)\n    at initializeFirebase (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\config\\firebaseConfig.ts:18:36)\n    at sendSinglePushNotification (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\pushNotification.ts:19:28)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-30 11:40:37"}
+{"level":"info","message":"Socket connected: nbFE8SqXrX_JGKbiAAAB","timestamp":"2025-10-30 11:42:19"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 11:42:19"}
+{"controller":"ChatController.createMessage","input":{"content":"{\"text\": \"hello\",\n\"postId\":\"\"\n  }","params":{},"query":{},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.createMessage started","timestamp":"2025-10-30 11:43:37"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage started","method":"createMessage","proxy":"ChatProxy","timestamp":"2025-10-30 11:43:37"}
+{"layer":"service","level":"info","message":"ChatService.createMessage started","method":"createMessage","service":"ChatService","timestamp":"2025-10-30 11:43:37"}
+{"level":"info","message":"Message sent to recipientId: 4a666546-0c40-4e68-bab1-9eda07b5b81a, socketId: nbFE8SqXrX_JGKbiAAAB","timestamp":"2025-10-30 11:43:37"}
+{"layer":"service","level":"info","message":"ChatService.createMessage completed successfully","method":"createMessage","responseTime":"62.18ms","service":"ChatService","timestamp":"2025-10-30 11:43:37"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage completed successfully","method":"createMessage","proxy":"ChatProxy","responseTime":"118.16ms","timestamp":"2025-10-30 11:43:37"}
+{"controller":"ChatController.createMessage","layer":"controller","level":"info","message":"ChatController.createMessage completed successfully","responseTime":"127.06ms","status":200,"timestamp":"2025-10-30 11:43:37"}
+{"controller":"ChatController.createMessage","input":{"content":"{\"text\": \"hello\"\n  }","params":{},"query":{},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.createMessage started","timestamp":"2025-10-30 11:44:23"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage started","method":"createMessage","proxy":"ChatProxy","timestamp":"2025-10-30 11:44:23"}
+{"layer":"service","level":"info","message":"ChatService.createMessage started","method":"createMessage","service":"ChatService","timestamp":"2025-10-30 11:44:23"}
+{"level":"info","message":"Message sent to recipientId: 4a666546-0c40-4e68-bab1-9eda07b5b81a, socketId: nbFE8SqXrX_JGKbiAAAB","timestamp":"2025-10-30 11:44:23"}
+{"layer":"service","level":"info","message":"ChatService.createMessage completed successfully","method":"createMessage","responseTime":"154.33ms","service":"ChatService","timestamp":"2025-10-30 11:44:23"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage completed successfully","method":"createMessage","proxy":"ChatProxy","responseTime":"292.71ms","timestamp":"2025-10-30 11:44:23"}
+{"controller":"ChatController.createMessage","layer":"controller","level":"info","message":"ChatController.createMessage completed successfully","responseTime":"296.25ms","status":200,"timestamp":"2025-10-30 11:44:23"}
+{"controller":"ChatController.createMessage","input":{"content":"{\"text\": \"hello\"\n  }","params":{},"query":{},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.createMessage started","timestamp":"2025-10-30 11:44:42"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage started","method":"createMessage","proxy":"ChatProxy","timestamp":"2025-10-30 11:44:42"}
+{"layer":"service","level":"info","message":"ChatService.createMessage started","method":"createMessage","service":"ChatService","timestamp":"2025-10-30 11:44:42"}
+{"level":"info","message":"Message sent to recipientId: 4a666546-0c40-4e68-bab1-9eda07b5b81a, socketId: nbFE8SqXrX_JGKbiAAAB","timestamp":"2025-10-30 11:44:48"}
+{"layer":"service","level":"info","message":"ChatService.createMessage completed successfully","method":"createMessage","responseTime":"6165.52ms","service":"ChatService","timestamp":"2025-10-30 11:44:48"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage completed successfully","method":"createMessage","proxy":"ChatProxy","responseTime":"6292.96ms","timestamp":"2025-10-30 11:44:48"}
+{"controller":"ChatController.createMessage","layer":"controller","level":"info","message":"ChatController.createMessage completed successfully","responseTime":"6298.69ms","status":200,"timestamp":"2025-10-30 11:44:48"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:03:12"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:03:12"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:03:12"}
+{"level":"info","message":"Socket connected: 6egtKUTWdLFkCBnvAAAB","timestamp":"2025-10-30 12:03:12"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:03:13"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:04:13"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:04:13"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:04:13"}
+{"level":"info","message":"Socket connected: z607X5SqIlynmv_4AAAB","timestamp":"2025-10-30 12:04:15"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:04:15"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:04:31"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:04:31"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:04:31"}
+{"level":"info","message":"Socket connected: 3C-HjS7A7mifv9gGAAAB","timestamp":"2025-10-30 12:04:33"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:04:33"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:05:22"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:05:22"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:05:22"}
+{"level":"info","message":"Socket connected: 5bTEb1iKtemlTCNuAAAB","timestamp":"2025-10-30 12:05:23"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:05:23"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:06:17"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:06:17"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:06:17"}
+{"level":"info","message":"Socket connected: Wl1Ggld-y1iSkPYhAAAB","timestamp":"2025-10-30 12:06:18"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:06:18"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:06:59"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:06:59"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:06:59"}
+{"level":"info","message":"Socket connected: 89-vshdJRH4FdYC-AAAB","timestamp":"2025-10-30 12:07:02"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:07:02"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:07:16"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:07:16"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:07:16"}
+{"level":"info","message":"Socket connected: 9B2vvDNteudv-g0jAAAB","timestamp":"2025-10-30 12:07:17"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:07:17"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:07:37"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:07:37"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:07:37"}
+{"level":"info","message":"Socket connected: RiQtE3lr8qR8gT-uAAAB","timestamp":"2025-10-30 12:07:39"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:07:39"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:08:07"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:08:07"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:08:07"}
+{"level":"info","message":"Socket connected: WBjgobMYtun3FR7uAAAB","timestamp":"2025-10-30 12:08:10"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:08:10"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:08:34"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:08:34"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:08:34"}
+{"level":"info","message":"Socket connected: xhXyNng_BKu4DGEDAAAB","timestamp":"2025-10-30 12:08:36"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:08:36"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:08:41"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:08:41"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:08:41"}
+{"level":"info","message":"Socket connected: -eWbenr4EUvAc3bFAAAB","timestamp":"2025-10-30 12:08:44"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:08:44"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:08:50"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:08:50"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:08:50"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:08:56"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:08:56"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:08:56"}
+{"level":"info","message":"Socket connected: O1hkVKmK_vmnStUSAAAB","timestamp":"2025-10-30 12:08:59"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:08:59"}
+{"level":"error","message":"No authorization header provided","timestamp":"2025-10-30 12:12:17"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"doe8","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-30 12:12:51"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-30 12:12:51"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-30 12:12:51"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"150.72ms","service":"RegistrationService","timestamp":"2025-10-30 12:12:51"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"311.97ms","timestamp":"2025-10-30 12:12:51"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"321.34ms","status":200,"timestamp":"2025-10-30 12:12:51"}
+{"controller":"ChatController.softDeleteMessage","input":{"params":{"id":"47dc70ec-1556-4681-a7da-72e1ddf604d2"},"query":{}},"layer":"controller","level":"info","message":"ChatController.softDeleteMessage started","timestamp":"2025-10-30 12:13:05"}
+{"layer":"proxy","level":"info","message":"ChatProxy.softDeleteMessage started","method":"softDeleteMessage","proxy":"ChatProxy","timestamp":"2025-10-30 12:13:05"}
+{"layer":"service","level":"info","message":"ChatService.softDeleteMessage started","method":"softDeleteMessage","service":"ChatService","timestamp":"2025-10-30 12:13:05"}
+{"layer":"service","level":"info","message":"ChatService.softDeleteMessage completed successfully","method":"softDeleteMessage","responseTime":"18.73ms","service":"ChatService","timestamp":"2025-10-30 12:13:05"}
+{"layer":"proxy","level":"info","message":"ChatProxy.softDeleteMessage completed successfully","method":"softDeleteMessage","proxy":"ChatProxy","responseTime":"35.95ms","timestamp":"2025-10-30 12:13:05"}
+{"controller":"ChatController.softDeleteMessage","layer":"controller","level":"info","message":"ChatController.softDeleteMessage completed successfully","responseTime":"40.42ms","status":200,"timestamp":"2025-10-30 12:13:05"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-29 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:13:25"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:13:25"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 12:13:25"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"35.19ms","service":"ChatService","timestamp":"2025-10-30 12:13:25"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"126.73ms","timestamp":"2025-10-30 12:13:25"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"133.37ms","status":200,"timestamp":"2025-10-30 12:13:25"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:14:12"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:14:12"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:14:12"}
+{"level":"info","message":"Socket connected: zY81MNytA9tM_r5WAAAB","timestamp":"2025-10-30 12:14:14"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:14:14"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-29 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:14:20"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:14:20"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 12:14:20"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"23.93ms","service":"ChatService","timestamp":"2025-10-30 12:14:20"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"78.14ms","timestamp":"2025-10-30 12:14:20"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"84.52ms","status":200,"timestamp":"2025-10-30 12:14:20"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-30 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:15:45"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:15:45"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 12:15:46"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"290.79ms","service":"ChatService","timestamp":"2025-10-30 12:15:46"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"371.95ms","timestamp":"2025-10-30 12:15:46"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"379.66ms","status":200,"timestamp":"2025-10-30 12:15:46"}
+{"controller":"ChatController.createMessage","input":{"content":"{\"text\": \"hello\"\n  }","params":{},"query":{},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81b"},"layer":"controller","level":"info","message":"ChatController.createMessage started","timestamp":"2025-10-30 12:20:04"}
+{"layer":"proxy","level":"info","message":"ChatProxy.createMessage started","method":"createMessage","proxy":"ChatProxy","timestamp":"2025-10-30 12:20:04"}
+{"level":"error","message":"Recipient Profile with this Id doesnot exist","timestamp":"2025-10-30 12:20:04"}
+{"error":"Recipient Profile doesnot exist","layer":"proxy","level":"error","message":"ChatProxy.createMessage failed","method":"createMessage","proxy":"ChatProxy","responseTime":"22.15ms","stack":"Error: Recipient Profile doesnot exist\n    at ChatProxy.checkIfProfileExists (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.proxy.ts:18:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.proxy.ts:29:13\n    at ChatProxy.createMessage (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\proxyLogging.ts:15:22)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.controller.ts:16:23\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\catchAsyncError.ts:8:7\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\controllerLogging.ts:20:7","timestamp":"2025-10-30 12:20:04"}
+{"controller":"ChatController.createMessage","layer":"controller","level":"info","message":"ChatController.createMessage completed successfully","responseTime":"45.51ms","status":200,"timestamp":"2025-10-30 12:20:04"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-30 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81b"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:21:26"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:21:26"}
+{"level":"error","message":"Recipient Profile with this Id doesnot exist","timestamp":"2025-10-30 12:21:26"}
+{"error":"Recipient Profile doesnot exist","layer":"proxy","level":"error","message":"ChatProxy.getMesssages failed","method":"getMesssages","proxy":"ChatProxy","responseTime":"28.41ms","stack":"Error: Recipient Profile doesnot exist\n    at ChatProxy.checkIfProfileExists (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.proxy.ts:18:19)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.proxy.ts:41:13\n    at ChatProxy.getMesssages (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\proxyLogging.ts:15:22)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.controller.ts:34:23\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\catchAsyncError.ts:8:7\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\controllerLogging.ts:20:7","timestamp":"2025-10-30 12:21:26"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"37.00ms","status":200,"timestamp":"2025-10-30 12:21:26"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-30 16:39:00.00","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:22:17"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:22:17"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 12:22:17"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"22.01ms","service":"ChatService","timestamp":"2025-10-30 12:22:17"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"91.54ms","timestamp":"2025-10-30 12:22:17"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"101.20ms","status":200,"timestamp":"2025-10-30 12:22:17"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:22:25"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:22:25"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 12:22:25"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"14.33ms","service":"ChatService","timestamp":"2025-10-30 12:22:25"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"70.25ms","timestamp":"2025-10-30 12:22:25"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"76.53ms","status":200,"timestamp":"2025-10-30 12:22:25"}
+{"controller":"ChatController.getMesssages","input":{"before":"2025-10-28 16:39:00.000","params":{},"query":{"limit":"30"},"recipientId":"4a666546-0c40-4e68-bab1-9eda07b5b81a"},"layer":"controller","level":"info","message":"ChatController.getMesssages started","timestamp":"2025-10-30 12:27:09"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages started","method":"getMesssages","proxy":"ChatProxy","timestamp":"2025-10-30 12:27:09"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages started","method":"getMesssages","service":"ChatService","timestamp":"2025-10-30 12:27:09"}
+{"layer":"service","level":"info","message":"ChatService.getMesssages completed successfully","method":"getMesssages","responseTime":"20.47ms","service":"ChatService","timestamp":"2025-10-30 12:27:09"}
+{"layer":"proxy","level":"info","message":"ChatProxy.getMesssages completed successfully","method":"getMesssages","proxy":"ChatProxy","responseTime":"76.12ms","timestamp":"2025-10-30 12:27:09"}
+{"controller":"ChatController.getMesssages","layer":"controller","level":"info","message":"ChatController.getMesssages completed successfully","responseTime":"83.30ms","status":200,"timestamp":"2025-10-30 12:27:09"}
+{"controller":"ChatController.softDeleteMessage","input":{"params":{"id":"47dc70ec-1556-4681-a7da-72e1ddf604d3"},"query":{}},"layer":"controller","level":"info","message":"ChatController.softDeleteMessage started","timestamp":"2025-10-30 12:28:28"}
+{"layer":"proxy","level":"info","message":"ChatProxy.softDeleteMessage started","method":"softDeleteMessage","proxy":"ChatProxy","timestamp":"2025-10-30 12:28:28"}
+{"level":"error","message":"Message not found","timestamp":"2025-10-30 12:28:29"}
+{"error":"Message not found","layer":"proxy","level":"error","message":"ChatProxy.softDeleteMessage failed","method":"softDeleteMessage","proxy":"ChatProxy","responseTime":"18.55ms","stack":"Error: Message not found\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.proxy.ts:56:23\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ChatProxy.softDeleteMessage (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\proxyLogging.ts:15:22)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.controller.ts:49:9\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\catchAsyncError.ts:8:7\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\controllerLogging.ts:20:7","timestamp":"2025-10-30 12:28:29"}
+{"controller":"ChatController.softDeleteMessage","layer":"controller","level":"info","message":"ChatController.softDeleteMessage completed successfully","responseTime":"32.41ms","status":200,"timestamp":"2025-10-30 12:28:29"}
+{"controller":"ChatController.softDeleteMessage","input":{"params":{"id":"47dc70ec-1556-4681-a7da-72e1ddf604d2"},"query":{}},"layer":"controller","level":"info","message":"ChatController.softDeleteMessage started","timestamp":"2025-10-30 12:37:24"}
+{"layer":"proxy","level":"info","message":"ChatProxy.softDeleteMessage started","method":"softDeleteMessage","proxy":"ChatProxy","timestamp":"2025-10-30 12:37:24"}
+{"layer":"service","level":"info","message":"ChatService.softDeleteMessage started","method":"softDeleteMessage","service":"ChatService","timestamp":"2025-10-30 12:37:24"}
+{"layer":"service","level":"info","message":"ChatService.softDeleteMessage completed successfully","method":"softDeleteMessage","responseTime":"33.12ms","service":"ChatService","timestamp":"2025-10-30 12:37:24"}
+{"layer":"proxy","level":"info","message":"ChatProxy.softDeleteMessage completed successfully","method":"softDeleteMessage","proxy":"ChatProxy","responseTime":"53.00ms","timestamp":"2025-10-30 12:37:24"}
+{"controller":"ChatController.softDeleteMessage","layer":"controller","level":"info","message":"ChatController.softDeleteMessage completed successfully","responseTime":"62.79ms","status":200,"timestamp":"2025-10-30 12:37:24"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:41:44"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:41:44"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:41:44"}
+{"level":"info","message":"Socket connected: rC1WBXihc-2sJ-p8AAAB","timestamp":"2025-10-30 12:41:45"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:41:46"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:42:33"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:42:33"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:42:33"}
+{"level":"info","message":"Socket connected: HhnH1OBSy6UvFTOwAAAB","timestamp":"2025-10-30 12:42:33"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:42:33"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:43:06"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:43:06"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:43:06"}
+{"level":"info","message":"Socket connected: 5stPFFIybGV2OB0UAAAB","timestamp":"2025-10-30 12:43:07"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:43:08"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:43:30"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:43:30"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:43:30"}
+{"level":"info","message":"Socket connected: caooYF3h3mP-QXitAAAB","timestamp":"2025-10-30 12:43:33"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:43:33"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:43:45"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:43:45"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:43:45"}
+{"level":"info","message":"Socket connected: SDIAspOPUzd2NAgoAAAB","timestamp":"2025-10-30 12:43:48"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:43:48"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:47:21"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:47:21"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:47:21"}
+{"level":"info","message":"Socket connected: oUycM7UwFP-stSpdAAAB","timestamp":"2025-10-30 12:47:22"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:47:22"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:47:26"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:47:26"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:47:26"}
+{"level":"info","message":"Socket connected: YH5dtZIuqtMWrQMgAAAB","timestamp":"2025-10-30 12:47:30"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:47:30"}
+{"controller":"RegistrationController.getProfile","input":{"params":{"id":"2fe16619-b0fc-45c6-aa80-11aa328dff09"},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.getProfile started","timestamp":"2025-10-30 12:47:54"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile started","method":"getProfile","proxy":"RegistrationProxy","timestamp":"2025-10-30 12:47:54"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile started","method":"getProfile","service":"RegistrationService","timestamp":"2025-10-30 12:47:54"}
+{"layer":"service","level":"info","message":"RegistrationService.getProfile completed successfully","method":"getProfile","responseTime":"402.71ms","service":"RegistrationService","timestamp":"2025-10-30 12:47:54"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.getProfile completed successfully","method":"getProfile","proxy":"RegistrationProxy","responseTime":"411.77ms","timestamp":"2025-10-30 12:47:54"}
+{"controller":"RegistrationController.getProfile","layer":"controller","level":"info","message":"RegistrationController.getProfile completed successfully","responseTime":"428.85ms","status":200,"timestamp":"2025-10-30 12:47:54"}
+{"controller":"RegistrationController.loginUser","input":{"credential":"doe8","params":{},"query":{}},"layer":"controller","level":"info","message":"RegistrationController.loginUser started","timestamp":"2025-10-30 12:48:02"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser started","method":"loginUser","proxy":"RegistrationProxy","timestamp":"2025-10-30 12:48:02"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser started","method":"loginUser","service":"RegistrationService","timestamp":"2025-10-30 12:48:02"}
+{"layer":"service","level":"info","message":"RegistrationService.loginUser completed successfully","method":"loginUser","responseTime":"150.76ms","service":"RegistrationService","timestamp":"2025-10-30 12:48:02"}
+{"layer":"proxy","level":"info","message":"RegistrationProxy.loginUser completed successfully","method":"loginUser","proxy":"RegistrationProxy","responseTime":"176.71ms","timestamp":"2025-10-30 12:48:02"}
+{"controller":"RegistrationController.loginUser","layer":"controller","level":"info","message":"RegistrationController.loginUser completed successfully","responseTime":"182.29ms","status":200,"timestamp":"2025-10-30 12:48:02"}
+{"controller":"ChatController.softDeleteMessage","input":{"params":{"id":"47dc70ec-1556-4681-a7da-72e1ddf604d2"},"query":{}},"layer":"controller","level":"info","message":"ChatController.softDeleteMessage started","timestamp":"2025-10-30 12:48:14"}
+{"layer":"proxy","level":"info","message":"ChatProxy.softDeleteMessage started","method":"softDeleteMessage","proxy":"ChatProxy","timestamp":"2025-10-30 12:48:14"}
+{"level":"error","message":"Message already deleted","timestamp":"2025-10-30 12:48:14"}
+{"error":"Message already deleted","layer":"proxy","level":"error","message":"ChatProxy.softDeleteMessage failed","method":"softDeleteMessage","proxy":"ChatProxy","responseTime":"22.05ms","stack":"Error: Message already deleted\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.proxy.ts:60:15\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ChatProxy.softDeleteMessage (C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\proxyLogging.ts:15:22)\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\modules\\chat\\chat.controller.ts:49:9\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\catchAsyncError.ts:8:7\n    at C:\\Users\\Roshan Chaudhary\\Desktop\\skilio-customerMs\\src\\app\\utils\\controllerLogging.ts:20:7","timestamp":"2025-10-30 12:48:14"}
+{"controller":"ChatController.softDeleteMessage","layer":"controller","level":"info","message":"ChatController.softDeleteMessage completed successfully","responseTime":"51.02ms","status":200,"timestamp":"2025-10-30 12:48:14"}
+{"level":"info","message":"Listening at port number 3000","timestamp":"2025-10-30 12:49:20"}
+{"level":"info","message":"Database connection established successfully at skilio-customer","timestamp":"2025-10-30 12:49:20"}
+{"level":"info","message":"socket.io server ready","timestamp":"2025-10-30 12:49:20"}
+{"level":"info","message":"Socket connected: uwjfmZ9PAnV-czLEAAAB","timestamp":"2025-10-30 12:49:21"}
+{"level":"info","message":"User 4a666546-0c40-4e68-bab1-9eda07b5b81a is now online","timestamp":"2025-10-30 12:49:21"}

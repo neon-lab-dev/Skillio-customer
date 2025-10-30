@@ -31,6 +31,12 @@ class ChatRepostory {
                 take: messageLimit,
             });
         };
+        // find message by Id
+        this.findMessageById = async (id) => {
+            return await this.chatRepository.findOne({
+                where: { id },
+            });
+        };
         // update messageById
         this.updateMessageById = async (id, messageData) => {
             return await this.chatRepository.update(id, messageData);

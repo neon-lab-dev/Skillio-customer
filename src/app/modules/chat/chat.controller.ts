@@ -40,6 +40,21 @@ class ChatController{
             data: result
         })
      }))
+
+    // soft delete message
+    softDeleteMessage= controllerLogging(
+        "ChatController.softDeleteMessage",
+    catchAsyncError(async(req:Request , res:Response)=>{
+        const { id }= req.params;
+        await chatProxy.softDeleteMessage(id , req);
+        
+        return sendResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "Message deleted successfully",
+        })
+     }))
+
 }
 
 export default new ChatController();

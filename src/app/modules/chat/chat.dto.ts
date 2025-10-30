@@ -37,6 +37,7 @@ export class GetChatDTO{
     content:content;
     status: Status;
     readAt: Date;
+    isDeleted: boolean;
 
     constructor(data:{
         senderId: string;
@@ -44,12 +45,14 @@ export class GetChatDTO{
         content: content;
         status: Status;
         readAt: Date;
+        isDeleted: boolean;
     }){
         this.senderId= data.senderId;
         this.recipientId= data.recipientId;
         this.content= data.content;
         this.status= data.status;
         this.readAt= data.readAt;
+        this.isDeleted= data.isDeleted;
     }
 
     toJSON():{
@@ -58,13 +61,15 @@ export class GetChatDTO{
         content: content;
         status: Status;
         readAt: Date;
+        isDeleted: boolean;
     }{
         return{
             senderId: this.senderId,
             recipientId: this.recipientId,
             content: this.content,
             status: this.status,
-            readAt: this.readAt
+            readAt: this.readAt,
+            isDeleted: this.isDeleted
         }
     }
 }

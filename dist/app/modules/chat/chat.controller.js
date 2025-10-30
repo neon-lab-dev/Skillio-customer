@@ -33,6 +33,16 @@ class ChatController {
                 data: result
             });
         }));
+        // soft delete message
+        this.softDeleteMessage = (0, controllerLogging_1.controllerLogging)("ChatController.softDeleteMessage", (0, catchAsyncError_1.default)(async (req, res) => {
+            const { id } = req.params;
+            await chat_proxy_1.default.softDeleteMessage(id, req);
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 200,
+                success: true,
+                message: "Message deleted successfully",
+            });
+        }));
     }
 }
 exports.default = new ChatController();

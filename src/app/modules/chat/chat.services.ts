@@ -9,6 +9,7 @@ import { Request } from "express";
 import cloudinaryServices from "../document/services/cloudinaryServices";
 import { GetChatDTO } from "./chat.dto";
 import { Status } from "./enums/chatEnum";
+import { Message } from "../../entity/message";
 
 class ChatService{
 
@@ -109,6 +110,19 @@ class ChatService{
             return messages;
         }
     )
+
+    // soft delete message
+    softDeleteMessage= serviceLogging(
+        "ChatService",
+        "softDeleteMessage",
+        async(message:Message)=>{
+
+            await chatRepository.updateMessageById(message.id,{
+                isDeleted: true
+            })
+        }
+    )
+
 }
 
 export default new ChatService();

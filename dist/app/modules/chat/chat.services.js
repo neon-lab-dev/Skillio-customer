@@ -67,6 +67,12 @@ class ChatService {
             }));
             return messages;
         });
+        // soft delete message
+        this.softDeleteMessage = (0, serviceLogging_1.serviceLogging)("ChatService", "softDeleteMessage", async (message) => {
+            await chatRepository_1.default.updateMessageById(message.id, {
+                isDeleted: true
+            });
+        });
     }
 }
 exports.default = new ChatService();

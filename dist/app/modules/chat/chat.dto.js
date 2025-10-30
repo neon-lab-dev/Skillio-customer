@@ -25,6 +25,7 @@ class GetChatDTO {
         this.content = data.content;
         this.status = data.status;
         this.readAt = data.readAt;
+        this.isDeleted = data.isDeleted;
     }
     toJSON() {
         return {
@@ -32,7 +33,8 @@ class GetChatDTO {
             recipientId: this.recipientId,
             content: this.content,
             status: this.status,
-            readAt: this.readAt
+            readAt: this.readAt,
+            isDeleted: this.isDeleted
         };
     }
 }

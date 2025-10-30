@@ -9,5 +9,6 @@ const router= Router();
 
 router.post("/" , verifyToken ,singleUpload, validateRequest(sendMessageSchema) , chatController.createMessage);
 router.get("/" , verifyToken , validateRequest(getMessagesSchema) , chatController.getMesssages);
+router.put("/:id" , verifyToken , chatController.softDeleteMessage);
 
 export const chatRoutes= router;
