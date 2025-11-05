@@ -23,14 +23,37 @@ class ChatController {
         }));
         // get messages between two users
         this.getMesssages = (0, controllerLogging_1.controllerLogging)("ChatController.getMesssages", (0, catchAsyncError_1.default)(async (req, res) => {
-            const { recipientId, before } = new chat_dto_1.MessagesDTO(req.body);
+            const conversationId = req.query.conversationId;
             const limit = req.query.limit;
-            const result = await chat_proxy_1.default.getMesssages(recipientId, before, limit, req);
+            const before = req.query.before;
+            const result = await chat_proxy_1.default.getMesssages(conversationId, before, limit, req);
             return (0, sendResponse_1.default)(res, {
                 statusCode: 200,
                 success: true,
                 message: "Messages fetched successfully",
                 data: result
+            });
+        }));
+        //  get conversations
+        this.getConversations = (0, controllerLogging_1.controllerLogging)("ChatController.getConversations", (0, catchAsyncError_1.default)(async (req, res) => {
+            const page = req.query.page;
+            const limit = req.query.limit;
+            const result = await chat_proxy_1.default.getConversations(page, limit, req);
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 200,
+                success: true,
+                message: "Conversations fetched successfully",
+                data: result
+            });
+        }));
+        //  soft delete conversation
+        this.softDeleteConversation = (0, controllerLogging_1.controllerLogging)("ChatController.softDeleteConversation", (0, catchAsyncError_1.default)(async (req, res) => {
+            const { id } = req.params;
+            await chat_proxy_1.default.softDeleteConversation(id, req);
+            return (0, sendResponse_1.default)(res, {
+                statusCode: 200,
+                success: true,
+                message: "Conversation deleted successfully",
             });
         }));
         // soft delete message

@@ -10,5 +10,7 @@ const router= Router();
 router.post("/" , verifyToken ,singleUpload, validateRequest(sendMessageSchema) , chatController.createMessage);
 router.get("/" , verifyToken , validateRequest(getMessagesSchema) , chatController.getMesssages);
 router.put("/:id" , verifyToken , chatController.softDeleteMessage);
+router.get("/conversations" , verifyToken , chatController.getConversations);
+router.put("/conversation/:id" , verifyToken , chatController.softDeleteConversation);
 
 export const chatRoutes= router;

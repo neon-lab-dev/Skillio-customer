@@ -20,7 +20,7 @@ const moduleRoutes = [
         route: registration_routes_1.registrationRoutes
     },
     {
-        path: "/v1/chat",
+        path: "/v1/message",
         route: chat_routes_1.chatRoutes
     }
 ];

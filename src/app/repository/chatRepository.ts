@@ -15,33 +15,37 @@ class ChatRepostory {
     return await this.chatRepository.save(newMessage);
   };
 
-  // find messages by senderId and recipientId
-  findMessagesBySenderIdAndRecipientId = async (
-    senderId: string,
-    recipientId: string,
-    before: Date,
+  // find Messages by  conversationId
+  findMessagesByConversationId = async (
+    conversationId: string,
+    participantId: string,
+    before: string,
     limit: string
   ) => {
     const messageLimit = parseInt(limit) || 30;
+    const beforeDate = before ? new Date(before) : new Date();
 
-    return await this.chatRepository.find({
-      where: [
-        {
-          senderId,
-          recipientId,
-          ...(before ? { createdAt: LessThan(before) } : {}),
-        },
-        {
-          senderId: recipientId,
-          recipientId: senderId,
-          ...(before ? { createdAt: LessThan(before) } : {}),
-        },
-      ],
-      order: {
-        createdAt: "DESC",
-      },
-      take: messageLimit,
-    });
+    const messages = await this.chatRepository
+      .createQueryBuilder("message")
+      .leftJoin(
+        "conversationParticipant",
+        "cp",
+        "cp.conversationId = message.conversationId"
+      )
+      .where("message.conversationId = :conversationId", { conversationId })
+      .andWhere("cp.participantId = :participantId", { participantId })
+      .andWhere("message.isDeleted = false")
+      .andWhere("message.createdAt < :beforeDate", { beforeDate })
+      .andWhere(
+        `
+      (cp.deletedAt IS NULL OR message.createdAt > cp.deletedAt)
+      `
+      )
+      .orderBy("message.createdAt", "DESC")
+      .take(messageLimit)
+      .getMany();
+
+    return messages;
   };
 
   // find message by Id
@@ -49,11 +53,19 @@ class ChatRepostory {
     return await this.chatRepository.findOne({
       where: { id },
     });
-  }
+  };
 
   // update messageById
   updateMessageById = async (id: string, messageData: DeepPartial<Message>) => {
     return await this.chatRepository.update(id, messageData);
+  };
+
+  // update messages by conversationId
+  updateMessagesByConversationId = async (
+    conversationId: string,
+    messageData: DeepPartial<Message>
+  ) => {
+    return await this.chatRepository.update({ conversationId }, messageData);
   };
 }
 

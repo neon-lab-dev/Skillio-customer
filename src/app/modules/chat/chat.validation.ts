@@ -10,7 +10,7 @@ export const sendMessageSchema= z.object({
         if (typeof val === "string") {
           try {
             return JSON.parse(val);
-          } catch {
+          } catch { 
             return undefined;
           }
         }
@@ -57,11 +57,14 @@ export const sendMessageSchema= z.object({
 )
 
 export const getMessagesSchema= z.object({
-    body: z.object({
-        recipientId: z.string({
-            required_error: "Recipient ID is required",
-            invalid_type_error: "Recipient ID must be a string"
+    query: z.object({
+        conversationId: z.string({
+            required_error: "Conversation ID is required",
+            invalid_type_error: "Conversation ID must be a string"
         }),
+        limit: z.string({
+                invalid_type_error: "Limit must be a string"
+            }).optional(),
       before: z.preprocess(
       (val) => {
         if (val instanceof Date) return val;
@@ -74,15 +77,20 @@ export const getMessagesSchema= z.object({
         return undefined;
       },
       z.date({
-        required_error: "Before date is required",
         invalid_type_error: "Before must be a valid date"
-      })
-    )
-    }),
+      }),
+    ).optional()
+    })
+})
+
+export const getConversationsSchema= z.object({
     query: z.object({
+        page: z.string({
+            invalid_type_error: "Page must be a string"
+        }).optional(),
+
         limit: z.string({
-            required_error: "Limit is required",
             invalid_type_error: "Limit must be a string"
-        })
+        }).optional()
     })
 })

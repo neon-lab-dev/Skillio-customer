@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMessagesSchema = exports.sendMessageSchema = void 0;
+exports.getConversationsSchema = exports.getMessagesSchema = exports.sendMessageSchema = void 0;
 const zod_1 = require("zod");
 exports.sendMessageSchema = zod_1.z.object({
     body: zod_1.z.object({
@@ -52,11 +52,14 @@ exports.sendMessageSchema = zod_1.z.object({
     path: ["body"]
 });
 exports.getMessagesSchema = zod_1.z.object({
-    body: zod_1.z.object({
-        recipientId: zod_1.z.string({
-            required_error: "Recipient ID is required",
-            invalid_type_error: "Recipient ID must be a string"
+    query: zod_1.z.object({
+        conversationId: zod_1.z.string({
+            required_error: "Conversation ID is required",
+            invalid_type_error: "Conversation ID must be a string"
         }),
+        limit: zod_1.z.string({
+            invalid_type_error: "Limit must be a string"
+        }).optional(),
         before: zod_1.z.preprocess((val) => {
             if (val instanceof Date)
                 return val;
@@ -66,14 +69,17 @@ exports.getMessagesSchema = zod_1.z.object({
             }
             return undefined;
         }, zod_1.z.date({
-            required_error: "Before date is required",
             invalid_type_error: "Before must be a valid date"
-        }))
-    }),
+        })).optional()
+    })
+});
+exports.getConversationsSchema = zod_1.z.object({
     query: zod_1.z.object({
+        page: zod_1.z.string({
+            invalid_type_error: "Page must be a string"
+        }).optional(),
         limit: zod_1.z.string({
-            required_error: "Limit is required",
             invalid_type_error: "Limit must be a string"
-        })
+        }).optional()
     })
 });

@@ -14,4 +14,6 @@ const router = (0, express_1.Router)();
 router.post("/", requireAuth_1.verifyToken, multer_1.default, (0, validateRequest_1.default)(chat_validation_1.sendMessageSchema), chat_controller_1.default.createMessage);
 router.get("/", requireAuth_1.verifyToken, (0, validateRequest_1.default)(chat_validation_1.getMessagesSchema), chat_controller_1.default.getMesssages);
 router.put("/:id", requireAuth_1.verifyToken, chat_controller_1.default.softDeleteMessage);
+router.get("/conversations", requireAuth_1.verifyToken, chat_controller_1.default.getConversations);
+router.put("/conversation/:id", requireAuth_1.verifyToken, chat_controller_1.default.softDeleteConversation);
 exports.chatRoutes = router;

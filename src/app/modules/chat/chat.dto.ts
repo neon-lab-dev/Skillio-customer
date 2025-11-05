@@ -32,67 +32,54 @@ export class ChaDTO{
 }
 
 export class GetChatDTO{
+    id!: string;
     senderId!: string;
     recipientId!: string;
     content:content;
     status: Status;
     readAt: Date;
     isDeleted: boolean;
+    createdAt!: Date;
 
     constructor(data:{
+        id: string;
         senderId: string;
         recipientId: string;
         content: content;
         status: Status;
         readAt: Date;
         isDeleted: boolean;
+        createdAt: Date;
     }){
+        this.id= data.id;
         this.senderId= data.senderId;
         this.recipientId= data.recipientId;
         this.content= data.content;
         this.status= data.status;
         this.readAt= data.readAt;
         this.isDeleted= data.isDeleted;
+        this.createdAt= data.createdAt;
     }
 
     toJSON():{
+        id: string;
         senderId: string;
         recipientId: string;
         content: content;
         status: Status;
         readAt: Date;
         isDeleted: boolean;
+        createdAt: Date;
     }{
         return{
+            id: this.id,
             senderId: this.senderId,
             recipientId: this.recipientId,
             content: this.content,
             status: this.status,
             readAt: this.readAt,
-            isDeleted: this.isDeleted
-        }
-    }
-}
-
-export class MessagesDTO{
-    recipientId!: string;
-    before!: Date;
-
-    constructor(data:{
-        recipientId: string;
-        before: Date;
-    }){
-        this.recipientId= data.recipientId;
-        this.before= typeof data.before=== 'string' ? new Date(data.before) : data.before;
-    }
-
-    toJSON():{
-        recipientId: string;
-        before: Date;
-    }{
-        return{
-            recipientId: this.recipientId,
-            before: this.before
+            isDeleted: this.isDeleted,
+            createdAt: this.createdAt
         }
     }
 }

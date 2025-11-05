@@ -13,6 +13,7 @@ exports.Message = void 0;
 const typeorm_1 = require("typeorm");
 const baseEntity_1 = require("./baseEntity");
 const chatEnum_1 = require("../modules/chat/enums/chatEnum");
+const conversation_1 = require("./conversation");
 let Message = class Message extends baseEntity_1.BaseEntity {
 };
 exports.Message = Message;
@@ -40,7 +41,19 @@ __decorate([
     (0, typeorm_1.Column)({ type: "boolean", default: false }),
     __metadata("design:type", Boolean)
 ], Message.prototype, "isDeleted", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "uuid" }),
+    __metadata("design:type", String)
+], Message.prototype, "conversationId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => conversation_1.Conversation, conversation => conversation.messages, {
+        onDelete: "CASCADE",
+    }),
+    (0, typeorm_1.JoinColumn)({ name: "conversationId" }),
+    __metadata("design:type", conversation_1.Conversation)
+], Message.prototype, "conversation", void 0);
 exports.Message = Message = __decorate([
     (0, typeorm_1.Entity)("message"),
-    (0, typeorm_1.Index)("IDX_SENDER_RECIEVER", ["senderId", "recipientId"])
+    (0, typeorm_1.Index)("IDX_SENDER_RECIEVER", ["senderId", "recipientId"]),
+    (0, typeorm_1.Index)("CREATED_AT", ["createdAt"])
 ], Message);

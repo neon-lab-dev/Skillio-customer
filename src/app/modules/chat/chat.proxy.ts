@@ -6,6 +6,8 @@ import registrationRepository from "../../repository/registrationRepository";
 import logger from "../../utils/logger";
 import AppError from "../../errors/appError";
 import chatRepository from "../../repository/chatRepository";
+import conversationRepository from "../../repository/conversationRepository";
+import conversationParticipantRepository from "../../repository/conversationParticipantRepository";
 
 class ChatProxy {
   private checkIfProfileExists = async (profileId: string, type: string) => {
@@ -18,6 +20,15 @@ class ChatProxy {
       throw new AppError(404, `${type} Profile doesnot exist`);
     }
   };
+
+  private checkExistingConversation= async(conversationId:string)=>{
+    const existingConversation= await conversationRepository.getConversationById(conversationId);
+
+    if(!existingConversation){
+      logger.error("Conversation not found");
+      throw new AppError(404 , "Conversation not found");
+    }
+  }
 
   // create/send message
   createMessage = proxyLogging(
@@ -36,12 +47,41 @@ class ChatProxy {
   getMesssages = proxyLogging(
     "ChatProxy",
     "getMesssages",
-    async (recipientId: string, before: Date, limit: string, req: Request) => {
-      await this.checkIfProfileExists(recipientId, "Recipient");
+    async (conversationId: string, before: string, limit: string, req: Request) => {
 
-      return await chatServices.getMesssages(recipientId, before, limit, req);
+      await this.checkExistingConversation(conversationId);
+
+      const profileId= req.user.profileId;
+
+      const existingConversationParticipant= await conversationParticipantRepository.getConversationParticipant(profileId , conversationId)
+
+      if(!existingConversationParticipant ){
+        logger.error("Unauthorized access");
+        throw new AppError(403 , "Unauthorized access");
+      }
+
+      return await chatServices.getMesssages(conversationId, before, limit, req);
     }
   );
+
+  // get conversations
+  getConversations = proxyLogging(
+    "ChatProxy",
+    "getConversations",
+    async (page: string , limit:string, req: Request) => {
+      return await chatServices.getConversations(page , limit,req);
+    }
+  );
+
+  // soft delete conversation
+  softDeleteConversation = proxyLogging(
+    "ChatProxy",
+    "updateConversation",
+    async(id:string , req:Request)=>{
+      await this.checkExistingConversation(id);
+
+      return await chatServices.softDeleteConversation(id , req);
+    })
 
   // soft delete message
   softDeleteMessage = proxyLogging(
@@ -61,12 +101,11 @@ class ChatProxy {
         logger.error("unauthorized access");
         throw new AppError(403, "unauthorized access");
       }
-      
+
       if (message.isDeleted === true) {
         logger.error("Message already deleted");
         throw new AppError(400, "Message already deleted");
       }
-
 
       return await chatServices.softDeleteMessage(message);
     }

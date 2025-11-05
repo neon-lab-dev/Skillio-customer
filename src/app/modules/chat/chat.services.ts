@@ -10,6 +10,9 @@ import cloudinaryServices from "../document/services/cloudinaryServices";
 import { GetChatDTO } from "./chat.dto";
 import { Status } from "./enums/chatEnum";
 import { Message } from "../../entity/message";
+import conversationParticipantRepository from "../../repository/conversationParticipantRepository";
+import { hasSameId } from "./utils/checkIfConversationExists";
+import conversationRepository from "../../repository/conversationRepository";
 
 class ChatService{
 
@@ -43,30 +46,94 @@ class ChatService{
                 url= res.url;
             }
 
-            const newMessage= await chatRepository.createMessage({
-                senderId,
-                recipientId,
-                content:{
-                    ...content,
-                    fileUrl: url
-                },
-                status: Status.SENT
-            })
+            const senderConversationIds= await conversationParticipantRepository.getAllConversationIdsByParticipantId(senderId);
 
-            await sendMessage(
-                newMessage.id,
-                senderId,
-                recipientId,
-                {
-                    content,
-                    fileUrl: url,
-                    timestamp: new Date()
-                },
-                fcmRegistrationToken || ""
-            )
+            const recipientConversationIds= await conversationParticipantRepository.getAllConversationIdsByParticipantId(recipientId);
+
+            const commonConversation= hasSameId(senderConversationIds , recipientConversationIds);
+
+            let message;
+
+            if(commonConversation?.flag){
+                const newMessage= await chatRepository.createMessage({
+                    senderId,
+                    recipientId,
+                    content:{
+                        ...content,
+                        fileUrl: url
+                    },
+                    status: Status.SENT,
+                    conversationId: commonConversation.id
+                })
+
+                await sendMessage(
+                    newMessage.id,
+                    senderId,
+                    recipientId,
+                    {
+                        content,
+                        fileUrl: url,
+                        timestamp: new Date()
+                    },
+                    fcmRegistrationToken || ""
+                )
+
+                await conversationRepository.updateConversationById(commonConversation.id, {
+                    updatedAt: new Date()
+                })
+
+                const existingConversationParticipant= await conversationParticipantRepository.getConversationParticipant(
+                    senderId,
+                    commonConversation.id
+                )
+
+                if(existingConversationParticipant?.deletedAt && existingConversationParticipant?.deletedAt > existingConversationParticipant.joinedAt){
+                    await conversationParticipantRepository.updateConversationParticipant(
+                        senderId,
+                        commonConversation.id,
+                        { joinedAt: new Date() }
+                    )
+                }
 
 
-            const message= new GetChatDTO(newMessage).toJSON();
+                message= new GetChatDTO(newMessage).toJSON();
+            }else{
+                const conversation= await conversationRepository.createConversation();
+
+                await conversationParticipantRepository.createConversationParticipant({
+                    conversationId: conversation.id,
+                    participantId: senderId
+                })
+
+                await conversationParticipantRepository.createConversationParticipant({
+                    conversationId: conversation.id,
+                    participantId: recipientId
+                })
+
+                const newMessage= await chatRepository.createMessage({
+                    senderId,
+                    recipientId,
+                    content:{
+                        ...content,
+                        fileUrl: url
+                    },
+                    status: Status.SENT,
+                    conversationId: conversation.id
+                })
+
+                await sendMessage(
+                    newMessage.id,
+                    senderId,
+                    recipientId,
+                    {
+                        content,
+                        fileUrl: url,
+                        timestamp: new Date()
+                    },
+                    fcmRegistrationToken || ""
+                )
+                message= new GetChatDTO(newMessage).toJSON();
+            }
 
             return message;
         }
@@ -76,12 +143,12 @@ class ChatService{
     getMesssages= serviceLogging(
         "ChatService",
         "getMesssages",
-        async( recipientId:string , before: Date , limit: string , req:Request)=>{
+        async( conversationId:string , before: string , limit: string , req:Request)=>{
             const senderId= req.user.profileId
 
-            const fetchedMessages= await chatRepository.findMessagesBySenderIdAndRecipientId(
+            const fetchedMessages= await chatRepository.findMessagesByConversationId(
+                conversationId,
                 senderId,
-                recipientId,
                 before,
                 limit
             );
@@ -108,6 +175,54 @@ class ChatService{
             ))
 
             return messages;
+        }
+    )
+
+    // get conversations
+    getConversations= serviceLogging(
+        "ChatService",
+        "getConversations",
+        async(page: string , limit:string, req:Request )=>{
+            const profileId= req.user.profileId;
+            const conversationIds= await conversationParticipantRepository.getPaginatedConversationIdsByParticipantId(profileId , page , limit);
+
+            if(conversationIds.length===0){
+                return [];
+            }
+
+            const participantIds= await conversationParticipantRepository.getAllParticipantIdsByConversationIds(conversationIds , profileId);
+
+            const messages= await Promise.all(
+                conversationIds.map(async(conversationId)=>{
+                    return await conversationRepository.getConversationByIdWithLatestMessage(conversationId);
+                }) 
+            )
+
+            const participantWithMessages= participantIds.map((participantId , index)=>{
+                return{
+                    participantId,
+                    conversationId: conversationIds[index],
+                    latestMessage: messages[index]
+                }
+            })
+
+            return participantWithMessages;
+    })
+
+    // soft delete conversation
+    softDeleteConversation= serviceLogging(
+        "ChatService",
+        "softDeleteConversation",
+        async(conversationId:string , req:Request )=>{
+            const profileId= req.user.profileId;
+
+            await conversationParticipantRepository.updateConversationParticipant(
+                profileId,
+                conversationId,
+                {
+                    deletedAt: new Date()
+                }
+            )
         }
     )
 

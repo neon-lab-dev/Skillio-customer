@@ -2,7 +2,7 @@ import chatProxy from "./chat.proxy";
 import catchAsyncError from "../../utils/catchAsyncError";
 import sendResponse from "../../middlewares/sendResponse";
 import { Request, Response } from "express";
-import { ChaDTO , MessagesDTO } from "./chat.dto";
+import { ChaDTO  } from "./chat.dto";
 import { controllerLogging } from "../../utils/controllerLogging";
 
 class ChatController{
@@ -27,11 +27,15 @@ class ChatController{
     getMesssages= controllerLogging(
         "ChatController.getMesssages",
     catchAsyncError(async(req:Request , res:Response)=>{
-        const { recipientId, before}= new MessagesDTO(req.body);
 
+        const conversationId= req.query.conversationId as string;
+        
         const limit= req.query.limit as string;
 
-        const result= await chatProxy.getMesssages( recipientId , before , limit , req);
+        const before= req.query.before as string;
+
+
+        const result= await chatProxy.getMesssages( conversationId , before , limit , req);
 
         return sendResponse(res, {
             statusCode: 200,
@@ -40,6 +44,37 @@ class ChatController{
             data: result
         })
      }))
+
+    //  get conversations
+    getConversations= controllerLogging(
+        "ChatController.getConversations",
+    catchAsyncError(async(req:Request , res:Response)=>{
+        const page= req.query.page as string;
+
+        const limit= req.query.limit as string;
+
+        const result= await chatProxy.getConversations(page , limit, req);
+        return sendResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "Conversations fetched successfully",
+            data: result
+        })
+     }))
+
+    //  soft delete conversation
+    softDeleteConversation= controllerLogging(
+        "ChatController.softDeleteConversation",
+    catchAsyncError(async(req:Request , res:Response)=>{
+        const { id }= req.params;
+        await chatProxy.softDeleteConversation(id , req);
+        return sendResponse(res, {
+            statusCode: 200,
+            success: true,
+            message: "Conversation deleted successfully",
+        })
+     }
+    ))
 
     // soft delete message
     softDeleteMessage= controllerLogging(
