@@ -16,6 +16,7 @@ const registrationEnum_1 = require("../modules/registration/enums/registrationEn
 const contact_1 = require("./contact");
 const address_1 = require("./address");
 const portfolio_1 = require("./portfolio");
+const online_1 = require("./online");
 let Profile = class Profile extends baseEntity_1.BaseEntity {
 };
 exports.Profile = Profile;
@@ -69,6 +70,12 @@ __decorate([
     }),
     __metadata("design:type", portfolio_1.Portfolio)
 ], Profile.prototype, "portfolio", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => online_1.Online, online => online.profile, {
+        cascade: true,
+    }),
+    __metadata("design:type", online_1.Online)
+], Profile.prototype, "online", void 0);
 exports.Profile = Profile = __decorate([
     (0, typeorm_1.Entity)("profile"),
     (0, typeorm_1.Index)("IDX_NICKNAME_PIN", ["nickName", "pin"])

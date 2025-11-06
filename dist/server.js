@@ -8,13 +8,9 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const config_1 = __importDefault(require("./app/config"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const dataSource_1 = require("./app/db/dataSource");
 const routes_1 = __importDefault(require("./app/routes"));
 const notFoundHandler_1 = __importDefault(require("./app/middlewares/notFoundHandler"));
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
-const logger_1 = require("./app/utils/logger");
-const systemConfigStore_1 = __importDefault(require("./app/config/systemConfigStore"));
-const NotificationProviderFactory_1 = __importDefault(require("./app/providers/NotificationProviderFactory"));
 const app = (0, express_1.default)();
 // middlewares
 app.use((0, cookie_parser_1.default)());
@@ -35,16 +31,4 @@ app.get("/", (req, res) => {
 app.use("/api", routes_1.default);
 app.use(notFoundHandler_1.default);
 app.use(globalErrorHandler_1.default);
-dataSource_1.AppDataSource.initialize()
-    .then(async () => {
-    await systemConfigStore_1.default.loadConfigs();
-    NotificationProviderFactory_1.default.initializeProviders();
-    app.listen(config_1.default.port, () => {
-        logger_1.logger.info(`Listening at port number ${config_1.default.port}`);
-        logger_1.logger.info(`Database connection established successfully at ${config_1.default.db_databse_development}`);
-    });
-})
-    .catch((error) => {
-    logger_1.logger.error("Database connection error", error);
-});
 exports.default = app;

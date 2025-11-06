@@ -9,6 +9,7 @@ const documentConfig_1 = require("../modules/document/config/documentConfig");
 const jwtConfig_1 = require("../modules/registration/config/jwtConfig");
 const pinConfig_1 = require("../modules/registration/config/pinConfig");
 const addressPinCodeConfig_1 = require("../modules/registration/config/addressPinCodeConfig");
+const fcmServiceAccountConfig_1 = require("../modules/chat/config/fcmServiceAccountConfig");
 class SystemConfigStore {
     constructor() {
         this.loadConfigs = async () => {
@@ -21,6 +22,7 @@ class SystemConfigStore {
                 await (0, jwtConfig_1.loadJwtConfig)();
                 await (0, pinConfig_1.loadPinConfig)();
                 await (0, addressPinCodeConfig_1.loadAddressPinConfig)();
+                await (0, fcmServiceAccountConfig_1.loadFcmServiceAccountConfig)();
             }
             catch (error) {
                 logger_1.logger.error("Error loading system  configurations:", error);
