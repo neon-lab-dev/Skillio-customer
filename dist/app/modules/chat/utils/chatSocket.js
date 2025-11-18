@@ -20,7 +20,7 @@ const sendMessage = async (id, senderId, recipientId, content, registrationToken
         logger_1.default.info(`Message sent to recipientId: ${recipientId}, socketId: ${socketId}`);
     }
     else {
-        (0, pushNotification_1.sendSinglePushNotification)(senderId, content, registrationToken);
+        (0, pushNotification_1.sendSinglePushNotification)(senderId, content, "message", registrationToken);
     }
 };
 exports.sendMessage = sendMessage;

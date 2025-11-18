@@ -1,5 +1,5 @@
 import { AppDataSource } from "../db/dataSource";
-import { Repository } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 import { Document } from "../entity/documentEntity";
 import { In } from "typeorm";
 import { DocumentType } from "../modules/document/enums/documentEnum";
@@ -13,7 +13,7 @@ class DocumentRepository{
     }
 
     // create a document
-    createDocument= async(documentData: Partial<Document>)=>{
+    createDocument= async(documentData: DeepPartial<Document>)=>{
         const newDocument=this.documentRepository.create(documentData);
         return await this.documentRepository.save(newDocument);
     }

@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
-app.use((0, cors_1.default)({ origin: ["http://localhost:5173", "http://127.0.0.1:5500"], credentials: true }));
+app.use((0, cors_1.default)({ origin: ["http://localhost:5173", "http://localhost:5174", "http://127.0.0.1:5500"], credentials: true }));
 app.use(express_1.default.json());
 // api route
 app.get("/", (req, res) => {

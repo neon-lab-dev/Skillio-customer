@@ -7,12 +7,12 @@ exports.sendSinglePushNotification = void 0;
 const logger_1 = __importDefault(require("./logger"));
 const registrationRepository_1 = __importDefault(require("../repository/registrationRepository"));
 const firebaseConfig_1 = require("../config/firebaseConfig");
-const sendSinglePushNotification = async (senderId, content, registrationToken) => {
+const sendSinglePushNotification = async (senderId, content, type, registrationToken) => {
     const profile = await registrationRepository_1.default.findProfileById(senderId);
     const message = {
         data: {
-            title: `New message from ${profile?.firstName} ${profile?.lastName}`,
-            body: content.text || "You have received a new message.",
+            title: `${type} from ${profile?.firstName} ${profile?.lastName}`,
+            body: content.text || "You have received a new message",
         },
         token: registrationToken
     };

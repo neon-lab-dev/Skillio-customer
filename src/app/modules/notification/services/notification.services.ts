@@ -14,7 +14,7 @@ class NotificationService {
     // send notfication
     createNotification= async(notificationData: Partial<TNotification>)=>{
         try{
-            const { medium,to, bodyText, attachments } = notificationData;
+              const { medium,to, bodyText, attachments } = notificationData;
     
     
             if(!medium || !bodyText || !to){

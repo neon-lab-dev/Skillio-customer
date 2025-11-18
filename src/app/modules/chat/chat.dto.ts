@@ -33,7 +33,7 @@ export class ChaDTO{
 
 export class GetChatDTO{
     id!: string;
-    senderId!: string;
+    senderId!: string;  
     recipientId!: string;
     content:content;
     status: Status;
