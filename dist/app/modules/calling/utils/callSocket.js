@@ -4,10 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.endCall = exports.rejectCall = exports.sendIceCandidate = exports.acceptCall = exports.startCall = void 0;
+const callRepository_1 = __importDefault(require("../../../repository/callRepository"));
 const logger_1 = __importDefault(require("../../../utils/logger"));
 const pushNotification_1 = require("../../../utils/pushNotification");
 const sockets_1 = require("../../../utils/sockets");
-const startCall = (callerId, recipientId, callId, offer, registrationToken) => {
+const callEnum_1 = require("../enums/callEnum");
+const startCall = async (callerId, recipientId, callId, offer, registrationToken) => {
     const io = (0, sockets_1.getIO)();
     const socketId = sockets_1.onlineUsers.get(recipientId);
     if (socketId) {
@@ -17,6 +19,7 @@ const startCall = (callerId, recipientId, callId, offer, registrationToken) => {
             callId,
             offer
         });
+        await callRepository_1.default.updateCall(callId, { offer, callStatus: callEnum_1.status.RINGING });
         logger_1.default.info(`calling reciever:${recipientId}`);
     }
     else {

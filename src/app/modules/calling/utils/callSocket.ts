@@ -1,10 +1,12 @@
+import callRepository from "../../../repository/callRepository";
 import logger from "../../../utils/logger";
 import { sendSinglePushNotification } from "../../../utils/pushNotification";
 import { getIO , onlineUsers } from "../../../utils/sockets";
+import { status } from "../enums/callEnum";
 import { iceCandidatePayload } from "../interface/call.interface";
 
 
-export const startCall=(callerId:string , recipientId:string ,callId:string , offer:JSON , registrationToken:string)=>{ 
+export const startCall= async(callerId:string , recipientId:string ,callId:string , offer:any , registrationToken:string)=>{ 
    const io = getIO();
 
    const socketId= onlineUsers.get(recipientId);
@@ -15,7 +17,9 @@ export const startCall=(callerId:string , recipientId:string ,callId:string , of
             recipientId,
             callId,
             offer
-        })
+            }
+        )
+        await callRepository.updateCall(callId , {offer , callStatus: status.RINGING})
 
         logger.info(`calling reciever:${recipientId}`)
     }else{

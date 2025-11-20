@@ -51,7 +51,6 @@ class CallService {
         });
         // update call with offer
         this.updateCall = (0, serviceLogging_1.serviceLogging)("callService", "updateCall", async (call, offer, registrationToken) => {
-            await callRepository_1.default.updateCall(call.id, { offer, callStatus: callEnum_1.status.RINGING });
             (0, callSocket_1.startCall)(call.callerId, call.recipientId, call.id, offer, registrationToken || " ");
         });
         // accept call
@@ -75,8 +74,8 @@ class CallService {
             });
         });
         // send ice candidate
-        this.sendIceCandidate = (0, serviceLogging_1.serviceLogging)("callService", "sendIceCandidate", async (profileId, callId, candidate) => {
-            (0, callSocket_1.sendIceCandidate)(profileId, callId, candidate);
+        this.sendIceCandidate = (0, serviceLogging_1.serviceLogging)("callService", "sendIceCandidate", async (profileId, callId, iceCandidate) => {
+            (0, callSocket_1.sendIceCandidate)(profileId, callId, iceCandidate);
         });
     }
 }

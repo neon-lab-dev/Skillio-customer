@@ -70,8 +70,6 @@ class CallService{
         "updateCall",
         async(call:Call , offer:any , registrationToken:string )=>{
     
-             await callRepository.updateCall(call.id , {offer , callStatus: status.RINGING})
-    
             startCall(call.callerId , call.recipientId ,call.id, offer , registrationToken || " ")
     
         }
@@ -125,9 +123,9 @@ class CallService{
         serviceLogging(
         "callService",
         "sendIceCandidate",
-        async(profileId:string,callId:string, candidate:iceCandidatePayload)=>{
+        async(profileId:string,callId:string, iceCandidate:iceCandidatePayload)=>{
 
-            sendIceCandidate(profileId,callId, candidate);
+            sendIceCandidate(profileId,callId, iceCandidate);
         }
     )
 
