@@ -124,12 +124,12 @@ class CallProxy{
     sendIceCandidate= proxyLogging(
         "callProxy",
         "sendIceCandidate",
-        async( profileId:string ,callId:string, candidate:iceCandidatePayload)=>{
+        async( profileId:string ,callId:string, iceCandidate:iceCandidatePayload)=>{
             await this.checkExistingCall(callId);
 
             await this.checkExistingProfile(profileId);
 
-            return await callService.sendIceCandidate(profileId ,callId, candidate)
+            return await callService.sendIceCandidate(profileId ,callId, iceCandidate)
         }
     )
 }

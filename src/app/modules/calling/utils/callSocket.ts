@@ -60,7 +60,7 @@ export const sendIceCandidate= (userId:string , callId:string, iceCandidate:iceC
 export const rejectCall=(callerId:string , callId:string)=>{
     const io=getIO();
 
-    const socketId=onlineUsers.get(callerId);
+    const socketId=onlineUsers.get(callerId)    ;
 
     if(socketId){
         io.to(socketId).emit("callRejected" , {

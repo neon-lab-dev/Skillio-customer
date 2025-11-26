@@ -1,27 +1,26 @@
 # syntax=docker/dockerfile:1
 
-FROM node:20-bullseye AS base
+FROM node:20-bullseye AS build
 WORKDIR /usr/src/app
-
-# Install build deps for node-rdkafka (librdkafka)
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends build-essential python3 pkg-config libssl-dev libsasl2-dev && \
-    rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
 
-# Install dependencies without running project lifecycle scripts (skips prisma postinstall)
-RUN if [ -f package-lock.json ]; then npm ci --ignore-scripts; else npm install --ignore-scripts; fi
+RUN npm install
 
-COPY .env ./
 COPY . .
 
-# RUN npm run dev
+RUN npm run build
 
-ENV NODE_ENV=development
+FROM node:20-bullseye-slim AS prod
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY --from=build /usr/src/app/dist ./dist
+
+ENV NODE_ENV=production
 
 EXPOSE 3000
-
-CMD [ "npm", "run", "dev" ]
-
-
+CMD ["npm", "start"]

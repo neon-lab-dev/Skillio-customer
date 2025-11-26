@@ -90,9 +90,9 @@ class callController{
     sendIceCandidate= controllerLogging(
         "callController.sendIceCandidate",
         catchAsyncError(async(req:Request , res:Response)=>{
-            const {profileId, callId , candidate}=req.body;
+            const {profileId, callId , iceCandidate}=req.body;
 
-            await callProxy.sendIceCandidate(profileId , callId , candidate);
+            await callProxy.sendIceCandidate(profileId , callId , iceCandidate);
 
             return sendResponse(res , {
                 success:true,
