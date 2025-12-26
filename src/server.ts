@@ -9,7 +9,6 @@ import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 
 const app = express();
 
-
 // middlewares
 app.use(cookieParser());
 

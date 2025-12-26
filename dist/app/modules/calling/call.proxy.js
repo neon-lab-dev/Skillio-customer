@@ -80,10 +80,10 @@ class CallProxy {
             return await call_service_1.default.endCall(call);
         });
         // send Ice candidate
-        this.sendIceCandidate = (0, proxyLogging_1.proxyLogging)("callProxy", "sendIceCandidate", async (profileId, callId, candidate) => {
+        this.sendIceCandidate = (0, proxyLogging_1.proxyLogging)("callProxy", "sendIceCandidate", async (profileId, callId, iceCandidate) => {
             await this.checkExistingCall(callId);
             await this.checkExistingProfile(profileId);
-            return await call_service_1.default.sendIceCandidate(profileId, callId, candidate);
+            return await call_service_1.default.sendIceCandidate(profileId, callId, iceCandidate);
         });
     }
 }

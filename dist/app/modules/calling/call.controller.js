@@ -61,8 +61,8 @@ class callController {
         }));
         // send ice candidate
         this.sendIceCandidate = (0, controllerLogging_1.controllerLogging)("callController.sendIceCandidate", (0, catchAsyncError_1.default)(async (req, res) => {
-            const { profileId, callId, candidate } = req.body;
-            await call_proxy_1.default.sendIceCandidate(profileId, callId, candidate);
+            const { profileId, callId, iceCandidate } = req.body;
+            await call_proxy_1.default.sendIceCandidate(profileId, callId, iceCandidate);
             return (0, sendResponse_1.default)(res, {
                 success: true,
                 statusCode: 200,

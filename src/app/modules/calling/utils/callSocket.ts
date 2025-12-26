@@ -18,7 +18,7 @@ export const startCall= async(callerId:string , recipientId:string ,callId:strin
             callId,
             offer
             }
-        )
+        )   
         await callRepository.updateCall(callId , {offer , callStatus: status.RINGING})
 
         logger.info(`calling reciever:${recipientId}`)

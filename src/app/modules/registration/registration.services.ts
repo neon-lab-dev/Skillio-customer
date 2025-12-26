@@ -15,6 +15,9 @@ import { DocumentType } from "../document/enums/documentEnum";
 import { ProfileType } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
+import { Events } from "../../kafka/events";
+import documentServices from "../document/services/document.services";
+import { Producer } from "../../kafka/producer/producer";
 
 class RegistraionService{
     private updateContactVerificationStatus= async(id:string , contactData: Partial<Contact>)=>{
@@ -24,6 +27,8 @@ class RegistraionService{
     private updateDocument=async(id:string , documentData:Partial<TDocument>)=>{
         await documentRepository.updateDocument(id, documentData);
     }
+
+    private producer: Producer= new Producer()
 
 
     // create/register a profile
@@ -96,6 +101,16 @@ class RegistraionService{
                 portfolioId: newProfile.portfolio.id
             })
         }
+
+        const document= await documentServices.getDocument(profileDocumentId)
+
+        const shortUser={
+            referenceId: newProfile.id,
+            nickName: newProfile.nickName,
+            profilePictureUrl: document.document.url
+        }
+
+        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         const profile= new GetRegistrationDTO(newProfile).toJSON();
 

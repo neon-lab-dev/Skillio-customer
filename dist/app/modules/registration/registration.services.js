@@ -16,6 +16,9 @@ const documentEnum_1 = require("../document/enums/documentEnum");
 const registrationEnum_1 = require("./enums/registrationEnum");
 const getFullName_1 = require("./utils/getFullName");
 const serviceLogging_1 = require("../../utils/serviceLogging");
+const events_1 = require("../../kafka/events");
+const document_services_1 = __importDefault(require("../document/services/document.services"));
+const producer_1 = require("../../kafka/producer/producer");
 class RegistraionService {
     constructor() {
         this.updateContactVerificationStatus = async (id, contactData) => {
@@ -24,6 +27,7 @@ class RegistraionService {
         this.updateDocument = async (id, documentData) => {
             await documentRepository_1.default.updateDocument(id, documentData);
         };
+        this.producer = new producer_1.Producer();
         // create/register a profile
         this.createProfile = (0, serviceLogging_1.serviceLogging)("RegistrationService", "createProfile", async (profileData) => {
             const { firstName, lastName, groupName, nickName, pin, profileType, contacts, address, portfolio, profileDocumentId } = profileData;
@@ -85,6 +89,13 @@ class RegistraionService {
                     portfolioId: newProfile.portfolio.id
                 });
             }
+            const document = await document_services_1.default.getDocument(profileDocumentId);
+            const shortUser = {
+                referenceId: newProfile.id,
+                nickName: newProfile.nickName,
+                profilePictureUrl: document.document.url
+            };
+            this.producer.produce(events_1.Events.CUSTOMER_CREATED, { shortUser });
             const profile = new registration_dto_1.GetRegistrationDTO(newProfile).toJSON();
             return profile;
         });

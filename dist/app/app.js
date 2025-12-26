@@ -10,11 +10,14 @@ const NotificationProviderFactory_1 = __importDefault(require("./providers/Notif
 const dataSource_1 = require("./db/dataSource");
 const config_1 = __importDefault(require("./config"));
 const sockets_1 = require("./utils/sockets");
+const producer_1 = require("./kafka/producer/producer");
 const server = (0, sockets_1.initializeSocket)(server_1.default);
+const producer = new producer_1.Producer();
 dataSource_1.AppDataSource.initialize()
     .then(async () => {
     await systemConfigStore_1.default.loadConfigs();
     NotificationProviderFactory_1.default.initializeProviders();
+    await producer.connect();
     server.listen(config_1.default.port, () => {
         logger_1.default.info(`Listening at port number ${config_1.default.port}`);
         logger_1.default.info(`Database connection established successfully at ${config_1.default.db_databse_development}`);
