@@ -1,5 +1,5 @@
 import {z} from "zod";
-import { ProfileType, contactType, proficiecy } from "./enums/registrationEnum";
+import { ProfileType, contactType, proficiecy, roles } from "./enums/registrationEnum";
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
 
@@ -237,6 +237,10 @@ export const registrationSchema= z.object({
         profileDocumentId:z.string({
             required_error: "Profile document ID is required",
             invalid_type_error: "Profile document ID must be a string"
+        }),
+        role: z.nativeEnum(roles,{
+            required_error: "role is required",
+            invalid_type_error: "invalid role"
         }),
         contacts:z.array(contactSchema , {
             required_error: "contact is required",
