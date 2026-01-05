@@ -6,7 +6,6 @@ import { getJwtConfig } from "./config/jwtConfig";
 import { TProfile } from "./interface/registration.interface";
 import { GetProfileDTO, GetRegistrationDTO } from "./registration.dto";
 import bcrypt from "bcrypt";
-import { createToken } from "./utils/registrationUtils";
 import { TDocument } from "../document/interface/document.interface";
 import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
@@ -15,6 +14,7 @@ import { DocumentType } from "../document/enums/documentEnum";
 import { ProfileType } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
+import { JwtService } from "@neon-lab-dev/platform";
 
 class RegistraionService{
     private updateContactVerificationStatus= async(id:string , contactData: Partial<Contact>)=>{
@@ -119,18 +119,18 @@ class RegistraionService{
         const jwtPayload={
             profileId: profile.id,
             nickName: profile.nickName,
-            mobileNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
+            role: profile.role
         }
 
         const jwtConfig= await getJwtConfig();
 
-        const acessToken=createToken(
+        const acessToken=JwtService.createToken(
             jwtPayload,
             jwtConfig.JWT_ACCESS_SECRET,
             jwtConfig.JWT_ACCESS_EXPIRES_IN
         )
 
-        const refreshToken=createToken(
+        const refreshToken=JwtService.createToken(
             jwtPayload,
             jwtConfig.JWT_REFRESH_SECRET,
             jwtConfig.JWT_REFRESH_EXPIRES_IN
