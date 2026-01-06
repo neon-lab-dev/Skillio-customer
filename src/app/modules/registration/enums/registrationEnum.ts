@@ -22,3 +22,8 @@ export enum onlineStatus{
     ONLINE="ONLINE",
     OFFLINE="OFFLINE"
 }
+
+export enum roles{
+    USER= "USER",
+    ADMIN= "ADMIN"
+}

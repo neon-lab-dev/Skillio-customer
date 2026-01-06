@@ -5,7 +5,7 @@ import {
   OneToMany , Index
 } from "typeorm";
 import { BaseEntity } from "./baseEntity";
-import { profileStatus, ProfileType } from "../modules/registration/enums/registrationEnum";
+import { profileStatus, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
 import { Contact } from "./contact";
 import { Address } from "./address";
 import { Portfolio } from "./portfolio";
@@ -39,6 +39,9 @@ export class Profile extends BaseEntity{
 
     @Column({type:"boolean",default:false})
     isSubscribed!: boolean;
+
+    @Column({type: "enum" ,enum: roles, default: roles.USER , nullable: false })
+    role! : roles
 
     @OneToMany(() => Contact, contact => contact.profile , {
       cascade: true,           

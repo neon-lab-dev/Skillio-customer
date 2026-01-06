@@ -1,4 +1,4 @@
-import { ProfileType, contactType, onlineStatus, proficiecy } from "./enums/registrationEnum";
+import { ProfileType, contactType, onlineStatus, proficiecy, roles } from "./enums/registrationEnum";
 import { Location } from "./interface/registration.interface";
 
 // Contact DTO
@@ -8,6 +8,8 @@ export class ContactDTO {
   primary?: boolean;
   isVerified?: boolean;
   verificationId:string;
+  role: roles;
+  
 
   constructor(data: {
     type: contactType;
@@ -15,12 +17,14 @@ export class ContactDTO {
     primary?: boolean;
     isVerified?: boolean;
     verificationId:string;
+    role: roles
   }) {
     this.type = data.type;
     this.value = data.value;
     this.primary = data.primary ?? true;
     this.isVerified = data.isVerified ?? false;
     this.verificationId= data.verificationId;
+    this.role= data.role
   }
 
   toJSON() {
@@ -29,7 +33,8 @@ export class ContactDTO {
       value: this.value,
       primary: this.primary,
       isVerified: this.isVerified,
-      verificationId: this.verificationId
+      verificationId: this.verificationId,
+      role: this.role
     };
   }
 }
