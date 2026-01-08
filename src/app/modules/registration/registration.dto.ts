@@ -8,7 +8,6 @@ export class ContactDTO {
   primary?: boolean;
   isVerified?: boolean;
   verificationId:string;
-  role: roles;
   
 
   constructor(data: {
@@ -17,14 +16,12 @@ export class ContactDTO {
     primary?: boolean;
     isVerified?: boolean;
     verificationId:string;
-    role: roles
   }) {
     this.type = data.type;
     this.value = data.value;
     this.primary = data.primary ?? true;
     this.isVerified = data.isVerified ?? false;
     this.verificationId= data.verificationId;
-    this.role= data.role
   }
 
   toJSON() {
@@ -34,7 +31,6 @@ export class ContactDTO {
       primary: this.primary,
       isVerified: this.isVerified,
       verificationId: this.verificationId,
-      role: this.role
     };
   }
 }
@@ -130,6 +126,7 @@ export class RegistrationDTO {
   nickName: string;
   profileType: ProfileType;
   profileDocumentId:string;
+  role: roles;
 
   contacts: ContactDTO[];
   address: AddressDTO;
@@ -146,6 +143,7 @@ export class RegistrationDTO {
     contacts: ContactDTO[];
     address: AddressDTO;
     portfolio: PortfolioDTO;
+    role: roles;
   }) {
     this.firstName = data.firstName;
     this.lastName = data.lastName;
@@ -157,6 +155,7 @@ export class RegistrationDTO {
     this.contacts = data.contacts.map(contact => new ContactDTO(contact));
     this.address = new AddressDTO(data.address);
     this.portfolio = new PortfolioDTO(data.portfolio);
+    this.role= data.role
   }
 
   toJSON() {
@@ -168,6 +167,7 @@ export class RegistrationDTO {
       nickName: this.nickName,
       profileType: this.profileType,
       profileDocumentId:this.profileDocumentId,
+      role: this.role,
       contacts: this.contacts.map(contact => contact.toJSON()),
       address: this.address.toJSON(),
       portfolio: this.portfolio.toJSON()
@@ -192,7 +192,7 @@ export class GetContactDTO {
     this.primary = data.primary ?? false;
     this.isVerified = data.isVerified ?? false;
   }
-
+ 
   toJSON() {
     return {
       type: this.type,

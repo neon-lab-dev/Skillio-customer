@@ -31,7 +31,7 @@ class RegistraionService{
         "RegistrationService",
         "createProfile",
         async(profileData:TProfile)=>{
-        const {firstName , lastName , groupName , nickName , pin , profileType , contacts , address , portfolio , profileDocumentId}=profileData;
+        const {firstName , lastName , groupName , nickName , pin , profileType ,role, contacts , address , portfolio , profileDocumentId}=profileData;
 
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(pin, salt);
@@ -43,6 +43,7 @@ class RegistraionService{
             nickName,
             pin:hashedPin,
             profileType , 
+            role,
             contacts: contacts.map(contact=>({
                 type:contact.type,
                 value:contact.value,
@@ -139,7 +140,8 @@ class RegistraionService{
         return{
             profile:{
                 id: profile.id,
-                nickName: profile.nickName
+                nickName: profile.nickName,
+                role: profile.role
             },
             accessToken: acessToken,
             refreshToken: refreshToken

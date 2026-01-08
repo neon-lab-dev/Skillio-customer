@@ -1,4 +1,4 @@
-import { contactType, proficiecy, ProfileType } from "../enums/registrationEnum";
+import { contactType, proficiecy, ProfileType, roles } from "../enums/registrationEnum";
 
 export interface Location {
     latitude: number;
@@ -60,4 +60,5 @@ export interface TProfile {
   contacts: TContact[];
   address: TAddress;
   portfolio: TPortfolio;
+  role: roles
 }
