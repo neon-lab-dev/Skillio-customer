@@ -1,81 +1,63 @@
 import { z } from "zod";
 import { DocumentType } from "./enums/documentEnum";
+import { IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeError, TYPE_VALIDATION_SCHEMA, typeError } from "@neon-lab-dev/platform";
+
+const idSchema = IS_MANDATORY_SCHEMA("id");
+const requestMandatoryError = mandatoryTypeError("request", "object");
+const fileSchema = z.file({
+    error: mandatoryTypeError("file", "file")
+  });
 
 export const documentRequestSchema = z.object({
   body: z.object({
 
-    remarks: z.string({
-      invalid_type_error: "Remarks must be a string"
-    }).optional().nullable(),
+    remarks: TYPE_VALIDATION_SCHEMA("remarks").optional().nullable(),
 
     type: z.nativeEnum(DocumentType, {
-      required_error: "Document type is required",
-      invalid_type_error: "Invalid document type"
+      error: typeError("type", "DocumentType")
     }),
 
-    profileId: z.string({
-      invalid_type_error: "Profile ID must be a string"
-    }).optional().nullable()
+    profileId: TYPE_VALIDATION_SCHEMA("profileId").optional().nullable()
   }, {
-    required_error: "Request body is required",
-    invalid_type_error: "Request body must be an object"
+    error: mandatoryTypeError("request body", "object")
   }),
-    file: z.any({
-    required_error: "File is required"
-  })
+  file: fileSchema
 
-}).refine((data)=>{
+}).refine((data) => {
   return !!data.file;
-} , {
+}, {
   message: " file is required."
 });
 
 export const getDocumentSchema = z.object({
   params: z.object({
-    id: z.string({
-      required_error: "Document ID is required",
-      invalid_type_error: "Document ID must be a string"
-    })
-  } , {
-    required_error: "Request params are required",
-    invalid_type_error: "Request params must be an object"
+    id: idSchema
+  }, {
+    error: requestMandatoryError
   })
 });
 
 export const updateDocumentSchema = z.object({
   body: z.object({
-    id: z.string({
-      required_error: "Document ID is required",
-      invalid_type_error: "Document ID must be a string"
-    }),
-  },{
-    required_error: "Request body is required",
-    invalid_type_error: "Request body must be an object"
+    id: idSchema,
+  }, {
+    error: requestMandatoryError
   }),
-  file: z.any({
-    required_error: "File is required"
-  })
-}).refine((data)=>{
+  file: fileSchema
+}).refine((data) => {
   return !!data.file;
-},{
+}, {
   message: "file is required."
 });
 
 export const deleteDocumentsSchema = z.object({
   body: z.object({
-    ids: z.array(z.string({
-      invalid_type_error: "Each ID must be a string"
-    }), {
-      required_error: "IDs are required",
-      invalid_type_error: "IDs must be an array of strings"
-    }).min(1, "at least 1 Id must be provided"),
+    ids: IS_MANDATORY_STRING_ARRAY_SCHEMA("ids"),
 
     forceDelete: z.boolean({
-      required_error: "forceDelete is required",
-      invalid_type_error: "forceDelete must be a boolean"
+      error: typeError("forceDelete", "boolean")
     })
   }, {
-    required_error: "Request body is required",
-    invalid_type_error: "Request body must be an object"
+    error: requestMandatoryError
   }),
 })
