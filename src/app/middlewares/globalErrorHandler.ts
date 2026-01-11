@@ -3,6 +3,7 @@ import { ZodError } from "zod";
 import { TErrorSource } from "../interface/error";
 import handleZodError from "../errors/zodError";
 import AppError from "../errors/appError";
+import { AppValidationError } from "@neon-lab-dev/platform";
 
 
 const globalErrorHandler : ErrorRequestHandler = (err, req, res, next) => {
@@ -15,8 +16,11 @@ const globalErrorHandler : ErrorRequestHandler = (err, req, res, next) => {
         message: 'Something went wrong!'
     }];
 
-    
-    if(err instanceof ZodError){
+    if (err instanceof AppValidationError){
+        statusCode = err.statusCode;
+        message = err.details as string;
+
+    } else if(err instanceof ZodError){
         const simplifiedError = handleZodError(err);
         statusCode = simplifiedError?.statusCode;
         message = simplifiedError?.message;

@@ -67,7 +67,7 @@ class ChatController{
         "ChatController.softDeleteConversation",
     catchAsyncError(async(req:Request , res:Response)=>{
         const { id }= req.params;
-        await chatProxy.softDeleteConversation(id , req);
+        await chatProxy.softDeleteConversation(id as string , req);
         return sendResponse(res, {
             statusCode: 200,
             success: true,
@@ -81,7 +81,7 @@ class ChatController{
         "ChatController.softDeleteMessage",
     catchAsyncError(async(req:Request , res:Response)=>{
         const { id }= req.params;
-        await chatProxy.softDeleteMessage(id , req);
+        await chatProxy.softDeleteMessage(id as string , req);
         
         return sendResponse(res, {
             statusCode: 200,
