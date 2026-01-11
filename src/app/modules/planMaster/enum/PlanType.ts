@@ -1,5 +1,5 @@
 
 export enum PlanType {
-    SUBSCRIPTION,
-    ADD_ON
+    SUBSCRIPTION="SUBSCRIPTION",
+    ADD_ON="ADD_ON"
 }

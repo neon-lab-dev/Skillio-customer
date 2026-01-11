@@ -1,7 +1,7 @@
 
 export enum ProfileVisibility {
 
-    ZERO,
-    ONE
+    ZERO="ZERO",
+    ONE="ONE"
 
 }

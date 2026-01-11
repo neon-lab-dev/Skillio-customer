@@ -2,6 +2,7 @@ import { Column, Entity } from "typeorm";
 import { PersistEntity } from "../../entity/PersistEntity";
 import { PlanType } from "../planMaster/enum/PlanType";
 import { ProfileVisibility } from "../planMaster/enum/ProfileVisibility";
+import { PlanMasterStatus } from "../planMaster/enum/PlanMasterStatus";
 
 @Entity(
     {
@@ -19,21 +20,21 @@ export class PlanMasterEntity extends PersistEntity {
         nullable: true,
         default: 0
     })
-    callLimits!: Number;
+    callLimits!: number;
 
     @Column({
         type: "int",
         nullable: true,
         default: 0
     })
-    chatLimits!: Number;
+    chatLimits!: number;
 
     @Column({
         type: "int",
         nullable: true,
         default: 0
     })
-    validity!: Number;
+    validity!: number;
 
     @Column({
         type: "boolean",
@@ -62,11 +63,11 @@ export class PlanMasterEntity extends PersistEntity {
     @Column(
         {
             type: "int",
-            nullable: true,
+            nullable: false,
             default: -1
         }
     )
-    priority!: Number;
+    priority!: number;
 
     @Column(
         {
@@ -83,7 +84,15 @@ export class PlanMasterEntity extends PersistEntity {
             default: 0
         }
     )
-    version!: Number;
+    version!: number;
+
+    @Column(
+        {
+            type:"int",
+            nullable: false
+        }
+    )
+    priceInPaise!:number; // Rs 1 = 100 paise
 
     @Column(
         {
@@ -93,6 +102,15 @@ export class PlanMasterEntity extends PersistEntity {
         }
     )
     type!: PlanType;
+
+    @Column(
+        {
+            type: "simple-enum",
+            enum: PlanMasterStatus,
+            nullable: false
+        }
+    )
+    status!: PlanMasterStatus;
 
 
 

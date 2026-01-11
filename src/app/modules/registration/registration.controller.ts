@@ -46,7 +46,7 @@ class RegistrationController{
         catchAsyncError(async(req:Request , res:Response)=>{
         const {id}= req.params;
 
-        const result= await registrationProxy.getProfile(id);
+        const result= await registrationProxy.getProfile(id as string);
 
         return sendResponse(res , {
             statusCode: 200,
