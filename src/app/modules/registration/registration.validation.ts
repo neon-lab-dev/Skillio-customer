@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ProfileType, contactType, proficiecy } from "./enums/registrationEnum";
+import { ProfileType, contactType, proficiecy, roles } from "./enums/registrationEnum";
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
 import { IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
@@ -186,6 +186,9 @@ export const registrationSchema = z.object({
             error: mandatoryTypeError("profileType", "ProfileType")
         }),
         profileDocumentId: IS_MANDATORY_SCHEMA("Profile document ID"),
+        role: z.nativeEnum(roles,{
+            error: mandatoryTypeError("role", "role")
+        }),
         contacts: z.array(contactSchema, {
             error: mandatoryTypeError("contacts", "array")
         }),
