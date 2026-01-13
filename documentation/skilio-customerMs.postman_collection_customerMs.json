@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6708b6ea-d7ba-458d-b24e-b2cda49a23aa",
+		"_postman_id": "71c0b298-5a1f-4249-abf4-3529fbbf719a",
 		"name": "skilio-customerMs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "10551797"
+		"_exporter_id": "25633623"
 	},
 	"item": [
 		{
@@ -24,9 +24,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{skillio-base-url}}/verificationRequest",
+							"raw": "{{serverUrl}}/verificationRequest",
 							"host": [
-								"{{skillio-base-url}}"
+								"{{serverUrl}}"
 							],
 							"path": [
 								"verificationRequest"
@@ -61,7 +61,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -129,7 +129,7 @@
 							},
 							"status": "Conflict",
 							"code": 409,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -197,7 +197,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -265,7 +265,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -333,7 +333,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -401,7 +401,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -499,7 +499,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -568,7 +568,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -637,7 +637,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -706,7 +706,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -775,7 +775,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -844,7 +844,7 @@
 							},
 							"status": "Internal Server Error",
 							"code": 500,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -942,7 +942,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1011,7 +1011,7 @@
 							},
 							"status": "Conflict",
 							"code": 409,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1080,7 +1080,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1149,7 +1149,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1218,7 +1218,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1287,7 +1287,7 @@
 							},
 							"status": "Internal Server Error",
 							"code": 500,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1429,7 +1429,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1523,7 +1523,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1616,7 +1616,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1707,7 +1707,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1794,7 +1794,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1880,7 +1880,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -1981,7 +1981,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2053,7 +2053,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2124,7 +2124,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2195,7 +2195,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2292,7 +2292,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2361,7 +2361,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2430,7 +2430,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2499,7 +2499,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2568,7 +2568,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2637,7 +2637,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2706,7 +2706,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2775,7 +2775,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2844,7 +2844,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2913,7 +2913,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -2993,7 +2993,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3053,7 +3053,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3109,7 +3109,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"doee\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"doe13\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"profileDocumentId\": \"b6890f46-703b-47b8-b7be-f09563db1549\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876543113\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"doe13@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"3e61a5fa-6d91-431c-b078-b70b9cea234c\",\r\n    \"imageDocumentId\": \"fffdf949-11d7-47d0-8ae5-2c311f532fbe\",\r\n    \"eventsDoneDocumentId\":\"551f8eb8-bcc9-435b-96d6-67cab62f8703\"\r\n  }\r\n}\r\n",
+							"raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice31\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541931\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice31@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"SKILLED\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\"\r\n  } \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3117,11 +3117,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{serverUrl}}/v1/profile",
+							"raw": "http://localhost:3001/api/v1/profile",
+							"protocol": "http",
 							"host": [
-								"{{serverUrl}}"
+								"localhost"
 							],
+							"port": "3001",
 							"path": [
+								"api",
 								"v1",
 								"profile"
 							]
@@ -3156,7 +3159,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3225,7 +3228,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3294,7 +3297,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3363,7 +3366,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3432,7 +3435,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3501,7 +3504,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3570,7 +3573,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3639,7 +3642,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3708,7 +3711,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3777,7 +3780,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3846,7 +3849,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3915,7 +3918,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -3984,7 +3987,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4053,7 +4056,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4122,7 +4125,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4191,7 +4194,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4260,7 +4263,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4329,7 +4332,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4398,7 +4401,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4467,7 +4470,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4536,7 +4539,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4605,7 +4608,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4674,7 +4677,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4743,7 +4746,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4812,7 +4815,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4881,7 +4884,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -4950,7 +4953,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5019,7 +5022,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5088,7 +5091,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5157,7 +5160,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5226,7 +5229,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5295,7 +5298,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5364,7 +5367,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5433,7 +5436,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5502,7 +5505,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5571,7 +5574,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5640,7 +5643,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5709,7 +5712,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5778,7 +5781,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5847,7 +5850,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5916,7 +5919,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -5985,7 +5988,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6054,7 +6057,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6123,7 +6126,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6192,7 +6195,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6233,6 +6236,150 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": false,\n    \"message\": \"EVENT doesnot exist\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"EVENT doesnot exist\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: role is required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice31\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541931\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice31@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"SKILLED\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\"\r\n  } \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/v1/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"profile"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"70-nWrwKpoTP87nnwU83lyFj2IopKE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jan 2026 10:41:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"role\",\n            \"message\": \"role is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: Invalid role",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice31\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"hello\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541931\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice31@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"SKILLED\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\"\r\n  } \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/api/v1/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"profile"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-ujSsTy15HK1NjsI7+vR8Ucwtzrs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jan 2026 10:42:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"role\",\n            \"message\": \"Invalid enum value. Expected 'USER' | 'ADMIN', received 'hello'\"\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -6243,7 +6390,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"credential\":\"+919876543127\",\r\n    \"pin\":\"1234\"\r\n}   ",
+							"raw": "{\r\n    \"credential\":\"doe2\",\r\n    \"pin\":\"1234\"\r\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6251,11 +6398,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{serverUrl}}/v1/profile/login",
+							"raw": "http://localhost:3000/api/v1/profile/login",
+							"protocol": "http",
 							"host": [
-								"{{serverUrl}}"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"api",
 								"v1",
 								"profile",
 								"login"
@@ -6292,7 +6442,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6362,7 +6512,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6432,7 +6582,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6502,7 +6652,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6572,7 +6722,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6642,7 +6792,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6712,7 +6862,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6782,7 +6932,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6864,7 +7014,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6925,7 +7075,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -6986,7 +7136,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7047,7 +7197,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7136,7 +7286,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7177,6 +7327,210 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": true,\n    \"message\": \"Profiles fetched successfully\",\n    \"data\": [\n        {\n            \"name\": \"john leanon\",\n            \"nickName\": \"doe3\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john leanon\",\n            \"nickName\": \"doe4\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john leanon\",\n            \"nickName\": \"doe5\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"groupName\": \"hello\",\n            \"nickName\": \"doe6\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john doee\",\n            \"nickName\": \"doe7\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john doee\",\n            \"nickName\": \"doe8\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john doee\",\n            \"nickName\": \"doe9\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john doee\",\n            \"nickName\": \"doe10\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john doee\",\n            \"nickName\": \"doe12\",\n            \"profilePcitureId\": null\n        },\n        {\n            \"name\": \"john doee\",\n            \"nickName\": \"doe13\",\n            \"profilePcitureId\": {\n                \"id\": \"b6890f46-703b-47b8-b7be-f09563db1549\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: unauthorized access",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/api/v1/profile?limit=10&page=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"v1",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-3w0Qi95qsivx9bNG1VATT9pBkDM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 12 Jan 2026 07:38:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"unauthorized access\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"unauthorized access\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get profile counts",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "success: get profile counts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{serverUrl}}/v1/profile/count",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"profile",
+										"count"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-eWn0wddQMCMkoHzpqVSN4cI2yis\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 06:34:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"profile count fetched successfully\",\n    \"data\": {\n        \"totalCount\": 45,\n        \"individualsCount\": {\n            \"professional\": 7,\n            \"skilled\": 37\n        },\n        \"groupCount\": {\n            \"professional\": 1,\n            \"skilled\": 0\n        }\n    }\n}"
+						},
+						{
+							"name": "Error: unauthorized access",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{serverUrl}}/v1/profile/count",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"profile",
+										"count"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-3w0Qi95qsivx9bNG1VATT9pBkDM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 06:34:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"unauthorized access\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"unauthorized access\"\n        }\n    ]\n}"
 						}
 					]
 				}
@@ -7276,7 +7630,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7361,7 +7715,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7448,7 +7802,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7534,7 +7888,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7629,6 +7983,15 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message?conversationId=2f3b2aed-0772-47e0-a049-d90450e1e6a3&limit=30&before=2025-11-5 16:39:00.000",
 									"host": [
@@ -7656,7 +8019,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7703,6 +8066,15 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message?conversationId=2f3b2aed-0772-47e0-a049-d90450e1e6a3&limit=30&before=2025-11-2 16:39:00.000",
 									"host": [
@@ -7730,7 +8102,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7777,6 +8149,15 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message?limit=30&before=2025-11-5 16:39:00.000",
 									"host": [
@@ -7805,7 +8186,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7852,6 +8233,15 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message?conversationId=2f3b2aed-0772-47e0-a049-d90450e1e6a2&limit=30&before=2025-11-5 16:39:00.000",
 									"host": [
@@ -7879,7 +8269,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -7971,7 +8361,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8032,7 +8422,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8093,7 +8483,7 @@
 							},
 							"status": "Forbidden",
 							"code": 403,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8154,7 +8544,7 @@
 							},
 							"status": "Bad Request",
 							"code": 400,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8215,7 +8605,7 @@
 							},
 							"status": "Internal Server Error",
 							"code": 500,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8310,6 +8700,10 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message/conversations?page=1&limit=10",
 									"host": [
@@ -8334,7 +8728,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8381,6 +8775,10 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message/conversations?page=1&limit=10",
 									"host": [
@@ -8405,7 +8803,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8452,6 +8850,10 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message/conversations?page=1&limit=10",
 									"host": [
@@ -8476,7 +8878,7 @@
 							},
 							"status": "Internal Server Error",
 							"code": 500,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8523,6 +8925,10 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
 								"url": {
 									"raw": "{{serverUrl}}/v1/message/conversations?page=1&limit=10",
 									"host": [
@@ -8547,7 +8953,7 @@
 							},
 							"status": "Unauthorized",
 							"code": 401,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8641,7 +9047,7 @@
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8703,7 +9109,7 @@
 							},
 							"status": "Not Found",
 							"code": 404,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8765,7 +9171,7 @@
 							},
 							"status": "Internal Server Error",
 							"code": 500,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": null,
 							"header": [
 								{
 									"key": "X-Powered-By",
@@ -8812,16 +9218,26 @@
 			]
 		},
 		{
-			"name": "Plan Master",
+			"name": "call",
 			"item": [
 				{
-					"name": "create",
+					"name": "Initiate Call",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0YTY2NjU0Ni0wYzQwLTRlNjgtYmFiMS05ZWRhMDdiNWI4MWEiLCJuaWNrTmFtZSI6ImRvZTkiLCJtb2JpbGVOdW1iZXIiOiIrOTE5ODc2NTQzMTI5IiwiaWF0IjoxNzYzNDQxMjcwLCJleHAiOjE3NjM0NDQ4NzB9.83Q42pMq2souNS0MmB8h4lFYLg4FjxDBtlKOoabOL90",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": \"RISHI_PLAN\",\n    \"description\": \"Some good plan\",\n    \"type\": \"SUBSCRIPTION\",\n    \"priceInPaise\": 19900,\n    \"status\" : \"COMPLETE\"\n}",
+							"raw": "{\r\n    \"recipientId\":\"4a666546-0c40-4e68-bab1-9eda07b5b81a\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -8829,86 +9245,26 @@
 							}
 						},
 						"url": {
-							"raw": "{{skillio-base-url}}/v1/plan-master",
+							"raw": "{{serverUrl}}/v1/call",
 							"host": [
-								"{{skillio-base-url}}"
+								"{{serverUrl}}"
 							],
 							"path": [
 								"v1",
-								"plan-master"
+								"call"
 							]
 						},
-						"description": "# Create Plan Master\n\n## Overview\n\nThis endpoint creates a new plan master in the system. Plan masters define subscription or payment plans with their associated pricing, status, and metadata.\n\n## Request Body\n\nThe request accepts a JSON payload with the following fields:\n\n| Field | Type | Required | Description |\n| --- | --- | --- | --- |\n| `code` | String | Yes | Unique identifier code for the plan (e.g., \"RISHI_PLAN\") |\n| `description` | String | Yes | Human-readable description of the plan (e.g., \"Some good plan\") |\n| `type` | String | Yes | Type of plan - typically \"SUBSCRIPTION\" for recurring plans |\n| `priceInPaise` | Number | Yes | Price of the plan in paise (Indian currency subunit). Example: 19900 paise = ₹199.00 |\n| `status` | String | Yes | COMPLETE | DRAFT |\n\n### Example Request Body\n\n``` json\n{\n  \"code\": \"RISHI_PLAN\",\n  \"description\": \"Some good plan\",\n  \"type\": \"SUBSCRIPTION\",\n  \"priceInPaise\": 19900,\n  \"status\": \"COMPLETE\"\n}\n\n ```\n\n## Response\n\nOn successful creation, the endpoint returns the created plan master details with a success status code.\n\n## Error Scenarios\n\nThis request includes saved examples demonstrating common error cases:\n\n1. **Mandatory Fields Missing** - Returns an error when required fields are not provided in the request body\n    \n2. **Invalid Datatype** - Returns an error when field values are provided with incorrect data types (e.g., string instead of number for priceInPaise)\n    \n\nRefer to the saved examples to understand the error response format and validation requirements.\n\n## Notes\n\n- Ensure all mandatory fields are included in the request\n    \n- Price must be specified in paise (smallest currency unit)\n    \n- The `code` field should be unique across all plan masters"
+						"description": "# Initiate Call\n\n## Overview\nThis endpoint initiates a call between the authenticated user (caller) and a specified recipient. When successful, it creates a new call session and returns the call details including a unique call ID, participant information, and call status.\n\n## Endpoint Details\n- **Method:** `POST`\n- **URL:** `{{serverUrl}}/v1/call`\n- **Authentication:** Required (caller ID is automatically determined from authenticated user)\n\n## Request Body\n\nThe request requires a JSON payload with the following parameter:\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `recipientId` | string (UUID) | Yes | The unique identifier of the user to call. Must be a valid UUID format. |\n\n### Example Request Body\n```json\n{\n  \"recipientId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\"\n}\n```\n\n## Response Format\n\n### Success Response (200 OK)\n\nWhen the call is successfully initiated, the API returns:\n\n```json\n{\n  \"success\": true,\n  \"message\": \"calling created sucessfully\",\n  \"data\": {\n    \"id\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\n    \"callerId\": \"42a1415b-1ab0-4ff8-826f-d5d6c163dc34\",\n    \"recipientId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\n    \"callStatus\": \"CALLING\",\n    \"startedAt\": \"2025-11-18T05:38:57.619Z\",\n    \"endedAt\": null\n  }\n}\n```\n\n**Response Fields:**\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `success` | boolean | Indicates whether the operation was successful |\n| `message` | string | Human-readable message describing the result |\n| `data.id` | string (UUID) | Unique identifier for the call session |\n| `data.callerId` | string (UUID) | ID of the user initiating the call (authenticated user) |\n| `data.recipientId` | string (UUID) | ID of the user receiving the call |\n| `data.callStatus` | string | Current status of the call (e.g., \"CALLING\", \"CONNECTED\", \"ENDED\") |\n| `data.startedAt` | string (ISO 8601) | Timestamp when the call was initiated |\n| `data.endedAt` | string/null | Timestamp when the call ended (null if call is ongoing) |\n\n## Error Responses\n\n### Profile Not Found\nWhen the specified recipient ID does not correspond to an existing user profile:\n\n**Status Code:** 404 (expected)\n\n```json\n{\n  \"success\": false,\n  \"message\": \"Profile not found\",\n  \"error\": \"PROFILE_NOT_FOUND\"\n}\n```\n\n### Invalid Recipient ID\nWhen the recipient ID format is invalid or malformed:\n\n**Status Code:** 400 (expected)\n\n```json\n{\n  \"success\": false,\n  \"message\": \"Invalid recipient ID\",\n  \"error\": \"INVALID_RECIPIENT_ID\"\n}\n```\n\n### Other Possible Errors\n\n- **401 Unauthorized:** Authentication token is missing or invalid\n- **403 Forbidden:** User does not have permission to initiate calls\n- **500 Internal Server Error:** Server-side error occurred\n\n## Usage Notes\n\n1. **Authentication Required:** This endpoint requires a valid authentication token. The caller ID is automatically extracted from the authenticated user's session.\n\n2. **Call Status Flow:** The call status typically follows this progression:\n   - `CALLING` → Initial state when call is initiated\n   - `RINGING` → Recipient's device is ringing\n   - `CONNECTED` → Call has been answered\n   - `ENDED` → Call has been terminated\n\n3. **Recipient Validation:** Ensure the recipient ID is valid and corresponds to an active user before making the request.\n\n4. **Real-time Updates:** After initiating a call, you may need to poll for status updates or use WebSocket connections to receive real-time call status changes.\n\n5. **Self-Calling Prevention:** The system may prevent users from calling themselves (when callerId equals recipientId).\n\n## Example Usage\n\n### Successful Call Initiation\n```javascript\n// Request\nPOST {{serverUrl}}/v1/call\nContent-Type: application/json\n\n{\n  \"recipientId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\"\n}\n\n// Response (200 OK)\n{\n  \"success\": true,\n  \"message\": \"calling created sucessfully\",\n  \"data\": {\n    \"id\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\n    \"callerId\": \"42a1415b-1ab0-4ff8-826f-d5d6c163dc34\",\n    \"recipientId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\n    \"callStatus\": \"CALLING\",\n    \"startedAt\": \"2025-11-18T05:38:57.619Z\",\n    \"endedAt\": null\n  }\n}\n```\n\n## Related Endpoints\n\nYou may also want to explore these related endpoints:\n- `GET /v1/call/{callId}` - Get call details\n- `PUT /v1/call/{callId}/end` - End an active call\n- `GET /v1/call/history` - Get call history"
 					},
 					"response": [
 						{
-							"name": "Error: Mandatory fields Missing",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
-									"host": [
-										"{{skillio-base-url}}"
-									],
-									"path": [
-										"v1",
-										"plan-master"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Credentials",
-									"value": "true"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "326"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"146-P7VUoFR+eSCWto3LSFY4yGU+YtM\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:13:25 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"code\",\n            \"message\": \"code is mandatory.\"\n        },\n        {\n            \"path\": \"description\",\n            \"message\": \"description is mandatory.\"\n        },\n        {\n            \"path\": \"type\",\n            \"message\": \"Invalid option: expected one of \\\"SUBSCRIPTION\\\"|\\\"ADD_ON\\\"\"\n        },\n        {\n            \"path\": \"priceInPaise\",\n            \"message\": \"priceInPaise is mandatory.\"\n        }\n    ]\n}"
-						},
-						{
-							"name": "Error: Mandatory Fields invalid datatypes",
+							"name": "Success: call created successfully",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"code\": 123,\n    \"description\": false,\n    \"type\": \"SUBSCRIPTION\",\n    \"priceInPaise\": \"1232123\"\n}",
+									"raw": "{\r\n    \"recipientId\":\"4a666546-0c40-4e68-bab1-9eda07b5b81a\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -8916,287 +9272,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"raw": "{{serverUrl}}/v1/call",
 									"host": [
-										"{{skillio-base-url}}"
+										"{{serverUrl}}"
 									],
 									"path": [
 										"v1",
-										"plan-master"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Credentials",
-									"value": "true"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "244"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"f4-p+mfvPczIIsvS+reNXXryhiryN4\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:15:33 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"code\",\n            \"message\": \"code is string type.\"\n        },\n        {\n            \"path\": \"description\",\n            \"message\": \"description is string type.\"\n        },\n        {\n            \"path\": \"priceInPaise\",\n            \"message\": \"priceInPaise is number type.\"\n        }\n    ]\n}"
-						},
-						{
-							"name": "Success: Only Mandatory Fields",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"code\": \"RK's Plan\",\n    \"description\": \"Rk's Plan\",\n    \"type\": \"SUBSCRIPTION\",\n    \"priceInPaise\": 19900\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
-									"host": [
-										"{{skillio-base-url}}"
-									],
-									"path": [
-										"v1",
-										"plan-master"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Credentials",
-									"value": "true"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "313"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"139-aCxDA4EvwA36Gpgj0Op7Oen5U28\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:18:15 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"id\": \"pm202601111317598e1e2ad8\",\n        \"code\": \"RK's Plan\",\n        \"description\": \"Rk's Plan\",\n        \"type\": \"SUBSCRIPTION\",\n        \"profileVisibility\": \"ZERO\",\n        \"priceInPaise\": 19900,\n        \"callLimits\": 0,\n        \"chatLimits\": 0,\n        \"validity\": 0,\n        \"version\": 0,\n        \"status\": \"DRAFT\",\n        \"priority\": -1,\n        \"active\": false\n    }\n}"
-						},
-						{
-							"name": "Error: Already exists by code",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"code\": \"RK's Plan\",\n    \"description\": \"Rk's Plan\",\n    \"type\": \"SUBSCRIPTION\",\n    \"priceInPaise\": 19900\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
-									"host": [
-										"{{skillio-base-url}}"
-									],
-									"path": [
-										"v1",
-										"plan-master"
-									]
-								}
-							},
-							"status": "Internal Server Error",
-							"code": 500,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Access-Control-Allow-Credentials",
-									"value": "true"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "113"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"71-vYyjVOmI5AlEa8xxNar3nUsWUAo\""
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:38:07 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Record already exists\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record already exists\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "fetch",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{skillio-base-url}}/v1/plan-master",
-							"host": [
-								"{{skillio-base-url}}"
-							],
-							"path": [
-								"v1",
-								"plan-master"
-							],
-							"query": [
-								{
-									"key": "status",
-									"value": "COMPLETE",
-									"description": "DRAFT | COMPLETE",
-									"disabled": true
-								},
-								{
-									"key": "priceInPaiseMax",
-									"value": "30000",
-									"description": "Max price including",
-									"disabled": true
-								},
-								{
-									"key": "priceInPaiseMin",
-									"value": "",
-									"description": "Min price including",
-									"disabled": true
-								},
-								{
-									"key": "ids",
-									"value": "",
-									"description": "ids in",
-									"disabled": true
-								},
-								{
-									"key": "codes",
-									"value": "",
-									"description": "codes in",
-									"disabled": true
-								},
-								{
-									"key": "type",
-									"value": "",
-									"description": "filter by type",
-									"disabled": true
-								},
-								{
-									"key": "profileVisibility",
-									"value": "",
-									"description": "ZERO | ONE",
-									"disabled": true
-								},
-								{
-									"key": "active",
-									"value": "",
-									"description": "true | false",
-									"disabled": true
-								},
-								{
-									"key": "validityMin",
-									"value": "",
-									"description": "number > 0",
-									"disabled": true
-								}
-							]
-						},
-						"description": "# Fetch Plan Master Data\n\n## Overview\nThis endpoint retrieves subscription plan master data from the system with optional price filtering capabilities. It returns a paginated list of all available subscription plans along with their complete details.\n\n## Endpoint\n```\nGET {{skillio-base-url}}/v1/plan-master\n```\n\n**Note:** The `skillio-base-url` variable should be configured in your environment to point to the appropriate API base URL.\n\n## Query Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `priceInPaiseMax` | Integer | No | Maximum price filter in paise (Indian currency subunit). Only returns plans with price less than or equal to this value. Example: 30000 paise = ₹300 |\n\n## Response Structure\n\nThe API returns a JSON object with the following structure:\n\n### Root Level\n- `status` (Integer): HTTP status code\n- `message` (String): Response message\n- `data` (Object): Contains the actual plan data and pagination info\n\n### Data Object\n- `items` (Array): List of plan objects\n- `total` (Integer): Total number of plans matching the criteria\n- `page` (Integer): Current page number\n- `prePage` (Integer): Number of items per page\n- `sortBy` (String): Field used for sorting (default: \"createdAt\")\n- `sortDirection` (String): Sort order - \"ASC\" or \"DESC\"\n\n### Plan Item Object\nEach plan in the `items` array contains:\n- `id` (String): Unique plan identifier\n- `code` (String): Plan code/name\n- `description` (String): Plan description\n- `type` (String): Plan type (e.g., \"SUBSCRIPTION\")\n- `version` (Integer): Plan version number\n- `priority` (Integer): Plan priority for ordering\n- `priceInPaise` (Integer): Plan price in paise\n- `active` (Boolean): Whether the plan is currently active\n- `status` (String): Plan status (e.g., \"COMPLETE\")\n\n## Example Use Case\n\n**Scenario:** Fetch all subscription plans priced at or below ₹300 (30000 paise)\n\nThis is useful for:\n- Displaying affordable plan options to users\n- Filtering plans by budget constraints\n- Creating price-based plan recommendations\n- Building pricing comparison tables\n\n## Sample Response\n```json\n{\n  \"status\": 200,\n  \"message\": \"Success\",\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"pm202601111418030372ffd5\",\n        \"code\": \"RISHI_PLAN\",\n        \"description\": \"Some good plan\",\n        \"type\": \"SUBSCRIPTION\",\n        \"version\": 0,\n        \"priority\": -1,\n        \"priceInPaise\": 19900,\n        \"active\": false,\n        \"status\": \"COMPLETE\"\n      }\n    ],\n    \"total\": 2,\n    \"page\": 1,\n    \"prePage\": 10,\n    \"sortBy\": \"createdAt\",\n    \"sortDirection\": \"DESC\"\n  }\n}\n```"
-					},
-					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
-									"host": [
-										"{{skillio-base-url}}"
-									],
-									"path": [
-										"v1",
-										"plan-master"
+										"call"
 									]
 								}
 							},
@@ -9222,15 +9304,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "309"
+									"value": "289"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"135-WYRBbKHJDdWspeI4tJtN6aOGsME\""
+									"value": "W/\"121-ZuTO6Frw9WuAzXUUyUs0yzHvApY\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:25:56 GMT"
+									"value": "Tue, 18 Nov 2025 04:52:12 GMT"
 								},
 								{
 									"key": "Connection",
@@ -9242,45 +9324,16 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"pm202601111317598e1e2ad8\",\n                \"code\": \"RK's Plan\",\n                \"description\": \"Rk's Plan\",\n                \"type\": \"SUBSCRIPTION\",\n                \"version\": 0,\n                \"priority\": -1,\n                \"priceInPaise\": 19900,\n                \"active\": false,\n                \"status\": \"DRAFT\"\n            }\n        ],\n        \"total\": 1,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
-						}
-					]
-				},
-				{
-					"name": "update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n        \"id\": \"pm202601111317598e1e2ad8\",\n        \"code\": \"RK's Plan\",\n        \"description\": \"Rk's Plan\",\n        \"type\": \"SUBSCRIPTION\",\n        \"profileVisibility\": \"ZERO\",\n        \"priceInPaise\": 29900,\n        \"callLimits\": 10,\n        \"chatLimits\": 10,\n        \"validity\": 30,\n        \"version\": 0,\n        \"status\": \"COMPLETE\",\n        \"priority\": -1,\n        \"active\": true\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"body": "{\n    \"success\": true,\n    \"message\": \"calling created sucessfully\",\n    \"data\": {\n        \"id\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\n        \"callerId\": \"42a1415b-1ab0-4ff8-826f-d5d6c163dc34\",\n        \"recipientId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\n        \"callStatus\": \"CALLING\",\n        \"startedAt\": \"2025-11-18T04:52:12.859Z\",\n        \"endedAt\": null\n    }\n}"
 						},
-						"url": {
-							"raw": "{{skillio-base-url}}/v1/plan-master",
-							"host": [
-								"{{skillio-base-url}}"
-							],
-							"path": [
-								"v1",
-								"plan-master"
-							]
-						},
-						"description": "# Update Plan Master\n\nThis endpoint updates an existing plan master record in the system.\n\n## Method\n`PUT {{skillio-base-url}}/v1/plan-master`\n\n## Purpose\nUpdates the configuration and details of a subscription plan. This endpoint allows modification of plan attributes including pricing, limits, validity periods, and status.\n\n## Request Body\n\nThe request body should be a JSON object containing the following fields:\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `id` | string | Yes | Unique identifier of the plan master record to update |\n| `code` | string | Yes | Plan code/name (e.g., \"RK's Plan\") |\n| `description` | string | Yes | Detailed description of the plan |\n| `type` | string | Yes | Plan type (e.g., \"SUBSCRIPTION\") |\n| `profileVisibility` | string | Yes | Profile visibility setting (e.g., \"ZERO\") |\n| `priceInPaise` | integer | Yes | Plan price in paise (e.g., 29900 = ₹299.00) |\n| `callLimits` | integer | Yes | Maximum number of calls allowed in the plan |\n| `chatLimits` | integer | Yes | Maximum number of chats allowed in the plan |\n| `validity` | integer | Yes | Plan validity period in days |\n| `version` | integer | Yes | Version number for tracking plan changes |\n| `status` | string | Yes | Plan status (e.g., \"COMPLETE\", \"DRAFT\") |\n| `priority` | integer | Yes | Priority order for plan display (use -1 for default) |\n| `active` | boolean | Yes | Whether the plan is currently active |\n\n### Example Request Body\n```json\n{\n  \"id\": \"pm202601111317598e1e2ad8\",\n  \"code\": \"RK's Plan\",\n  \"description\": \"Rk's Plan\",\n  \"type\": \"SUBSCRIPTION\",\n  \"profileVisibility\": \"ZERO\",\n  \"priceInPaise\": 29900,\n  \"callLimits\": 10,\n  \"chatLimits\": 10,\n  \"validity\": 30,\n  \"version\": 0,\n  \"status\": \"COMPLETE\",\n  \"priority\": -1,\n  \"active\": true\n}\n```\n\n## Response Format\n\n### Success Response (200 OK)\n```json\n{\n  \"status\": 200,\n  \"message\": \"Resource updated successfully\",\n  \"data\": {\n    \"id\": \"pm202601111317598e1e2ad8\",\n    \"code\": \"RK's Plan\",\n    \"description\": \"Rk's Plan\",\n    \"type\": \"SUBSCRIPTION\",\n    \"profileVisibility\": \"ZERO\",\n    \"priceInPaise\": 29900,\n    \"callLimits\": 10,\n    \"chatLimits\": 10,\n    \"validity\": 30,\n    \"version\": 0,\n    \"status\": \"COMPLETE\",\n    \"priority\": -1,\n    \"active\": true\n  }\n}\n```\n\n## Important Notes\n\n⚠️ **Validation Rules:**\n- The `id` field must correspond to an existing plan master record. Invalid IDs will result in an error.\n- DRAFT plans cannot be marked as active (`active: true`). The plan status must be \"COMPLETE\" or another non-DRAFT status before activation.\n- Price should be specified in paise (smallest currency unit). For example, ₹299.00 = 29900 paise.\n\n📋 **Best Practices:**\n- Always verify the plan ID before updating\n- Ensure the plan status is appropriate before setting `active: true`\n- Use the `version` field to track plan changes over time\n- Set appropriate `callLimits` and `chatLimits` based on the plan tier\n\n🔍 **Error Cases:**\nRefer to the saved examples for common error scenarios:\n- Invalid plan ID\n- Attempting to activate DRAFT plans"
-					},
-					"response": [
 						{
-							"name": "Error: Datatype validation",
+							"name": "Error: profile not found",
 							"originalRequest": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"priceInPaise\": \"a\"\n}",
+									"raw": "{\r\n    \"recipientId\":\"4a666546-0c40-4e68-bab1-9eda07b5b81b\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -9288,18 +9341,18 @@
 									}
 								},
 								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"raw": "{{serverUrl}}/v1/call",
 									"host": [
-										"{{skillio-base-url}}"
+										"{{serverUrl}}"
 									],
 									"path": [
 										"v1",
-										"plan-master"
+										"call"
 									]
 								}
 							},
-							"status": "Bad Request",
-							"code": 400,
+							"status": "Not Found",
+							"code": 404,
 							"_postman_previewlanguage": null,
 							"header": [
 								{
@@ -9320,15 +9373,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "175"
+									"value": "105"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"af-z0sz3GXhLnr1TUbGgOekh+NwGvU\""
+									"value": "W/\"69-Aa+T8WWqt46g/C8Ud4ugvj0NmQo\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:46:57 GMT"
+									"value": "Tue, 18 Nov 2025 04:48:35 GMT"
 								},
 								{
 									"key": "Connection",
@@ -9340,16 +9393,16 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"id\",\n            \"message\": \"id is mandatory.\"\n        },\n        {\n            \"path\": \"priceInPaise\",\n            \"message\": \"priceInPaise is number type.\"\n        }\n    ]\n}"
+							"body": "{\n    \"success\": false,\n    \"message\": \"profile not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"profile not found\"\n        }\n    ]\n}"
 						},
 						{
-							"name": "Error: invalid id",
+							"name": "Error: invalid recipient Id",
 							"originalRequest": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"rk\"\n}",
+									"raw": "{\r\n    \"recipientId\":\"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -9357,13 +9410,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"raw": "{{serverUrl}}/v1/call",
 									"host": [
-										"{{skillio-base-url}}"
+										"{{serverUrl}}"
 									],
 									"path": [
 										"v1",
-										"plan-master"
+										"call"
 									]
 								}
 							},
@@ -9389,15 +9442,1986 @@
 								},
 								{
 									"key": "Content-Length",
+									"value": "151"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"97-SSjiEWt+lBR0DguqJ4niQvkFLXI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 04:49:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"invalid input syntax for type uuid: \\\"\\\"\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"invalid input syntax for type uuid: \\\"\\\"\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: RecipientId is required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7f-bia8Xmcd94XX24P9Coc4rwTKoOI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 04:49:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"recipientId\",\n            \"message\": \"Recipient Id is required\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "update call",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0MmExNDE1Yi0xYWIwLTRmZjgtODI2Zi1kNWQ2YzE2M2RjMzQiLCJuaWNrTmFtZSI6ImRvZTgiLCJtb2JpbGVOdW1iZXIiOiIrOTE5ODc2NTQzMTI4IiwiaWF0IjoxNzYzNDQxNTE0LCJleHAiOjE3NjM0NDUxMTR9.0EAA-CqDgxP9v0eGL9pVzJbdJVNkM5Q3RbQnL2M3dW8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"callId\": \"a2f5f87a-3339-439e-a89a-68f63b5667d7\",\r\n  \"offer\": {\r\n    \"type\": \"offer\",\r\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:Ez12\\r\\na=ice-pwd:KIsWM2Zj1fO98A3rwz89\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 7A:22:...:FF\\r\\na=setup:actpass\\r\\n\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverUrl}}/v1/call",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"v1",
+								"call"
+							]
+						},
+						"description": "# Update Call with WebRTC Offer\n\n## Overview\nThis endpoint updates an existing call by providing a WebRTC Session Description Protocol (SDP) offer. It's used in the WebRTC signaling process to establish peer-to-peer communication for real-time audio/video calls.\n\n## Endpoint\n**Method:** `PUT`  \n**URL:** `{{serverUrl}}/v1/call`\n\n## Request Body Parameters\n\nThe request accepts a JSON payload with the following structure:\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `callId` | string | Yes | Unique identifier for the call being updated |\n| `offer` | object | Yes | WebRTC offer object containing session description |\n| `offer.type` | string | Yes | Must be set to `\"offer\"` to indicate this is an SDP offer |\n| `offer.sdp` | string | Yes | Session Description Protocol data containing media capabilities, codecs, and connection information |\n\n### Example Request Body\n```json\n{\n  \"callId\": \"4a408e5c-ab80-4a4f-80fa-1bd111d72e27\",\n  \"offer\": {\n    \"type\": \"offer\",\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\n...\"\n  }\n}\n```\n\n## Response Format\n\n### Success Response (200 OK)\n```json\n{\n  \"success\": true,\n  \"message\": \"ringing\"\n}\n```\n\n### Error Response (400 Bad Request)\nReturns an error when validation fails, such as when the `offer.type` is not set to `\"offer\"`.\n\n## Saved Examples\n\nThis request includes two saved examples demonstrating different scenarios:\n\n1. **Success: updated call with offer** - Shows a successful call update with a valid WebRTC offer\n2. **Error: type must be offer** - Demonstrates the error response when the offer type is invalid or missing\n\n## Usage Notes\n\n- The `callId` must correspond to an existing call in the system\n- The `offer.type` field must be exactly `\"offer\"` (case-sensitive)\n- The SDP string in `offer.sdp` should be a valid WebRTC Session Description Protocol format\n- This endpoint is typically called during the WebRTC signaling phase, after a call has been initiated\n- The response message \"ringing\" indicates the offer has been successfully processed and the call is in the ringing state\n- Ensure proper error handling for cases where the offer type validation fails"
+					},
+					"response": [
+						{
+							"name": "Success: updated call with offer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\r\n  \"offer\": {\r\n    \"type\": \"offer\",\r\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:Ez12\\r\\na=ice-pwd:KIsWM2Zj1fO98A3rwz89\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 7A:22:...:FF\\r\\na=setup:actpass\\r\\n\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-L7pjtI8kTgwCFDxxZF32ahtD5Zo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 04:53:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"ringing\"\n}"
+						},
+						{
+							"name": "Error: call not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\",\r\n  \"offer\": {\r\n    \"type\": \"offer\",\r\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:Ez12\\r\\na=ice-pwd:KIsWM2Zj1fO98A3rwz89\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 7A:22:...:FF\\r\\na=setup:actpass\\r\\n\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DwWva4/FLZergzV37fwlJp5rOL8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 04:54:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"call not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"call not found\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: callId is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"offer\": {\r\n    \"type\": \"offer\",\r\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:Ez12\\r\\na=ice-pwd:KIsWM2Zj1fO98A3rwz89\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 7A:22:...:FF\\r\\na=setup:actpass\\r\\n\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-mFIgJLehTtuuOKoZg4mCxsaNHAo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 04:54:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"callId\",\n            \"message\": \"Call Id is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: offer is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "114"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"72-f+xX34WC0NYMtZfGly5o66wNLm4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 04:56:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"offer\",\n            \"message\": \"offer is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: offer type is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\r\n  \"offer\": {\r\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:Ez12\\r\\na=ice-pwd:KIsWM2Zj1fO98A3rwz89\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 7A:22:...:FF\\r\\na=setup:actpass\\r\\n\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "118"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"76-WPns6XW2G+yi9/a+0h0FugJ7mvU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:19:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"type\",\n            \"message\": \"offer type is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: sdp is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\r\n  \"offer\": {\r\n    \"type\": \"offer\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6e-tcwboeirvzHRJkZp/acMQXXK7CA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:18:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"sdp\",\n            \"message\": \"SDP is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: type must be offer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\r\n  \"offer\": {\r\n    \"type\": \"okay\",\r\n    \"sdp\": \"v=0\\r\\no=- 46117317 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:Ez12\\r\\na=ice-pwd:KIsWM2Zj1fO98A3rwz89\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 7A:22:...:FF\\r\\na=setup:actpass\\r\\n\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-w7k7YW/fCHvVMtpVy+3yNBFBcCk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:21:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"type\",\n            \"message\": \"Invalid enum value. Expected 'offer', received 'okay'\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "accept call",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0YTY2NjU0Ni0wYzQwLTRlNjgtYmFiMS05ZWRhMDdiNWI4MWEiLCJuaWNrTmFtZSI6ImRvZTkiLCJtb2JpbGVOdW1iZXIiOiIrOTE5ODc2NTQzMTI5IiwiaWF0IjoxNzYzNDQyMTAwLCJleHAiOjE3NjM0NDU3MDB9.iL4qLYMxNONHVBnMhf8nbBz9MyCx9kM3nSghRCm1Eyk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\",\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverUrl}}/v1/call/accept",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"v1",
+								"call",
+								"accept"
+							]
+						},
+						"description": "# Accept Call\n\n## Overview\n\nThis endpoint accepts an incoming call by providing the SDP (Session Description Protocol) answer. It is used in the WebRTC call establishment process to complete the connection handshake between peers.\n\n## Request Details\n\n**Method:** `PUT`\n\n**URL:** `{{serverUrl}}/v1/call/accept`\n\n## Request Body\n\nThe request requires a JSON payload with the following structure:\n\n| Field | Type | Required | Description |\n| --- | --- | --- | --- |\n| `callId` | string | Yes | Unique identifier for the call being accepted |\n| `answer` | object | Yes | SDP answer object containing connection details |\n| `answer.type` | string | Yes | Must be set to \"answer\" |\n| `answer.sdp` | string | Yes | Session Description Protocol data in SDP format |\n\n### Example Request Body\n\n``` json\n{\n  \"callId\": \"4a408e5c-ab80-4a4f-80fa-1bd111d72e27\",\n  \"answer\": {\n    \"type\": \"answer\",\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\n...\"\n  }\n}\n\n ```\n\n## Response Format\n\n### Success Response (200 OK)\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"call accepted\"\n}\n\n ```\n\n## Saved Examples\n\nThis request includes two examples demonstrating error scenarios:\n\n1. **\"sdp is required\"** - Demonstrates the validation error returned when the SDP field is missing or invalid in the answer object\n    \n2. **\"Error: call not found\"** - Demonstrates the error response when the provided callId does not match any existing call in the system\n    \n\n## Notes\n\n- **SDP Format:** The SDP (Session Description Protocol) string follows the RFC 4566 standard and contains media session information including codec details, network addresses, and media formats\n    \n- The SDP answer is typically generated by the WebRTC peer connection in response to an offer\n    \n- The `callId` must correspond to an active call that has been previously initiated\n    \n- This endpoint is part of the WebRTC signaling flow and should be called after receiving a call offer"
+					},
+					"response": [
+						{
+							"name": "Success: call accepted",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-k4AWHXnhpmkey7e+7gG3t+IaLp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:01:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"call accepted\"\n}"
+						},
+						{
+							"name": "Error: caller cannot accept call(unauthorized)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596b\",\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-3w0Qi95qsivx9bNG1VATT9pBkDM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:01:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"unauthorized access\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"unauthorized access\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: call not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\",\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DwWva4/FLZergzV37fwlJp5rOL8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:02:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"call not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"call not found\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: answer is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "116"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"74-tyNbGiFoLGjgOZs5ED7VnFbqkWQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:12:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"answer\",\n            \"message\": \"answer is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: invalid callId",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"alice\",\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "161"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a1-6WRo9oBxPIse8yIzlCH9L6WZEEg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:13:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"invalid input syntax for type uuid: \\\"alice\\\"\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"invalid input syntax for type uuid: \\\"alice\\\"\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: call Id is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-l9HfdfKThYC4ht3dNC/Mj7ooEd4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:13:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"callId\",\n            \"message\": \"call Id is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: answer type is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\",\r\n  \"answer\": {\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"77-COImAzEQM/DSU3E7K+bBA3B1WEU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:14:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"type\",\n            \"message\": \"answer type is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: type must be answer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\",\r\n  \"answer\": {\r\n    \"type\": \"okay\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "150"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"96-stNZzxMmF5Ai+veBW1OEFNlv/Ag\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:21:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"type\",\n            \"message\": \"Invalid enum value. Expected 'answer', received 'okay'\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "sdp is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"73f5c4fc-de20-4990-9423-89df9001596a\",\r\n  \"answer\": {\r\n    \"type\": \"answer\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6e-tcwboeirvzHRJkZp/acMQXXK7CA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:22:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"sdp\",\n            \"message\": \"SDP is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: cannot accept call (either rejcted, ended or still calling)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"a2f5f87a-3339-439e-a89a-68f63b5667d7\",\r\n  \"answer\": {\r\n    \"type\": \"answer\",\r\n    \"sdp\": \"v=0\\r\\no=- 758132 2 IN IP4 127.0.0.1\\r\\ns=-\\r\\nt=0 0\\r\\na=group:BUNDLE 0\\r\\na=msid-semantic: WMS\\r\\nm=audio 9 UDP/TLS/RTP/SAVPF 111\\r\\na=rtcp-mux\\r\\na=sendrecv\\r\\na=mid:0\\r\\na=ice-ufrag:3fHy\\r\\na=ice-pwd:KJ82j21nmB9KLP02Hq12\\r\\na=ice-options:trickle\\r\\na=fingerprint:sha-256 3A:89:...:CE\\r\\na=setup:active\\r\\n\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/accept",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"accept"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-BEREZ6TrmcDUNGAxp0ox31yTS9k\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:29:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"cannot accept call\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"cannot accept call\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "reject call",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0YTY2NjU0Ni0wYzQwLTRlNjgtYmFiMS05ZWRhMDdiNWI4MWEiLCJuaWNrTmFtZSI6ImRvZTkiLCJtb2JpbGVOdW1iZXIiOiIrOTE5ODc2NTQzMTI5IiwiaWF0IjoxNzYzNDQzMzk2LCJleHAiOjE3NjM0NDY5OTZ9.C7B67C9otjEuU-fBYsIeJq8dCvnNjZ-nuA_sBE4Lc0Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"callId\":\"a2f5f87a-3339-439e-a89a-68f63b5667d7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverUrl}}/v1/call/reject",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"v1",
+								"call",
+								"reject"
+							]
+						},
+						"description": "# Reject Call\n\n## Overview\nThis endpoint allows you to reject an incoming or pending call. When a call needs to be declined, send a PUT request with the call identifier to mark it as rejected in the system.\n\n## Request Body Parameters\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `callId` | string | Yes | The unique identifier of the call to be rejected. Must be a valid UUID format. |\n\n### Example Request Body\n```json\n{\n  \"callId\": \"a2f5f87a-3339-439e-a89a-68f63b5667d7\"\n}\n```\n\n## Response Scenarios\n\n### Success Response\n- **Status Code**: 200 OK\n- The call is successfully rejected and marked in the system\n\n### Error Responses\n\n#### 400 Bad Request - Missing Call ID\nWhen the `callId` parameter is not provided in the request body:\n```json\n{\n  \"success\": false,\n  \"message\": \"call Id is required\"\n}\n```\n\n#### 404 Not Found - Call Not Found\nWhen the provided `callId` does not exist in the system:\n```json\n{\n  \"success\": false,\n  \"message\": \"call not found\"\n}\n```\n\n#### 409 Conflict - Cannot Reject Call\nWhen the call cannot be rejected due to its current state (e.g., already completed, already rejected, or in a state that doesn't allow rejection):\n```json\n{\n  \"success\": false,\n  \"message\": \"can not reject call\",\n  \"errorSourse\": [\n    {\n      \"path\": \"\",\n      \"message\": \"can not reject call\"\n    }\n  ]\n}\n```\n\n## Important Notes\n- Ensure the `callId` is valid and corresponds to an active or pending call\n- Calls can only be rejected if they are in an appropriate state (not already completed or rejected)\n- The call ID must be in UUID format\n- This operation is typically irreversible once executed successfully"
+					},
+					"response": [
+						{
+							"name": "Success: call rejected",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"a2f5f87a-3339-439e-a89a-68f63b5667d7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/reject",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"reject"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-2oF58bvkEwjMgGIb4W6bHMT/LlM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:24:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"call rejected\"\n}"
+						},
+						{
+							"name": "Error: caller cannot reject call",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"a2f5f87a-3339-439e-a89a-68f63b5667d7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/reject",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"reject"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-nsPLHdLeHn6Aj/uSq4tLrTJ+Zwk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:23:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"can not reject call\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"can not reject call\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: call not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"a2f5f87a-3339-439e-a89a-68f63b5667da\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/reject",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"reject"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DwWva4/FLZergzV37fwlJp5rOL8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:25:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"call not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"call not found\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: call Id is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/reject",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"reject"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "117"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"75-l9HfdfKThYC4ht3dNC/Mj7ooEd4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:25:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"callId\",\n            \"message\": \"call Id is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: invalid callId",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"alice\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/reject",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"reject"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "161"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a1-6WRo9oBxPIse8yIzlCH9L6WZEEg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:29:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"invalid input syntax for type uuid: \\\"alice\\\"\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"invalid input syntax for type uuid: \\\"alice\\\"\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: cannot reject call(either already rejcted, accepted, ended or in calling)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"a2f5f87a-3339-439e-a89a-68f63b5667d7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/reject",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"reject"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-nsPLHdLeHn6Aj/uSq4tLrTJ+Zwk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:31:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"can not reject call\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"can not reject call\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "end call",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0MmExNDE1Yi0xYWIwLTRmZjgtODI2Zi1kNWQ2YzE2M2RjMzQiLCJuaWNrTmFtZSI6ImRvZTgiLCJtb2JpbGVOdW1iZXIiOiIrOTE5ODc2NTQzMTI4IiwiaWF0IjoxNzYzMzUwNDU4LCJleHAiOjE3NjMzNTQwNTh9._o_B-axjZLMqL15i2FwzDHTe8fZthJ8zFQhpGrafYDA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"callId\":\"7a3384d5-404e-47fe-af9f-5e390cbcc8eb\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverUrl}}/v1/call/end",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"v1",
+								"call",
+								"end"
+							]
+						},
+						"description": "# End Call\n\n## Overview\n\nThis endpoint terminates an active call session. It should be called when a call needs to be ended, allowing the system to properly close the connection and clean up resources.\n\n## Request Details\n\n- **Method:** `PUT`\n    \n- **Endpoint:** `{{serverUrl}}/v1/call/end`\n    \n\n## Request Body\n\nThe request requires a JSON payload with the following parameter:\n\n| Parameter | Type | Required | Description |\n| --- | --- | --- | --- |\n| `callId` | string | Yes | The unique identifier of the call to be ended |\n\n### Example Request Body\n\n``` json\n{\n  \"callId\": \"4a408e5c-ab80-4a4f-80fa-1bd111d72e27\"\n}\n\n ```\n\n## Response Format\n\n### Success Response\n\n- **Status Code:** `200 OK`\n    \n- **Body:**\n    \n    ``` json\n      {\n      \"success\": true,\n      \"message\": \"Call ended successfully\"\n      }\n    \n     ```\n    \n\n### Error Responses\n\n#### 400 Bad Request - Missing or Invalid callId\n\nWhen the `callId` is missing or invalid:\n\n``` json\n{\n  \"success\": false,\n  \"message\": \"Zod Validation Error.\",\n  \"errorSourse\": [\n    {\n      \"path\": \"callId\",\n      \"message\": \"call Id is required\"\n    }\n  ]\n}\n\n ```\n\n#### Other Possible Errors\n\n- **404 Not Found:** Call with the specified `callId` does not exist\n    \n- **500 Internal Server Error:** Server-side error occurred while ending the call\n    \n\n## Usage Example\n\n``` javascript\n// Example using fetch API\nconst response = await fetch('{{serverUrl}}/v1/call/end', {\n  method: 'PUT',\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  body: JSON.stringify({\n    callId: '4a408e5c-ab80-4a4f-80fa-1bd111d72e27'\n  })\n});\nconst data = await response.json();\nconsole.log(data);\n\n ```\n\n## Notes\n\n- Ensure the `callId` is valid and corresponds to an active call\n    \n- The call must be in a state that allows it to be ended\n    \n- Once ended, the call cannot be resumed"
+					},
+					"response": [
+						{
+							"name": "Success: call ended",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"4a408e5c-ab80-4a4f-80fa-1bd111d72e27\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/end",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"end"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-1n63a1MasrUItmEhqm/3HUEqnho\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:33:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"call ended\"\n}"
+						},
+						{
+							"name": "Error: can not end call (either not accepted , already ended , rejected , callling , ringing)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"4a408e5c-ab80-4a4f-80fa-1bd111d72e27\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/end",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"end"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
 									"value": "103"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+									"value": "W/\"67-Kfgizz4YaGVOWzfetPJF4ZonKGs\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:48:12 GMT"
+									"value": "Tue, 18 Nov 2025 05:33:56 GMT"
 								},
 								{
 									"key": "Connection",
@@ -9409,16 +11433,16 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+							"body": "{\n    \"success\": false,\n    \"message\": \"can not end call\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"can not end call\"\n        }\n    ]\n}"
 						},
 						{
-							"name": "Error: DataType Validation for active",
+							"name": "Error: call not found",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"pm202601111317598e1e2ad8\",\n    \"active\": \"ritik\"\n}",
+									"raw": "{\r\n    \"callId\":\"4a408e5c-ab80-4a4f-80fa-1bd111d72e28\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -9426,13 +11450,154 @@
 									}
 								},
 								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"raw": "{{serverUrl}}/v1/call/end",
 									"host": [
-										"{{skillio-base-url}}"
+										"{{serverUrl}}"
 									],
 									"path": [
 										"v1",
-										"plan-master"
+										"call",
+										"end"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DwWva4/FLZergzV37fwlJp5rOL8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:34:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"call not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"call not found\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: invalid call Id",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"callId\":\"aice\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/end",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"end"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-9HcIkmLZRL72thWRwUV/axUfMhU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:35:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"invalid input syntax for type uuid: \\\"aice\\\"\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"invalid input syntax for type uuid: \\\"aice\\\"\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: call Id is required",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/end",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"end"
 									]
 								}
 							},
@@ -9458,15 +11623,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "121"
+									"value": "117"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"79-gp7lq4qmATHEsPWX27Og2ntxQLg\""
+									"value": "W/\"75-l9HfdfKThYC4ht3dNC/Mj7ooEd4\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 11 Jan 2026 13:49:12 GMT"
+									"value": "Tue, 18 Nov 2025 05:35:43 GMT"
 								},
 								{
 									"key": "Connection",
@@ -9478,16 +11643,56 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"active\",\n            \"message\": \"active is boolean type.\"\n        }\n    ]\n}"
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"callId\",\n            \"message\": \"call Id is required\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "send ice candidate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0MmExNDE1Yi0xYWIwLTRmZjgtODI2Zi1kNWQ2YzE2M2RjMzQiLCJuaWNrTmFtZSI6ImRvZTgiLCJtb2JpbGVOdW1iZXIiOiIrOTE5ODc2NTQzMTI4IiwiaWF0IjoxNzYzNDQ0MzE4LCJleHAiOjE3NjM0NDc5MTh9.WhYnE7t7GGQZgX--h850s2svWncoR6aJuhJKlyp8cAg",
+									"type": "string"
+								}
+							]
 						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"profileId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\r\n  \"callId\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\r\n  \"iceCandidate\": {\r\n    \"candidate\": \"candidate:842163049 1 udp 1677729535 192.168.1.5 54079 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag x7bG network-id 1 network-cost 10\",\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{serverUrl}}/v1/call/iceCandidate",
+							"host": [
+								"{{serverUrl}}"
+							],
+							"path": [
+								"v1",
+								"call",
+								"iceCandidate"
+							]
+						},
+						"description": "# ICE Candidate Exchange\n\n## Purpose\n\nThis endpoint is used to exchange ICE (Interactive Connectivity Establishment) candidates between peers during a WebRTC call setup. ICE candidates contain network information needed to establish peer-to-peer connections for real-time communication.\n\n## Request Body Parameters\n\n### Required Fields\n\n- **profileId** (string, required)\n    \n    - The unique identifier of the user's profile\n        \n    - Example: `\"4a666546-0c40-4e68-bab1-9eda07b5b81a\"`\n        \n- **callId** (string, required)\n    \n    - The unique identifier of the active call\n        \n    - Example: `\"8b44d203-1596-4de8-802b-3f0709df1faa\"`\n        \n- **iceCandidate** (object, required)\n    \n    - The ICE candidate information containing network details for connection establishment\n        \n    \n    **iceCandidate Properties:**\n    \n    - **candidate** (string, required): The candidate string containing network information (IP address, port, protocol, priority, etc.)\n        \n    - **sdpMid** (string): The media stream identification tag\n        \n    - **sdpMLineIndex** (number): The index of the media description in the SDP (Session Description Protocol)\n        \n    - **usernameFragment** (string): The username fragment used for ICE authentication\n        \n\n## Response Codes\n\n- **400 Bad Request**: Validation error occurred\n    - Missing required field: `profileId`\n        \n    - Missing required field: `candidate` string in iceCandidate object\n        \n    - Call not found: The specified `callId` does not exist or is no longer active\n        \n\n## Usage Notes\n\nThis endpoint should be called whenever a new ICE candidate is discovered during the WebRTC connection establishment process. The ICE framework will generate multiple candidates as it discovers different network paths, and each candidate should be sent to the remote peer through this endpoint to enable successful peer-to-peer connection negotiation."
+					},
+					"response": [
 						{
-							"name": "Error: DRAFT plans cannot be marked as active",
+							"name": "Success: ice candidate sent successfully",
 							"originalRequest": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"pm202601111317598e1e2ad8\",\n    \"priceInPaise\": 29900,\n    \"active\": true\n}",
+									"raw": "{\r\n  \"profileId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\r\n  \"callId\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\r\n  \"iceCandidate\": {\r\n    \"candidate\": \"candidate:842163049 1 udp 1677729535 192.168.1.5 54079 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag x7bG network-id 1 network-cost 10\",\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -9495,13 +11700,224 @@
 									}
 								},
 								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"raw": "{{serverUrl}}/v1/call/iceCandidate",
 									"host": [
-										"{{skillio-base-url}}"
+										"{{serverUrl}}"
 									],
 									"path": [
 										"v1",
-										"plan-master"
+										"call",
+										"iceCandidate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-twVl6ROxdZmCoSR1kRnHLu0gqng\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:43:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"ice candidate sent successfully\"\n}"
+						},
+						{
+							"name": "Error: profile not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"profileId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81b\",\r\n  \"callId\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\r\n  \"iceCandidate\": {\r\n    \"candidate\": \"candidate:842163049 1 udp 1677729535 192.168.1.5 54079 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag x7bG network-id 1 network-cost 10\",\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/iceCandidate",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"iceCandidate"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"69-Aa+T8WWqt46g/C8Ud4ugvj0NmQo\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:39:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"profile not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"profile not found\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: call not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"profileId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\r\n  \"callId\": \"8b44d203-1596-4de8-802b-3f0709df1fab\",\r\n  \"iceCandidate\": {\r\n    \"candidate\": \"candidate:842163049 1 udp 1677729535 192.168.1.5 54079 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag x7bG network-id 1 network-cost 10\",\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/iceCandidate",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"iceCandidate"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"63-DwWva4/FLZergzV37fwlJp5rOL8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:40:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"call not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"call not found\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: profile Id is required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"callId\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\r\n  \"iceCandidate\": {\r\n    \"candidate\": \"candidate:842163049 1 udp 1677729535 192.168.1.5 54079 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag x7bG network-id 1 network-cost 10\",\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/iceCandidate",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"iceCandidate"
 									]
 								}
 							},
@@ -9527,15 +11943,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "180"
+									"value": "123"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"b4-iFOfQ0hZqeIUokHaX7n4WH7zDZQ\""
+									"value": "W/\"7b-tzeUFQvBLamnksk8DrvJI5fo99U\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 11 Jan 2026 14:12:29 GMT"
+									"value": "Tue, 18 Nov 2025 05:40:47 GMT"
 								},
 								{
 									"key": "Connection",
@@ -9547,16 +11963,16 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Plan Master is currently in DRAFT status. Please COMPLETE it before making it as active.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Something went wrong!\"\n        }\n    ]\n}"
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"profileId\",\n            \"message\": \"profile Id is required\"\n        }\n    ]\n}"
 						},
 						{
-							"name": "Error: CallLimits negative checks",
+							"name": "Error: call Id is required",
 							"originalRequest": {
-								"method": "PUT",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"pm202601111317598e1e2ad8\",\n    \"priceInPaise\": 29900,\n    \"callLimits\": -9\n}",
+									"raw": "{\r\n  \"profileId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\r\n  \"iceCandidate\": {\r\n    \"candidate\": \"candidate:842163049 1 udp 1677729535 192.168.1.5 54079 typ srflx raddr 0.0.0.0 rport 0 generation 0 ufrag x7bG network-id 1 network-cost 10\",\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -9564,13 +11980,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"raw": "{{serverUrl}}/v1/call/iceCandidate",
 									"host": [
-										"{{skillio-base-url}}"
+										"{{serverUrl}}"
 									],
 									"path": [
 										"v1",
-										"plan-master"
+										"call",
+										"iceCandidate"
 									]
 								}
 							},
@@ -9596,15 +12013,15 @@
 								},
 								{
 									"key": "Content-Length",
-									"value": "138"
+									"value": "117"
 								},
 								{
 									"key": "ETag",
-									"value": "W/\"8a-1oYunDoL2qxQsINaLB3wfi9z3m8\""
+									"value": "W/\"75-l9HfdfKThYC4ht3dNC/Mj7ooEd4\""
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 11 Jan 2026 14:16:02 GMT"
+									"value": "Tue, 18 Nov 2025 05:41:08 GMT"
 								},
 								{
 									"key": "Connection",
@@ -9616,12 +12033,81 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"callLimits\",\n            \"message\": \"callLimits should be greater than 0.\"\n        }\n    ]\n}"
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"callId\",\n            \"message\": \"call Id is required\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: candidate in iceCandidate is required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"profileId\": \"4a666546-0c40-4e68-bab1-9eda07b5b81a\",\r\n  \"callId\": \"8b44d203-1596-4de8-802b-3f0709df1faa\",\r\n  \"iceCandidate\": {\r\n    \"sdpMid\": \"0\",\r\n    \"sdpMLineIndex\": 0,\r\n    \"usernameFragment\": \"x7bG\"\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{serverUrl}}/v1/call/iceCandidate",
+									"host": [
+										"{{serverUrl}}"
+									],
+									"path": [
+										"v1",
+										"call",
+										"iceCandidate"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"81-dyD8+CWpNKSdQi+e95GzZ4NTfgI\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Nov 2025 05:46:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"candidate\",\n            \"message\": \"Candidate string is required\"\n        }\n    ]\n}"
 						}
 					]
 				}
-			],
-			"description": "Plan Master API bundles accessible for the `ADMINS` to create, read, update, and delete plans."
+			]
 		}
 	]
 }
