@@ -16,7 +16,7 @@ import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { JwtService } from "@neon-lab-dev/platform";
 
-class RegistraionService{
+class RegistrationService{
     private updateContactVerificationStatus= async(id:string , contactData: Partial<Contact>)=>{
         await registrationRepository.updateContactById(id, contactData);
     }
@@ -261,6 +261,14 @@ class RegistraionService{
         return shortProfiles;
     })
 
+    getProfileCount=serviceLogging(
+        "RegistraionService",
+        "getProfileCount",
+        async()=>{
+            return await registrationRepository.getProfileCount();
+        }
+    )
+
 }
 
-export default new RegistraionService();
+export default new RegistrationService();

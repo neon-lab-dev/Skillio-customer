@@ -2,12 +2,25 @@ import { AppDataSource } from "../db/dataSource";
 import { DeepPartial, Repository } from "typeorm";
 import { Profile } from "../entity/profile";
 import { Contact } from "../entity/contact";
-import { contactType } from "../modules/registration/enums/registrationEnum";
+import { contactType, proficiecy, ProfileType } from "../modules/registration/enums/registrationEnum";
 
 class RegistrationRepository{
 
     private profileRepository: Repository<Profile>;
     private contactRepository: Repository<Contact>;
+
+    private buildCountQuery(
+        profileType: ProfileType = ProfileType.INDIVIDUAL,
+        proficiency: proficiecy
+    ) {
+        const query = this.profileRepository
+        .createQueryBuilder("profile")
+        .leftJoinAndSelect("profile.portfolio", "portfolio")
+        .where("profile.profileType = :profileType", { profileType })
+        .andWhere("portfolio.proficiency = :proficiency", { proficiency });
+    
+        return query.getCount();
+    }
 
     constructor() {
         this.profileRepository = AppDataSource.getRepository<Profile>("Profile");
@@ -69,6 +82,26 @@ class RegistrationRepository{
             take: profilesLimit,
             skip: skip
         });
+    }
+
+    getProfileCount= async()=>{
+        const totalCount= await this.profileRepository.count();
+        const individualProfessional= await this.buildCountQuery(ProfileType.INDIVIDUAL , proficiecy.PROFESSIONAL);
+        const individualSkilled= await this.buildCountQuery(ProfileType.INDIVIDUAL , proficiecy.SKILLED);
+        const groupProfessional= await this.buildCountQuery(ProfileType.GROUP , proficiecy.PROFESSIONAL);
+        const groupSkilled= await this.buildCountQuery(ProfileType.GROUP , proficiecy.SKILLED);
+
+        return{
+            totalCount: totalCount,
+            individualsCount:{
+                professional: individualProfessional,
+                skilled: individualSkilled
+            },
+            groupCount:{
+                professional: groupProfessional,
+                skilled: groupSkilled
+            }
+        }
     }
 
     // find contact by value

@@ -74,6 +74,20 @@ class RegistrationController{
             })
         })
     )
+
+    getProfileCount= controllerLogging(
+        "RegistrationController.getProfileCount",
+        catchAsyncError(async(req: Request , res: Response)=>{
+            const result= await registrationProxy.getProfileCount();
+
+            return sendResponse(res , {
+                statusCode: 200,
+                success: true,
+                message: "profile count fetched successfully",
+                data: result
+            })
+        })
+    )
 }
 
 export default new RegistrationController();
