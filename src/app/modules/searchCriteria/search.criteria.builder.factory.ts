@@ -1,6 +1,7 @@
 import { AppError, ERROR_CODES, HTTP_STATUS, SearchCriteria, SearchCriteriaBuilderFactory } from "@neon-lab-dev/platform";
 import { PlanMasterSearchCriteria } from "../planMaster/models/request/search.criteria.plan.master";
 import { PlanMasterSearchCriteriaBuilder } from "./search.criteria.plan.master.builder";
+import { UserPlanMasterSearchCriteria } from "../planMaster/models/request/search.criteria.user.plan.master";
 
 
 class CriteriaBuilderFactory implements SearchCriteriaBuilderFactory {
@@ -13,6 +14,12 @@ class CriteriaBuilderFactory implements SearchCriteriaBuilderFactory {
                 .builder()
                 .of(raw)
                 .build() as unknown as T;
+        }
+        if ( ctor === UserPlanMasterSearchCriteria) {
+            return PlanMasterSearchCriteriaBuilder
+            .builder()
+            .userSearch(raw)
+            .build() as unknown as T;
         }
 
         throw new AppError(

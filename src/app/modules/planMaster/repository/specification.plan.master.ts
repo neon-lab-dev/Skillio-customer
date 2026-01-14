@@ -24,7 +24,7 @@ export class PlanMasterSpecification extends BaseSpecification<PlanMasterEntity>
     applyFilters(qb: SelectQueryBuilder<PlanMasterEntity>): void { 
         const criteria = this.criteria as PlanMasterSearchCriteria;
         this.filterByIdsIn(criteria, qb);
-        this.filterByCodesIn(criteria, qb);
+        this.filterByCodeLike(criteria, qb);
         this.filterByActive(criteria, qb);
         this.filterByPriceInPaiseMax(criteria, qb);
         this.filterByPriceInPaiseMin(criteria, qb);
@@ -48,16 +48,16 @@ export class PlanMasterSpecification extends BaseSpecification<PlanMasterEntity>
         );
     }
 
-    private filterByCodesIn(
+    //case-insensitive search
+    private filterByCodeLike(
         criteria: PlanMasterSearchCriteria,
         qb: SelectQueryBuilder<PlanMasterEntity>
     ): SelectQueryBuilder<PlanMasterEntity> {
-        if (!criteria.codes) return qb;
-        const codeSet = SearchCriteriaUtils.toStringSet(criteria.codes);
-        if (!codeSet || codeSet.size === 0) return qb;
+        if (!criteria.code) return qb;
+        if ( criteria.code.length < 3) return qb;
         return qb.andWhere(
-            `${this.alias}.${this.CODE} IN (:...allCodes)`,
-            { allCodes : Array.from(codeSet) }
+            `${this.alias}.${this.CODE} ILIKE :search`,
+            { search : `${criteria.code}%` }
         );
     }
 
