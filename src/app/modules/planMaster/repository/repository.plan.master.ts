@@ -13,7 +13,8 @@ export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
         return await this.repository.find(
             {
                 where: {
-                    code:planCode
+                    code:planCode,
+                    deleted: false
                 },
                 order:{
                     version: SortDirection.DESC
