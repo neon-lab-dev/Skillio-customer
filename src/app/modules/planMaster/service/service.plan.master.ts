@@ -110,9 +110,7 @@ class PlanMasterService {
     public async delete(req: DeletePlanMasterDto):Promise<void>{
         if(req.hard){
              await this.hardDelete(req.ids)
-             await this.hardDelete(req.ids)
         }else{
-             await this.softDelete(req.ids)
              await this.softDelete(req.ids)
         }
     }
