@@ -107,26 +107,39 @@ class PlanMasterService {
 
 
     @Loggable()
-    public async delete(req: DeletePlanMasterDto){
+    public async delete(req: DeletePlanMasterDto): Promise<void>{
         if(req.hard){
-            return await this.hardDelete(req.ids)
+             await this.hardDelete(req.ids)
         }else{
-            return await this.softDelete(req.ids)
+             await this.softDelete(req.ids)
         }
     }
 
     @Loggable()
     private async hardDelete(ids: Set<string>){
         for(const id of ids){
-            return await this.repository.delete(id);
+            try{
+             await this.repository.delete(id);
+            }catch(e){
+                if(e instanceof AppError){
+                    LoggerService.warn(e.message)
+                }
+            }
         }
     }
 
     @Loggable()
     private async softDelete(ids: Set<string>){
         for(const id of ids){
-            const updateRequest= UpdatePlanMasterRequestDto.softDelete(id, true);
-            return await this.update(updateRequest)
+            try{
+                const updateRequest= UpdatePlanMasterRequestDto.softDelete(id, true);
+                await this.update(updateRequest)
+            }catch(e){
+                if(e instanceof AppError){
+                    LoggerService.warn(e.message
+                    )
+                }
+            }
         }
     }
 
