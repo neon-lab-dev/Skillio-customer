@@ -1,4 +1,4 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, Index } from "typeorm";
 import { PersistEntity } from "../../entity/PersistEntity";
 import { PlanType } from "../planMaster/enum/PlanType";
 import { ProfileVisibility } from "../planMaster/enum/ProfileVisibility";
@@ -9,6 +9,7 @@ import { PlanMasterStatus } from "../planMaster/enum/PlanMasterStatus";
         name: "plan_masters"
     }
 )
+@Index("IDX_PRIORITY", ["priority"])
 export class PlanMasterEntity extends PersistEntity {
 
     constructor() {

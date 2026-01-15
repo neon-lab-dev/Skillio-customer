@@ -15,6 +15,7 @@ import { PlanMasterSearchCriteria } from "../models/request/search.criteria.plan
 import { ShortPlanMasterDto } from "../models/response/dto.short.plan.master.details";
 import { PlanMasterSpecification } from "../repository/specification.plan.master";
 import { ShortPlanMasterBuilder } from "../models/builders/builder.plan.master.short";
+import { PlanType } from "../enum/PlanType";
 
 class PlanMasterService {
 
@@ -49,11 +50,12 @@ class PlanMasterService {
         let entity = await this.fetchById(req.id);
         let partialEntity = JsonUtils.toPlain(req) as Partial<PlanMasterEntity>;
         entity = PartialUpdateUtil.apply(entity, partialEntity);
-        await this.validateEntityStatusAndActive(entity);
+        await this.preUpdateValidation(entity);
         const saved = await this.repository.save(entity);
         return PlanMasterDetailsBuilder.builder().of(saved!).build();
     }
 
+    //currently the below method is not in use. Kept this in case requirement comes in for such requirement.
     @Loggable()
     public async bulkActiveUpdate( req: UpdateActivePlanMaster ): Promise<UpdateActivePlanMasterResponse>{
         let retVal = new UpdateActivePlanMasterResponse(req.ids.size);
@@ -88,6 +90,29 @@ class PlanMasterService {
             return retVal;
         }
         throw new NotFoundError(`Plan Master not found with id ${id}`);
+    }
+
+    private async fetchAllSubscriptionByPriority( priority: number ): Promise<PlanMasterEntity[]> {
+        return await this.repository.findAllSubscriptionByPriority( priority );
+    }
+
+    private async preUpdateValidation( entity: PlanMasterEntity ){
+        await this.validatePriorityDuplication(entity);
+        await this.validateEntityStatusAndActive(entity);
+    }
+
+    private async validatePriorityDuplication( entity: PlanMasterEntity ){
+        if ( entity.type == PlanType.SUBSCRIPTION ) {
+            if ( entity.priority > -1){ //filtering out default priorities or priorites not set case
+                let recordsWithSamePriority = await this.fetchAllSubscriptionByPriority(entity.priority);
+                if ( recordsWithSamePriority.length > 0 ) {
+                    throw new AppValidationError(
+                        `Priority for SUBSCRIPTION should be unique. Please check.`,
+                        ERROR_CODES.UNSUPPORTED_OPERATION
+                    );
+                }
+            }
+        }
     }
 
     private async validateEntityStatusAndActive( entity : PlanMasterEntity ){

@@ -2,6 +2,7 @@ import { BaseRepository, SortDirection } from "@neon-lab-dev/platform";
 import { PlanMasterEntity } from "../../entity/PlanMasterEntity";
 import { AppDataSource } from "../../../db/dataSource";
 import { In } from "typeorm";
+import { PlanType } from "../enum/PlanType";
 
 export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
 
@@ -27,6 +28,15 @@ export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
         return this.repository.findBy({
             id: In([...ids])
         });
+    }
+
+    async findAllSubscriptionByPriority( p: number ): Promise<PlanMasterEntity[]> {
+        return this.repository.findBy(
+            {
+                type: PlanType.SUBSCRIPTION,
+                priority: p
+            }
+        );
     }
 
 
