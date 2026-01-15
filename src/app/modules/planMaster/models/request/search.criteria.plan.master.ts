@@ -11,7 +11,7 @@ export class PlanMasterSearchCriteria extends SearchCriteria implements AppReque
 
     ids!: Set<string>;
 
-    codes?: Set<string>;
+    code?: string;
 
     type?: PlanType;
 

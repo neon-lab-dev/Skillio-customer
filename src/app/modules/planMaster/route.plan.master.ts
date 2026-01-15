@@ -6,6 +6,10 @@ import { asyncApiHandler, createCriteriaMiddleWare } from "@neon-lab-dev/platfor
 import { PlanMasterSearchCriteria } from "./models/request/search.criteria.plan.master";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
 import { FetchPlanApi } from "./api/api.fetch";
+import { verifyToken } from "../../middlewares/requireAuth";
+import authorizeRole from "../../middlewares/authorizeRole";
+import { roles } from "../registration/enums/registrationEnum";
+import { UserPlanMasterSearchCriteria } from "./models/request/search.criteria.user.plan.master";
 
 
 const router = Router();
@@ -13,12 +17,28 @@ const createPlanApi = new CreatePlanApi();
 const updatePlanApi = new UpdatePlanMasterApi();
 const fetchPlanApi = new FetchPlanApi();
 
-router.post("/", asyncApiHandler(createPlanApi));
-router.put("/", asyncApiHandler(updatePlanApi));
+router.post(
+    "/",
+    verifyToken,
+    authorizeRole.validateRole(roles.ADMIN),
+    asyncApiHandler(createPlanApi));
+router.put(
+    "/", 
+    verifyToken,
+    authorizeRole.validateRole(roles.ADMIN),
+    asyncApiHandler(updatePlanApi));
 router.get(
     "/",
+    verifyToken,
+    authorizeRole.validateRole(roles.ADMIN),
     createCriteriaMiddleWare(PlanMasterSearchCriteria, searchCriteriaBuilderFactory),
     asyncApiHandler(fetchPlanApi)
 );
+router.get(
+    "/plans",
+    verifyToken,
+    createCriteriaMiddleWare(UserPlanMasterSearchCriteria, searchCriteriaBuilderFactory),
+    asyncApiHandler(fetchPlanApi)
+)
 
 export const planMasterRouter = router;
