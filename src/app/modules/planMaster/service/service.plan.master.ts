@@ -152,8 +152,6 @@ class PlanMasterService {
     }
 
     private async validateEntityStatusAndActive( entity : PlanMasterEntity ){
-        LoggerService.info(`DRAFT check ${entity.status === PlanMasterStatus.DRAFT}`);
-        LoggerService.info(`active check ${entity.active}`);
         if ( 
             entity.status === PlanMasterStatus.DRAFT &&
             entity.active

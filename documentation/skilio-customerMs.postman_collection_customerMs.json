@@ -12638,6 +12638,16 @@
 				{
 					"name": "fetch",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -12675,9 +12685,9 @@
 									"disabled": true
 								},
 								{
-									"key": "codes",
-									"value": "",
-									"description": "codes in",
+									"key": "code",
+									"value": "ritik",
+									"description": "code like (case-insensitive) must have more than 3 character to be used else ignore",
 									"disabled": true
 								},
 								{
@@ -12768,6 +12778,238 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"pm202601111317598e1e2ad8\",\n                \"code\": \"RK's Plan\",\n                \"description\": \"Rk's Plan\",\n                \"type\": \"SUBSCRIPTION\",\n                \"version\": 0,\n                \"priority\": -1,\n                \"priceInPaise\": 19900,\n                \"active\": false,\n                \"status\": \"DRAFT\"\n            }\n        ],\n        \"total\": 1,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
+						},
+						{
+							"name": "Error: No token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"host": [
+										"{{skillio-base-url}}"
+									],
+									"path": [
+										"v1",
+										"plan-master"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "COMPLETE",
+											"description": "DRAFT | COMPLETE",
+											"disabled": true
+										},
+										{
+											"key": "priceInPaiseMax",
+											"value": "30000",
+											"description": "Max price including",
+											"disabled": true
+										},
+										{
+											"key": "priceInPaiseMin",
+											"value": "",
+											"description": "Min price including",
+											"disabled": true
+										},
+										{
+											"key": "ids",
+											"value": "",
+											"description": "ids in",
+											"disabled": true
+										},
+										{
+											"key": "codes",
+											"value": "",
+											"description": "codes in",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "",
+											"description": "filter by type",
+											"disabled": true
+										},
+										{
+											"key": "profileVisibility",
+											"value": "",
+											"description": "ZERO | ONE",
+											"disabled": true
+										},
+										{
+											"key": "active",
+											"value": "",
+											"description": "true | false",
+											"disabled": true
+										},
+										{
+											"key": "validityMin",
+											"value": "",
+											"description": "number > 0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-MTO5rcz5F669OdWW70AbcSOmTRs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Jan 2026 01:21:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Authentication failed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Authentication failed\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error: Invalid role",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{skillio-base-url}}/v1/plan-master",
+									"host": [
+										"{{skillio-base-url}}"
+									],
+									"path": [
+										"v1",
+										"plan-master"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "COMPLETE",
+											"description": "DRAFT | COMPLETE",
+											"disabled": true
+										},
+										{
+											"key": "priceInPaiseMax",
+											"value": "30000",
+											"description": "Max price including",
+											"disabled": true
+										},
+										{
+											"key": "priceInPaiseMin",
+											"value": "",
+											"description": "Min price including",
+											"disabled": true
+										},
+										{
+											"key": "ids",
+											"value": "",
+											"description": "ids in",
+											"disabled": true
+										},
+										{
+											"key": "codes",
+											"value": "",
+											"description": "codes in",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "",
+											"description": "filter by type",
+											"disabled": true
+										},
+										{
+											"key": "profileVisibility",
+											"value": "",
+											"description": "ZERO | ONE",
+											"disabled": true
+										},
+										{
+											"key": "active",
+											"value": "",
+											"description": "true | false",
+											"disabled": true
+										},
+										{
+											"key": "validityMin",
+											"value": "",
+											"description": "number > 0",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6d-3w0Qi95qsivx9bNG1VATT9pBkDM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Jan 2026 02:20:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"unauthorized access\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"unauthorized access\"\n        }\n    ]\n}"
 						}
 					]
 				},
