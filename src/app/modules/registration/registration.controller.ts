@@ -2,7 +2,7 @@ import registrationProxy from "./registration.proxy";
 import { Request, Response } from "express";
 import catchAsyncError from "../../utils/catchAsyncError";
 import sendResponse from "../../middlewares/sendResponse";
-import { RegistrationDTO } from "./registration.dto";
+import { RegistrationDTO } from "./models/dto/registration.dto";
 import { controllerLogging } from "../../utils/controllerLogging";
 
 class RegistrationController{
@@ -57,23 +57,6 @@ class RegistrationController{
         })
     );   
 
-
-    // get profiles
-    getProfiles= controllerLogging(
-        "RegistrationController.getProfiles",
-        catchAsyncError(async(req:Request , res:Response)=>{
-        const page= req.query.page as string;
-        const limit= req.query.limit as string;
-
-        const result= await registrationProxy.getProfiles(page , limit);
-        return sendResponse(res , {
-            statusCode: 200,
-            success: true,
-            message: "Profiles fetched successfully",
-            data: result
-            })
-        })
-    )
 
     getProfileCount= controllerLogging(
         "RegistrationController.getProfileCount",
