@@ -4,7 +4,7 @@ import verificationRepository from "../../repository/verificationRepository";
 import { logger } from "../../utils/logger";
 import { getJwtConfig } from "./config/jwtConfig";
 import { TProfile } from "./interface/registration.interface";
-import { GetProfileDTO, GetRegistrationDTO } from "./registration.dto";
+import { GetProfileDTO, GetRegistrationDTO } from "./models/dto/dto.registration";
 import bcrypt from "bcrypt";
 import { TDocument } from "../document/interface/document.interface";
 import documentRepository from "../../repository/documentRepository";
@@ -14,9 +14,16 @@ import { DocumentType } from "../document/enums/documentEnum";
 import { ProfileType } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
-import { JwtService } from "@neon-lab-dev/platform";
+import { JwtService, Loggable, Page, Pageable } from "@neon-lab-dev/platform";
+import { ProfileSpecification } from "./specification/profileSpecification";
+import { ProfileSearchCriteria } from "./models/searchCriteria.ts/profileSearchCriteria";
+import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
+import { FetchProfileDto } from "./models/dto/dto.fetch.profile";
+import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatusRequest";
 
 class RegistrationService{
+
+
     private updateContactVerificationStatus= async(id:string , contactData: Partial<Contact>)=>{
         await registrationRepository.updateContactById(id, contactData);
     }
@@ -231,35 +238,17 @@ class RegistrationService{
     })
 
     // get profiles
-    getProfiles= serviceLogging(
-        "RegistrationService",
-        "getProfiles",
-        async(page: string , limit: string)=>{
-        const profiles= await  registrationRepository.findAllProfiles(page , limit);
+    @Loggable()
+    public async getProfiles (req: ProfileSearchCriteria): Promise<Page<FetchProfileDto>>{
 
-        const fetchedProfiles= profiles.map(profile=> new GetProfileDTO(profile).toJSON());
+        const spec= new ProfileSpecification(req);
 
-        const shortProfiles=  Promise.all(fetchedProfiles.map(async(profile)=>{
-            if(profile.profileType===ProfileType.INDIVIDUAL){
-                const name= getFullName(profile.firstName as string, profile.lastName as string);
-                const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(profile.portfolio.id , DocumentType.PROFILE_PHOTO);
-                return{
-                        name: name,
-                        nickName: profile.nickName,
-                        profilePcitureId: profilePhotoId,
-                }
-            }else{
-                const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(profile.portfolio.id , DocumentType.PROFILE_PHOTO);
-                return{
-                    groupName: profile.groupName,
-                    nickName: profile.nickName,
-                    profilePcitureId: profilePhotoId,
-                }
-            }
-        }))
+        const entityPage= await registrationRepository.findPage(spec , req);
 
-        return shortProfiles;
-    })
+        const fetchedProfiles= FetchProfileDtoBuilder.builder().ofArray(entityPage.items);
+
+        return Pageable.buildPage(fetchedProfiles, entityPage.total, req);
+    }
 
     getProfileCount=serviceLogging(
         "RegistraionService",
@@ -268,6 +257,11 @@ class RegistrationService{
             return await registrationRepository.getProfileCount();
         }
     )
+
+    @Loggable()
+    public async updateProfileStatus(req: UpdateProfileStatusRequest):Promise<void>{
+        await registrationRepository.updateProfile(req.id , {status: req.status});
+    }
 
 }
 
