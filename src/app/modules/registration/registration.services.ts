@@ -4,7 +4,7 @@ import verificationRepository from "../../repository/verificationRepository";
 import { logger } from "../../utils/logger";
 import { getJwtConfig } from "./config/jwtConfig";
 import { TProfile } from "./interface/registration.interface";
-import { GetProfileDTO, GetRegistrationDTO } from "./models/dto/registration.dto";
+import { GetProfileDTO, GetRegistrationDTO } from "./models/dto/dto.registration";
 import bcrypt from "bcrypt";
 import { TDocument } from "../document/interface/document.interface";
 import documentRepository from "../../repository/documentRepository";
@@ -18,7 +18,7 @@ import { JwtService, Loggable, Page, Pageable } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
 import { ProfileSearchCriteria } from "./models/searchCriteria.ts/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
-import { FetchProfileDto } from "./models/dto/fetchProfileDto";
+import { FetchProfileDto } from "./models/dto/dto.fetch.profile";
 import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatusRequest";
 
 class RegistrationService{

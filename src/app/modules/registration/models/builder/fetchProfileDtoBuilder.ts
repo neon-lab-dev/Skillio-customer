@@ -1,4 +1,4 @@
-import { FetchProfileDto } from "../dto/fetchProfileDto";
+import { FetchProfileDto } from "../dto/dto.fetch.profile";
 import { Profile } from "../../../../entity/profile";
 import { contactType } from "../../enums/registrationEnum";
 

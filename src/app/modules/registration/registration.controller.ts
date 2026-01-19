@@ -2,7 +2,7 @@ import registrationProxy from "./registration.proxy";
 import { Request, Response } from "express";
 import catchAsyncError from "../../utils/catchAsyncError";
 import sendResponse from "../../middlewares/sendResponse";
-import { RegistrationDTO } from "./models/dto/registration.dto";
+import { RegistrationDTO } from "./models/dto/dto.registration";
 import { controllerLogging } from "../../utils/controllerLogging";
 
 class RegistrationController{

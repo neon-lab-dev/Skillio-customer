@@ -4,7 +4,7 @@ import { ProfileSearchCriteria } from "../models/searchCriteria.ts/profileSearch
 import registrationServices from "../registration.services";
 import fetchProfileValidator from "../validators/fetchProfileValidator";
 
-class FetchProfileApi implements Api<ProfileSearchCriteria , AppResponse>{
+export class FetchProfilesApi implements Api<ProfileSearchCriteria , AppResponse>{
     async preprocess(req: ProfileSearchCriteria):  Promise<void> | never {
         await fetchProfileValidator.validate(req)
     }
@@ -19,5 +19,3 @@ class FetchProfileApi implements Api<ProfileSearchCriteria , AppResponse>{
         }
     }
 }
-
-export default new FetchProfileApi()
