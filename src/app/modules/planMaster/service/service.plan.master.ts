@@ -16,7 +16,7 @@ import { ShortPlanMasterDto } from "../models/response/dto.short.plan.master.det
 import { PlanMasterSpecification } from "../repository/specification.plan.master";
 import { ShortPlanMasterBuilder } from "../models/builders/builder.plan.master.short";
 import { DeletePlanMasterDto } from "../models/request/dto.delete.plan.master";
-import { fetchByIdRequestDto } from "../models/request/dto.fetchById.plan.master";
+import { fetchByIdRequestDto } from "../models/request/dto.fetch.By.Id.plan.master";
 
 class PlanMasterService {
 

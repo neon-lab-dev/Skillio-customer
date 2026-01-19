@@ -6,7 +6,7 @@ import { asyncApiHandler, createCriteriaMiddleWare } from "@neon-lab-dev/platfor
 import { PlanMasterSearchCriteria } from "./models/request/search.criteria.plan.master";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
 import { FetchPlanApi } from "./api/api.fetch";
-import { FetchByIdApi } from "./api/api.fetchById";
+import { FetchByIdApi } from "./api/api.fetch.By.Id";
 import { DeletePlanApi } from "./api/api.delete";
 import { verifyToken } from "../../middlewares/requireAuth";
 import authorizeRole from "../../middlewares/authorizeRole";
