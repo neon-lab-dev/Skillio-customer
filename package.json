@@ -31,7 +31,6 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@mitra/platform": "file:C:/Users/Roshan%20Chaudhary/Desktop/mitra-lab/packages/platform",
     "@neon-lab-dev/platform": "^0.1.4",
     "@types/imagekit": "^3.1.5",
     "axios": "^1.9.0",
