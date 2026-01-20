@@ -6,16 +6,16 @@ import { PlanMasterStatus } from "../../enum/PlanMasterStatus";
 export class PlanMasterDetailsDto implements AppResponseData {
 
     id?: string;
-    callLimits?: Number;
-    chatLimits?: Number;
-    validity?:Number;
+    callLimits?: number;
+    chatLimits?: number;
+    validity?:number;
     active?:boolean;
     status?:PlanMasterStatus;
     profileVisibility?:ProfileVisibility;
     description?:string;
     priceInPaise?:number;
-    priority?:Number;
+    priority?:number;
     code?:string;
-    version?:Number;
+    version?:number;
     type?:PlanType;
 }

@@ -3,6 +3,8 @@ import { BaseEntity } from "./baseEntity";
 import { proficiecy } from "../modules/registration/enums/registrationEnum";
 import { Profile } from "./profile";
 import { Document } from "./documentEntity";
+import { UserSubscriptionEntity } from "../modules/entity/UserSubscriptionEntity";
+import { Sensitive } from "@neon-lab-dev/platform";
 
 @Entity("portfolio")
 @Index("IDX_CATEGORY_SUBCATEGORY" , ["category" , "subCategory"])
@@ -36,5 +38,12 @@ export class Portfolio extends BaseEntity{
     })
     @JoinColumn({name:"profileId"})
     profile!: Profile;
+
+    @OneToMany(
+        () => UserSubscriptionEntity,
+        u => u.portfolio
+    )
+    @Sensitive()
+    subscriptions!: Promise<UserSubscriptionEntity[]>
     
 }

@@ -34,7 +34,7 @@ class PlanMasterService {
     public async create( req: CreatePlanMasterRequest ): Promise<PlanMasterDetailsDto> {
         let entity = PlanMasterEntityBuilder.builder()
             .create(req).build();
-        await this.validateEntityStatusAndActive(entity);
+        await this.preSaveOrUpdateValidation(entity);
         entity = await this.repository.create(entity);
         return PlanMasterDetailsBuilder.builder().of(entity).build();
     }
@@ -50,7 +50,7 @@ class PlanMasterService {
         let entity = await this.fetchById(req.id);
         let partialEntity = JsonUtils.toPlain(req) as Partial<PlanMasterEntity>;
         entity = PartialUpdateUtil.apply(entity, partialEntity);
-        await this.preUpdateValidation(entity);
+        await this.preSaveOrUpdateValidation(entity);
         const saved = await this.repository.save(entity);
         return PlanMasterDetailsBuilder.builder().of(saved!).build();
     }
@@ -96,9 +96,24 @@ class PlanMasterService {
         return await this.repository.findAllSubscriptionByPriority( priority );
     }
 
-    private async preUpdateValidation( entity: PlanMasterEntity ){
+    private async preSaveOrUpdateValidation( entity: PlanMasterEntity ){
         await this.validatePriorityDuplication(entity);
         await this.validateEntityStatusAndActive(entity);
+        await this.validateComplete(entity);
+    }
+
+    private async validateComplete( entity: PlanMasterEntity) {
+        if ( entity.status == PlanMasterStatus.COMPLETE ){
+            //SUBSCRIPTION specific validations
+            if ( entity.type === PlanType.SUBSCRIPTION ){
+                if ( !entity.priority || entity.priority === -1){
+                    throw new AppValidationError(
+                        `Please set priority before marking it as complete.`,
+                        ERROR_CODES.UNSUPPORTED_OPERATION
+                    );
+                } 
+            }
+        }
     }
 
     private async validatePriorityDuplication( entity: PlanMasterEntity ){
