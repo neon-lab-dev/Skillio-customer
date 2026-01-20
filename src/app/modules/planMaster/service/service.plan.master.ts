@@ -16,7 +16,7 @@ import { ShortPlanMasterDto } from "../models/response/dto.short.plan.master.det
 import { PlanMasterSpecification } from "../repository/specification.plan.master";
 import { ShortPlanMasterBuilder } from "../models/builders/builder.plan.master.short";
 import { DeletePlanMasterDto } from "../models/request/dto.delete.plan.master";
-import { fetchByIdRequestDto } from "../models/request/dto.fetch.By.Id.plan.master";
+import { fetchByIdRequestDto } from "../models/request/dto.fetch.full.details.plan.master";
 
 class PlanMasterService {
 
@@ -91,7 +91,7 @@ class PlanMasterService {
     @Loggable()
     public async fetchById(req: fetchByIdRequestDto):Promise<ShortPlanMasterDto>{
         const retVal= await this.checkExisting(req.id);
-        return ShortPlanMasterBuilder.builder().of(retVal).build();
+        return PlanMasterDetailsBuilder.builder().of(retVal).build();
     }
 
     @Loggable()
