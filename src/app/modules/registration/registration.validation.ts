@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ProfileType, contactType, proficiecy, roles } from "./enums/registrationEnum";
+import { ProfileType, contactType, proficiecy, profileStatus, roles } from "./enums/registrationEnum";
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
 import { IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
@@ -8,6 +8,18 @@ import { IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, mandatoryTypeError, NU
 const emailSchema = z.string().email("Invalid email address");
 const phoneSchema = z.string().regex(/^(?:\+91|91|0)?[6-9]\d{9}$/, "Invalid phone number");
 const requestMandatoryError = mandatoryTypeError("Request", "object");
+
+const nickNameSchema=IS_MANDATORY_SCHEMA("nickName").min(2 , "nickName must be at least 2 characters");
+const citySchema= IS_MANDATORY_SCHEMA("city");
+const countrySchema= IS_MANDATORY_SCHEMA("country");
+const profileTypeSchema= z.nativeEnum(ProfileType, {
+            error: mandatoryTypeError("profileType", "ProfileType")
+        });
+
+const proficiencySchema=z.nativeEnum(proficiecy, {
+        error: mandatoryTypeError("proficiency", "Proficiency")
+    });
+
 
 const validateNicknameUniqueness = (data: {
     nickName: string;
@@ -145,9 +157,7 @@ const portfolioSchema = z.object({
         .regex(/^[A-Za-z\s]+$/, "Category must contain only alphabets "),
     subCategory: IS_MANDATORY_SCHEMA("Sub-category")
         .regex(/^[A-Za-z\s]+$/, "Sub-category must contain only alphabets "),
-    proficiency: z.nativeEnum(proficiecy, {
-        error: mandatoryTypeError("proficiency", "Proficiency")
-    }),
+    proficiency:proficiencySchema ,
     totalEvents: NUMBER_SCHEMA("totalEvents").optional(),
     bio: TYPE_VALIDATION_SCHEMA("bio").optional(),
     videoDocumentId: IS_MANDATORY_SCHEMA("Video Document Id"),
@@ -178,13 +188,10 @@ export const registrationSchema = z.object({
         groupName: TYPE_VALIDATION_SCHEMA("groupName")
             .optional()
             .nullable(),
-        nickName: IS_MANDATORY_SCHEMA("Nick Name")
-            .min(2, "Nick name must be at least 2 characters long"),
+        nickName: nickNameSchema,
         pin: IS_MANDATORY_SCHEMA("pin")
             .regex(/^\d+$/, "Pin must contain only digits"),
-        profileType: z.nativeEnum(ProfileType, {
-            error: mandatoryTypeError("profileType", "ProfileType")
-        }),
+        profileType: profileTypeSchema,
         profileDocumentId: IS_MANDATORY_SCHEMA("Profile document ID"),
         role: z.nativeEnum(roles,{
             error: mandatoryTypeError("role", "role")
@@ -269,4 +276,21 @@ export const LoginSchema = z.object({
                 })
             }
         })
+})
+
+export const fetchProfilesSchema= z.object({
+    ids: IS_MANDATORY_SCHEMA("ids").optional(),
+    nickName: nickNameSchema.optional(),
+    email: emailSchema.optional(),
+    phoneNumber: phoneSchema.optional(),
+    city: citySchema.optional(),
+    country: countrySchema.optional(),
+    profileType: profileTypeSchema.optional(),
+    proficiecy: proficiencySchema.optional(),
+    page: IS_MANDATORY_NUMBER_SCHEMA("page").optional(),
+    perPage: IS_MANDATORY_NUMBER_SCHEMA("perPage").optional()
+})  
+
+export const updateProfileStatusSchema=z.object({
+    status: z.enum(profileStatus)
 })

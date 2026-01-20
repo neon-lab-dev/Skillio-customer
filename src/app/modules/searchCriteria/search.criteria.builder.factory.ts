@@ -2,6 +2,8 @@ import { AppError, ERROR_CODES, HTTP_STATUS, SearchCriteria, SearchCriteriaBuild
 import { PlanMasterSearchCriteria } from "../planMaster/models/request/search.criteria.plan.master";
 import { PlanMasterSearchCriteriaBuilder } from "./search.criteria.plan.master.builder";
 import { UserPlanMasterSearchCriteria } from "../planMaster/models/request/search.criteria.user.plan.master";
+import { ProfileSearchCriteria } from "../registration/models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteriaBuilder } from "../registration/models/builder/profileSearchCriteriaBuilder";
 
 
 class CriteriaBuilderFactory implements SearchCriteriaBuilderFactory {
@@ -20,6 +22,13 @@ class CriteriaBuilderFactory implements SearchCriteriaBuilderFactory {
             .builder()
             .userSearch(raw)
             .build() as unknown as T;
+        }
+
+        if(ctor=== ProfileSearchCriteria){
+            return ProfileSearchCriteriaBuilder
+                .builder()
+                .of(raw)
+                .build() as unknown as T;
         }
 
         throw new AppError(
