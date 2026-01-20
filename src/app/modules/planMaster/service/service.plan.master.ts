@@ -132,8 +132,7 @@ class PlanMasterService {
     private async softDelete(ids: Set<string>){
         for(const id of ids){
             try{
-                const updateRequest= UpdatePlanMasterRequestDto.softDelete(id, true);
-                await this.update(updateRequest)
+                await this.repository.softDelete(id)
             }catch(e){
                 if(e instanceof AppError){
                     LoggerService.warn(e.message)

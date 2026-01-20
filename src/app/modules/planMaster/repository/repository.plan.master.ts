@@ -30,5 +30,9 @@ export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
         });
     }
 
+    async softDelete(id: string){
+        return this.repository.update(id , {deleted: true});
+    }
+
 
 }
