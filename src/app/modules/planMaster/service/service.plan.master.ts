@@ -1,6 +1,6 @@
 import { AppError, AppValidationError, ERROR_CODES, JsonUtils, Loggable, LoggerService, NotFoundError, Page, Pageable, PartialUpdateUtil } from "@neon-lab-dev/platform";
 import { CreatePlanMasterRequest } from "../models/request/dto.create.plan.master";
-import { createPlanMasterSchema, updatePlanMasterSchema } from "../models/schema/schema.plan.master.dto";
+import { createPlanMasterSchema, deletePlanMasterSchema, fetchByIdSchema, updatePlanMasterSchema } from "../models/schema/schema.plan.master.dto";
 import { PlanMasterRepository } from "../repository/repository.plan.master";
 import { PlanMasterDetailsDto } from "../models/response/dto.plan.master.details";
 import { PlanMasterEntityBuilder } from "../models/builders/builder.plan.master.entity";
@@ -15,6 +15,8 @@ import { PlanMasterSearchCriteria } from "../models/request/search.criteria.plan
 import { ShortPlanMasterDto } from "../models/response/dto.short.plan.master.details";
 import { PlanMasterSpecification } from "../repository/specification.plan.master";
 import { ShortPlanMasterBuilder } from "../models/builders/builder.plan.master.short";
+import { DeletePlanMasterDto } from "../models/request/dto.delete.plan.master";
+import { fetchByIdRequestDto } from "../models/request/dto.fetch.full.details.plan.master";
 
 class PlanMasterService {
 
@@ -41,12 +43,12 @@ class PlanMasterService {
     @Loggable()
     public async validateUpdate( req: UpdatePlanMasterRequestDto) {
         updatePlanMasterSchema.parse(req);
-        await this.fetchById(req.id);
+        await this.checkExisting(req.id);
     }
 
     @Loggable()
     public async update( req: UpdatePlanMasterRequestDto ): Promise<PlanMasterDetailsDto>{
-        let entity = await this.fetchById(req.id);
+        let entity = await this.checkExisting(req.id);
         let partialEntity = JsonUtils.toPlain(req) as Partial<PlanMasterEntity>;
         entity = PartialUpdateUtil.apply(entity, partialEntity);
         await this.validateEntityStatusAndActive(entity);
@@ -82,7 +84,65 @@ class PlanMasterService {
     }
 
     @Loggable()
-    public async fetchById( id: string ): Promise<PlanMasterEntity>{
+    public async validateFetchById(req: fetchByIdRequestDto){
+         fetchByIdSchema.parse(req)
+    }
+
+    @Loggable()
+    public async fetchById(req: fetchByIdRequestDto):Promise<ShortPlanMasterDto>{
+        const retVal= await this.checkExisting(req.id);
+        return PlanMasterDetailsBuilder.builder().of(retVal).build();
+    }
+
+    @Loggable()
+    public async validateDelete(req: DeletePlanMasterDto){
+        deletePlanMasterSchema.parse(req)
+        for(const id of req.ids){
+            const existing=await this.checkExisting(id)
+            if(existing.deleted==true){
+                throw new NotFoundError(`plan master does not exist`)
+            }
+        }
+    }
+
+
+    @Loggable()
+    public async delete(req: DeletePlanMasterDto):Promise<void>{
+        if(req.hard){
+             await this.hardDelete(req.ids)
+        }else{
+             await this.softDelete(req.ids)
+        }
+    }
+
+    @Loggable()
+    private async hardDelete(ids: Set<string>){
+        for(const id of ids){
+            try{
+                await this.repository.delete(id);
+            }catch(e){
+                if(e instanceof AppError){
+                    LoggerService.warn(e.message)
+                }
+            }
+        }
+    }
+
+    @Loggable()
+    private async softDelete(ids: Set<string>){
+        for(const id of ids){
+            try{
+                await this.repository.softDelete(id)
+            }catch(e){
+                if(e instanceof AppError){
+                    LoggerService.warn(e.message)
+                }
+            }
+        }
+    }
+
+    @Loggable()
+    private async checkExisting( id: string ): Promise<PlanMasterEntity>{
         let retVal = await this.repository.findById(id);
         if ( retVal ){
             return retVal;
