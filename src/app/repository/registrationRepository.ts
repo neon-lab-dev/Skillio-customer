@@ -1,8 +1,8 @@
 import { AppDataSource } from "../db/dataSource";
-import { DeepPartial, Repository } from "typeorm";
+import { DeepPartial } from "typeorm";
 import { Profile } from "../entity/profile";
 import { Contact } from "../entity/contact";
-import { contactType, proficiecy, ProfileType } from "../modules/registration/enums/registrationEnum";
+import { contactType, proficiecy, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
 import { BaseRepository } from "@neon-lab-dev/platform";
 
 class RegistrationRepository extends BaseRepository<Profile>{
@@ -70,18 +70,6 @@ class RegistrationRepository extends BaseRepository<Profile>{
         });
     }
 
-    // find all profiles
-    findAllProfiles= async(page: string , limit:string)=>{
-        const profilesLimit= parseInt(limit) || 10;
-        const profilesPage= parseInt(page) || 1;
-        const skip= (profilesPage - 1) * profilesLimit;
-
-        return await this.repository.find({
-            relations:["contacts" , "address" , "portfolio"],
-            take: profilesLimit,
-            skip: skip
-        });
-    }
 
     getProfileCount= async()=>{
         const totalCount= await this.repository.count();
@@ -113,7 +101,9 @@ class RegistrationRepository extends BaseRepository<Profile>{
         return await this.contactRepository.update({id:id}, contactData);
     }
 
-
+    async findByRole(role: roles){
+        return await this.repository.findBy({role})
+    }
 }
 
 export default new RegistrationRepository();

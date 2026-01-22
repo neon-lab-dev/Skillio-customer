@@ -11,15 +11,18 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { ProfileType } from "./enums/registrationEnum";
+import { proficiecy, ProfileType, roles } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { JwtService, Loggable, Page, Pageable } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
-import { ProfileSearchCriteria } from "./models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
 import { FetchProfileDto } from "./models/dto/dto.fetch.profile";
 import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatusRequest";
+import notificationServices from "../notification/services/notification.services";
+import { Medium } from "../notification/enums/notificationEnum";
+import { bodyText } from "../../providers/appNotification/bodyText";
 
 class RegistrationService{
 
@@ -103,6 +106,18 @@ class RegistrationService{
             await this.updateDocument(portfolio.eventsDoneDocumentId , {
                 portfolioId: newProfile.portfolio.id
             })
+        }
+
+        if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
+            const admin= await registrationRepository.findByRole(roles.ADMIN);
+
+            Promise.all(admin.map(async(admin)=>{
+                await notificationServices.createNotification({
+                    medium: Medium.NOTIFICATION,
+                    to: admin.id,
+                    bodyText: bodyText(newProfile.nickName)
+                })
+            }))
         }
 
         const profile= new GetRegistrationDTO(newProfile).toJSON();

@@ -8,7 +8,7 @@ import { verifyToken } from "../../middlewares/requireAuth";
 import { asyncApiHandler } from "@neon-lab-dev/platform";
 import { createCriteriaMiddleWare } from "@neon-lab-dev/platform";
 import { FetchProfilesApi } from "./api/fetchProfilesApi";
-import { ProfileSearchCriteria } from "./models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import updateProfileStatusApi from "./api/updateProfileStatusApi";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
 

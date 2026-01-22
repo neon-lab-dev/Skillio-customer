@@ -1,5 +1,5 @@
 import { fetchProfilesSchema } from "../registration.validation";
-import { ProfileSearchCriteria } from "../models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "../models/request/searchCriteria/profileSearchCriteria";
 import { Validator } from "@neon-lab-dev/platform";
 
 class FetchProfileValidator implements Validator{

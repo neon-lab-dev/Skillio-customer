@@ -1,5 +1,5 @@
 import { Notification } from "../../../entity/notification";
-import { ProviderResult } from "../../../providers/NotificationProvider";
+import { ProviderResult } from "../../../providers/interface/notification.provider.interface";
 import NotificationProviderFactory from "../../../providers/NotificationProviderFactory";
 
 class communicationService {

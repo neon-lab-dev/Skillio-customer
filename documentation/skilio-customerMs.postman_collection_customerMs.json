@@ -3127,7 +3127,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice31\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541931\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice31@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"SKILLED\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\"\r\n  } \r\n}\r\n",
+              "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice32\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541932\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice32@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\",\r\n    \"eventsDoneDocumentId\": \"daa4a078-c21b-40a7-b89d-1dd56cb864b3\"\r\n  } \r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -14245,6 +14245,248 @@
         }
       ],
       "description": "Plan Master API bundles accessible for the `ADMINS` to create, read, update, and delete plans."
+    },
+    {
+      "name": "notification",
+      "item": [
+        {
+          "name": "fetch notification",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/notification?profileId=4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "notification"
+              ],
+              "query": [
+                {
+                  "key": "profileId",
+                  "value": "4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: Notification fetched successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/notification?profileId=61f4afb7-e16f-496e-a78b-70d5921b3a9c",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notification"
+                  ],
+                  "query": [
+                    {
+                      "key": "profileId",
+                      "value": "61f4afb7-e16f-496e-a78b-70d5921b3a9c",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "318"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"13e-BXiZ0OOSYaZ5NVAPeSmd2C2lBho\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:28:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"bodyText\": \"Profiessional registration request from alice36\"\n            },\n            {\n                \"bodyText\": \"Profiessional registration request from alice35\"\n            },\n            {\n                \"bodyText\": \"Profiessional registration request from alice34\"\n            }\n        ],\n        \"total\": 3,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
+            },
+            {
+              "name": "Success: no notifications for this profile",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/notification?profileId=4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notification"
+                  ],
+                  "query": [
+                    {
+                      "key": "profileId",
+                      "value": "4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "130"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"82-G++TNIULv0ar+ucKXn7jlpmN4Fk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:29:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [],\n        \"total\": 0,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
+            },
+            {
+              "name": "Error: authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/notification?profileId=4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notification"
+                  ],
+                  "query": [
+                    {
+                      "key": "profileId",
+                      "value": "4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "113"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"71-MTO5rcz5F669OdWW70AbcSOmTRs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 22 Jan 2026 08:30:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Authentication failed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Authentication failed\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
