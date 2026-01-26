@@ -1,8 +1,8 @@
 import kafka from "node-rdkafka";
 import { TProducer } from "./producerInterface";
 import producerConfig from "./producerConfig";
-import logger from "../../utils/logger";
-import AppError from "../../errors/appError";
+import { LoggerService } from "@neon-lab-dev/platform";
+import { KafkaError } from "@neon-lab-dev/platform";
 
 export class Producer implements TProducer {
   private producer: kafka.Producer;
@@ -11,7 +11,7 @@ export class Producer implements TProducer {
   constructor() {
     this.producer = producerConfig.getProducer()
   }
-
+  
   public async connect(): Promise<void> {
     return new Promise((resolve, reject) => {
 
@@ -26,14 +26,14 @@ export class Producer implements TProducer {
       })
       .on('delivery-report' , (err , report)=>{
         if(err){
-          logger.error(`producer error: ${err}`)
+          LoggerService.error(`producer error: ${err}`)
         }else{
-          logger.info(`report: ${JSON.stringify(report)}`)
+          LoggerService.info(`report: ${JSON.stringify(report)}`)
         }
-      })
+      }) 
       .on('event.error', (err) => {
-          logger.error(`producer error: ${err}`)
-          throw new AppError(503 , `producer error: ${err}`)
+          LoggerService.error(`producer error: ${err}`)
+          throw new KafkaError( `producer error: ${err}`)
         });
     this.producer.connect()
   });

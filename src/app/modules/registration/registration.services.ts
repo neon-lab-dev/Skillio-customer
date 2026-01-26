@@ -75,7 +75,8 @@ class RegistrationService{
                 subCategory: portfolio.subCategory,
                 proficiency: portfolio.proficiency,
                 totalEvents: portfolio.totalEvents,
-                bio: portfolio.bio || ""
+                bio: portfolio.bio || "",
+                hiringRate: portfolio.hiringRate
             }
         })
 
