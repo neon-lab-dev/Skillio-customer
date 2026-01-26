@@ -35,6 +35,13 @@ class RegistrationService{
         await documentRepository.updateDocument(id, documentData);
     }
 
+    private async sendNotification(profile: Profile , nickName: string){
+            await notificationServices.createNotification({
+                medium: Medium.NOTIFICATION,
+                to: profile.id,
+                bodyText: bodyText(nickName)
+            })
+    }
 
     // create/register a profile
     createProfile= serviceLogging(
@@ -111,13 +118,7 @@ class RegistrationService{
         if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
 
-            Promise.all(admin.map(async(admin)=>{
-                await notificationServices.createNotification({
-                    medium: Medium.NOTIFICATION,
-                    to: admin.id,
-                    bodyText: bodyText(newProfile.nickName)
-                })
-            }))
+            Promise.all(admin.map((admin)=> this.sendNotification(admin , newProfile.nickName)))
         }
 
         const profile= new GetRegistrationDTO(newProfile).toJSON();
