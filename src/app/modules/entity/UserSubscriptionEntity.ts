@@ -3,6 +3,8 @@ import { PersistEntity } from "../../entity/PersistEntity";
 import { SubscriptionStatus } from "../userSubscription/enums/SubscriptionStatus";
 import { PlanDetails } from "../userSubscription/models/dto/dto.plan.details";
 import { Portfolio } from "../../entity/portfolio";
+import { string } from "zod";
+import { AutoMap } from "@automapper/classes";
 
 
 @Entity(
@@ -13,16 +15,20 @@ import { Portfolio } from "../../entity/portfolio";
 @Index(
     "IDX_PORTFOLIO_ID", ["portfolioId"]
 )
+@Index(
+    "IDX_PAYMENT_ID", ["paymentId"]
+)
 export class UserSubscriptionEntity extends PersistEntity {
-    
-    constructor(){
+
+    constructor() {
         super();
     }
-   
+
     @Column({
         type: "varchar",
         nullable: false
     })
+    @AutoMap()
     planCode!: string;
 
     @Column({
@@ -30,26 +36,36 @@ export class UserSubscriptionEntity extends PersistEntity {
         type: "jsonb",
         nullable: false
     })
+    @AutoMap()
     planDetails!: PlanDetails;
 
     @Column({
-        type: "timestamp",
-        nullable: true
+        type: "varchar"
     })
-    startDate!:Date;
+    @AutoMap()
+    paymentId!: string;
 
     @Column({
         type: "timestamp",
         nullable: true
     })
+    @AutoMap()
+    startDate!: Date;
+
+    @Column({
+        type: "timestamp",
+        nullable: true
+    })
+    @AutoMap()
     endDate!: Date;
-    
+
     @Column({
         type: "simple-enum",
         enum: SubscriptionStatus,
         nullable: false,
         default: SubscriptionStatus.INITIATED
     })
+    @AutoMap()
     status!: SubscriptionStatus;
 
     @ManyToOne(
@@ -60,16 +76,18 @@ export class UserSubscriptionEntity extends PersistEntity {
             eager: false
         }
     )
+    @JoinColumn({
+        foreignKeyConstraintName: "FK_PORTFOLIO_ID",
+    })
     portfolio!: Promise<Portfolio>;
 
-    @JoinColumn({
-        name: "porfolio_id",
-        foreignKeyConstraintName: "FK_PORTFOLIO_ID",
+    @Column({
+        type:"varchar"
     })
     portfolioId!: string;
 
-    
-    
+
+
     protected getPrefix(): string {
         return "subs";
     }

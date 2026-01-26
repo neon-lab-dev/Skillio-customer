@@ -1,3 +1,4 @@
+import { AutoMap } from "@automapper/classes";
 import { idGenerator } from "@neon-lab-dev/platform";
 import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, PrimaryColumn, BaseEntity as TypeOrmBaseEntity, UpdateDateColumn} from "typeorm";
 
@@ -19,6 +20,7 @@ export abstract class PersistEntity extends TypeOrmBaseEntity {
             length: 50,
         }
     )
+    @AutoMap()
     id!: string;
 
     @Column(
@@ -28,6 +30,7 @@ export abstract class PersistEntity extends TypeOrmBaseEntity {
             default: false
         }
     )
+    @AutoMap()
     deleted!: boolean;
 
     @CreateDateColumn(
@@ -37,6 +40,7 @@ export abstract class PersistEntity extends TypeOrmBaseEntity {
             nullable: false
         }
     )
+    @AutoMap()
     createdAt!: Date;
 
     @UpdateDateColumn(
@@ -46,6 +50,7 @@ export abstract class PersistEntity extends TypeOrmBaseEntity {
             nullable: false
         }
     )
+    @AutoMap()
     updatedAt!: Date;
 
     protected abstract getPrefix() : string;

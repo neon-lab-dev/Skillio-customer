@@ -4,7 +4,7 @@
   "description": "admin backend",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/app/app.js",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app/app.ts",
     "build": "tsc -p .",
     "build:dev": "tsc -p . && node dist/server.js",
@@ -33,7 +33,7 @@
   "dependencies": {
     "@automapper/classes": "^8.8.1",
     "@automapper/core": "^8.8.1",
-    "@neon-lab-dev/platform": "file:../mitra-lab/packages/platform",
+    "@neon-lab-dev/platform": "file:../mitra-lab/packages/platform/neon-lab-dev-platform-0.1.4.tgz",
     "@types/imagekit": "^3.1.5",
     "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
@@ -61,7 +61,8 @@
     "typeorm": "^0.3.27",
     "typescript-eslint": "^8.31.0",
     "winston": "^3.17.0",
-    "zod": "^4.1.12"
+    "zod": "^4.1.12",
+    "class-transformer": "^0.5.1"
   },
   "overrides": {
     "reflect-metadata": "0.1.13"

@@ -4,6 +4,7 @@ import { documentRoutes } from "../modules/document/document.routes";
 import { registrationRoutes } from "../modules/registration/registration.routes";
 import { chatRoutes } from "../modules/chat/chat.routes";
 import { planMasterRouter } from "../modules/planMaster/route.plan.master";
+import { userSubscriptionRouter } from "../modules/userSubscription/route.user.subscription";
 
 const router = Router();
 
@@ -27,6 +28,11 @@ const moduleRoutes = [
     {
         path: "/v1/plan-master",
         route: planMasterRouter
+
+    },
+    {
+        path: "/v1/user-subscription",
+        route: userSubscriptionRouter
 
     }
 ]
