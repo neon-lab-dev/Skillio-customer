@@ -27,6 +27,8 @@ const chatLimitSchema = NUMBER_SCHEMA("chatLimits")
 
 const validitySchema = NUMBER_SCHEMA("validity");
 
+const idSchema= IS_MANDATORY_SCHEMA("id");
+
 export const createPlanMasterSchema =
     z.object(
         {
@@ -46,7 +48,7 @@ export const createPlanMasterSchema =
 export const updatePlanMasterSchema =
     z.object(
         {
-            id: IS_MANDATORY_SCHEMA("id"),
+            id: idSchema,
             description: TYPE_VALIDATION_SCHEMA("description").optional(),
             priceInPaise: NUMBER_SCHEMA("priceInPaise").optional(),
             callLimits: callLimitSchema.optional(),
@@ -65,3 +67,12 @@ export const updateActivePlanMasterSchema =
             active: BOOLEAN_SCHEMA("active")
         }
     );
+
+export const fetchByIdSchema=z.object({
+    id: idSchema
+})
+
+export const deletePlanMasterSchema= z.object({
+    ids: IS_MANDATORY_STRING_ARRAY_SCHEMA("ids"),
+    hard: BOOLEAN_SCHEMA("hard").optional()
+})

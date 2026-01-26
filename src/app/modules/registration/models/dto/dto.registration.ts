@@ -1,5 +1,5 @@
-import { ProfileType, contactType, onlineStatus, proficiecy, roles } from "./enums/registrationEnum";
-import { Location } from "./interface/registration.interface";
+import { ProfileType, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
+import { Location } from "../../interface/registration.interface";
 
 // Contact DTO
 export class ContactDTO {

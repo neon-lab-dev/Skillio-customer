@@ -14,7 +14,8 @@ export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
         return await this.repository.find(
             {
                 where: {
-                    code:planCode
+                    code:planCode,
+                    deleted: false
                 },
                 order:{
                     version: SortDirection.DESC
@@ -28,6 +29,10 @@ export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
         return this.repository.findBy({
             id: In([...ids])
         });
+    }
+
+    async softDelete(id: string){
+        return this.repository.update(id , {deleted: true});
     }
 
     async findAllSubscriptionByPriority( p: number ): Promise<PlanMasterEntity[]> {

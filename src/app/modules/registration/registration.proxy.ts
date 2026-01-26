@@ -76,13 +76,6 @@ class RegistrationProxy{
         return await registrationServices.getProfile(id);
     })
 
-    // get profiles
-    getProfiles= proxyLogging(
-        "RegistrationProxy",
-        "getProfiles",
-        async(page:string , limit: string)=>{
-        return await registrationServices.getProfiles(page , limit);
-    })
 
     // get profile count
     getProfileCount= proxyLogging(

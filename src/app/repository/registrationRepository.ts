@@ -3,17 +3,17 @@ import { DeepPartial, Repository } from "typeorm";
 import { Profile } from "../entity/profile";
 import { Contact } from "../entity/contact";
 import { contactType, proficiecy, ProfileType } from "../modules/registration/enums/registrationEnum";
+import { BaseRepository } from "@neon-lab-dev/platform";
 
-class RegistrationRepository{
+class RegistrationRepository extends BaseRepository<Profile>{
 
-    private profileRepository: Repository<Profile>;
-    private contactRepository: Repository<Contact>;
+    private contactRepository= AppDataSource.getRepository<Contact>("Contact");
 
     private buildCountQuery(
         profileType: ProfileType = ProfileType.INDIVIDUAL,
         proficiency: proficiecy
     ) {
-        const query = this.profileRepository
+        const query = this.repository
         .createQueryBuilder("profile")
         .leftJoinAndSelect("profile.portfolio", "portfolio")
         .where("profile.profileType = :profileType", { profileType })
@@ -23,25 +23,24 @@ class RegistrationRepository{
     }
 
     constructor() {
-        this.profileRepository = AppDataSource.getRepository<Profile>("Profile");
-        this.contactRepository = AppDataSource.getRepository<Contact>("Contact");
+        super(AppDataSource , Profile)
     }
 
 
     // create/register a profile
     createProfile= async(profileData: DeepPartial<Profile>)=>{
-        const newProfile=this.profileRepository.create(profileData);
-        return await this.profileRepository.save(newProfile);
+        const newProfile=this.repository.create(profileData);
+        return await this.repository.save(newProfile);
     }
 
     // update a profile
     updateProfile= async(id:string , profileData: DeepPartial<Profile>)=>{
-        return await this.profileRepository.update(id , profileData);
+        return await this.repository.update(id , profileData);
     }
 
     // findProfileByContactValue
     findProfileByCredential = async(credential: string) => {
-        return await this.profileRepository
+        return await this.repository
             .createQueryBuilder("profile")
             .leftJoinAndSelect("profile.contacts", "contact")
             .where("profile.nickName = :credential", { credential })
@@ -56,7 +55,7 @@ class RegistrationRepository{
     }
 
     findProfileByContactValue= async(value:string)=>{
-        return await this.profileRepository
+        return await this.repository
             .createQueryBuilder("profile")
             .leftJoinAndSelect("profile.contacts", "contact")
             .where("contact.value = :value", {value})
@@ -65,7 +64,7 @@ class RegistrationRepository{
 
     // find profile by Id
     findProfileById= async(id:string)=>{
-        return await this.profileRepository.findOne({
+        return await this.repository.findOne({
             where:{id},
             relations:["contacts" , "address" , "portfolio" , "online"]
         });
@@ -77,7 +76,7 @@ class RegistrationRepository{
         const profilesPage= parseInt(page) || 1;
         const skip= (profilesPage - 1) * profilesLimit;
 
-        return await this.profileRepository.find({
+        return await this.repository.find({
             relations:["contacts" , "address" , "portfolio"],
             take: profilesLimit,
             skip: skip
@@ -85,7 +84,7 @@ class RegistrationRepository{
     }
 
     getProfileCount= async()=>{
-        const totalCount= await this.profileRepository.count();
+        const totalCount= await this.repository.count();
         const individualProfessional= await this.buildCountQuery(ProfileType.INDIVIDUAL , proficiecy.PROFESSIONAL);
         const individualSkilled= await this.buildCountQuery(ProfileType.INDIVIDUAL , proficiecy.SKILLED);
         const groupProfessional= await this.buildCountQuery(ProfileType.GROUP , proficiecy.PROFESSIONAL);
