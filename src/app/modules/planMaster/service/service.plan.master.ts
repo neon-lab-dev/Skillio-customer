@@ -145,7 +145,7 @@ class PlanMasterService {
     }
 
     @Loggable()
-    private async checkExisting( id: string ): Promise<PlanMasterEntity>{
+    public async checkExisting( id: string ): Promise<PlanMasterEntity>{
         let retVal = await this.repository.findById(id);
         if (retVal) {
             return retVal;

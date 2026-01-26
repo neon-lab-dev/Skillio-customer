@@ -31,7 +31,7 @@ class UserSubscriptionService {
         req: UserSubscriptionRequest,
         loggedInUserProfile: Profile
     ): Promise<UserSubscriptionResponse>{
-        let planMaster = await planMasterService.fetchById(req.planId);
+        let planMaster = await planMasterService.checkExisting(req.planId);
         await this.validateExistingNonTerminalSubscription(planMaster, loggedInUserProfile);
         let paymentResponse = await this.initiatePayment(planMaster, loggedInUserProfile);
         let entity = await this.fetchEntity(planMaster, loggedInUserProfile, paymentResponse);
@@ -93,7 +93,7 @@ class UserSubscriptionService {
 
     @Loggable()
     public async fetch(req: UserSubscriptionRequest, loggedInUserProfile: Profile): Promise<UserSubscriptionResponse | null>{
-        let planMaster = await planMasterService.fetchById(req.planId);
+        let planMaster = await planMasterService.checkExisting(req.planId);
         let portfolio = loggedInUserProfile.portfolio;
         let existing = await this.findByPortfolioIdPlanCodeAndStatusIn(
             portfolio.id,
