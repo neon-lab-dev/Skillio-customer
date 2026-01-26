@@ -1,5 +1,5 @@
-import registrationServices from "./registration.services";
 import { TProfile } from "./interface/registration.interface";
+import registrationServices from "./registration.services";
 import registrationRepository from "../../repository/registrationRepository";
 import { logger } from "../../utils/logger";
 import AppError from "../../errors/appError";
@@ -76,13 +76,15 @@ class RegistrationProxy{
         return await registrationServices.getProfile(id);
     })
 
-    // get profiles
-    getProfiles= proxyLogging(
+
+    // get profile count
+    getProfileCount= proxyLogging(
         "RegistrationProxy",
-        "getProfiles",
-        async(page:string , limit: string)=>{
-        return await registrationServices.getProfiles(page , limit);
-    })
+        "getProfileCount",
+        async()=>{
+            return await registrationServices.getProfileCount();
+        }
+    )
 }
 
 export default new RegistrationProxy();

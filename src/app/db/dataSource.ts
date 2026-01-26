@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import config from "../config/index";
+import path from "path";
 
 
 export const AppDataSource = new DataSource({
@@ -12,8 +13,13 @@ export const AppDataSource = new DataSource({
   database:  config.db_databse_development,
   synchronize: true,
   logging: true,
-  entities: ['src/app/entity/*.ts'],
-  migrations: ['src/app/migration/development/*.ts'],
+  entities: [
+    path.join(__dirname, "..", "entity", "*{ts,js}"),
+    path.join(__dirname, "..", "modules", "entity", "*.{ts, js}")
+  ],
+  migrations: [
+    path.join(__dirname, "..", "migration", "development", "*{ts,js}")
+  ],
   subscribers: [],
 });
 

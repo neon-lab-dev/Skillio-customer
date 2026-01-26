@@ -1,25 +1,25 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { NextFunction, Request, Response } from "express";
+import { roles } from "../modules/registration/enums/registrationEnum";
+import AppError from "../errors/appError";
 
-export const authorizeRole = (role: string): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    console.log("Authorizing role:", role);
-    if (!req.cookies.user) {
-      res.status(401).json({ error: "Unauthorized access" });
-      return; // End the function with void
+class AuthorizeRole{
+
+    public validateRole(role: string){
+        return(req: Request ,res: Response, next: NextFunction)=>{
+            if(!req.user){
+                throw new AppError(401 , "unauthorized access")
+            }
+
+            if (req.user.role== roles.ADMIN){
+                next();
+                return;
+            }
+
+            if(req.user.role!= role){
+                throw new AppError(401 , "unauthorized access")
+            }
+        }
     }
+}
 
-    console.log("User role is", req.cookies.user.role);
-
-    if(req.cookies.user.role==="ADMIN") {
-      next();
-      return; // End the function with void
-    }
-
-    if (req.cookies.user.role !== role) {
-      res.status(403).json({ error: "unauthorized access"});
-      return; // End the function with void
-    }
-
-    next();
-  };
-};
+export default new AuthorizeRole()
