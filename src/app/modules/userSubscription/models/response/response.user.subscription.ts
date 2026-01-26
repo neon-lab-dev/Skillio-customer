@@ -3,7 +3,7 @@ import { PlanDetails } from "../dto/dto.plan.details";
 import { SubscriptionStatus } from "../../enums/SubscriptionStatus";
 import { AutoMap } from "@automapper/classes";
 
-export class InitiateUserSubscriptionResponse implements AppResponseData {
+export class UserSubscriptionResponse implements AppResponseData {
 
     @AutoMap()
     id!:string;

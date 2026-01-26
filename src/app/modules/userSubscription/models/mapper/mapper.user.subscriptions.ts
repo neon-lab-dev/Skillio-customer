@@ -3,7 +3,7 @@ import { PlanMasterDetailsDto } from "../../../planMaster/models/response/dto.pl
 import { PlanDetails } from "../dto/dto.plan.details";
 import { UserSubscriptionEntity } from "../../../entity/UserSubscriptionEntity";
 import { PlanMasterEntity } from "../../../entity/PlanMasterEntity";
-import { InitiateUserSubscriptionResponse } from "../response/response.user.subscription";
+import { UserSubscriptionResponse } from "../response/response.user.subscription";
 import { PaymentResponseDto } from "../../../../service/payment-proxy/models/dto.payment.response";
 
 
@@ -24,7 +24,7 @@ export const userSubscriptionMapperProfile: MappingProfile = (mapper: Mapper) =>
     createMap(
         mapper,
         UserSubscriptionEntity,
-        InitiateUserSubscriptionResponse
+        UserSubscriptionResponse
     );
 
     createMap(

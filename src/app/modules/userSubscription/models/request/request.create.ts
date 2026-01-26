@@ -1,6 +1,6 @@
 import { AppRequest } from "@neon-lab-dev/platform";
 
-export class InitiateUserSubscriptionRequest implements AppRequest{
+export class UserSubscriptionRequest implements AppRequest{
 
     planId!: string;
 

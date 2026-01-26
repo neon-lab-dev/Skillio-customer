@@ -46,6 +46,13 @@ export class UserSubscriptionEntity extends PersistEntity {
     paymentId!: string;
 
     @Column({
+        type: "varchar",
+        nullable: true
+    })
+    @AutoMap()
+    paymentLink!: string;
+
+    @Column({
         type: "timestamp",
         nullable: true
     })

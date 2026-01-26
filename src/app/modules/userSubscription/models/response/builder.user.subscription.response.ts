@@ -1,31 +1,28 @@
 import { globalMapper } from "../../../../mapper.global";
-import { PaymentResponseDto } from "../../../../service/payment-proxy/models/dto.payment.response";
 import { UserSubscriptionEntity } from "../../../entity/UserSubscriptionEntity";
-import { InitiateUserSubscriptionResponse } from "./response.user.subscription";
+import { UserSubscriptionResponse } from "./response.user.subscription";
 
 
-export class InitiateUserSubscriptionBuilder {
+export class UserSubscriptionBuilder {
 
     private constructor(){
-        this.dto = new InitiateUserSubscriptionResponse();
+        this.dto = new UserSubscriptionResponse();
     }
 
-    private dto: InitiateUserSubscriptionResponse;
+    private dto: UserSubscriptionResponse;
 
-    public static builder(): InitiateUserSubscriptionBuilder {
-        return new InitiateUserSubscriptionBuilder();
+    public static builder(): UserSubscriptionBuilder {
+        return new UserSubscriptionBuilder();
     }
 
-    public of(
-        entity: UserSubscriptionEntity, 
-        paymentResponse: PaymentResponseDto): InitiateUserSubscriptionBuilder
+    public of(entity: UserSubscriptionEntity): UserSubscriptionBuilder
     {
-        this.dto = globalMapper.map(entity, UserSubscriptionEntity, InitiateUserSubscriptionResponse);
-        this.dto.paymentLink = paymentResponse.fetchPaymentLink();
+        this.dto = globalMapper.map(entity, UserSubscriptionEntity, UserSubscriptionResponse);
+        this.dto.status = entity.status;
         return this;
     }
 
-    public build(): InitiateUserSubscriptionResponse {
+    public build(): UserSubscriptionResponse {
         return this.dto;
     }
 
