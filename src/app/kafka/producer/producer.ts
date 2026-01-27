@@ -1,0 +1,55 @@
+import kafka from "node-rdkafka";
+import { TProducer } from "./producerInterface";
+import producerConfig from "./producerConfig";
+import { LoggerService } from "@neon-lab-dev/platform";
+import { KafkaError } from "@neon-lab-dev/platform";
+
+export class Producer implements TProducer {
+  private producer: kafka.Producer;
+
+
+  constructor() {
+    this.producer = producerConfig.getProducer()
+  }
+  
+  public async connect(): Promise<void> {
+    return new Promise((resolve, reject) => {
+
+    const timeout = setTimeout(() => {
+      reject(new Error('Kafka producer connection timeout'));
+    }, 10000); 
+
+      this.producer
+      .on('ready', () => {
+        clearTimeout(timeout)
+        resolve();
+      })
+      .on('delivery-report' , (err , report)=>{
+        if(err){
+          LoggerService.error(`producer error: ${err}`)
+        }else{
+          LoggerService.info(`report: ${JSON.stringify(report)}`)
+        }
+      }) 
+      .on('event.error', (err) => {
+          LoggerService.error(`producer error: ${err}`)
+          throw new KafkaError( `producer error: ${err}`)
+        });
+    this.producer.connect()
+  });
+}
+
+  public produce(topic: string, message: object, key?: string): void {
+    this.producer.produce(
+      topic,
+      null,
+      Buffer.from(JSON.stringify(message)),
+      key,
+      Date.now()
+    );
+  }
+
+  public async disconnect(): Promise<void> {
+    this.producer.disconnect();
+  }
+}
