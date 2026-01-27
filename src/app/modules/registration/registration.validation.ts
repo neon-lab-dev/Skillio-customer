@@ -152,6 +152,13 @@ const addressSchema = z.object({
     }
 });
 
+const hiringRateSchema=z.object({
+    hourlyPricing: z.number(),
+    dailyPricing: z.number(),
+    weeklyPricing: z.number(),
+    monthlyPricing: z.number()
+})
+
 const portfolioSchema = z.object({
     category: IS_MANDATORY_SCHEMA("Category")
         .regex(/^[A-Za-z\s]+$/, "Category must contain only alphabets "),
@@ -160,6 +167,7 @@ const portfolioSchema = z.object({
     proficiency:proficiencySchema ,
     totalEvents: NUMBER_SCHEMA("totalEvents").optional(),
     bio: TYPE_VALIDATION_SCHEMA("bio").optional(),
+    hiringRate: hiringRateSchema,
     videoDocumentId: IS_MANDATORY_SCHEMA("Video Document Id"),
     imageDocumentId: IS_MANDATORY_SCHEMA("Image document ID"),
     eventsDoneDocumentId: TYPE_VALIDATION_SCHEMA("Events Document Id").optional()

@@ -3,6 +3,7 @@ import { BaseEntity } from "./baseEntity";
 import { proficiecy } from "../modules/registration/enums/registrationEnum";
 import { Profile } from "./profile";
 import { Document } from "./documentEntity";
+import { HiringRate } from "./hiringRate";
 
 @Entity("portfolio")
 @Index("IDX_CATEGORY_SUBCATEGORY" , ["category" , "subCategory"])
@@ -36,5 +37,11 @@ export class Portfolio extends BaseEntity{
     })
     @JoinColumn({name:"profileId"})
     profile!: Profile;
+
+    @OneToOne(()=>HiringRate , hiringRate=> hiringRate.portfolio , {
+        cascade: true,
+        lazy: true
+    })
+    hiringRate!: HiringRate
     
 }

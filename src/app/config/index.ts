@@ -11,5 +11,8 @@ export default {
   db_host_development: process.env.DB_HOST_DEVELOPMENT,
   db_username_development: process.env.DB_USERNAME_DEVELOPMENT,
   db_password_development: process.env.DB_PASSWORD_DEVELOPMENT,
-  db_databse_development: process.env.DB_DATABASE_DEVELOPMENT
+  db_databse_development: process.env.DB_DATABASE_DEVELOPMENT,
+  kafka_brokers: process.env.KAFKA_BROKERS,
+  kafka_client_id: process.env.KAFKA_CLIENT_ID,
+  kafka_group_id: process.env.KAFKA_GROUP_ID
 };
