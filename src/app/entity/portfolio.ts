@@ -39,7 +39,8 @@ export class Portfolio extends BaseEntity{
     profile!: Profile;
 
     @OneToOne(()=>HiringRate , hiringRate=> hiringRate.portfolio , {
-        cascade: true
+        cascade: true,
+        lazy: true
     })
     hiringRate!: HiringRate
     
