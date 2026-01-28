@@ -2,3 +2,6 @@
 .env
 .env.dev
 /src/app/config/*.json
+/logs
+/dist
+/.npmrc

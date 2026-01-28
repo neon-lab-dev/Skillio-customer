@@ -1,6 +1,7 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import config from "../config/index";
+import path from "path";
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -14,7 +15,12 @@ export const AppDataSource = new DataSource({
   ssl: { rejectUnauthorized: false },
   synchronize: true,
   logging: true,
-  entities: isProduction ? ['dist/app/entity/*.js']: ['src/app/entity/*.ts'],
-  migrations: isProduction? ['dist/migration/development/*.js']: ['src/app/migration/development/*.ts'],
+  entities: [
+    path.join(__dirname, "..", "entity", "*{ts,js}"),
+    path.join(__dirname, "..", "modules", "entity", "*.{ts, js}")
+  ],
+  migrations: [
+    path.join(__dirname, "..", "migration", "development", "*{ts,js}")
+  ],
   subscribers: [],
 });

@@ -1,4 +1,5 @@
-import { contactType, proficiecy, ProfileType } from "../enums/registrationEnum";
+import { contactType, proficiecy, ProfileType, roles } from "../enums/registrationEnum";
+import Decimal from "decimal.js"
 
 export interface Location {
     latitude: number;
@@ -44,9 +45,17 @@ export interface TPortfolio {
   proficiency: proficiecy;
   bio?: string;
   totalEvents?: number;
+  hiringRate: THiringRate;
   videoDocumentId:string;
   imageDocumentId:string;
   eventsDoneDocumentId?:string;
+}
+
+export interface THiringRate{
+  hourlyPricing: Decimal;
+  dailyPricing: Decimal;
+  weeklyPricing: Decimal;
+  monthlyPricing: Decimal;
 }
 
 export interface TProfile {
@@ -60,4 +69,5 @@ export interface TProfile {
   contacts: TContact[];
   address: TAddress;
   portfolio: TPortfolio;
+  role: roles
 }

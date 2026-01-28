@@ -5,13 +5,18 @@ import NotificationProviderFactory from "./providers/NotificationProviderFactory
 import { AppDataSource } from "./db/dataSource";
 import config from "./config";
 import { initializeSocket } from "./utils/sockets";
+import { Producer } from "./kafka/producer/producer";
 
 const server=initializeSocket(app);
+
+const prodcuer= new Producer()
 
 AppDataSource.initialize()
   .then(async () => {
     await systemConfigStore.loadConfigs();
     NotificationProviderFactory.initializeProviders();
+
+     await prodcuer.connect()
 
     server.listen(config.port, () => {
       logger.info(`Listening at port number ${config.port}`);
@@ -20,5 +25,5 @@ AppDataSource.initialize()
     }); 
   })
   .catch((error) => {
-    logger.error("Database connection error", error);
+    logger.error(" connection error", error);
   });

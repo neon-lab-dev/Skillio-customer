@@ -1,0 +1,38 @@
+import { BaseRepository, SortDirection } from "@neon-lab-dev/platform";
+import { PlanMasterEntity } from "../../entity/PlanMasterEntity";
+import { AppDataSource } from "../../../db/dataSource";
+import { In } from "typeorm";
+
+export class PlanMasterRepository extends BaseRepository<PlanMasterEntity> {
+
+    constructor(){
+        super(AppDataSource, PlanMasterEntity);
+    }
+
+    async findFirstByCodeOrderByVersionDesc( planCode: string ): Promise<PlanMasterEntity[] | null>{
+        return await this.repository.find(
+            {
+                where: {
+                    code:planCode,
+                    deleted: false
+                },
+                order:{
+                    version: SortDirection.DESC
+                },
+                take: 1
+            }
+        );
+    }
+
+    async findAllByIdIn( ids: Set<string>): Promise<PlanMasterEntity[]> {
+        return this.repository.findBy({
+            id: In([...ids])
+        });
+    }
+
+    async softDelete(id: string){
+        return this.repository.update(id , {deleted: true});
+    }
+
+
+}

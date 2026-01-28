@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import router from "./app/routes";
 import notFoundHandler from "./app/middlewares/notFoundHandler";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
+import { requestContextMiddleware } from "@neon-lab-dev/platform";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(
         extended: true 
     })
 );
+
+app.use(requestContextMiddleware);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
