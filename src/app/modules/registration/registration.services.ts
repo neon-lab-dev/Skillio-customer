@@ -66,7 +66,7 @@ class RegistrationService{
             nickName,
             pin:hashedPin,
             profileType , 
-            role,
+            role,   
             contacts: contacts.map(contact=>({
                 type:contact.type,
                 value:contact.value,
