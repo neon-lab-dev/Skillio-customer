@@ -25,7 +25,7 @@ import { FetchProfileDto } from "./models/dto/dto.fetch.profile";
 import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatusRequest";
 import notificationServices from "../notification/services/notification.services";
 import { Medium } from "../notification/enums/notificationEnum";
-import { bodyText } from "../../providers/appNotification/bodyText";
+import bodyText from "../../providers/appNotification/bodyText";
 
 class RegistrationService{
 
@@ -45,7 +45,7 @@ class RegistrationService{
             await notificationServices.createNotification({
                 medium: Medium.NOTIFICATION,
                 to: profile.id,
-                bodyText: bodyText(nickName)
+                bodyText: JSON.stringify(bodyText.sendRegistrationRequest(nickName))
             })
     }
 

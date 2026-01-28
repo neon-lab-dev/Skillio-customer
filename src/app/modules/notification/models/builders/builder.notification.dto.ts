@@ -1,5 +1,6 @@
 import { Notification } from "../../../../entity/notification";
 import { NotificationDto } from "../response/dto.notification";
+import { JsonUtils } from "@neon-lab-dev/platform";
 
 export class NotificationDtoBuilder{
     private dto: NotificationDto;
@@ -13,7 +14,7 @@ export class NotificationDtoBuilder{
     }
 
     public of(res: Notification): NotificationDtoBuilder{
-        this.dto.bodyText= res.bodyText;
+        this.dto.bodyText= JSON.parse(res.bodyText as string);
         return this;
     }
 
