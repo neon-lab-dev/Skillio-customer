@@ -1,6 +1,6 @@
 import { Api, HTTP_STATUS, RESPONSE_MESSAGES } from "@neon-lab-dev/platform";
 import { AppResponse } from "@neon-lab-dev/platform";
-import { ProfileSearchCriteria } from "../models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "../models/request/searchCriteria/profileSearchCriteria";
 import registrationServices from "../registration.services";
 import fetchProfileValidator from "../validators/fetchProfileValidator";
 

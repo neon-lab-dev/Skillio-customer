@@ -1,6 +1,4 @@
-import { CREATED_AT } from "@neon-lab-dev/platform";
-import { SearchCriteriaUtils } from "@neon-lab-dev/platform";
-import { ProfileSearchCriteria } from "../searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "../request/searchCriteria/profileSearchCriteria";
 
 export class ProfileSearchCriteriaBuilder {
 

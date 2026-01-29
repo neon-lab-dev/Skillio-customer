@@ -1,5 +1,4 @@
-import { Notification } from "../entity/notification";
-import { Medium } from "../modules/notification/enums/notificationEnum";
+import { Notification } from "../../entity/notification";
 
 export interface ProviderResult{
     ok: boolean;
@@ -7,7 +6,5 @@ export interface ProviderResult{
 }
 
 export interface NotificationProvider{
-    name: string;
-    medium:Medium;
     send(notification: Partial<Notification>): Promise<ProviderResult>;
 }
