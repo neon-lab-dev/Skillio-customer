@@ -14287,12 +14287,12 @@
           },
           "response": [
             {
-              "name": "Success: Notification fetched successfully",
+              "name": "Success: notification fetched for a user",
               "originalRequest": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{serverUrl}}/v1/notification?profileId=61f4afb7-e16f-496e-a78b-70d5921b3a9c",
+                  "raw": "{{serverUrl}}/v1/notification?profileId=4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16",
                   "host": [
                     "{{serverUrl}}"
                   ],
@@ -14303,8 +14303,7 @@
                   "query": [
                     {
                       "key": "profileId",
-                      "value": "61f4afb7-e16f-496e-a78b-70d5921b3a9c",
-                      "type": "text"
+                      "value": "4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16"
                     }
                   ]
                 }
@@ -14331,15 +14330,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "318"
+                  "value": "644"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"13e-BXiZ0OOSYaZ5NVAPeSmd2C2lBho\""
+                  "value": "W/\"284-KbweCgTNE+DckOXr/SVByRIcGxo\""
                 },
                 {
                   "key": "Date",
-                  "value": "Thu, 22 Jan 2026 08:28:53 GMT"
+                  "value": "Wed, 28 Jan 2026 07:34:57 GMT"
                 },
                 {
                   "key": "Connection",
@@ -14351,7 +14350,73 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"bodyText\": \"Profiessional registration request from alice36\"\n            },\n            {\n                \"bodyText\": \"Profiessional registration request from alice35\"\n            },\n            {\n                \"bodyText\": \"Profiessional registration request from alice34\"\n            }\n        ],\n        \"total\": 3,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"bodyText\": {\n                    \"actorId\": \"735f40ea-3ac6-4e8c-94e4-c3259933b1b1\",\n                    \"type\": \"REACTION\",\n                    \"reactionType\": \"laugh\",\n                    \"targetId\": \"me202601280635000f84988e\"\n                }\n            },\n            {\n                \"bodyText\": {\n                    \"actorId\": \"735f40ea-3ac6-4e8c-94e4-c3259933b1b1\",\n                    \"type\": \"COMMENT\",\n                    \"content\": {\n                        \"text\": \"This is a new comment \",\n                        \"mentions\": [\n                            \"user123\"\n                        ]\n                    },\n                    \"targetId\": \"me202601280635000f84988e\"\n                }\n            },\n            {\n                \"bodyText\": {\n                    \"actorId\": \"735f40ea-3ac6-4e8c-94e4-c3259933b1b1\",\n                    \"type\": \"COMMENT\",\n                    \"content\": {\n                        \"text\": \"This is a new comment \",\n                        \"mentions\": [\n                            \"user123\"\n                        ]\n                    },\n                    \"targetId\": \"me202601280635000f84988e\"\n                }\n            }\n        ],\n        \"total\": 3,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
+            },
+            {
+              "name": "Success(admin): notification fetched",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/notification?profileId=61f4afb7-e16f-496e-a78b-70d5921b3a9c",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "notification"
+                  ],
+                  "query": [
+                    {
+                      "key": "profileId",
+                      "value": "61f4afb7-e16f-496e-a78b-70d5921b3a9c"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "201"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c9-NzIsXMhDqD07MKdRyYug9ikEM+U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 28 Jan 2026 07:42:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"bodyText\": {\n                    \"text\": \"Profiessional registration request from alice46\"\n                }\n            }\n        ],\n        \"total\": 1,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
             },
             {
               "name": "Success: no notifications for this profile",

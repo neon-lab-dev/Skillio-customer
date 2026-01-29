@@ -6,17 +6,20 @@ import { AppDataSource } from "./db/dataSource";
 import config from "./config";
 import { initializeSocket } from "./utils/sockets";
 import { Producer } from "./kafka/producer/producer";
+import { Consumer } from "./kafka/consumer/consumer";
 
 const server=initializeSocket(app);
 
 const prodcuer= new Producer()
+const consumer= new Consumer()
 
 AppDataSource.initialize()
   .then(async () => {
     await systemConfigStore.loadConfigs();
     NotificationProviderFactory.initializeProviders();
 
-     await prodcuer.connect()
+    await consumer.loadConsumers()
+    await prodcuer.connect()
 
     server.listen(config.port, () => {
       logger.info(`Listening at port number ${config.port}`);

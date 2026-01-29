@@ -5,6 +5,10 @@ import {  Status } from "../enums/notificationEnum";
 import { Notification } from "../../../entity/notification";
 import communicationService from "./communicationService";
 import notificationRepository from "../../../repository/notificationRepository";
+import { Loggable, Pageable } from "@neon-lab-dev/platform";
+import { NotificatinSearchCriteria } from "../models/request/searchCriteria/notificationSearchCriteria";
+import { NotificationSpecification } from "../specification/notificationSpecification";
+import { NotificationDtoBuilder } from "../models/builders/builder.notification.dto";
 
 class NotificationService {
     private  updateNotificationStatus=async(notificationId: string, status: Status) =>{
@@ -53,6 +57,19 @@ class NotificationService {
             throw new AppError(500, "Failed to create and send notification");
         }
     }
+
+    @Loggable()
+    public async fetch(req:NotificatinSearchCriteria ){
+        const spec= new NotificationSpecification(req);
+
+        const entityPage= await notificationRepository.findPage(spec, req);
+
+        const notifications= NotificationDtoBuilder.builder().ofArray(entityPage.items);
+
+        return Pageable.buildPage(notifications , entityPage.total , req);
+
+    }
+
 
 }
 

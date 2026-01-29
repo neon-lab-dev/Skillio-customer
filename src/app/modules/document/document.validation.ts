@@ -4,9 +4,7 @@ import { IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeErr
 
 const idSchema = IS_MANDATORY_SCHEMA("id");
 const requestMandatoryError = mandatoryTypeError("request", "object");
-const fileSchema = z.file({
-    error: mandatoryTypeError("file", "file")
-  });
+const fileSchema = z.any();
 
 export const documentRequestSchema = z.object({
   body: z.object({

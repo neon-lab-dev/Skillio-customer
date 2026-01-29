@@ -1,6 +1,6 @@
 import { BaseSpecification, SearchCriteriaUtils } from "@neon-lab-dev/platform";
 import { Profile } from "../../../entity/profile";
-import { ProfileSearchCriteria } from "../models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "../models/request/searchCriteria/profileSearchCriteria";
 import { SelectQueryBuilder } from "typeorm";
 import { contactType } from "../enums/registrationEnum";
 

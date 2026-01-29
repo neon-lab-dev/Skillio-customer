@@ -1,14 +1,11 @@
-import { NotificationProvider, ProviderResult } from "./NotificationProvider";
+import { NotificationProvider, ProviderResult } from "./interface/notification.provider.interface";
 import { logger } from "../utils/logger";
-import { Medium } from "../modules/notification/enums/notificationEnum";
 import { Notification } from "../entity/notification";
 import axios from "axios";
 import { getTwoFactorConfig } from "../modules/notification/config/twoFactorConfig";
 import { getOtpConfig } from "../modules/verification/config/otpConfig";
 
 export class TwoFactorOtpProvider implements NotificationProvider {
-  name = "twoFactor";
-  medium = Medium.SMS
 
   async send(notification: Notification): Promise<ProviderResult> {
     try {

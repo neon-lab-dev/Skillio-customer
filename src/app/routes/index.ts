@@ -4,6 +4,7 @@ import { documentRoutes } from "../modules/document/document.routes";
 import { registrationRoutes } from "../modules/registration/registration.routes";
 import { chatRoutes } from "../modules/chat/chat.routes";
 import { planMasterRouter } from "../modules/planMaster/route.plan.master";
+import { notificaionRouter } from "../modules/notification/route.notificaion";
 
 const router = Router();
 
@@ -28,6 +29,10 @@ const moduleRoutes = [
         path: "/v1/plan-master",
         route: planMasterRouter
 
+    },
+    {
+        path: "/v1/notification",
+        route: notificaionRouter
     }
 ]
 

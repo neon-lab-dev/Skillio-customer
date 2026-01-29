@@ -11,7 +11,7 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { ProfileType } from "./enums/registrationEnum";
+import { proficiecy, ProfileType, roles } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
@@ -19,10 +19,13 @@ import { Producer } from "../../kafka/producer/producer";
 import documentServices from "../document/services/document.services";
 import { JwtService, Loggable, Page, Pageable } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
-import { ProfileSearchCriteria } from "./models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
 import { FetchProfileDto } from "./models/dto/dto.fetch.profile";
 import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatusRequest";
+import notificationServices from "../notification/services/notification.services";
+import { Medium } from "../notification/enums/notificationEnum";
+import bodyText from "../../providers/appNotification/bodyText";
 
 class RegistrationService{
 
@@ -38,6 +41,13 @@ class RegistrationService{
         await documentRepository.updateDocument(id, documentData);
     }
 
+    private async sendNotification(profile: Profile , nickName: string){
+            await notificationServices.createNotification({
+                medium: Medium.NOTIFICATION,
+                to: profile.id,
+                bodyText: JSON.stringify(bodyText.sendRegistrationRequest(nickName))
+            })
+    }
 
     // create/register a profile
     createProfile= serviceLogging(
@@ -56,7 +66,7 @@ class RegistrationService{
             nickName,
             pin:hashedPin,
             profileType , 
-            role,
+            role,   
             contacts: contacts.map(contact=>({
                 type:contact.type,
                 value:contact.value,
@@ -121,6 +131,12 @@ class RegistrationService{
         }
 
         this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+
+        if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
+            const admin= await registrationRepository.findByRole(roles.ADMIN);
+
+            Promise.all(admin.map((admin)=> this.sendNotification(admin , newProfile.nickName)))
+        }
 
         const profile= new GetRegistrationDTO(newProfile).toJSON();
 
