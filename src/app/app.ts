@@ -1,4 +1,6 @@
 import logger from "./utils/logger";
+import "./mapper-init";
+import "reflect-metadata";
 import app from "../server";
 import systemConfigStore from "./config/systemConfigStore";
 import NotificationProviderFactory from "./providers/NotificationProviderFactory";

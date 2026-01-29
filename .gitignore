@@ -5,3 +5,4 @@
 /logs
 /dist
 /.npmrc
+/package-lock.json
