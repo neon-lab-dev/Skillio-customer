@@ -2,6 +2,7 @@ import { AppError, AppResponse, AsyncContextService, CONTENT_TYPES, ERROR_CODES,
 import { PaymentRequest } from "./models/dto.request.payment";
 import { PaymentProxyConfig } from "../../config/config.payment.proxy";
 import { PaymentResponseDto } from "./models/dto.payment.response";
+import { PaymentLinkStatusRequest } from "./models/dto.request.payment.link.status";
 
 
 class PaymentProxyService {
@@ -9,7 +10,7 @@ class PaymentProxyService {
     private restService: RestService = new RestService();
 
     @Loggable()
-    public async initate(req: PaymentRequest): Promise<PaymentResponseDto>{
+    public async initate(req: PaymentRequest): Promise<PaymentResponseDto> {
         let headers = this.getHeaders();
         let baseUrl = PaymentProxyConfig.baseUrl as string;
         let response = await this.restService.post<AppResponse>(
@@ -27,9 +28,9 @@ class PaymentProxyService {
         )
     }
 
-    private getHeaders(): Record<string, any>{
+    private getHeaders(): Record<string, any> {
         let token = AsyncContextService.get(TOKEN);
-        if (!token){
+        if (!token) {
             throw new NotFoundError(`Required token not found.`);
         }
         return {
@@ -37,7 +38,28 @@ class PaymentProxyService {
             [HEADERS.AUTHORIZATION]: `Bearer ${token}`
         };
     }
-    
+
+    @Loggable()
+    public async fetchStatus(req: PaymentLinkStatusRequest): Promise<PaymentResponseDto> {
+        let headers = this.getHeaders();
+        let baseUrl = PaymentProxyConfig.baseUrl as string;
+        let url = `${baseUrl}/status`;
+        let response = await this.restService.post<AppResponse>
+            (
+                url,
+                req,
+                headers
+            );
+        if (response.status === HTTP_STATUS.SUCCESS) {
+            return JsonUtils.fromJson(JsonUtils.toJson(response.data.data), PaymentResponseDto);
+        }
+        throw new AppError(
+            ERROR_CODES.EXTERNAL_API_ERROR,
+            HTTP_STATUS.INTERNAL_SERVER_ERROR,
+            `Failed to initiate Payment.`
+        )
+    }
+
 
 }
 

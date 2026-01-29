@@ -9,6 +9,8 @@ export class PaymentResponseDto implements AppResponseData{
     @Expose()
     amount!: number;
     @Expose()
+    status!: string;
+    @Expose()
     @Type(() => MetaDataDto)
     metaData!: MetaDataDto;
 

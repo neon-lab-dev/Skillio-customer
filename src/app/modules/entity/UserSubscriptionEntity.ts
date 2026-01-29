@@ -5,6 +5,7 @@ import { PlanDetails } from "../userSubscription/models/dto/dto.plan.details";
 import { Portfolio } from "../../entity/portfolio";
 import { string } from "zod";
 import { AutoMap } from "@automapper/classes";
+import { addDays, Sensitive } from "@neon-lab-dev/platform";
 
 
 @Entity(
@@ -98,4 +99,17 @@ export class UserSubscriptionEntity extends PersistEntity {
     protected getPrefix(): string {
         return "subs";
     }
+
+
+    @Sensitive()
+    public setEndDate() {
+        let planDetails = this.planDetails;
+        if (planDetails){
+            let validityDays = planDetails.validity;
+            if (validityDays && this.startDate){
+                this.endDate = addDays(this.startDate, validityDays);
+            }
+        }
+    }
+
 }

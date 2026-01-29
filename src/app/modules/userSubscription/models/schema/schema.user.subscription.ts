@@ -7,3 +7,10 @@ export const createUserSubscriptionSchema =
             planId: IS_MANDATORY_SCHEMA("Plan Id")
         }
     );
+
+export const syncSubscriptionStatusSchema = 
+    z.object(
+        {
+            id: IS_MANDATORY_SCHEMA("subscription id")
+        }
+    );
