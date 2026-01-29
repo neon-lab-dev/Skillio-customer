@@ -2,8 +2,10 @@ import { AppError, ERROR_CODES, HTTP_STATUS, SearchCriteria, SearchCriteriaBuild
 import { PlanMasterSearchCriteria } from "../planMaster/models/request/search.criteria.plan.master";
 import { PlanMasterSearchCriteriaBuilder } from "./search.criteria.plan.master.builder";
 import { UserPlanMasterSearchCriteria } from "../planMaster/models/request/search.criteria.user.plan.master";
-import { ProfileSearchCriteria } from "../registration/models/searchCriteria.ts/profileSearchCriteria";
+import { ProfileSearchCriteria } from "../registration/models/request/searchCriteria/profileSearchCriteria";
 import { ProfileSearchCriteriaBuilder } from "../registration/models/builder/profileSearchCriteriaBuilder";
+import { NotificatinSearchCriteria } from "../notification/models/request/searchCriteria/notificationSearchCriteria";
+import { NotificationSearchCriteriaBuilder } from "../notification/models/builders/builder.notification.serach.criteria";
 
 
 class CriteriaBuilderFactory implements SearchCriteriaBuilderFactory {
@@ -26,6 +28,13 @@ class CriteriaBuilderFactory implements SearchCriteriaBuilderFactory {
 
         if(ctor=== ProfileSearchCriteria){
             return ProfileSearchCriteriaBuilder
+                .builder()
+                .of(raw)
+                .build() as unknown as T;
+        }
+        
+        if(ctor=== NotificatinSearchCriteria){
+            return NotificationSearchCriteriaBuilder
                 .builder()
                 .of(raw)
                 .build() as unknown as T;

@@ -1,6 +1,6 @@
 import { AppRequest } from "@neon-lab-dev/platform";
 import { SearchCriteria } from "@neon-lab-dev/platform";
-import { proficiecy, ProfileType } from "../../enums/registrationEnum";
+import { proficiecy, ProfileType } from "../../../enums/registrationEnum";
 
 export class ProfileSearchCriteria extends SearchCriteria implements AppRequest{
     constructor(){

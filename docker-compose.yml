@@ -19,7 +19,7 @@ services:
       - KAFKA_CFG_PROCESS_ROLES=controller,broker
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
@@ -35,7 +35,7 @@ services:
       - kafka
     environment:
       NODE_ENV: development
-      PORT: 3000
+      PORT: 4000
       DB_HOST_DEVELOPMENT: postgres
       DB_PORT_DEVELOPMENT: 5432
       DB_USERNAME_DEVELOPMENT: ${DB_USERNAME_DEVELOPMENT:-postgres}
@@ -49,11 +49,10 @@ services:
       # Kafka client configs for node-rdkafka
       KAFKA_BROKERS: kafka:9092
     ports:
-      - "3000:3000"
+      - "4000:4000"
     command: ["npm", "run", "dev"]
 
 volumes:
   pgdata:
   kafkadata:
-
 
