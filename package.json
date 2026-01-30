@@ -4,7 +4,7 @@
   "description": "admin backend",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/app/app.js",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app/app.ts",
     "build": "tsc -p .",
     "build:dev": "tsc -p . && node dist/server.js",
@@ -31,7 +31,9 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@neon-lab-dev/platform": "^0.1.5",
+    "@automapper/classes": "^8.8.1",
+    "@automapper/core": "^8.8.1",
+    "@neon-lab-dev/platform": "0.1.6",
     "@types/imagekit": "^3.1.5",
     "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
@@ -52,7 +54,7 @@
     "multer-storage-cloudinary": "^4.0.0",
     "node-rdkafka": "^3.6.1",
     "pg": "^8.16.3",
-    "reflect-metadata": "^0.2.2",
+    "reflect-metadata": "0.1.13",
     "socket.io": "^4.8.1",
     "ts-node-dev": "^2.0.0",
     "twilio": "^5.8.0",
@@ -60,6 +62,10 @@
     "typescript-eslint": "^8.31.0",
     "winston": "^3.17.0",
     "xmlbuilder2": "^4.0.3",
-    "zod": "^4.1.12"
+    "zod": "^4.1.12",
+    "class-transformer": "^0.5.1"
+  },
+  "overrides": {
+    "reflect-metadata": "0.1.13"
   }
 }

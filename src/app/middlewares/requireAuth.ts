@@ -1,5 +1,5 @@
 import { Request, Response ,NextFunction } from "express";
-import { AsyncContextService, JwtService } from "@neon-lab-dev/platform";
+import { AsyncContextService, BASIC_TOKEN, JwtService, TOKEN, USER_ID } from "@neon-lab-dev/platform";
 import { UnauthorizedError } from "@neon-lab-dev/platform";
 import { getJwtConfig } from "../modules/registration/config/jwtConfig";
 
@@ -19,6 +19,7 @@ export const verifyToken =(async (req: Request, res: Response, next: NextFunctio
     const decoded= await JwtService.validateAndDecodeToken(token , jwtConfig.JWT_ACCESS_SECRET);
 
     AsyncContextService.setUserId(decoded.profileId)
+    AsyncContextService.set(TOKEN, token);
 
     req.user= decoded
 
