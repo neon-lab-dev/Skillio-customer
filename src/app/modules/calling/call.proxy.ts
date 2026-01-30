@@ -1,7 +1,6 @@
 import {  Request } from "express";
 import { proxyLogging } from "../../utils/proxyLogging";
 import callService from "./call.service";
-import { iceCandidatePayload, webRtcSessionDescription } from "./interface/call.interface";
 import callRepository from "../../repository/callRepository";
 import logger from "../../utils/logger";
 import AppError from "../../errors/appError";
@@ -35,34 +34,19 @@ class CallProxy{
     createCall= proxyLogging(
         "callProxy",
         "createCall",
-        async(recipientId:string, req:Request)=>{
+        async(recipientId:string,registrationToken: string, req:Request)=>{
             await this.checkExistingProfile(recipientId);
             
-            return await callService.createCall(recipientId , req);
+            return await callService.createCall(recipientId ,registrationToken, req);
         }
     ) 
 
-    // update a call with offer
-    updateCall= proxyLogging(
-        "callProxy",
-        "updateCall",
-        async(callId:string , offer:webRtcSessionDescription , registrationToken:string)=>{
-            const call= await this.checkExistingCall(callId);
-
-            if(call.callStatus!=status.CALLING){
-                logger.error("cannot update call")
-                throw new AppError(409, "cannot update call")
-            }
-
-            return await callService.updateCall(call , offer , registrationToken);
-        }
-    )
 
     // accept call
     acceptCall= proxyLogging(
         "callProxy",
         "acceptCall",
-        async( callId:string , answer:webRtcSessionDescription , req:Request)=>{
+        async( callId:string , req:Request)=>{
             const call= await this.checkExistingCall(callId);
 
             if(call.callStatus!=status.RINGING){
@@ -77,7 +61,7 @@ class CallProxy{
                 throw new AppError(409, "unauthorized access")
             }
 
-            return await callService.acceptCall( call , answer);
+            return await callService.acceptCall( call);
         }
     )
 
@@ -120,18 +104,6 @@ class CallProxy{
         }
     )
 
-    // send Ice candidate
-    sendIceCandidate= proxyLogging(
-        "callProxy",
-        "sendIceCandidate",
-        async( profileId:string ,callId:string, iceCandidate:iceCandidatePayload)=>{
-            await this.checkExistingCall(callId);
-
-            await this.checkExistingProfile(profileId);
-
-            return await callService.sendIceCandidate(profileId ,callId, iceCandidate)
-        }
-    )
 }
 
 export default  new CallProxy;

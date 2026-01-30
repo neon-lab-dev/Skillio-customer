@@ -10,9 +10,9 @@ class callController{
     createCall=controllerLogging(
         "callController.createCall",
         catchAsyncError(async(req:Request , res:Response , )=>{
-            const {recipientId}=req.body;
+            const {recipientId , registrationToken}=req.body;
 
-            const result= await callProxy.createCall(recipientId , req)
+            const result= await callProxy.createCall(recipientId , registrationToken , req)
 
             return sendResponse(res , {
                 success: true, 
@@ -23,29 +23,13 @@ class callController{
         })
     )
 
-    // update call
-    updateCall= controllerLogging(
-        "callController.updateCall",
-        catchAsyncError(async(req:Request , res:Response)=>{
-            const {callId , offer , registrationToken}=req.body;
-
-            await callProxy.updateCall(callId , offer , registrationToken)
-
-            return sendResponse(res , {
-                success:true, 
-                statusCode:200,
-                message:"ringing",
-            })
-        })
-    )
-
     // accept call
     accecptCall= controllerLogging(
         "callController.acceptCall",
         catchAsyncError(async(req:Request , res:Response)=>{
-            const{callId , answer}=req.body;
+            const{callId }=req.body;
 
-            await callProxy.acceptCall(callId , answer , req);
+            await callProxy.acceptCall(callId  , req);
 
             return sendResponse(res , {
                 success: true,
@@ -82,22 +66,6 @@ class callController{
                 success:true, 
                 statusCode: 200,
                 message:"call ended",
-            })
-        })
-    )
-
-    // send ice candidate
-    sendIceCandidate= controllerLogging(
-        "callController.sendIceCandidate",
-        catchAsyncError(async(req:Request , res:Response)=>{
-            const {profileId, callId , iceCandidate}=req.body;
-
-            await callProxy.sendIceCandidate(profileId , callId , iceCandidate);
-
-            return sendResponse(res , {
-                success:true,
-                statusCode:200,
-                message:"ice candidate sent successfully"
             })
         })
     )

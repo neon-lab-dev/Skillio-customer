@@ -1,6 +1,6 @@
 import callRepository from "../../repository/callRepository";
 import { status } from "./enums/callEnum";
-import { acceptCall, endCall, rejectCall, sendIceCandidate, startCall } from "./utils/callSocket";
+import { acceptCall, endCall, rejectCall, startCall } from "./utils/callSocket";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Request } from "express";
 import conversationParticipantRepository from "../../repository/conversationParticipantRepository";
@@ -8,7 +8,8 @@ import { hasSameId } from "../chat/utils/checkIfConversationExists";
 import conversationRepository from "../../repository/conversationRepository";
 import { Call } from "../../entity/call";
 import { GetCallDTO } from "./call.dto";
-import { iceCandidatePayload } from "./interface/call.interface";
+import callProviderFactory from "./managers/callProviderFactory";
+import { FetchTokenRequest } from "./models/request/fetchTokenRequest";
 
 class CallService{
 
@@ -16,7 +17,7 @@ class CallService{
     createCall= serviceLogging(
         "callService",
         "createCall",
-        async(recipientId:string,req:Request)=>{
+        async(recipientId:string , registrationToken: string,req:Request)=>{
 
             const callerId= req.user.profileId
 
@@ -60,30 +61,21 @@ class CallService{
                 call= new GetCallDTO(newCall).toJSON();
             }
 
+            startCall(call.callerId , call.recipientId ,call.id , registrationToken || " ")
+
             return call;
         }
     )
   
-    // update call with offer
-    updateCall= serviceLogging(
-        "callService" , 
-        "updateCall",
-        async(call:Call , offer:any , registrationToken:string )=>{
-    
-            startCall(call.callerId , call.recipientId ,call.id, offer , registrationToken || " ")
-    
-        }
-    )
-
     // accept call
     acceptCall= 
         serviceLogging(
         "callService",
         "acceptCall",
-        async(call:Call, answer:any )=>{
-             await callRepository.updateCall(call.id , {answer , callStatus: status.ACCEPTED});
+        async(call:Call )=>{
+             await callRepository.updateCall(call.id , { callStatus: status.ACCEPTED});
             
-            acceptCall(call.callerId , call.id , answer)
+            acceptCall(call.callerId , call.id )
     
         }
     )
@@ -118,17 +110,11 @@ class CallService{
         }
     )
 
-    // send ice candidate
-    sendIceCandidate= 
-        serviceLogging(
-        "callService",
-        "sendIceCandidate",
-        async(profileId:string,callId:string, iceCandidate:iceCandidatePayload)=>{
-
-            sendIceCandidate(profileId,callId, iceCandidate);
-        }
-    )
-
+    public async getToken(req: FetchTokenRequest): Promise<string>{
+        const callProvider=await callProviderFactory.get(req.provider);
+        const token= await callProvider.getToken(req.callerId)
+        return token;
+    }
 }
 
 export default new CallService;

@@ -8,6 +8,7 @@ import { loadJwtConfig } from "../modules/registration/config/jwtConfig";
 import { loadPinConfig } from "../modules/registration/config/pinConfig";
 import { loadAddressPinConfig } from "../modules/registration/config/addressPinCodeConfig";
 import { loadFcmServiceAccountConfig } from "../modules/chat/config/fcmServiceAccountConfig";
+import { loadTwilioConfig } from "../modules/calling/config/twilioConfig";
 
 class SystemConfigStore{
 
@@ -31,6 +32,8 @@ class SystemConfigStore{
             await loadAddressPinConfig()
 
             await loadFcmServiceAccountConfig()
+
+            await loadTwilioConfig()
 
         } catch (error) {
             logger.error("Error loading system  configurations:", error);
