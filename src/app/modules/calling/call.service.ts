@@ -34,7 +34,7 @@ class CallService{
                     callerId,
                     conversationId:commonConversation.id,
                     recipientId,
-                    callStatus: status.CALLING
+                    callStatus: status.RINGING
                 })
                 call= new GetCallDTO(newCall).toJSON();
 
@@ -55,7 +55,7 @@ class CallService{
                     callerId,
                     conversationId: conversation.id,
                     recipientId,
-                    callStatus: status.CALLING
+                    callStatus: status.RINGING
                 })
 
                 call= new GetCallDTO(newCall).toJSON();
