@@ -26,6 +26,7 @@ import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatus
 import notificationServices from "../notification/services/notification.services";
 import { Medium } from "../notification/enums/notificationEnum";
 import bodyText from "../../providers/appNotification/bodyText";
+import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 
 class RegistrationService{
 
@@ -59,6 +60,8 @@ class RegistrationService{
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(pin, salt);
 
+        const bio= censorSensitiveInfo.censor(portfolio.bio as string);
+
         const newProfile= await registrationRepository.createProfile({
             firstName,
             lastName,
@@ -85,12 +88,12 @@ class RegistrationService{
                 subCategory: portfolio.subCategory,
                 proficiency: portfolio.proficiency,
                 totalEvents: portfolio.totalEvents,
-                bio: portfolio.bio || "",
+                bio: bio || "",
                 hiringRate: portfolio.hiringRate
             }
         })
 
-        Promise.all(contacts.map(async(contact)=>{
+        await Promise.all(contacts.map(async(contact)=>{
             const verification= await verificationRepository.findOneById(contact.verificationId);
             const existingContact= await registrationRepository.findContactByValue(contact.value);
             if(verification?.otpCodeStatus==="VERIFIED"){

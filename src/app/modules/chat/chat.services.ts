@@ -13,6 +13,7 @@ import { Message } from "../../entity/message";
 import conversationParticipantRepository from "../../repository/conversationParticipantRepository";
 import { hasSameId } from "./utils/checkIfConversationExists";
 import conversationRepository from "../../repository/conversationRepository";
+import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 
 class ChatService{
 
@@ -54,12 +55,15 @@ class ChatService{
 
             let message;
 
+            const text= censorSensitiveInfo.censor(content?.text as string);
+
             if(commonConversation?.flag){
                 const newMessage= await chatRepository.createMessage({
                     senderId,
                     recipientId,
                     content:{
                         ...content,
+                        text: text,
                         fileUrl: url
                     },
                     status: Status.SENT,
@@ -71,7 +75,8 @@ class ChatService{
                     senderId,
                     recipientId,
                     {
-                        content,
+                        ...content,
+                        text: text,
                         fileUrl: url,
                         timestamp: new Date()
                     },
@@ -115,6 +120,7 @@ class ChatService{
                     recipientId,
                     content:{
                         ...content,
+                        text: text,
                         fileUrl: url
                     },
                     status: Status.SENT,
@@ -126,7 +132,8 @@ class ChatService{
                     senderId,
                     recipientId,
                     {
-                        content,
+                        ...content,
+                        text: text,
                         fileUrl: url,
                         timestamp: new Date()
                     },
