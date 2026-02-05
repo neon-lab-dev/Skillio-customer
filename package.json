@@ -61,6 +61,7 @@
     "typeorm": "^0.3.27",
     "typescript-eslint": "^8.31.0",
     "winston": "^3.17.0",
+    "xmlbuilder2": "^4.0.3",
     "zod": "^4.1.12",
     "class-transformer": "^0.5.1"
   },

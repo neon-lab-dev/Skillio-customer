@@ -1,4 +1,5 @@
 export interface content{
+    title?:string
     text?: string;
     postId?: string;
     fileUrl?: string;
