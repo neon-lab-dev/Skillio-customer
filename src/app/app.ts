@@ -20,8 +20,8 @@ AppDataSource.initialize()
     await systemConfigStore.loadConfigs();
     NotificationProviderFactory.initializeProviders();
 
-    await consumer.loadConsumers()
-    await prodcuer.connect()
+    // await consumer.loadConsumers()
+    // await prodcuer.connect()
 
     server.listen(config.port, () => {
       logger.info(`Listening at port number ${config.port}`);

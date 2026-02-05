@@ -18,6 +18,6 @@ export const sendMessage=async(id:string,senderId:string,recipientId:string , co
 
         logger.info(`Message sent to recipientId: ${recipientId}, socketId: ${socketId}`);
     }else{
-        sendSinglePushNotification(senderId,content, registrationToken);
+        sendSinglePushNotification(senderId,content,"message", registrationToken);
     }
 }

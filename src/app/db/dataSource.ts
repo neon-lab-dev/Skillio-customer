@@ -3,14 +3,15 @@ import { DataSource } from "typeorm"
 import config from "../config/index";
 import path from "path";
 
+const isProduction = process.env.NODE_ENV === 'production';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  host:  config.db_host_development,
-  port:  Number(config.db_port_development),
-  username:  config.db_username_development,
+  host: config.db_host_development,
+  port: Number(config.db_port_development),
+  username: config.db_username_development,
   password: config.db_password_development,
-  database:  config.db_databse_development,
+  database: config.db_databse_development,
   synchronize: true,
   logging: true,
   entities: [
@@ -22,4 +23,3 @@ export const AppDataSource = new DataSource({
   ],
   subscribers: [],
 });
-
