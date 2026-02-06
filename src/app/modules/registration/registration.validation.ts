@@ -159,6 +159,13 @@ const hiringRateSchema=z.object({
     monthlyPricing: z.number()
 })
 
+const followsSchema= z.object({
+    instaFollowers: IS_MANDATORY_NUMBER_SCHEMA("instaFollowers").int().nonnegative().optional(),
+    instaFollowing: IS_MANDATORY_NUMBER_SCHEMA("instaFollowing").int().nonnegative().optional(),
+    facebookFollowers: IS_MANDATORY_NUMBER_SCHEMA("facebookFollowers").int().nonnegative().optional(),
+    facebookFollowing: IS_MANDATORY_NUMBER_SCHEMA("facebookFollowing").int().nonnegative().optional()
+}).optional()
+
 const portfolioSchema = z.object({
     category: IS_MANDATORY_SCHEMA("Category")
         .regex(/^[A-Za-z\s]+$/, "Category must contain only alphabets "),
@@ -168,6 +175,7 @@ const portfolioSchema = z.object({
     totalEvents: NUMBER_SCHEMA("totalEvents").optional(),
     bio: TYPE_VALIDATION_SCHEMA("bio").optional(),
     hiringRate: hiringRateSchema,
+    follows: followsSchema,
     videoDocumentId: IS_MANDATORY_SCHEMA("Video Document Id"),
     imageDocumentId: IS_MANDATORY_SCHEMA("Image document ID"),
     eventsDoneDocumentId: TYPE_VALIDATION_SCHEMA("Events Document Id").optional()
@@ -301,4 +309,8 @@ export const fetchProfilesSchema= z.object({
 
 export const updateProfileStatusSchema=z.object({
     status: z.enum(profileStatus)
+})
+
+export const fetchHiringRateSchema=z.object({
+    portfolioId: IS_MANDATORY_SCHEMA("portfolioId")
 })

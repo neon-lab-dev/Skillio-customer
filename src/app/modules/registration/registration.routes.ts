@@ -11,9 +11,11 @@ import { FetchProfilesApi } from "./api/fetchProfilesApi";
 import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import updateProfileStatusApi from "./api/updateProfileStatusApi";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
+import { FetchHiringRateApi } from "./api/fetchHiringRateApi";
 
 const router= Router();
-const fetchProfilesApi= new FetchProfilesApi()
+const fetchProfilesApi= new FetchProfilesApi();
+const fetchHiringRateApi= new FetchHiringRateApi();
 
 router.post(
     "/" ,
@@ -37,6 +39,11 @@ router.get(
     authorizeRole.validateRole(roles.ADMIN) , 
     registrationController.getProfileCount
 );
+router.get(
+    "/hiringRate",
+    verifyToken,
+    asyncApiHandler(fetchHiringRateApi)
+)
 router.get(
     "/:id", 
     registrationController.getProfile
