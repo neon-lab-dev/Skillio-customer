@@ -295,8 +295,8 @@ export const fetchProfilesSchema= z.object({
     country: countrySchema.optional(),
     profileType: profileTypeSchema.optional(),
     proficiecy: proficiencySchema.optional(),
-    page: IS_MANDATORY_NUMBER_SCHEMA("page").optional(),
-    perPage: IS_MANDATORY_NUMBER_SCHEMA("perPage").optional()
+    page: IS_MANDATORY_SCHEMA("page").optional(),
+    perPage: IS_MANDATORY_SCHEMA("perPage").optional()
 })  
 
 export const updateProfileStatusSchema=z.object({
