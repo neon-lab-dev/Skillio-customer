@@ -4,10 +4,12 @@ import { Profile } from "../entity/profile";
 import { Contact } from "../entity/contact";
 import { contactType, proficiecy, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
 import { BaseRepository } from "@neon-lab-dev/platform";
+import { HiringRate } from "../entity/hiringRate";
 
 class RegistrationRepository extends BaseRepository<Profile>{
 
     private contactRepository= AppDataSource.getRepository<Contact>("Contact");
+    private hiringRateRepository= AppDataSource.getRepository<HiringRate>("HiringRate");
 
     private buildCountQuery(
         profileType: ProfileType = ProfileType.INDIVIDUAL,
@@ -66,10 +68,17 @@ class RegistrationRepository extends BaseRepository<Profile>{
     findProfileById= async(id:string)=>{
         return await this.repository.findOne({
             where:{id},
-            relations:["contacts" , "address" , "portfolio" , "online"]
+            relations:["contacts" , "address" , "portfolio" , "portfolio.follows"  , "online"]
         });
     }
 
+    async findHiringRate(portfolioId: string){
+        return await this.hiringRateRepository.findOne({
+            where:{ 
+                portfolioId
+            }
+        })
+    }
 
     getProfileCount= async()=>{
         const totalCount= await this.repository.count();

@@ -17,7 +17,7 @@ import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
 import { Producer } from "../../kafka/producer/producer";
 import documentServices from "../document/services/document.services";
-import { JwtService, Loggable, Page, Pageable } from "@neon-lab-dev/platform";
+import { JwtService, Loggable, LoggerService, NotFoundError, Page, Pageable } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
 import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
@@ -26,6 +26,10 @@ import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatus
 import notificationServices from "../notification/services/notification.services";
 import { Medium } from "../notification/enums/notificationEnum";
 import bodyText from "../../providers/appNotification/bodyText";
+import { FetchHiringRateRequest } from "./models/request/fetchHiringRateRequest";
+import { HiringRateDto } from "./models/dto/dto.hiringRate";
+import { HiringRateDtoBuilder } from "./models/builder/hiringRateDtoBuilder";
+import { HiringRate } from "../../entity/hiringRate";
 
 class RegistrationService{
 
@@ -86,7 +90,8 @@ class RegistrationService{
                 proficiency: portfolio.proficiency,
                 totalEvents: portfolio.totalEvents,
                 bio: portfolio.bio || "",
-                hiringRate: portfolio.hiringRate
+                hiringRate: portfolio.hiringRate,
+                follows: portfolio.follows
             }
         })
 
@@ -130,7 +135,7 @@ class RegistrationService{
             profilePictureUrl: document.document.url
         }
 
-        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
@@ -214,6 +219,7 @@ class RegistrationService{
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
+                    follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
@@ -230,6 +236,7 @@ class RegistrationService{
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
+                    follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
@@ -244,6 +251,7 @@ class RegistrationService{
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
                         bio: fetchedProfile.portfolio.bio || "",
+                        follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed,
                         online:fetchedProfile.online,
                     },
@@ -262,6 +270,7 @@ class RegistrationService{
                         portfolioId: fetchedProfile.portfolio.id,
                         online:fetchedProfile.online,
                         bio: fetchedProfile.portfolio.bio || "",
+                        follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed
                         },
                     profilePictureId: profilePhotoId
@@ -294,6 +303,18 @@ class RegistrationService{
     @Loggable()
     public async updateProfileStatus(req: UpdateProfileStatusRequest):Promise<void>{
         await registrationRepository.updateProfile(req.id , {status: req.status});
+    }
+
+    @Loggable()
+    public async fetchHiringRate(req: FetchHiringRateRequest): Promise<HiringRateDto>{
+        const res= await registrationRepository.findHiringRate(req.portfolioId);
+
+        if(!res){
+            LoggerService.error("Hiring rate not found")
+            throw new NotFoundError("Hiring reat not found")
+        }
+
+        return HiringRateDtoBuilder.Builder().of(res).build()
     }
 
 }

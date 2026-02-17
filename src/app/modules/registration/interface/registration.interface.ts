@@ -39,6 +39,20 @@ export interface TAddress {
   location: Location
 }
 
+export interface THiringRate{
+  hourlyPricing: Decimal;
+  dailyPricing: Decimal;
+  weeklyPricing: Decimal;
+  monthlyPricing: Decimal;
+}
+
+export interface TFollows{
+  instaFollowers?: number;
+  instaFollowing?: number;
+  facebookFollowers?: number;
+  facebookFollowing?: number;
+}
+
 export interface TPortfolio {
   category: string;
   subCategory: string;
@@ -46,17 +60,12 @@ export interface TPortfolio {
   bio?: string;
   totalEvents?: number;
   hiringRate: THiringRate;
+  follows?: TFollows;
   videoDocumentId:string;
   imageDocumentId:string;
   eventsDoneDocumentId?:string;
 }
 
-export interface THiringRate{
-  hourlyPricing: Decimal;
-  dailyPricing: Decimal;
-  weeklyPricing: Decimal;
-  monthlyPricing: Decimal;
-}
 
 export interface TProfile {
   firstName?: string;

@@ -1,5 +1,5 @@
 import { ProfileType, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
-import { Location, THiringRate } from "../../interface/registration.interface";
+import { Location, TFollows, THiringRate } from "../../interface/registration.interface";
 import Decimal from "decimal.js"
 
 // Contact DTO
@@ -81,6 +81,7 @@ export class PortfolioDTO {
   totalEvents?: number;
   bio?: string;
   hiringRate: THiringRate;
+  follows?: TFollows;
   videoDocumentId:string;
   imageDocumentId:string;
   eventsDoneDocumentId:string;
@@ -92,6 +93,7 @@ export class PortfolioDTO {
     totalEvents?: number;
     bio?: string;
     hiringRate: THiringRate;
+    follows?: TFollows;
     videoDocumentId:string;
     imageDocumentId:string;
     eventsDoneDocumentId:string;
@@ -101,6 +103,7 @@ export class PortfolioDTO {
     this.proficiency = data.proficiency;
     this.totalEvents = data.totalEvents;
     this.bio = data.bio;
+    this.follows= data.follows;
     this.hiringRate= data.hiringRate;
     this.videoDocumentId=data.videoDocumentId;
     this.imageDocumentId=data.imageDocumentId;
@@ -115,6 +118,7 @@ export class PortfolioDTO {
       totalEvents: this.totalEvents,
       bio: this.bio,
       hiringRate: this.hiringRate,
+      follows: this.follows,
       videoDocumentId:this.videoDocumentId,
       imageDocumentId:this.imageDocumentId,
       eventsDoneDocumentId:this.eventsDoneDocumentId
@@ -244,33 +248,6 @@ export class GetAddressDTO {
   }
 }
 
-export class HiringRateDTO{
-    dailyPricing!: Decimal;
-    hourlyPricing!: Decimal;
-    weeklyPricing!: Decimal;
-    monthlyPricing!: Decimal;
-
-    constructor(data: {
-      dailyPricing: Decimal;
-      hourlyPricing: Decimal;
-      weeklyPricing: Decimal;
-      monthlyPricing: Decimal;
-    }){
-      this.dailyPricing= data.dailyPricing;
-      this.hourlyPricing= data.hourlyPricing;
-      this.weeklyPricing= data.weeklyPricing;
-      this.monthlyPricing= data.monthlyPricing;
-    }
-
-    toJSON(){
-      return {
-        dailyPricing: this.dailyPricing,
-        hourlyPricing: this.hourlyPricing,
-        weeklyPricing: this.weeklyPricing,
-        monthlyPricing: this.monthlyPricing
-      }
-    }
-}
 
 export class GetPortfolioDTO {
   category: string;
@@ -278,7 +255,6 @@ export class GetPortfolioDTO {
   proficiency: proficiecy;
   totalEvents?: number;
   bio?: string;
-  hiringRate: HiringRateDTO
 
   constructor(data: {
     category: string;
@@ -286,19 +262,12 @@ export class GetPortfolioDTO {
     proficiency: proficiecy;
     totalEvents?: number;
     bio?: string;
-    hiringRate: {
-      dailyPricing: Decimal;
-      hourlyPricing: Decimal;
-      weeklyPricing: Decimal;
-      monthlyPricing: Decimal;
-    };
   }) {
     this.category = data.category;
     this.subCategory = data.subCategory;
     this.proficiency = data.proficiency;
     this.totalEvents = data.totalEvents;
     this.bio = data.bio;
-    this.hiringRate= new HiringRateDTO(data.hiringRate);
   }
 
   toJSON() {
@@ -308,7 +277,6 @@ export class GetPortfolioDTO {
       proficiency: this.proficiency,
       totalEvents: this.totalEvents,
       bio: this.bio,
-      hiringRate: this.hiringRate.toJSON()
     };
   }
 }
@@ -354,7 +322,8 @@ export class GetRegistrationDTO {
         hourlyPricing: Decimal;
         weeklyPricing: Decimal;
         monthlyPricing: Decimal;
-      }
+      };
+      follows?: TFollows 
     };
   }) {
     this.firstName = data.firstName;
@@ -371,7 +340,7 @@ export class GetRegistrationDTO {
     
     this.portfolio =  new GetPortfolioDTO(data.portfolio) 
   }
-
+  
   toJSON() {
     return {
       firstName: this.firstName,
@@ -386,22 +355,48 @@ export class GetRegistrationDTO {
   }
 }
 
+export class FollowsDTO{
+    instaFollowers?: number;
+    instaFollowing?: number;
+    facebookFollowers?: number;
+    facebookFollowing?: number;
+
+    constructor(data: TFollows | undefined){
+      this.instaFollowers= data?.instaFollowers;
+      this.instaFollowing= data?.instaFollowing;
+      this.facebookFollowers= data?.facebookFollowers;
+      this.facebookFollowing= data?.facebookFollowing;
+    }
+
+    toJSON(){
+      return{
+        instaFollowers: this.instaFollowers,
+        instaFollowing: this.instaFollowing,
+        facebookFollowers: this.facebookFollowers,
+        facebookFollowing: this.facebookFollowing
+      }
+    }
+}
 export class GetProfilePortfolioDTO{
   id:string;
   bio?: string;
+  follows? : FollowsDTO; 
 
   constructor(data:{
     id:string;
     bio?: string;
+    follows?: TFollows;
   }){
     this.id=data.id;
     this.bio=data.bio;
+    this.follows= new FollowsDTO(data.follows);
   }
 
   toJSON(){
     return {
       id: this.id,
-      bio: this.bio
+      bio: this.bio,
+      follows: this.follows
     }
   }
 }
@@ -434,7 +429,9 @@ export class GetProfileDTO{
     }>;
     portfolio:{
       id:string;
-      bio?: string;
+      bio?: string; 
+      hiringRate: THiringRate;
+      follows?: TFollows;
     };
     online?:{
       status: onlineStatus;
@@ -450,7 +447,8 @@ export class GetProfileDTO{
     this.contacts=data.contacts.map(contact=>new GetContactDTO(contact));
     this.portfolio=new GetProfilePortfolioDTO({
       id: data.portfolio.id,
-      bio: data.portfolio.bio || ""
+      bio: data.portfolio.bio || "",
+      follows: data.portfolio.follows
     })
     this.online=data.online?{
       status: data.online.status,

@@ -3151,13 +3151,13 @@
           },
           "response": [
             {
-              "name": "Success: profile created successfully",
+              "name": "success: profile created successfully",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice44\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541944\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice44@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\",\r\n    \"eventsDoneDocumentId\": \"c6d0bc68-a0c4-4071-a995-c9a43553f78a\"\r\n  } \r\n}\r\n",
+                  "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice49\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541949\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice49@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"follows\":{\r\n        \"instaFollwers\": 1500,\r\n        \"instaFollowing\": 320,\r\n        \"facebookFollowers\": 2400,\r\n        \"facebookFollowing\": 180\r\n    },\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\",\r\n    \"eventsDoneDocumentId\": \"c6d0bc68-a0c4-4071-a995-c9a43553f78a\"\r\n  } \r\n}\r\n",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3200,15 +3200,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "797"
+                  "value": "695"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"31d-fl5qYeCUioPV96Y7UiV/5fjUod0\""
+                  "value": "W/\"2b7-zqaQoiJ65u61wTreIDFNQYo44uc\""
                 },
                 {
                   "key": "Date",
-                  "value": "Mon, 26 Jan 2026 12:03:35 GMT"
+                  "value": "Fri, 06 Feb 2026 08:39:52 GMT"
                 },
                 {
                   "key": "Connection",
@@ -3220,7 +3220,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Profile created successfully\",\n    \"data\": {\n        \"firstName\": \"john\",\n        \"lastName\": \"alice\",\n        \"groupName\": \"\",\n        \"nickName\": \"alice44\",\n        \"profileType\": \"INDIVIDUAL\",\n        \"contacts\": [\n            {\n                \"type\": \"PHONE\",\n                \"value\": \"+919876541944\",\n                \"primary\": true,\n                \"isVerified\": false\n            },\n            {\n                \"type\": \"EMAIL\",\n                \"value\": \"alice44@gmail.com\",\n                \"primary\": true,\n                \"isVerified\": false\n            }\n        ],\n        \"address\": {\n            \"streetAddress\": \"Baneshwor Road\",\n            \"city\": \"Kathmandu\",\n            \"country\": \"India\",\n            \"state\": \"Bagmati\",\n            \"pinCode\": 323433,\n            \"location\": {\n                \"latitude\": 27.7172,\n                \"longitude\": 85.324\n            }\n        },\n        \"portfolio\": {\n            \"category\": \"Music\",\n            \"subCategory\": \"Guitarist\",\n            \"proficiency\": \"PROFESSIONAL\",\n            \"totalEvents\": 25,\n            \"bio\": \"I have been performing for over 5 years in local events and studios.\",\n            \"hiringRate\": {\n                \"dailyPricing\": 400.23,\n                \"hourlyPricing\": 200.99,\n                \"weeklyPricing\": 1200.2332,\n                \"monthlyPricing\": 15000.222\n            }\n        }\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Profile created successfully\",\n    \"data\": {\n        \"firstName\": \"john\",\n        \"lastName\": \"alice\",\n        \"groupName\": \"\",\n        \"nickName\": \"alice49\",\n        \"profileType\": \"INDIVIDUAL\",\n        \"contacts\": [\n            {\n                \"type\": \"PHONE\",\n                \"value\": \"+919876541949\",\n                \"primary\": true,\n                \"isVerified\": false\n            },\n            {\n                \"type\": \"EMAIL\",\n                \"value\": \"alice49@gmail.com\",\n                \"primary\": true,\n                \"isVerified\": false\n            }\n        ],\n        \"address\": {\n            \"streetAddress\": \"Baneshwor Road\",\n            \"city\": \"Kathmandu\",\n            \"country\": \"India\",\n            \"state\": \"Bagmati\",\n            \"pinCode\": 323433,\n            \"location\": {\n                \"latitude\": 27.7172,\n                \"longitude\": 85.324\n            }\n        },\n        \"portfolio\": {\n            \"category\": \"Music\",\n            \"subCategory\": \"Guitarist\",\n            \"proficiency\": \"PROFESSIONAL\",\n            \"totalEvents\": 25,\n            \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\n            \"hiringRate\": {},\n            \"follows\": {}\n        }\n    }\n}"
             },
             {
               "name": "Error:firstName and lastName are required for individual profile types",
@@ -8025,6 +8025,286 @@
               ],
               "cookie": [],
               "body": "{\n    \"status\": 200,\n    \"message\": \"Resource updated successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "get hiring rate",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIyMzRjZjBlNy01NzMyLTRhMzktYTM5MS05Y2MzMTczNmU0NDciLCJuaWNrTmFtZSI6ImFsaWNlNDkiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3MDM3MzQ3MCwiZXhwIjoxNzcwMzc3MDcwfQ.7G7h6Bn1szs23eleWpg-xPwMP4xnOE-Y_BOKIH0wBgI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b3",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "profile",
+                "hiringRate"
+              ],
+              "query": [
+                {
+                  "key": "portfolioId",
+                  "value": "d7429da5-051f-4465-aed2-343ae1ea76b3",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: hiring rate fetched successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b3",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "hiringRate"
+                  ],
+                  "query": [
+                    {
+                      "key": "portfolioId",
+                      "value": "d7429da5-051f-4465-aed2-343ae1ea76b3",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "149"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"95-mx0Vgd9DCXTedbHcwmJNL4xtdQ0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Feb 2026 10:28:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"hourlyPricing\": \"200.99\",\n        \"weeklyPricing\": \"1200.2332\",\n        \"monthlyPricing\": \"15000.222\",\n        \"dailyPricing\": \"400.23\"\n    }\n}"
+            },
+            {
+              "name": "Error: invalid portfolioId",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "hiringRate"
+                  ],
+                  "query": [
+                    {
+                      "key": "portfolioId",
+                      "value": "d7429da5-051f-4465-aed2-343ae1ea76b",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "221"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"dd-roJur/9Owg+zoz+zS/lh6XoDyWo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Feb 2026 10:29:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"invalid input syntax for type uuid: \\\"d7429da5-051f-4465-aed2-343ae1ea76b\\\"\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"invalid input syntax for type uuid: \\\"d7429da5-051f-4465-aed2-343ae1ea76b\\\"\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Error: record not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b2",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "hiringRate"
+                  ],
+                  "query": [
+                    {
+                      "key": "portfolioId",
+                      "value": "d7429da5-051f-4465-aed2-343ae1ea76b2",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "103"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 06 Feb 2026 10:30:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
             }
           ]
         }
