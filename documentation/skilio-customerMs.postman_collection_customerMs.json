@@ -3114,6 +3114,80 @@
               "body": "{\n    \"success\": false,\n    \"message\": \"Document not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Document not found\"\n        }\n    ]\n}"
             }
           ]
+        },
+        {
+          "name": "fetch documents by portfolioId",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "Success: fetched documents successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/document?portfolioId=8e44e0e0-572c-4f17-8556-9d97e859c9cb",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "document"
+                  ],
+                  "query": [
+                    {
+                      "key": "portfolioId",
+                      "value": "8e44e0e0-572c-4f17-8556-9d97e859c9cb"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "731"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2db-ZQdBzcwi0B93DJyL0FBvuEnB6J8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 17 Feb 2026 08:36:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760085491/skilioDocument/qmgcau5cw51fpwst4e3v.jpg\",\n            \"type\": \"PROFILE_PHOTO\",\n            \"id\": \"b6890f46-703b-47b8-b7be-f09563db1549\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760420090/skilioDocument/ptbwsmw4t1maxeq6wjb0.jpg\",\n            \"type\": \"VIDEO\",\n            \"id\": \"3e61a5fa-6d91-431c-b078-b70b9cea234c\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760420142/skilioDocument/pu6hak6wu2vvncqikt1a.jpg\",\n            \"type\": \"IMAGE\",\n            \"id\": \"fffdf949-11d7-47d0-8ae5-2c311f532fbe\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760420231/skilioDocument/u8ndrpaikbpq8qoq2uwo.jpg\",\n            \"type\": \"EVENT\",\n            \"id\": \"551f8eb8-bcc9-435b-96d6-67cab62f8703\"\n        }\n    ]\n}"
+            }
+          ]
         }
       ]
     },

@@ -53,6 +53,10 @@ class DocumentRepository{
         });
     }
 
+    async fetchDocumentByPortfolio(portfolioId:string){
+        return await this.documentRepository.findBy({portfolioId});
+    }
+
     // update a document
     updateDocument= async(id:string , updateData: Partial<Document>)=>{
         return await this.documentRepository.update(id , updateData);

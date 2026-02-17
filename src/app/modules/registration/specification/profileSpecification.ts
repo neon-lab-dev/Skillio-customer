@@ -30,18 +30,15 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         this.filterByCountry(criteria, qb);
         this.filterByProfileType(criteria , qb);
         this.filterByProficiency(criteria, qb);
+
     }
 
     private applySelectiveJoins(qb: SelectQueryBuilder<Profile>): void {
-        qb.leftJoin(`${this.alias}.address`, 'address')
-          .addSelect(['address.city', 'address.country']);
-
-        qb.leftJoin(`${this.alias}.contacts`, 'contact')
-          .addSelect(['contact.type', 'contact.value']);
-
-        qb.leftJoin(`${this.alias}.portfolio`, 'portfolio')
-          .addSelect(['portfolio.proficiency']);
-    }
+     qb.leftJoinAndSelect(`${this.alias}.address`, 'address')
+      .leftJoinAndSelect(`${this.alias}.contacts`, 'contact')
+      .leftJoinAndSelect(`${this.alias}.portfolio`, 'portfolio')
+      .leftJoinAndSelect('portfolio.document' , 'document')
+    } 
 
     private filterByIdsIn(
         criteria: ProfileSearchCriteria,

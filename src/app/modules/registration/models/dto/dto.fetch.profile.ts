@@ -1,5 +1,6 @@
 import {  AppResponseData } from "@neon-lab-dev/platform";
 import { profileStatus, ProfileType } from "../../enums/registrationEnum";
+import { DocumentType } from "../../../document/enums/documentEnum";
 
 export class FetchProfileDto implements AppResponseData{
 
@@ -15,6 +16,11 @@ export class FetchProfileDto implements AppResponseData{
     email!: (string | undefined)[];
     phoneNumber!: (string | undefined)[];
     proficiency!: string;
+    portfolioId!: string;
+    document!:{
+        url:string,
+        type: DocumentType
+    }[]
 
 
 }
