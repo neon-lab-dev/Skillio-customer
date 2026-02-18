@@ -13570,6 +13570,123 @@
               "body": "{\n    \"success\": false,\n    \"message\": \"Authentication failed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Authentication failed\"\n        }\n    ]\n}"
             }
           ]
+        },
+        {
+          "name": "delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIyOWUwMGI0MC0zMzIxLTQ0ZTgtOGQyNC05ZTY1OGIwYTJmNWMiLCJuaWNrTmFtZSI6ImFsaWNlMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3MTM5NjY2NywiZXhwIjoxNzcxNDAwMjY3fQ.L-mi4CW20H7S_X76edN6OnJ3UjWKnozpw3oFghg7B0Y",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ids\": [\"pm202601140626168e5467c9\" , \"pm202601200747393c5c373a\"],\r\n    \"hard\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/plan-master/delete",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "plan-master",
+                "delete"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success: plan Masrter deleted successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"ids\": [\"pm202601140626168e5467c9\" , \"pm202601200747393c5c373a\"],\r\n    \"hard\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/plan-master/delete",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "plan-master",
+                    "delete"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "pm202601140656523a9785c2",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-1i4MW0NifJmDc9CHqMMohDKb4Iw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 18 Feb 2026 08:02:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Resource deleted successfully\"\n}"
+            }
+          ]
         }
       ],
       "description": "Plan Master API bundles accessible for the `ADMINS` to create, read, update, and delete plans.\n\n| Column Name | Database Type | Nullable | Default | Description |\n| --- | --- | --- | --- | --- |\n| `id` | `string` | ❌ No | Auto-generated | Primary identifier (inherited from `PersistEntity`) |\n| `callLimits` | `int` | ✅ Yes | `0` | Maximum number of calls allowed for the plan |\n| `chatLimits` | `int` | ✅ Yes | `0` | Maximum number of chats allowed |\n| `validity` | `int` | ✅ Yes | `0` | Plan validity duration (typically in days) |\n| `active` | `boolean` | ✅ Yes | `true` | Indicates whether the plan is currently active |\n| `description` | `text` | ✅ Yes | `true` | Human-readable description of the plan |\n| `profileVisibility` | `enum` | ❌ No | `ZERO` | Controls whether the profile visibility level |\n| `priority` | `int` | ❌ No | `-1 (means not set)` | This is only valid for SUBSCRIPTION as it's used to handle multiple subscription scenario |\n| `code` | `string` | ❌ No | — | PLAN code business identifier |\n| `version` | `int` | ❌ No | `0` | Version number for plan revisions |\n| `priceInPaise` | `number` | ❌ No | — | Plan price stored in paise (₹1 = 100 paise) |\n| `type` | `enum` | ❌ No | — | Type of plan (`SUBSCRIPTION` or `ADD_ON`) |\n| `status` | `enum` | ❌ No | — | DRAFT or COMPLETE |\n| `createdAt` | `timestamp` | ❌ No | Auto-generated | Record creation timestamp |\n| `updatedAt` | `timestamp` | ❌ No | Auto-generated | Record last updated timestamp |"
