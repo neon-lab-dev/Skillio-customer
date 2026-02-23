@@ -11,7 +11,7 @@ export class PlanDetails {
     @AutoMap()
     validity?: number;
     @AutoMap()
-    profileVisibility?: ProfileVisibility;
+    profileVisibility?: ProfileVisibility; 
     @AutoMap()
     priceInPaise?: number;
     @AutoMap()
