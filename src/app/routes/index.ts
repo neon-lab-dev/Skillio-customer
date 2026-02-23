@@ -12,11 +12,11 @@ const router = Router();
 
 const moduleRoutes = [
     {
-        path: "/verificationRequest",
+        path: "/v1/verificationRequest",
         route: verificationRoutes
     },
     {
-        path: "/document",
+        path: "/v1/document",
         route: documentRoutes
     } , 
     {
