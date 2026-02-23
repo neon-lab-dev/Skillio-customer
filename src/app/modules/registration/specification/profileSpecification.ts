@@ -30,6 +30,8 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         this.filterByCountry(criteria, qb);
         this.filterByProfileType(criteria , qb);
         this.filterByProficiency(criteria, qb);
+        this.filterByCategory(criteria , qb);
+        this.filterBySubCategory(criteria , qb)
 
     }
 
@@ -148,6 +150,34 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
             `portfolio.proficiency = :prof`,
             {
                 prof: criteria.proficiency
+            }
+        )
+    }
+
+    private filterByCategory(
+        criteria: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!criteria.category) return qb;
+
+        return qb.andWhere(
+            `portfolio.category = :cat`,
+            {
+                cat: criteria.category
+            }
+        )
+    }
+
+    private filterBySubCategory(
+        criteria: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!criteria.subCategory) return qb;
+
+        return qb.andWhere(
+            `portfolio.subCategory= :subCat`,
+            {
+                subCat: criteria.subCategory
             }
         )
     }

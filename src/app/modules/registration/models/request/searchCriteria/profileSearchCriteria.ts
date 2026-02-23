@@ -21,6 +21,10 @@ export class ProfileSearchCriteria extends SearchCriteria implements AppRequest{
 
     profileType!: ProfileType;
 
-    proficiency!: proficiecy
+    proficiency!: proficiecy;
+
+    category!: string;
+
+    subCategory!: string;
 
 }

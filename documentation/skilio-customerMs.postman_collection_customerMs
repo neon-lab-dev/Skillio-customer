@@ -24,11 +24,12 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/verificationRequest",
+              "raw": "{{serverUrl}}/v1/verificationRequest",
               "host": [
                 "{{serverUrl}}"
               ],
               "path": [
+                "v1",
                 "verificationRequest"
               ]
             },
@@ -7337,14 +7338,14 @@
           ]
         },
         {
-          "name": "get profiles(admin)",
+          "name": "get profiles",
           "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Njg1NTYyODQsImV4cCI6MTc2ODU1OTg4NH0.DqKt7IDK2_2y1M7atiJTDWFm2OOwYUo0NYhitMPSuw4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzE4NTgxODYsImV4cCI6MTc3MTg2MTc4Nn0.pOskKoJ7kcNl8bmyPK7cvgINCR-07KBts500wo0wClk",
                   "type": "string"
                 }
               ]
@@ -7352,26 +7353,21 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{serverUrl}}/v1/profile?ids=ec72a00b-b291-4b35-a513-79f4e1fc3598 , 43a184b3-2b10-42d3-adbb-7bb9feb670d1",
+              "raw": "{{serverUrl}}/profile?perPage=10&page=1&category=Music&subCategory=Drummer",
               "host": [
                 "{{serverUrl}}"
               ],
               "path": [
-                "v1",
                 "profile"
               ],
               "query": [
                 {
                   "key": "perPage",
-                  "value": "10",
-                  "type": "text",
-                  "disabled": true
+                  "value": "10"
                 },
                 {
                   "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
+                  "value": "1"
                 },
                 {
                   "key": "nickName",
@@ -7381,13 +7377,13 @@
                 },
                 {
                   "key": "profileType",
-                  "value": "INDIVIDUAL",
+                  "value": "INDIVIDUAL | GROUP",
                   "type": "text",
                   "disabled": true
                 },
                 {
                   "key": "proficiency",
-                  "value": "PROFESSIONAL",
+                  "value": "PROFESSIONAL | SKILLED",
                   "type": "text",
                   "disabled": true
                 },
@@ -7418,7 +7414,15 @@
                 {
                   "key": "ids",
                   "value": "ec72a00b-b291-4b35-a513-79f4e1fc3598 , 43a184b3-2b10-42d3-adbb-7bb9feb670d1",
-                  "type": "text"
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "Music"
+                },
+                {
+                  "key": "subCategory",
+                  "value": "Drummer"
                 }
               ]
             },
@@ -14365,6 +14369,29 @@
         }
       ],
       "description": "API bundle for user Subscriptions"
+    },
+    {
+      "name": "planAggregator",
+      "item": [
+        {
+          "name": "fetch planAggregator",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/planAggregator",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "planAggregator"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
