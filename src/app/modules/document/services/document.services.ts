@@ -8,6 +8,10 @@ import cloudinaryServices from "./cloudinaryServices";
 import AppError from "../../../errors/appError";
 import { getDocumentConfig } from "../config/documentConfig";
 import { Document } from "../../../entity/documentEntity";
+import { Loggable } from "@neon-lab-dev/platform";
+import { FetchDocumentsRequest } from "../models/request/fetchDocumentsRequest";
+import { FetchDocumentsResponseDtoBuilder } from "../models/builders/fetchDocumentsResponseDtoBuilder";
+import { FetchDocumentsResponseDto } from "../models/response/fetchDocumentsResponseDto";
 
 class DocumentService{
 
@@ -74,6 +78,13 @@ class DocumentService{
             url: document.url,
             type: document.type
         } };
+    }
+
+    @Loggable()
+    public async fetchDocuments(req: FetchDocumentsRequest):Promise<FetchDocumentsResponseDto[]>{
+        const entities= await documentRepository.fetchDocumentByPortfolio(req.portfolioId);
+
+        return FetchDocumentsResponseDtoBuilder.builder().ofArray(entities);
     }
 
     // update a document(profile picture)
