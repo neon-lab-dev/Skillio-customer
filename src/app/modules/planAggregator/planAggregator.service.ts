@@ -52,6 +52,16 @@ class PlanAggregatorService{
         }
         return PlanAggregatorResponseDtoBuilder.builder().of(res).build();
     }
+
+    @Loggable()
+    public async reduceCallLimits(portfolioId:string){
+        return await this.repository.reduceCallLimits(portfolioId);
+    }
+
+    @Loggable()
+    public async reduceChatLimits(portfolioId:string){
+        return await this.repository.reduceChatLimits(portfolioId);
+    }
 }
 
 export default new PlanAggregatorService()
