@@ -31,7 +31,7 @@ export class Portfolio extends BaseEntity{
     @OneToMany(()=>Document , document=> document.portfolio , {
         cascade:true,
     })
-    document!: Document;
+    document!: Document[];
 
     @Column({type:"uuid"})
     profileId!: string;

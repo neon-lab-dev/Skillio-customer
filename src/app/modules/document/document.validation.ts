@@ -59,3 +59,7 @@ export const deleteDocumentsSchema = z.object({
     error: requestMandatoryError
   }),
 })
+
+export const fetchDocumentsSchema= z.object({
+  portfolioId: IS_MANDATORY_SCHEMA("portfolioId")
+}).strict()

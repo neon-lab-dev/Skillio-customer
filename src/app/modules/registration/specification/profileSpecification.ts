@@ -30,18 +30,17 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         this.filterByCountry(criteria, qb);
         this.filterByProfileType(criteria , qb);
         this.filterByProficiency(criteria, qb);
+        this.filterByCategory(criteria , qb);
+        this.filterBySubCategory(criteria , qb)
+
     }
 
     private applySelectiveJoins(qb: SelectQueryBuilder<Profile>): void {
-        qb.leftJoin(`${this.alias}.address`, 'address')
-          .addSelect(['address.city', 'address.country']);
-
-        qb.leftJoin(`${this.alias}.contacts`, 'contact')
-          .addSelect(['contact.type', 'contact.value']);
-
-        qb.leftJoin(`${this.alias}.portfolio`, 'portfolio')
-          .addSelect(['portfolio.proficiency']);
-    }
+     qb.leftJoinAndSelect(`${this.alias}.address`, 'address')
+      .leftJoinAndSelect(`${this.alias}.contacts`, 'contact')
+      .leftJoinAndSelect(`${this.alias}.portfolio`, 'portfolio')
+      .leftJoinAndSelect('portfolio.document' , 'document')
+    } 
 
     private filterByIdsIn(
         criteria: ProfileSearchCriteria,
@@ -151,6 +150,34 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
             `portfolio.proficiency = :prof`,
             {
                 prof: criteria.proficiency
+            }
+        )
+    }
+
+    private filterByCategory(
+        criteria: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!criteria.category) return qb;
+
+        return qb.andWhere(
+            `portfolio.category = :cat`,
+            {
+                cat: criteria.category
+            }
+        )
+    }
+
+    private filterBySubCategory(
+        criteria: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!criteria.subCategory) return qb;
+
+        return qb.andWhere(
+            `portfolio.subCategory= :subCat`,
+            {
+                subCat: criteria.subCategory
             }
         )
     }
