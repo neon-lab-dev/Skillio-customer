@@ -17,6 +17,7 @@ import { PaymentRequestBuilder } from "../../../service/payment-proxy/models/bui
 import { SyncSubscriptionStatusRequest } from "../models/request/request.sync";
 import { PaymentLinkStatusRequest } from "../../../service/payment-proxy/models/dto.request.payment.link.status";
 import { FAILED, SUCCESS } from "../../../service/payment-proxy/constants/constants.payment.proxy";
+import planAggregatorService from "../../planAggregator/planAggregator.service";
 
 class UserSubscriptionService {
 
@@ -39,6 +40,12 @@ class UserSubscriptionService {
         let paymentResponse = await this.initiatePayment(planMaster, loggedInUserProfile);
         let entity = await this.fetchEntity(planMaster, loggedInUserProfile, paymentResponse);
         let savedEntity = await this.repository.save(entity);
+        planAggregatorService.aggregate({
+            callLimits: planMaster.callLimits,
+            chatLimits:planMaster.chatLimits,
+            profileVisibility: planMaster.profileVisibility,
+            planId: planMaster.id
+        } , loggedInUserProfile.portfolio.id)
         return UserSubscriptionBuilder.builder()
                 .of(savedEntity!)
                 .build();
