@@ -7,6 +7,7 @@ import { UserSubscriptionEntity } from "../modules/entity/UserSubscriptionEntity
 import { Sensitive } from "@neon-lab-dev/platform";
 import { HiringRate } from "./hiringRate";
 import { Follows } from "./follows";
+import { PlanAggregator } from "../modules/entity/planAggregator";
 
 @Entity("portfolio")
 @Index("IDX_CATEGORY_SUBCATEGORY" , ["category" , "subCategory"])
@@ -58,5 +59,11 @@ export class Portfolio extends BaseEntity{
         cascade:true,
     })
     follows?: Follows
+
+    @OneToOne(()=> PlanAggregator , planAggregator=> planAggregator.portfolio,{
+        cascade:true,
+        lazy:true
+    })
+    planAggregator?: PlanAggregator
     
 }
