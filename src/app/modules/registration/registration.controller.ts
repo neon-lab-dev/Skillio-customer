@@ -41,12 +41,12 @@ class RegistrationController{
 
 
     // get profile
-    getProfile= controllerLogging(
+    getShortProfile= controllerLogging(
         "RegistrationController.getProfile",
         catchAsyncError(async(req:Request , res:Response)=>{
         const {id}= req.params;
 
-        const result= await registrationProxy.getProfile(id as string);
+        const result= await registrationProxy.getShortProfile(id as string);
 
         return sendResponse(res , {
             statusCode: 200,

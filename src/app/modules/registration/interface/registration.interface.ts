@@ -1,3 +1,5 @@
+import { SubscriptionStatus } from "../../userSubscription/enums/SubscriptionStatus";
+import { PlanDetails } from "../../userSubscription/models/dto/dto.plan.details";
 import { contactType, proficiecy, ProfileType, roles } from "../enums/registrationEnum";
 import Decimal from "decimal.js"
 

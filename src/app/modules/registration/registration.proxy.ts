@@ -69,11 +69,11 @@ class RegistrationProxy{
     })
 
     // get profile
-    getProfile= proxyLogging(
+    getShortProfile= proxyLogging(
         "RegistrationProxy",
         "getProfile",
         async(id:string)=>{
-        return await registrationServices.getProfile(id);
+        return await registrationServices.getShortProfile(id);
     })
 
 

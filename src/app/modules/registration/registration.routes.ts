@@ -12,10 +12,12 @@ import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSe
 import updateProfileStatusApi from "./api/updateProfileStatusApi";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
 import { FetchHiringRateApi } from "./api/fetchHiringRateApi";
+import { FetchProfileDetailsApi } from "./api/fetchProfileDetailsApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
 const fetchHiringRateApi= new FetchHiringRateApi();
+const fetchProfileDetailsApi = new FetchProfileDetailsApi();
 
 router.post(
     "/" ,
@@ -46,14 +48,22 @@ router.get(
 )
 router.get(
     "/:id", 
-    registrationController.getProfile
+    registrationController.getShortProfile
 );
+
+router.get(
+    "/full/:id",
+    verifyToken,
+    authorizeRole.validateRole(roles.ADMIN),
+    asyncApiHandler(fetchProfileDetailsApi)
+)
+
 router.get(
     "/" ,
     verifyToken , 
-    authorizeRole.validateRole(roles.ADMIN) ,
     createCriteriaMiddleWare(ProfileSearchCriteria , searchCriteriaBuilderFactory), 
     asyncApiHandler(fetchProfilesApi) 
 )
+
 
 export const registrationRoutes = router;

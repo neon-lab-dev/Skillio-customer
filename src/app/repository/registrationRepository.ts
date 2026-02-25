@@ -68,7 +68,7 @@ class RegistrationRepository extends BaseRepository<Profile>{
     findProfileById= async(id:string)=>{
         return await this.repository.findOne({
             where:{id},
-            relations:["contacts" , "address" , "portfolio" , "portfolio.follows"  , "online"]
+            relations:["contacts" , "address" , "portfolio" , "portfolio.follows" , "portfolio.hiringRate"   , "online"]
         });
     }
 

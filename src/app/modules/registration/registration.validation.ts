@@ -314,3 +314,7 @@ export const updateProfileStatusSchema=z.object({
 export const fetchHiringRateSchema=z.object({
     portfolioId: IS_MANDATORY_SCHEMA("portfolioId")
 })
+
+export const fetchProfileDetailsSchema= z.object({
+    id: IS_MANDATORY_SCHEMA("id")
+}).strict()
