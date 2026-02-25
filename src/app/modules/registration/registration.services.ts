@@ -30,6 +30,9 @@ import { FetchHiringRateRequest } from "./models/request/fetchHiringRateRequest"
 import { HiringRateDto } from "./models/dto/dto.hiringRate";
 import { HiringRateDtoBuilder } from "./models/builder/hiringRateDtoBuilder";
 import { HiringRate } from "../../entity/hiringRate";
+import { FetchProfileDetailsRequest } from "./models/request/fetchProfileDetailsRequest";
+import { FetchProfileDetailsDtoBuilder } from "./models/builder/fetchProfileDetailsDtoBuilder";
+import { FetchProfileDetailsResponseDto } from "./models/dto/dto.fetch.profile.details";
 
 class RegistrationService{
 
@@ -194,7 +197,7 @@ class RegistrationService{
     })
 
     // get profile
-    getProfile= serviceLogging(
+    getShortProfile= serviceLogging(
         "RegistrationService",
         "getProfile",
         async(id:string)=>{
@@ -278,6 +281,15 @@ class RegistrationService{
                 }
         }
     })
+
+    @Loggable()
+    public async getProfileDetails(req: FetchProfileDetailsRequest):Promise<FetchProfileDetailsResponseDto>{
+        const profile= await registrationRepository.findProfileById(req.id);
+        if(!profile){
+            throw new NotFoundError("profile not found");
+        }
+        return FetchProfileDetailsDtoBuilder.builder().of(profile).build();
+    }
 
     // get profiles
     @Loggable()
