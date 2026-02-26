@@ -130,12 +130,12 @@ class RegistrationService{
             })
         }
 
-        const document= await documentServices.getDocument(profileDocumentId)
+        const document= await documentServices.getDocument([profileDocumentId])
 
         const shortUser={
             referenceId: newProfile.id,
             nickName: newProfile.nickName,
-            profilePictureUrl: document.document.url
+            profilePictureUrl: document[0].url
         }
 
         // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})

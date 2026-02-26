@@ -33,8 +33,8 @@ class DocumentProxy{
         return await documentServices.createDocument(documentData , req);
     }
 
-    getDocument= async(id:string)=>{
-        return await documentServices.getDocument(id);
+    getDocument= async(ids:string[])=>{
+        return await documentServices.getDocument(ids);
     }
 
     // update a document(profile picture)

@@ -23,8 +23,9 @@ class DocumentController {
 
     // get document controller
     getDocument= catchAsyncError(async(req:Request , res:Response , next:NextFunction)=>{
-        const {id}= req.params;
-        const result= await documentProxy.getDocument(id as string);
+        const ids= req.query.ids as string;
+        const documentIds= ids.split(',')
+        const result= await documentProxy.getDocument(documentIds);
 
         return sendResponse(res , {
             statusCode: 200,

@@ -64,20 +64,10 @@ class DocumentService{
         };
     }
 
-    // get single documnet
-    getDocument= async(id:string)=>{
-        const document= await documentRepository.findOneById(id);
+    getDocument= async(ids:string[]):Promise<FetchDocumentsResponseDto[]>=>{
+        const documents= await documentRepository.findByIds(ids);
 
-        if(!document){
-            logger.error("Document not found");
-            throw new AppError(404, "Document not found");
-        }
-
-        return { document:{
-            id: document.id,
-            url: document.url,
-            type: document.type
-        } };
+        return FetchDocumentsResponseDtoBuilder.builder().ofArray(documents);
     }
 
     @Loggable()
