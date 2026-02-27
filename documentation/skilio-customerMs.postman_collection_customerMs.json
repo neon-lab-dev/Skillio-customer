@@ -7410,12 +7410,12 @@
           },
           "response": [
             {
-              "name": "Success: profiles fetched successfully",
+              "name": "Success: profile fetched successfully",
               "originalRequest": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{serverUrl}}/v1/profile",
+                  "raw": "{{serverUrl}}/v1/profile?perPage=10&page=1&status=APPROVED, PENDING",
                   "host": [
                     "{{serverUrl}}"
                   ],
@@ -7426,37 +7426,33 @@
                   "query": [
                     {
                       "key": "perPage",
-                      "value": "10",
-                      "type": "text",
-                      "disabled": true
+                      "value": "10"
                     },
                     {
                       "key": "page",
-                      "value": "1",
-                      "type": "text",
-                      "disabled": true
+                      "value": "1"
                     },
                     {
                       "key": "nickName",
-                      "value": "doe2",
+                      "value": "alice",
                       "type": "text",
                       "disabled": true
                     },
                     {
                       "key": "profileType",
-                      "value": "INDIVIDUAL",
+                      "value": "INDIVIDUAL | GROUP",
                       "type": "text",
                       "disabled": true
                     },
                     {
                       "key": "proficiency",
-                      "value": "PROFESSIONAL",
+                      "value": "PROFESSIONAL | SKILLED",
                       "type": "text",
                       "disabled": true
                     },
                     {
                       "key": "email",
-                      "value": "doe19@gmail.com",
+                      "value": "alice@gmail.com",
                       "type": "text",
                       "disabled": true
                     },
@@ -7468,7 +7464,7 @@
                     },
                     {
                       "key": "city",
-                      "value": "Kathmandu",
+                      "value": "Kathm",
                       "type": "text",
                       "disabled": true
                     },
@@ -7481,128 +7477,21 @@
                     {
                       "key": "ids",
                       "value": "ec72a00b-b291-4b35-a513-79f4e1fc3598 , 43a184b3-2b10-42d3-adbb-7bb9feb670d1",
-                      "type": "text",
-                      "disabled": true
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": null,
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Credentials",
-                  "value": "true"
-                },
-                {
-                  "key": "Vary",
-                  "value": "Origin"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "2922"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"b6a-Q1+Gl+pMoOYcZYrLGnvVJaKzr0U\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 16 Jan 2026 10:04:47 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"61f4afb7-e16f-496e-a78b-70d5921b3a9c\",\n                \"nickName\": \"alice33\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    null\n                ],\n                \"phoneNumber\": [\n                    \"+919876541933\"\n                ]\n            },\n            {\n                \"id\": \"4f9a265a-1e7d-4e3f-9ccf-e42e026cbf16\",\n                \"nickName\": \"alice32\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice32@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"c4602b6e-50fa-4e0d-9782-c2a36b34c1ee\",\n                \"nickName\": \"alice31\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice31@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"bf33be0e-1b36-4fd0-85c4-586d0af92f02\",\n                \"nickName\": \"alice30\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice30@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"d72393c7-c0a7-4699-aef8-300b74f36ea7\",\n                \"nickName\": \"alice29\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice29@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"a4927a90-8805-4a02-a8c7-6532dc9510b3\",\n                \"nickName\": \"alice28\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice28@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"1baccd2d-7629-4139-8ec6-ced3fe4c61af\",\n                \"nickName\": \"alice27\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    null\n                ],\n                \"phoneNumber\": [\n                    \"+919876541927\"\n                ]\n            },\n            {\n                \"id\": \"01800940-0b0e-4137-868e-85794a443b07\",\n                \"nickName\": \"alice26\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice26@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"37d165d9-c18f-443b-8ce7-ac681d0e584f\",\n                \"nickName\": \"alice25\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice25@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            },\n            {\n                \"id\": \"3c30e919-8b83-4a7b-a4d9-c7a616ee6412\",\n                \"nickName\": \"alice24\",\n                \"firstName\": \"john\",\n                \"lastName\": \"alice\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"email\": [\n                    \"alice24@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            }\n        ],\n        \"total\": 45,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
-            },
-            {
-              "name": "Success: profile fetched with ids",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{serverUrl}}/v1/profile?ids=ec72a00b-b291-4b35-a513-79f4e1fc3598 , 43a184b3-2b10-42d3-adbb-7bb9feb670d1",
-                  "host": [
-                    "{{serverUrl}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "profile"
-                  ],
-                  "query": [
-                    {
-                      "key": "perPage",
-                      "value": "10",
-                      "type": "text",
                       "disabled": true
                     },
                     {
-                      "key": "page",
-                      "value": "1",
-                      "type": "text",
+                      "key": "category",
+                      "value": "Music",
                       "disabled": true
                     },
                     {
-                      "key": "nickName",
-                      "value": "doe2",
-                      "type": "text",
+                      "key": "subCategory",
+                      "value": "Drummer",
                       "disabled": true
                     },
                     {
-                      "key": "profileType",
-                      "value": "INDIVIDUAL",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "proficiency",
-                      "value": "PROFESSIONAL",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "email",
-                      "value": "doe19@gmail.com",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "phoneNumber",
-                      "value": "%2B919876543112",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "city",
-                      "value": "Kathmandu",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "country",
-                      "value": "India",
-                      "type": "text",
-                      "disabled": true
-                    },
-                    {
-                      "key": "ids",
-                      "value": "ec72a00b-b291-4b35-a513-79f4e1fc3598 , 43a184b3-2b10-42d3-adbb-7bb9feb670d1",
+                      "key": "status",
+                      "value": "APPROVED, PENDING",
                       "type": "text"
                     }
                   ]
@@ -7630,15 +7519,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "684"
+                  "value": "1356"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"2ac-8FtP9W0dUbro0I0a+KBNepJRWKY\""
+                  "value": "W/\"54c-t0ihW8oQWDSq7NhEGwu7jCygm0U\""
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 16 Jan 2026 10:07:33 GMT"
+                  "value": "Fri, 27 Feb 2026 11:48:58 GMT"
                 },
                 {
                   "key": "Connection",
@@ -7650,7 +7539,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"43a184b3-2b10-42d3-adbb-7bb9feb670d1\",\n                \"nickName\": \"doe3\",\n                \"firstName\": \"john\",\n                \"lastName\": \"leanon\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"REQUESTED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"PROFESSIONAL\",\n                \"email\": [\n                    null\n                ],\n                \"phoneNumber\": [\n                    \"+938473292889\"\n                ]\n            },\n            {\n                \"id\": \"ec72a00b-b291-4b35-a513-79f4e1fc3598\",\n                \"nickName\": \"doe2\",\n                \"firstName\": \"john\",\n                \"lastName\": \"doe\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"CREATED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"PROFESSIONAL\",\n                \"email\": [\n                    \"john2@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    null\n                ]\n            }\n        ],\n        \"total\": 2,\n        \"page\": 1,\n        \"prePage\": 10,\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\n                \"nickName\": \"alice3\",\n                \"firstName\": \"john\",\n                \"lastName\": \"doe\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"PENDING\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"PROFESSIONAL\",\n                \"portfolioId\": \"e415d0df-12ed-466a-949f-16cefb257499\",\n                \"email\": [\n                    \"alice3@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    \"+919876541913\"\n                ],\n                \"document\": [\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174877/skilioDocument/ltgavusixqx5393bkdkq.jpg\",\n                        \"type\": \"EVENT\"\n                    },\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174904/skilioDocument/moox7xvzw7sscy7ntbea.jpg\",\n                        \"type\": \"VIDEO\"\n                    },\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174945/skilioDocument/nn9rgmxpbr1uepqhdmtt.jpg\",\n                        \"type\": \"IMAGE\"\n                    },\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174817/skilioDocument/l36sskflf0cr61efyca2.jpg\",\n                        \"type\": \"PROFILE_PHOTO\"\n                    }\n                ]\n            },\n            {\n                \"id\": \"ac992ccb-a1ec-4571-bfc6-af86f53f424a\",\n                \"nickName\": \"alice10\",\n                \"firstName\": \"john\",\n                \"lastName\": \"doe\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"APPROVED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"portfolioId\": \"c63bc16b-ea6d-4878-aff2-42158efc35e8\",\n                \"email\": [\n                    \"alice10@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    \"+919876541910\"\n                ],\n                \"document\": []\n            }\n        ],\n        \"total\": 2,\n        \"page\": \"1\",\n        \"prePage\": \"10\",\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
             },
             {
               "name": "Error: unauthorized success",
@@ -7773,6 +7662,137 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"message\": \"unauthorized access\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"unauthorized access\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Succes: profile fetched with ids",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile?perPage=10&page=1&ids=ac992ccb-a1ec-4571-bfc6-af86f53f424a, b79688ed-3516-47c3-a9e6-a70cf94b8659&status=APPROVED, PENDING",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile"
+                  ],
+                  "query": [
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "nickName",
+                      "value": "alice",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "profileType",
+                      "value": "INDIVIDUAL | GROUP",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "proficiency",
+                      "value": "PROFESSIONAL | SKILLED",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "email",
+                      "value": "alice@gmail.com",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "phoneNumber",
+                      "value": "%2B919876543112",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "city",
+                      "value": "Kathm",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "country",
+                      "value": "India",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "ids",
+                      "value": "ac992ccb-a1ec-4571-bfc6-af86f53f424a, b79688ed-3516-47c3-a9e6-a70cf94b8659"
+                    },
+                    {
+                      "key": "category",
+                      "value": "Music",
+                      "disabled": true
+                    },
+                    {
+                      "key": "subCategory",
+                      "value": "Drummer",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "APPROVED, PENDING",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1357"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"54d-zNxY327BzElQUDn/DrgoxaEnOhk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 12:01:36 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": \"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\n                \"nickName\": \"alice3\",\n                \"firstName\": \"john\",\n                \"lastName\": \"doe\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"APPROVED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"PROFESSIONAL\",\n                \"portfolioId\": \"e415d0df-12ed-466a-949f-16cefb257499\",\n                \"email\": [\n                    \"alice3@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    \"+919876541913\"\n                ],\n                \"document\": [\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174877/skilioDocument/ltgavusixqx5393bkdkq.jpg\",\n                        \"type\": \"EVENT\"\n                    },\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174904/skilioDocument/moox7xvzw7sscy7ntbea.jpg\",\n                        \"type\": \"VIDEO\"\n                    },\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174945/skilioDocument/nn9rgmxpbr1uepqhdmtt.jpg\",\n                        \"type\": \"IMAGE\"\n                    },\n                    {\n                        \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1772174817/skilioDocument/l36sskflf0cr61efyca2.jpg\",\n                        \"type\": \"PROFILE_PHOTO\"\n                    }\n                ]\n            },\n            {\n                \"id\": \"ac992ccb-a1ec-4571-bfc6-af86f53f424a\",\n                \"nickName\": \"alice10\",\n                \"firstName\": \"john\",\n                \"lastName\": \"doe\",\n                \"groupName\": \"\",\n                \"profileType\": \"INDIVIDUAL\",\n                \"status\": \"APPROVED\",\n                \"city\": \"Kathmandu\",\n                \"country\": \"India\",\n                \"proficiency\": \"SKILLED\",\n                \"portfolioId\": \"c63bc16b-ea6d-4878-aff2-42158efc35e8\",\n                \"email\": [\n                    \"alice10@gmail.com\"\n                ],\n                \"phoneNumber\": [\n                    \"+919876541910\"\n                ],\n                \"document\": []\n            }\n        ],\n        \"total\": 2,\n        \"page\": \"1\",\n        \"prePage\": \"10\",\n        \"sortBy\": \"createdAt\",\n        \"sortDirection\": \"DESC\"\n    }\n}"
             }
           ]
         },
