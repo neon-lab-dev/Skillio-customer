@@ -1354,7 +1354,7 @@
               "formdata": [
                 {
                   "key": "type",
-                  "value": "PROFILE_PHOTO",
+                  "value": "",
                   "type": "text"
                 },
                 {
@@ -1370,11 +1370,12 @@
               ]
             },
             "url": {
-              "raw": "{{serverUrl}}/document",
+              "raw": "{{serverUrl}}/v1/document",
               "host": [
                 "{{serverUrl}}"
               ],
               "path": [
+                "v1",
                 "document"
               ]
             },
@@ -2977,42 +2978,55 @@
           ]
         },
         {
-          "name": "get a document",
+          "name": "get documents",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{serverUrl}}/document/b6890f46-703b-47b8-b7be-f09563db1549",
+              "raw": "{{serverUrl}}/v1/document/?ids=30c39642-fc39-4a91-9d0e-23819f96f392,9d73975c-4f99-4e6c-955d-bfd8cc44b98a",
               "host": [
                 "{{serverUrl}}"
               ],
               "path": [
+                "v1",
                 "document",
-                "b6890f46-703b-47b8-b7be-f09563db1549"
+                ""
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "30c39642-fc39-4a91-9d0e-23819f96f392,9d73975c-4f99-4e6c-955d-bfd8cc44b98a"
+                }
               ]
             },
             "description": "### Retrieve Document by ID\n\nThis endpoint allows users to retrieve a document using its unique identifier.\n\n#### Request\n\n- **Method**: GET\n    \n- **URL**: `{{serverUrl}}/document/{documentId}`\n    \n- **Path Parameter**:\n    \n    - `documentId`: The unique identifier of the document to be retrieved. In this example, the document ID is `b6890f46-703b-47b8-b7be-f09563db1548`.\n        \n\n#### Response\n\nThe expected response will be in JSON format, containing the following structure:\n\n- **Success**: A boolean indicating whether the request was successful.\n    \n- **Message**: A string that may contain additional information or context about the request.\n    \n- **Data**: An object that may contain the retrieved document details, including:\n    \n    - `id`: The unique identifier of the document.\n        \n    - `url`: The URL where the document can be accessed.\n        \n    - `type`: The type of document.\n        \n\n#### Example Responses\n\n- { \"success\": true, \"message\": \"\", \"data\": { \"document\": { \"id\": \"document_id\", \"url\": \"document_url\", \"type\": \"document_type\" } } }\n    \n- { \"success\": true, \"message\": \"\", \"errorSource\": \\[ { \"path\": \"\", \"message\": \"\" } \\] }\n    \n\n#### Notes\n\n- A status code of `404` indicates that the requested document was not found. Ensure that the `documentId` provided is correct.\n    \n- The `success` field will always return `true` even in the case of an error, so users should check the `errorSource` for details."
           },
           "response": [
             {
-              "name": "Sucess: get a single document",
+              "name": "Success: documents fetched successfully",
               "originalRequest": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{serverUrl}}/document/b6890f46-703b-47b8-b7be-f09563db1549",
+                  "raw": "{{serverUrl}}/document/?ids=30c39642-fc39-4a91-9d0e-23819f96f392,9d73975c-4f99-4e6c-955d-bfd8cc44b98a",
                   "host": [
                     "{{serverUrl}}"
                   ],
                   "path": [
                     "document",
-                    "b6890f46-703b-47b8-b7be-f09563db1549"
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "30c39642-fc39-4a91-9d0e-23819f96f392,9d73975c-4f99-4e6c-955d-bfd8cc44b98a"
+                    }
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -3032,15 +3046,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "256"
+                  "value": "415"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"100-Y/73MpCjIE7EylHnVKZWU2oSwbs\""
+                  "value": "W/\"19f-olEC6d7knDlDRVpJRo3dwGgFCvI\""
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 10 Oct 2025 09:49:54 GMT"
+                  "value": "Thu, 26 Feb 2026 08:14:55 GMT"
                 },
                 {
                   "key": "Connection",
@@ -3052,95 +3066,50 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Document fetched successfully\",\n    \"data\": {\n        \"document\": {\n            \"id\": \"b6890f46-703b-47b8-b7be-f09563db1549\",\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760085491/skilioDocument/qmgcau5cw51fpwst4e3v.jpg\",\n            \"type\": \"PROFILE_PHOTO\"\n        }\n    }\n}"
-            },
-            {
-              "name": "Error: document not found",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{serverUrl}}/document/b6890f46-703b-47b8-b7be-f09563db1548",
-                  "host": [
-                    "{{serverUrl}}"
-                  ],
-                  "path": [
-                    "document",
-                    "b6890f46-703b-47b8-b7be-f09563db1548"
-                  ]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Credentials",
-                  "value": "true"
-                },
-                {
-                  "key": "Vary",
-                  "value": "Origin"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "107"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"6b-DjxRgREPuBS1Mc3c8YlA4pNbgF0\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Fri, 10 Oct 2025 09:50:41 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"success\": false,\n    \"message\": \"Document not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Document not found\"\n        }\n    ]\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Document fetched successfully\",\n    \"data\": [\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760085447/skilioDocument/nm1ereueyr5k8jfrj7mg.jpg\",\n            \"type\": \"PROFILE_PHOTO\",\n            \"id\": \"30c39642-fc39-4a91-9d0e-23819f96f392\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1766644621/skilioDocument/vj6kai1bkqfrp3mi3vho.jpg\",\n            \"type\": \"VIDEO\",\n            \"id\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\"\n        }\n    ]\n}"
             }
           ]
         },
         {
           "name": "fetch documents by portfolioId",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzIwOTMzNzcsImV4cCI6MTc3MjA5Njk3N30.4jKNsJaXkLCzT8RdTk2nnPhnynCzvx0j8X5QDCyqR8A",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/document/cabcf0ee-4da9-45ad-bc7b-46ce15554f10",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "document",
+                "cabcf0ee-4da9-45ad-bc7b-46ce15554f10"
+              ]
+            }
           },
           "response": [
             {
-              "name": "Success: fetched documents successfully",
+              "name": "Success: documents fetched successfully",
               "originalRequest": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{serverUrl}}/document?portfolioId=8e44e0e0-572c-4f17-8556-9d97e859c9cb",
+                  "raw": "{{serverUrl}}/document/cabcf0ee-4da9-45ad-bc7b-46ce15554f10",
                   "host": [
                     "{{serverUrl}}"
                   ],
                   "path": [
-                    "document"
-                  ],
-                  "query": [
-                    {
-                      "key": "portfolioId",
-                      "value": "8e44e0e0-572c-4f17-8556-9d97e859c9cb"
-                    }
+                    "document",
+                    "cabcf0ee-4da9-45ad-bc7b-46ce15554f10"
                   ]
                 }
               },
@@ -3170,11 +3139,11 @@
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"2db-ZQdBzcwi0B93DJyL0FBvuEnB6J8\""
+                  "value": "W/\"2db-tPD/4CUQ7UXO07lQuAXJ35v2y0c\""
                 },
                 {
                   "key": "Date",
-                  "value": "Tue, 17 Feb 2026 08:36:32 GMT"
+                  "value": "Thu, 26 Feb 2026 08:11:27 GMT"
                 },
                 {
                   "key": "Connection",
@@ -3186,7 +3155,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760085491/skilioDocument/qmgcau5cw51fpwst4e3v.jpg\",\n            \"type\": \"PROFILE_PHOTO\",\n            \"id\": \"b6890f46-703b-47b8-b7be-f09563db1549\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760420090/skilioDocument/ptbwsmw4t1maxeq6wjb0.jpg\",\n            \"type\": \"VIDEO\",\n            \"id\": \"3e61a5fa-6d91-431c-b078-b70b9cea234c\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760420142/skilioDocument/pu6hak6wu2vvncqikt1a.jpg\",\n            \"type\": \"IMAGE\",\n            \"id\": \"fffdf949-11d7-47d0-8ae5-2c311f532fbe\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760420231/skilioDocument/u8ndrpaikbpq8qoq2uwo.jpg\",\n            \"type\": \"EVENT\",\n            \"id\": \"551f8eb8-bcc9-435b-96d6-67cab62f8703\"\n        }\n    ]\n}"
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1760085447/skilioDocument/nm1ereueyr5k8jfrj7mg.jpg\",\n            \"type\": \"PROFILE_PHOTO\",\n            \"id\": \"30c39642-fc39-4a91-9d0e-23819f96f392\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1766644621/skilioDocument/vj6kai1bkqfrp3mi3vho.jpg\",\n            \"type\": \"VIDEO\",\n            \"id\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1766644655/skilioDocument/ygnr7zzndundeh44ibfj.jpg\",\n            \"type\": \"IMAGE\",\n            \"id\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\"\n        },\n        {\n            \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1769410288/skilioDocument/fdayvd3z2gnycqnr01ag.jpg\",\n            \"type\": \"EVENT\",\n            \"id\": \"c6d0bc68-a0c4-4071-a995-c9a43553f78a\"\n        }\n    ]\n}"
             }
           ]
         }
@@ -3202,7 +3171,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice37\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541937\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice37@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"I have been performing for over 5 years in local events and studios.\",\r\n    \"totalEvents\": 25,\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\",\r\n    \"eventsDoneDocumentId\": \"c6d0bc68-a0c4-4071-a995-c9a43553f78a\"\r\n  } \r\n}\r\n",
+              "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice3\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"672cfed4-6e18-431d-911a-bd90567d4f68\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541913\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice3@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"follows\":{\r\n        \"instaFollwers\": 1500,\r\n        \"instaFollowing\": 320,\r\n        \"facebookFollowers\": 2400,\r\n        \"facebookFollowing\": 180\r\n    },\r\n    \"videoDocumentId\": \"8c9026b3-ef05-4b80-8684-cb676fbe41fd\",\r\n    \"imageDocumentId\": \"2456be71-d238-4587-ac4b-ecb9bf999c62\",\r\n    \"eventsDoneDocumentId\": \"2c39b017-8a34-41e1-af65-6de8ed55489c\"\r\n  } \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3210,14 +3179,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3001/api/v1/profile",
-              "protocol": "http",
+              "raw": "{{serverUrl}}/v1/profile",
               "host": [
-                "localhost"
+                "{{serverUrl}}"
               ],
-              "port": "3001",
               "path": [
-                "api",
                 "v1",
                 "profile"
               ]
@@ -6486,7 +6452,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"credential\":\"doe2\",\r\n    \"pin\":\"1234\"\r\n}   ",
+              "raw": "{\r\n    \"credential\":\"alice1\",\r\n    \"pin\":\"1234\"\r\n}   ",
               "options": {
                 "raw": {
                   "language": "json"
@@ -6494,14 +6460,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3001/api/v1/profile/login",
-              "protocol": "http",
+              "raw": "{{serverUrl}}/v1/profile/login",
               "host": [
-                "localhost"
+                "{{serverUrl}}"
               ],
-              "port": "3001",
               "path": [
-                "api",
                 "v1",
                 "profile",
                 "login"
@@ -7075,17 +7038,33 @@
         {
           "name": "get a profile",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "67b3e00e-46dd-4c44-8297-7cdaa938dd4e",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{serverUrl}}/v1/profile/2fe16619-b0fc-45c6-aa80-11aa328dff09",
+              "raw": "http://13.205.140.174/customer/api/v1/profile/67b3e00e-46dd-4c44-8297-7cdaa938dd4e",
+              "protocol": "http",
               "host": [
-                "{{serverUrl}}"
+                "13",
+                "205",
+                "140",
+                "174"
               ],
               "path": [
+                "customer",
+                "api",
                 "v1",
                 "profile",
-                "2fe16619-b0fc-45c6-aa80-11aa328dff09"
+                "67b3e00e-46dd-4c44-8297-7cdaa938dd4e"
               ]
             },
             "description": "[online/offline feature documentation](https://www.notion.so/online-offline-feature-using-nodejs-socket-io-294ea0d2b37c806f8db8f141b0ff6af0)\n\n**Purpose:**  \nFetch the profile details for a specific user or group by their unique profile ID.\n\n**Endpoint:**  \n`GET {{serverUrl}}/v1/profile/:profileId`\n\n**Path Parameter:**\n\n- `profileId` (string, required): The unique identifier of the profile to retrieve.\n    \n\n**Response Structure:**\n\n- `success` (boolean): Indicates if the request was successful.\n    \n- `message` (string): A message describing the result.\n    \n- `data` (object): Contains the profile details:\n    - `name` (string): Full name of the profile.\n        \n    - `nickName` (string): Nickname or username.\n        \n    - `portfolioId` (string): Associated portfolio identifier.\n        \n    - `bio` (string): Short biography or description.\n        \n    - `isSubscribed` (boolean): Subscription status.\n        \n    - `profilePictureId` (string|null): ID of the profile picture, if available.\n        \n    - `online` (object):\n        - `status` (string): Online status (e.g., OFFLINE, ONLINE).\n            \n        - `lastSeen` (string): ISO timestamp of last activity.\n            \n\n**Example Response:**\n\n``` json\n{\n  \"success\": true,\n  \"message\": \"Profile fetched successfully\",\n  \"data\": {\n    \"name\": \"john doee\",\n    \"nickName\": \"doe12\",\n    \"portfolioId\": \"df22be33-f58b-4473-9517-a4159808bbae\",\n    \"bio\": \"I have been performing for over 5 years ...\",\n    \"isSubscribed\": false,\n    \"profilePictureId\": null,\n    \"online\": {\n      \"status\": \"OFFLINE\",\n      \"lastSeen\": \"2025-10-24T09:43:25.748Z\"\n    }\n  }\n}\n\n ```"
@@ -7345,7 +7324,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzE4NTgxODYsImV4cCI6MTc3MTg2MTc4Nn0.pOskKoJ7kcNl8bmyPK7cvgINCR-07KBts500wo0wClk",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzIwOTMzNzcsImV4cCI6MTc3MjA5Njk3N30.4jKNsJaXkLCzT8RdTk2nnPhnynCzvx0j8X5QDCyqR8A",
                   "type": "string"
                 }
               ]
@@ -7353,7 +7332,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{serverUrl}}/profile?perPage=10&page=1&category=Music&subCategory=Drummer",
+              "raw": "{{serverUrl}}/profile?perPage=10&page=1&category=Music",
               "host": [
                 "{{serverUrl}}"
               ],
@@ -7422,7 +7401,8 @@
                 },
                 {
                   "key": "subCategory",
-                  "value": "Drummer"
+                  "value": "Drummer",
+                  "disabled": true
                 }
               ]
             },
@@ -7802,7 +7782,15 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": ""
+              "raw": "{{serverUrl}}/v1/profile/count",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "profile",
+                "count"
+              ]
             }
           },
           "response": [
@@ -7938,7 +7926,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3Njg1NTYyODQsImV4cCI6MTc2ODU1OTg4NH0.DqKt7IDK2_2y1M7atiJTDWFm2OOwYUo0NYhitMPSuw4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJkNGJmMjk1OC1lZDA3LTQ1NjUtOWU0Ny1mYWJkZWQ2M2I1ODkiLCJuaWNrTmFtZSI6ImFsaWNlMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3MjE5Mjk5MywiZXhwIjoxNzcyMTk2NTkzfQ.06feCrREuh-Fr4AsPiXG8g-N1xdWbOrpkx5K143QZaU",
                   "type": "string"
                 }
               ]
@@ -7947,7 +7935,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\":\"43a184b3-2b10-42d3-adbb-7bb9feb670d1\",\r\n    \"status\": \"CREATED\"\r\n}",
+              "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\r\n    \"status\": \"APPROVED\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -7955,13 +7943,14 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/profile",
+              "raw": "{{serverUrl}}/v1/profile/status",
               "host": [
                 "{{serverUrl}}"
               ],
               "path": [
                 "v1",
-                "profile"
+                "profile",
+                "status"
               ]
             }
           },
@@ -7973,7 +7962,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"id\":\"43a184b3-2b10-42d3-adbb-7bb9feb670d1\",\r\n    \"status\": \"CREATED\"\r\n}",
+                  "raw": "{\r\n    \"id\":\"43a184b3-2b10-42d3-adbb-7bb9feb670d1\",\r\n    \"status\": \"APPROVED\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -7981,13 +7970,14 @@
                   }
                 },
                 "url": {
-                  "raw": "{{serverUrl}}/v1/profile",
+                  "raw": "{{serverUrl}}/v1/profile/status",
                   "host": [
                     "{{serverUrl}}"
                   ],
                   "path": [
                     "v1",
-                    "profile"
+                    "profile",
+                    "status"
                   ]
                 }
               },
@@ -8036,13 +8026,13 @@
               "body": "{\n    \"success\": false,\n    \"message\": \"unauthorized access\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"unauthorized access\"\n        }\n    ]\n}"
             },
             {
-              "name": "Success: profile status updated successfully",
+              "name": "Error: invalid enum expeced PENDING | APPROVED | BLOCKED",
               "originalRequest": {
                 "method": "PUT",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"id\":\"43a184b3-2b10-42d3-adbb-7bb9feb670d1\",\r\n    \"status\": \"CREATED\"\r\n}",
+                  "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\r\n    \"status\": \"APPROVE\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -8050,13 +8040,84 @@
                   }
                 },
                 "url": {
-                  "raw": "{{serverUrl}}/v1/profile",
+                  "raw": "{{serverUrl}}/v1/profile/status",
                   "host": [
                     "{{serverUrl}}"
                   ],
                   "path": [
                     "v1",
-                    "profile"
+                    "profile",
+                    "status"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "166"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a6-wdcG5tPrsVn80COtOWbHbi8XDIw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 11:50:48 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"status\",\n            \"message\": \"Invalid option: expected one of \\\"PENDING\\\"|\\\"APPROVED\\\"|\\\"BLOCKED\\\"\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Success: profile status updated successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\r\n    \"status\": \"APPROVED\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/status",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "status"
                   ]
                 }
               },
@@ -8090,7 +8151,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 16 Jan 2026 10:35:36 GMT"
+                  "value": "Fri, 27 Feb 2026 11:50:07 GMT"
                 },
                 {
                   "key": "Connection",
@@ -8146,8 +8207,7 @@
               "query": [
                 {
                   "key": "portfolioId",
-                  "value": "d7429da5-051f-4465-aed2-343ae1ea76b3",
-                  "type": "text"
+                  "value": "d7429da5-051f-4465-aed2-343ae1ea76b3"
                 }
               ]
             }
@@ -8371,6 +8431,334 @@
                 {
                   "key": "Date",
                   "value": "Fri, 06 Feb 2026 10:30:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "get profile details(admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzE5OTY2MTEsImV4cCI6MTc3MjAwMDIxMX0.fCB5zLzqd93Mys41q8_fM7xtcrYqvwOTGX2bSHk-snQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/profile/full/8d0fbc44-5d10-4685-b757-247eaefe1eac",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "profile",
+                "full",
+                "8d0fbc44-5d10-4685-b757-247eaefe1eac"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: profile details fetched",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/profile/full/67b3e00e-46dd-4c44-8297-7cdaa938dd4e",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "full",
+                    "67b3e00e-46dd-4c44-8297-7cdaa938dd4e"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.24.0 (Ubuntu)"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Feb 2026 05:12:58 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2474"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9aa-Koky2jIzEb4549m2gtW1qfWe6cU\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"firstName\": \"john\",\n        \"lastName\": \"alice\",\n        \"nickName\": \"alice2\",\n        \"groupName\": \"\",\n        \"isSubscribed\": false,\n        \"profileType\": \"INDIVIDUAL\",\n        \"status\": \"CREATED\",\n        \"createdAt\": \"2026-02-12T11:20:50.215Z\",\n        \"updatedAt\": \"2026-02-12T11:20:50.215Z\",\n        \"portfolio\": {\n            \"id\": \"8b8bc674-71cf-43c3-9eb1-9600596d2369\",\n            \"createdAt\": \"2026-02-12T11:20:50.215Z\",\n            \"updatedAt\": \"2026-02-12T11:20:50.215Z\",\n            \"category\": \"Music\",\n            \"subCategory\": \"Guitarist\",\n            \"proficiency\": \"PROFESSIONAL\",\n            \"totalEvents\": 25,\n            \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\n            \"profileId\": \"67b3e00e-46dd-4c44-8297-7cdaa938dd4e\",\n            \"follows\": null,\n            \"__hiringRate__\": {\n                \"id\": \"hr2026021211205083e059e0\",\n                \"deleted\": false,\n                \"createdAt\": \"2026-02-12T11:20:50.215Z\",\n                \"updatedAt\": \"2026-02-12T11:20:50.215Z\",\n                \"hourlyPricing\": \"200.99\",\n                \"dailyPricing\": \"400.23\",\n                \"weeklyPricing\": \"1200.2332\",\n                \"monthlyPricing\": \"15000.222\",\n                \"portfolioId\": \"8b8bc674-71cf-43c3-9eb1-9600596d2369\"\n            },\n            \"document\": [\n                {\n                    \"id\": \"142c0adc-6020-4ba3-9fb4-a0bc29492cd6\",\n                    \"createdAt\": \"2026-02-12T11:19:00.236Z\",\n                    \"updatedAt\": \"2026-02-12T11:19:00.236Z\",\n                    \"fileName\": \"groot.jpg\",\n                    \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1770895138/skilioDocument/das4jjiz5vmwyictnoo2.jpg\",\n                    \"mimeType\": \"image/jpeg\",\n                    \"remarks\": \"new\",\n                    \"type\": \"PROFILE_PHOTO\",\n                    \"status\": \"UPLOADED\",\n                    \"portfolioId\": \"8b8bc674-71cf-43c3-9eb1-9600596d2369\"\n                },\n                {\n                    \"id\": \"8fa2df1b-1778-4f04-af81-947a1834bf65\",\n                    \"createdAt\": \"2026-02-12T11:19:27.604Z\",\n                    \"updatedAt\": \"2026-02-12T11:19:27.604Z\",\n                    \"fileName\": \"groot.jpg\",\n                    \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1770895166/skilioDocument/f7qrahl66fbjmqc4aphq.jpg\",\n                    \"mimeType\": \"image/jpeg\",\n                    \"remarks\": \"new\",\n                    \"type\": \"VIDEO\",\n                    \"status\": \"UPLOADED\",\n                    \"portfolioId\": \"8b8bc674-71cf-43c3-9eb1-9600596d2369\"\n                },\n                {\n                    \"id\": \"ab2a3d96-6616-441d-9433-30dae3eff7f3\",\n                    \"createdAt\": \"2026-02-12T11:19:48.914Z\",\n                    \"updatedAt\": \"2026-02-12T11:19:48.914Z\",\n                    \"fileName\": \"groot.jpg\",\n                    \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1770895187/skilioDocument/wsmqcerdcbcpw3c3a4zv.jpg\",\n                    \"mimeType\": \"image/jpeg\",\n                    \"remarks\": \"new\",\n                    \"type\": \"IMAGE\",\n                    \"status\": \"UPLOADED\",\n                    \"portfolioId\": \"8b8bc674-71cf-43c3-9eb1-9600596d2369\"\n                },\n                {\n                    \"id\": \"e003bf0b-9e79-4389-83e1-f7fea92d328b\",\n                    \"createdAt\": \"2026-02-12T11:20:10.195Z\",\n                    \"updatedAt\": \"2026-02-12T11:20:10.195Z\",\n                    \"fileName\": \"groot.jpg\",\n                    \"url\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1770895209/skilioDocument/wnrdqrhmljx9ketyljlg.jpg\",\n                    \"mimeType\": \"image/jpeg\",\n                    \"remarks\": \"new\",\n                    \"type\": \"EVENT\",\n                    \"status\": \"UPLOADED\",\n                    \"portfolioId\": \"8b8bc674-71cf-43c3-9eb1-9600596d2369\"\n                }\n            ]\n        }\n    }\n}"
+            },
+            {
+              "name": "Error: record not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/profile/full/67b3e00e-46dd-4c44-8297-7cdaa938dd4f",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "full",
+                    "67b3e00e-46dd-4c44-8297-7cdaa938dd4f"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.24.0 (Ubuntu)"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 26 Feb 2026 05:13:46 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "103"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "update profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJiNzk2ODhlZC0zNTE2LTQ3YzMtYTllNi1hNzBjZjk0Yjg2NTkiLCJuaWNrTmFtZSI6ImFsaWNlMyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcyMTkyODM3LCJleHAiOjE3NzIxOTY0Mzd9.V_KENUL1IBStOuKaNXBHLDIdn-9NRhYWYcHiz_hvwew",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\r\n    \"firstName\":\"john\",\r\n    \"lastName\":\"doe\",\r\n    \"totalEvents\": 3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/profile",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "profile"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: profile updated successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\r\n    \"firstName\":\"john\",\r\n    \"lastName\":\"doe\",\r\n    \"totalEvents\": 3\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-sKicOz3R7Idwlfpd1P/Jrd4ouNQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 11:48:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Resource updated successfully\"\n}"
+            },
+            {
+              "name": "Error: record not found",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8650\",\r\n    \"firstName\":\"john\",\r\n    \"lastName\":\"doe\",\r\n    \"totalEvents\": 3\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "103"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 27 Feb 2026 11:48:27 GMT"
                 },
                 {
                   "key": "Connection",

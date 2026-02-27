@@ -5,11 +5,13 @@ import { Contact } from "../entity/contact";
 import { contactType, proficiecy, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
 import { BaseRepository } from "@neon-lab-dev/platform";
 import { HiringRate } from "../entity/hiringRate";
+import { Portfolio } from "../entity/portfolio";
 
 class RegistrationRepository extends BaseRepository<Profile>{
 
     private contactRepository= AppDataSource.getRepository<Contact>("Contact");
     private hiringRateRepository= AppDataSource.getRepository<HiringRate>("HiringRate");
+    private portfolioReposiotry= AppDataSource.getRepository<Portfolio>("portfolio");
 
     private buildCountQuery(
         profileType: ProfileType = ProfileType.INDIVIDUAL,
@@ -39,6 +41,11 @@ class RegistrationRepository extends BaseRepository<Profile>{
     updateProfile= async(id:string , profileData: DeepPartial<Profile>)=>{
         return await this.repository.update(id , profileData);
     }
+
+    async updatePortfolio(portfolioId:string , portfolioData:DeepPartial<Portfolio>){
+        return await this.portfolioReposiotry.update({id:portfolioId }, portfolioData);
+    }
+
 
     // findProfileByContactValue
     findProfileByCredential = async(credential: string) => {

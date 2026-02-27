@@ -13,11 +13,13 @@ import updateProfileStatusApi from "./api/updateProfileStatusApi";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
 import { FetchHiringRateApi } from "./api/fetchHiringRateApi";
 import { FetchProfileDetailsApi } from "./api/fetchProfileDetailsApi";
+import { UpdateProfileApi } from "./api/updateProfileApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
 const fetchHiringRateApi= new FetchHiringRateApi();
 const fetchProfileDetailsApi = new FetchProfileDetailsApi();
+const updateProfileApi= new UpdateProfileApi();
 
 router.post(
     "/" ,
@@ -31,6 +33,11 @@ router.post(
 );
 router.put(
     "/" , 
+    verifyToken , 
+    asyncApiHandler(updateProfileApi)
+);
+router.put(
+    "/status" , 
     verifyToken , 
     authorizeRole.validateRole(roles.ADMIN) , 
     asyncApiHandler(updateProfileStatusApi)

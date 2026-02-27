@@ -11,13 +11,13 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { proficiecy, ProfileType, roles } from "./enums/registrationEnum";
+import { proficiecy, profileStatus, ProfileType, roles } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
 import { Producer } from "../../kafka/producer/producer";
 import documentServices from "../document/services/document.services";
-import { JwtService, Loggable, LoggerService, NotFoundError, Page, Pageable } from "@neon-lab-dev/platform";
+import { AsyncContextService, JwtService, Loggable, LoggerService, NotFoundError, Page, Pageable, UnauthorizedError } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
 import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
@@ -29,10 +29,11 @@ import bodyText from "../../providers/appNotification/bodyText";
 import { FetchHiringRateRequest } from "./models/request/fetchHiringRateRequest";
 import { HiringRateDto } from "./models/dto/dto.hiringRate";
 import { HiringRateDtoBuilder } from "./models/builder/hiringRateDtoBuilder";
-import { HiringRate } from "../../entity/hiringRate";
 import { FetchProfileDetailsRequest } from "./models/request/fetchProfileDetailsRequest";
 import { FetchProfileDetailsDtoBuilder } from "./models/builder/fetchProfileDetailsDtoBuilder";
 import { FetchProfileDetailsResponseDto } from "./models/dto/dto.fetch.profile.details";
+import { UpdateProfileRequest } from "./models/request/updateProfileRequest";
+import { profileService } from "../profile/service.profile";
 
 class RegistrationService{
 
@@ -56,6 +57,21 @@ class RegistrationService{
             })
     }
 
+    private async checkExisting(id:string):Promise<Profile>{
+        const profile= await registrationRepository.findProfileById(id);
+        if(!profile || profile.status=== profileStatus.BLOCKED){
+            throw new NotFoundError("profile not found");
+        }
+        return profile;
+    }
+
+    private async authorizeProfile(id:string){
+        const profileId= AsyncContextService.getUserId();
+        if(profileId!=id){
+            throw new UnauthorizedError("unauthorized access");
+        }
+    }
+
     // create/register a profile
     createProfile= serviceLogging(
         "RegistrationService",
@@ -66,6 +82,8 @@ class RegistrationService{
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(pin, salt);
 
+        const status= portfolio.proficiency== proficiecy.SKILLED ? profileStatus.APPROVED : profileStatus.PENDING;
+
         const newProfile= await registrationRepository.createProfile({
             firstName,
             lastName,
@@ -73,6 +91,7 @@ class RegistrationService{
             nickName,
             pin:hashedPin,
             profileType , 
+            status,
             role,   
             contacts: contacts.map(contact=>({
                 type:contact.type,
@@ -201,12 +220,7 @@ class RegistrationService{
         "RegistrationService",
         "getProfile",
         async(id:string)=>{
-        const profile= await registrationRepository.findProfileById(id);
-
-        if(!profile){
-            logger.error("Profile with this Id doesnot exist");
-            throw new AppError(404, "Profile does not exist");
-        }
+        const profile= await this.checkExisting(id);
 
         const fetchedProfile= new GetProfileDTO(profile).toJSON();
 
@@ -284,10 +298,8 @@ class RegistrationService{
 
     @Loggable()
     public async getProfileDetails(req: FetchProfileDetailsRequest):Promise<FetchProfileDetailsResponseDto>{
-        const profile= await registrationRepository.findProfileById(req.id);
-        if(!profile){
-            throw new NotFoundError("profile not found");
-        }
+        const profile= await this.checkExisting(req.id);
+
         return FetchProfileDetailsDtoBuilder.builder().of(profile).build();
     }
 
@@ -314,7 +326,20 @@ class RegistrationService{
 
     @Loggable()
     public async updateProfileStatus(req: UpdateProfileStatusRequest):Promise<void>{
+        await this.checkExisting(req.id);
         await registrationRepository.updateProfile(req.id , {status: req.status});
+    }
+
+    @Loggable()
+    public async updateProfile(req:UpdateProfileRequest):Promise<void>{
+        await this.checkExisting(req.id);
+        await this.authorizeProfile(req.id);
+        const loggedInUserProfile=await profileService.fetchWithPortfolio(req.id);
+        await registrationRepository.updateProfile(req.id,{
+            firstName: req.firstName,
+            lastName: req.lastName
+        })
+        await registrationRepository.updatePortfolio(loggedInUserProfile.portfolio.id , {totalEvents:req.totalEvents});
     }
 
     @Loggable()
