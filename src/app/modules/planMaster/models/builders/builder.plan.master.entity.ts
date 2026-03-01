@@ -20,6 +20,7 @@ export class PlanMasterEntityBuilder {
         this.entity.description = dto.description;
         this.entity.type = dto.type;
         this.entity.priceInPaise = dto.priceInPaise;
+        this.entity.priority= dto.priority;
         this.entity.callLimits = dto.callLimits;
         this.entity.chatLimits = dto.chatLimits;
         this.entity.validity = dto.validity;

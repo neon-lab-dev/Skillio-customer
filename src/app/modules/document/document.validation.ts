@@ -2,7 +2,7 @@ import { z } from "zod";
 import { DocumentType } from "./enums/documentEnum";
 import { IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeError, TYPE_VALIDATION_SCHEMA, typeError } from "@neon-lab-dev/platform";
 
-const idSchema = IS_MANDATORY_SCHEMA("id");
+const idSchema = IS_MANDATORY_SCHEMA("ids");
 const requestMandatoryError = mandatoryTypeError("request", "object");
 const fileSchema = z.any();
 
@@ -28,8 +28,8 @@ export const documentRequestSchema = z.object({
 });
 
 export const getDocumentSchema = z.object({
-  params: z.object({
-    id: idSchema
+  query: z.object({
+    ids: idSchema
   }, {
     error: requestMandatoryError
   })

@@ -14,7 +14,8 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
 
     private ID: string ='id';
     private nickName: string='nickName';
-    private profileType: string= 'profileType'
+    private profileType: string= 'profileType';
+    private status: string= 'status';
 
 
     applyFilters(qb: SelectQueryBuilder<Profile>): void {
@@ -31,7 +32,8 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         this.filterByProfileType(criteria , qb);
         this.filterByProficiency(criteria, qb);
         this.filterByCategory(criteria , qb);
-        this.filterBySubCategory(criteria , qb)
+        this.filterBySubCategory(criteria , qb);
+        this.filterByStatus(criteria ,qb);
 
     }
 
@@ -40,6 +42,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
       .leftJoinAndSelect(`${this.alias}.contacts`, 'contact')
       .leftJoinAndSelect(`${this.alias}.portfolio`, 'portfolio')
       .leftJoinAndSelect('portfolio.document' , 'document')
+      .andWhere(`${this.alias}.role != :role` , {role: 'ADMIN'})
     } 
 
     private filterByIdsIn(
@@ -64,7 +67,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         
         return qb.andWhere(
             `${this.alias}.${this.nickName} LIKE :nic`,
-            {nic: criteria.nickName}
+            { nic: `%${criteria.nickName}%` }
         )
     }
 
@@ -107,7 +110,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         return qb.andWhere(
             `address.city LIKE :city`,
             {
-                city: criteria.city
+                city: `%${criteria.city}%`
             }
         )
     }
@@ -121,7 +124,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         return qb.andWhere(
             `address.country LIKE :country`,
             {
-                country: criteria.country
+                country: `%${criteria.country}%`
             }
         )
     }
@@ -181,5 +184,21 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
             }
         )
     }
+
+    private filterByStatus(
+        critera: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!critera.status) return qb;
+
+        const statusSet= SearchCriteriaUtils.toStringSet(critera.status);
+        if(!statusSet || statusSet.size===0) return qb;
+
+        return qb.andWhere(
+            `${this.alias}.${this.status} IN (:...allStatus)`,
+            {allStatus: Array.from(statusSet)}
+        )
+    }
+
 
 }

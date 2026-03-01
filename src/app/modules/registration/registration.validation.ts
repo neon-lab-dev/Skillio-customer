@@ -20,6 +20,8 @@ const proficiencySchema=z.nativeEnum(proficiecy, {
         error: mandatoryTypeError("proficiency", "Proficiency")
     });
 
+const totalEventsSchema= NUMBER_SCHEMA("totalEvents");
+
 
 const validateNicknameUniqueness = (data: {
     nickName: string;
@@ -172,7 +174,7 @@ const portfolioSchema = z.object({
     subCategory: IS_MANDATORY_SCHEMA("Sub-category")
         .regex(/^[A-Za-z\s]+$/, "Sub-category must contain only alphabets "),
     proficiency:proficiencySchema ,
-    totalEvents: NUMBER_SCHEMA("totalEvents").optional(),
+    totalEvents: totalEventsSchema.optional(),
     bio: TYPE_VALIDATION_SCHEMA("bio").optional(),
     hiringRate: hiringRateSchema,
     follows: followsSchema,
@@ -303,6 +305,7 @@ export const fetchProfilesSchema= z.object({
     country: countrySchema.optional(),
     profileType: profileTypeSchema.optional(),
     proficiecy: proficiencySchema.optional(),
+    status: IS_MANDATORY_SCHEMA("status").optional(),
     page: IS_MANDATORY_SCHEMA("page").optional(),
     perPage: IS_MANDATORY_SCHEMA("perPage").optional()
 })  
@@ -311,10 +314,19 @@ export const updateProfileStatusSchema=z.object({
     status: z.enum(profileStatus)
 })
 
+const idSchema= IS_MANDATORY_SCHEMA("id");
+
+export const updateProfileSchema= z.object({
+    id: idSchema,
+    firstName: IS_MANDATORY_SCHEMA("firstName"),
+    lastName: IS_MANDATORY_SCHEMA("lastName"),
+    totalEvents: totalEventsSchema
+}).strict()
+
 export const fetchHiringRateSchema=z.object({
     portfolioId: IS_MANDATORY_SCHEMA("portfolioId")
 })
 
 export const fetchProfileDetailsSchema= z.object({
-    id: IS_MANDATORY_SCHEMA("id")
+    id: idSchema
 }).strict()

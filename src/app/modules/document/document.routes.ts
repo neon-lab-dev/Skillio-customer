@@ -12,12 +12,12 @@ const router= Router();
 const fetchDocumentsApi= new FetchDocumentApi();
 
 router.post("/" ,singleUpload,validateRequest(documentRequestSchema), documentController.createDocument);
-router.get("/:id" ,validateRequest(getDocumentSchema), documentController.getDocument);
+router.get("/" ,validateRequest(getDocumentSchema), documentController.getDocument);
 router.put("/profile-picture" ,singleUpload,validateRequest(updateDocumentSchema), documentController.updateDocument);
 router.post("/delete" ,validateRequest(deleteDocumentsSchema), documentController.deleteDocuments);
 
 router.get(
-    "/", 
+    "/:portfolioId", 
     verifyToken,
     asyncApiHandler(fetchDocumentsApi)
 )

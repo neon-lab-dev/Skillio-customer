@@ -6,6 +6,8 @@ import AppError from "../../errors/appError";
 import documentRepository from "../../repository/documentRepository";
 import { DocumentType } from "../document/enums/documentEnum";
 import { proxyLogging } from "../../utils/proxyLogging";
+import { profileStatus } from "./enums/registrationEnum";
+import { LoggerService, NotFoundError } from "@neon-lab-dev/platform";
 
 
 class RegistrationProxy{
@@ -60,9 +62,9 @@ class RegistrationProxy{
         async(credential:string , pin:string)=>{
         const profile= await registrationRepository.findProfileByCredential(credential);
         
-        if(!profile){
-            logger.error(`  Profile doesnot exist.`);
-            throw new AppError(404, `Profile doesnot exist.`);
+        if(!profile || profile.status=== profileStatus.BLOCKED){
+            LoggerService.error(`  Profile doesnot exist or you are blocked.`);
+            throw new NotFoundError(`Profile doesnot exist or you are blocked.`);
         }
 
         return await registrationServices.loginUser(pin , profile)

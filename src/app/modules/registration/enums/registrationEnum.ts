@@ -14,8 +14,9 @@ export enum proficiecy{
 }
 
 export enum profileStatus{
-    CREATED="CREATED",
-    REQUESTED="REQUESTED"
+    PENDING="PENDING",
+    APPROVED="APPROVED",
+    BLOCKED= "BLOCKED"
 }
 
 export enum onlineStatus{
