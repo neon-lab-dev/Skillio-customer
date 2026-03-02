@@ -1,6 +1,4 @@
-import { SubscriptionStatus } from "../../userSubscription/enums/SubscriptionStatus";
-import { PlanDetails } from "../../userSubscription/models/dto/dto.plan.details";
-import { contactType, proficiecy, ProfileType, roles } from "../enums/registrationEnum";
+import { contactType, proficiecy, ProfileType, roles, SocialMeida } from "../enums/registrationEnum";
 import Decimal from "decimal.js"
 
 export interface Location {
@@ -49,10 +47,10 @@ export interface THiringRate{
 }
 
 export interface TFollows{
-  instaFollowers?: number;
-  instaFollowing?: number;
-  facebookFollowers?: number;
-  facebookFollowing?: number;
+  socialMedia: SocialMeida,
+  link: string,
+  followers?: number,
+  following?:number
 }
 
 export interface TPortfolio {
@@ -62,10 +60,10 @@ export interface TPortfolio {
   bio?: string;
   totalEvents?: number;
   hiringRate: THiringRate;
-  follows?: TFollows;
-  videoDocumentId:string;
-  imageDocumentId:string;
-  eventsDoneDocumentId?:string;
+  follows?: TFollows[];
+  videoDocumentIds:string[];
+  imageDocumentIds:string[];
+  eventsDoneDocumentIds?:string[];
 }
 
 

@@ -1,8 +1,9 @@
-import { AppResponseData } from "@neon-lab-dev/platform";
+import { AppRequest } from "@neon-lab-dev/platform";
 import Decimal from "decimal.js";
 
-export class HiringRateDto implements AppResponseData{
-    id!:string;
+
+export class UpdateHiringRateRequest implements AppRequest{
+    id!: string;
     hourlyPricing!: Decimal;
     dailyPricing!: Decimal;
     weeklyPricing!: Decimal;

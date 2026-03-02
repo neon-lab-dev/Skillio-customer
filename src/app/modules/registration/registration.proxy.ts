@@ -13,6 +13,7 @@ import { LoggerService, NotFoundError } from "@neon-lab-dev/platform";
 class RegistrationProxy{
 
     private checkExistingDocument= async(documentId:string , documentType:DocumentType)=>{
+        console.log("hehe" , documentId);
         const existingDocument= await documentRepository.findByIdAndType(documentId , documentType);
 
         if(!existingDocument){
@@ -45,12 +46,24 @@ class RegistrationProxy{
 
         await this.checkExistingDocument(profileDocumentId , DocumentType.PROFILE_PHOTO);
 
-        await this.checkExistingDocument(portfolio.videoDocumentId , DocumentType.VIDEO);
+        await Promise.all(
+            portfolio.videoDocumentIds.map(async(video)=>{
+                await this.checkExistingDocument(video , DocumentType.VIDEO)
+            })
+        )
 
-        await this.checkExistingDocument(portfolio.imageDocumentId , DocumentType.IMAGE);
+        await Promise.all(
+            portfolio.imageDocumentIds.map(async(image)=>{
+                await this.checkExistingDocument(image , DocumentType.IMAGE);
+            })
+        )
 
-        if(portfolio.eventsDoneDocumentId){
-            await this.checkExistingDocument(portfolio.eventsDoneDocumentId , DocumentType.EVENT);
+        if(portfolio.eventsDoneDocumentIds){
+            await Promise.all(
+                portfolio.eventsDoneDocumentIds.map(async(event)=>{
+                await this.checkExistingDocument(event , DocumentType.EVENT)
+            })
+        )
         }
 
         return await registrationServices.createProfile(profileData);

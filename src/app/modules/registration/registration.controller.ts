@@ -28,7 +28,7 @@ class RegistrationController{
         "RegistrationController.loginUser",
         catchAsyncError(async(req:Request , res:Response)=>{
         const {credential , pin}= req.body;
-
+            
         const result= await registrationProxy.loginUser(credential , pin);
 
         return sendResponse(res , {

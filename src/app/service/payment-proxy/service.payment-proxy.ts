@@ -28,7 +28,7 @@ class PaymentProxyService {
         )
     }
 
-    private getHeaders(): Record<string, any> {
+    public getHeaders(): Record<string, any> {
         let token = AsyncContextService.get(TOKEN);
         if (!token) {
             throw new NotFoundError(`Required token not found.`);

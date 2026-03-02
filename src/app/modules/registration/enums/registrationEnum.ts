@@ -28,3 +28,8 @@ export enum roles{
     USER= "USER",
     ADMIN= "ADMIN"
 }
+
+export enum SocialMeida{
+    INSTAGRAM= "INSTAGRAM",
+    FACEBOOK= "FACEBOOK"
+}

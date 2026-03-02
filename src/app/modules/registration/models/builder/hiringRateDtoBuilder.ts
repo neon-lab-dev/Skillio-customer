@@ -13,6 +13,7 @@ export class HiringRateDtoBuilder{
     }
 
     public of(entity: HiringRate): HiringRateDtoBuilder{
+        this.dto.id= entity.id;
         this.dto.hourlyPricing= entity.hourlyPricing;
         this.dto.weeklyPricing= entity.weeklyPricing;
         this.dto.monthlyPricing= entity.monthlyPricing;

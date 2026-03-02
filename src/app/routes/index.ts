@@ -8,6 +8,7 @@ import { notificaionRouter } from "../modules/notification/route.notificaion";
 import { userSubscriptionRouter } from "../modules/userSubscription/route.user.subscription";
 import { callRoutes } from "../modules/calling/call.routes";
 import { planAggregatorRoutes } from "../modules/planAggregator/planAggregator.routes";
+import { dashboardRouter } from "../modules/dashboard/dashboard.routes";
 
 const router = Router();
 
@@ -49,6 +50,10 @@ const moduleRoutes = [
     {
         path:"/v1/planAggregator",
         route:planAggregatorRoutes
+    },
+    {
+        path: "/v1/dashboard",
+        route: dashboardRouter
     }
 ]
 

@@ -11,7 +11,7 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { proficiecy, profileStatus, ProfileType, roles } from "./enums/registrationEnum";
+import { proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
@@ -34,6 +34,11 @@ import { FetchProfileDetailsDtoBuilder } from "./models/builder/fetchProfileDeta
 import { FetchProfileDetailsResponseDto } from "./models/dto/dto.fetch.profile.details";
 import { UpdateProfileRequest } from "./models/request/updateProfileRequest";
 import { profileService } from "../profile/service.profile";
+import { UpdateHiringRateRequest } from "./models/request/updateHiringRateRequest";
+import { HiringRate } from "../../entity/hiringRate";
+import { UpdatePinRequest } from "./models/request/updatePinRequest";
+import { DeepPartial } from "typeorm";
+import { Follows } from "../../entity/follows";
 
 class RegistrationService{
 
@@ -65,7 +70,14 @@ class RegistrationService{
         return profile;
     }
 
-    private async authorizeProfile(id:string){
+    private async checkExistingHiringRate(id:string):Promise<void>{
+        const hiringRate= await registrationRepository.findHiringRateById(id);
+        if(!hiringRate){
+            throw new NotFoundError("hiring rate does not exist");
+        }
+    }
+
+    public async authorizeProfile(id:string){
         const profileId= AsyncContextService.getUserId();
         if(profileId!=id){
             throw new UnauthorizedError("unauthorized access");
@@ -113,7 +125,14 @@ class RegistrationService{
                 totalEvents: portfolio.totalEvents,
                 bio: portfolio.bio || "",
                 hiringRate: portfolio.hiringRate,
-                follows: portfolio.follows
+                follows: portfolio.follows?.map(
+                    follow=>({
+                        socialMedia: follow.socialMedia,
+                        link: follow.link,
+                        followers: follow.followers,
+                        following: follow.following
+                    })
+                ) as DeepPartial<Follows[]>
             }
         })
 
@@ -135,18 +154,31 @@ class RegistrationService{
             portfolioId: newProfile.portfolio.id
         })
 
-        await this.updateDocument(portfolio.videoDocumentId, {
-            portfolioId: newProfile.portfolio.id
-        })
-
-        await this.updateDocument(portfolio.imageDocumentId , {
-            portfolioId: newProfile.portfolio.id
-        })
-
-        if(portfolio.eventsDoneDocumentId){
-            await this.updateDocument(portfolio.eventsDoneDocumentId , {
-                portfolioId: newProfile.portfolio.id
+        await Promise.all(
+            portfolio.videoDocumentIds.map(async(video)=>{
+                await this.updateDocument(video, {
+                    portfolioId: newProfile.portfolio.id
+                })
             })
+        )
+
+        await Promise.all(
+            portfolio.imageDocumentIds.map(async(image)=>{
+                await this.updateDocument(image, {
+                    portfolioId: newProfile.portfolio.id
+                })
+            })
+        )
+
+
+        if(portfolio.eventsDoneDocumentIds){
+            await Promise.all(
+                portfolio.eventsDoneDocumentIds.map(async(event)=>{
+                    await this.updateDocument(event, {
+                        portfolioId: newProfile.portfolio.id
+                    })
+                })
+            )
         }
 
         const document= await documentServices.getDocument([profileDocumentId])
@@ -207,6 +239,7 @@ class RegistrationService{
         return{
             profile:{
                 id: profile.id,
+                portfolioId: profile.portfolio.id,
                 nickName: profile.nickName,
                 role: profile.role
             },
@@ -352,6 +385,30 @@ class RegistrationService{
         }
 
         return HiringRateDtoBuilder.Builder().of(res).build()
+    }
+
+    @Loggable()
+    public async updateHiringRate(req: UpdateHiringRateRequest){
+        await this.checkExistingHiringRate(req.id);
+        const updatedData={
+            hourlyPricing: req.hourlyPricing,
+            dailyPricing: req.dailyPricing,
+            weeklyPricing: req.weeklyPricing,
+            monthlyPricing: req.monthlyPricing
+        }
+        return await registrationRepository.updateHiringRate(req.id , updatedData)
+    }
+
+    @Loggable()
+    public async updatePin(req:UpdatePinRequest){
+        const profile= await registrationRepository.findProfileByCredential(req.credential);
+        if(!profile){
+            throw new NotFoundError("profile not found")
+        }
+        await this.authorizeProfile(profile.id);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPin = await bcrypt.hash(req.pin, salt);
+        await registrationRepository.updateProfile(profile.id , {pin: hashedPin});
     }
 
 }
