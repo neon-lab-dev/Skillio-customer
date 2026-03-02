@@ -1,5 +1,5 @@
-import { ProfileType, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
-import { Location, TFollows, THiringRate } from "../../interface/registration.interface";
+import { ProfileType, SocialMeida, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
+import { Location, THiringRate } from "../../interface/registration.interface";
 import Decimal from "decimal.js"
 
 // Contact DTO
@@ -81,10 +81,15 @@ export class PortfolioDTO {
   totalEvents?: number;
   bio?: string;
   hiringRate: THiringRate;
-  follows?: TFollows;
-  videoDocumentId:string;
-  imageDocumentId:string;
-  eventsDoneDocumentId:string;
+  follows: {
+    socialMedia: SocialMeida,
+    link:string,
+    followers?: number,
+    following?: number
+  }[];
+  videoDocumentIds:string[];
+  imageDocumentIds:string[];
+  eventsDoneDocumentIds:string[];
 
   constructor(data: {
     category: string;
@@ -93,21 +98,26 @@ export class PortfolioDTO {
     totalEvents?: number;
     bio?: string;
     hiringRate: THiringRate;
-    follows?: TFollows;
-    videoDocumentId:string;
-    imageDocumentId:string;
-    eventsDoneDocumentId:string;
+    follows: {
+    socialMedia: SocialMeida,
+    link:string,
+    followers?: number,
+    following?: number
+  }[];
+    videoDocumentIds:string[];
+    imageDocumentIds:string[];
+    eventsDoneDocumentIds:string[];
   }) {
     this.category = data.category;
     this.subCategory = data.subCategory;
     this.proficiency = data.proficiency;
     this.totalEvents = data.totalEvents;
     this.bio = data.bio;
-    this.follows= data.follows;
+    this.follows= data.follows?.map(follow=> new FollowsDTO(follow));
     this.hiringRate= data.hiringRate;
-    this.videoDocumentId=data.videoDocumentId;
-    this.imageDocumentId=data.imageDocumentId;
-    this.eventsDoneDocumentId=data.eventsDoneDocumentId;
+    this.videoDocumentIds=data.videoDocumentIds;
+    this.imageDocumentIds=data.imageDocumentIds;
+    this.eventsDoneDocumentIds=data.eventsDoneDocumentIds;
   }
 
   toJSON() {
@@ -119,9 +129,9 @@ export class PortfolioDTO {
       bio: this.bio,
       hiringRate: this.hiringRate,
       follows: this.follows,
-      videoDocumentId:this.videoDocumentId,
-      imageDocumentId:this.imageDocumentId,
-      eventsDoneDocumentId:this.eventsDoneDocumentId
+      videoDocumentIds:this.videoDocumentIds,
+      imageDocumentIds:this.imageDocumentIds,
+      eventsDoneDocumentIds:this.eventsDoneDocumentIds
     };
   }
 }
@@ -323,7 +333,12 @@ export class GetRegistrationDTO {
         weeklyPricing: Decimal;
         monthlyPricing: Decimal;
       };
-      follows?: TFollows 
+      follows: {
+        socialMedia: SocialMeida;
+        link: string;
+        followers?: number;
+        following?: number;
+      }[]
     };
   }) {
     this.firstName = data.firstName;
@@ -356,40 +371,47 @@ export class GetRegistrationDTO {
 }
 
 export class FollowsDTO{
-    instaFollowers?: number;
-    instaFollowing?: number;
-    facebookFollowers?: number;
-    facebookFollowing?: number;
+    socialMedia: SocialMeida;
+    link: string;
+    followers?: number;
+    following?:number;
 
-    constructor(data: TFollows | undefined){
-      this.instaFollowers= data?.instaFollowers;
-      this.instaFollowing= data?.instaFollowing;
-      this.facebookFollowers= data?.facebookFollowers;
-      this.facebookFollowing= data?.facebookFollowing;
+    constructor(data: {
+      socialMedia: SocialMeida,
+      link: string,
+      followers?: number,
+      following?: number
+    }){
+      this.socialMedia= data.socialMedia;
+      this.link= data.link;
+      this.followers= data?.followers;
+      this.following= data?.following;
     }
 
     toJSON(){
       return{
-        instaFollowers: this.instaFollowers,
-        instaFollowing: this.instaFollowing,
-        facebookFollowers: this.facebookFollowers,
-        facebookFollowing: this.facebookFollowing
+        socialMedia: this.socialMedia,
+        link: this.link,
+        followers: this.followers,
+        following: this.following
       }
     }
 }
 export class GetProfilePortfolioDTO{
   id:string;
   bio?: string;
-  follows? : FollowsDTO; 
+  follows? : FollowsDTO[]; 
 
   constructor(data:{
     id:string;
     bio?: string;
-    follows?: TFollows;
+    follows?: FollowsDTO[];
   }){
     this.id=data.id;
     this.bio=data.bio;
-    this.follows= new FollowsDTO(data.follows);
+    this.follows= data.follows?.map(
+      follow=> new FollowsDTO(follow)
+    );
   }
 
   toJSON(){
@@ -431,7 +453,12 @@ export class GetProfileDTO{
       id:string;
       bio?: string; 
       hiringRate: THiringRate;
-      follows?: TFollows;
+         follows: {
+        socialMedia: SocialMeida;
+        link: string;
+        followers?: number;
+        following?: number;
+      }[];
     };
     online?:{
       status: onlineStatus;
@@ -448,7 +475,7 @@ export class GetProfileDTO{
     this.portfolio=new GetProfilePortfolioDTO({
       id: data.portfolio.id,
       bio: data.portfolio.bio || "",
-      follows: data.portfolio.follows
+      follows: data.portfolio?.follows?.map(follow=> new FollowsDTO(follow))
     })
     this.online=data.online?{
       status: data.online.status,

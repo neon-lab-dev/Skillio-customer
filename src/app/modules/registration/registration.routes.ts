@@ -14,12 +14,16 @@ import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.
 import { FetchHiringRateApi } from "./api/fetchHiringRateApi";
 import { FetchProfileDetailsApi } from "./api/fetchProfileDetailsApi";
 import { UpdateProfileApi } from "./api/updateProfileApi";
+import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
+import { UpdatePinApi } from "./api/updatePinApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
 const fetchHiringRateApi= new FetchHiringRateApi();
 const fetchProfileDetailsApi = new FetchProfileDetailsApi();
 const updateProfileApi= new UpdateProfileApi();
+const updateHiringRateApi = new UpdateHiringRateApi()
+const updatePinApi= new UpdatePinApi();
 
 router.post(
     "/" ,
@@ -43,15 +47,14 @@ router.put(
     asyncApiHandler(updateProfileStatusApi)
 );
 router.get(
-    "/count" , 
-    verifyToken , 
-    authorizeRole.validateRole(roles.ADMIN) , 
-    registrationController.getProfileCount
-);
-router.get(
     "/hiringRate",
     verifyToken,
     asyncApiHandler(fetchHiringRateApi)
+)
+router.put(
+    "/hiringRate",
+    verifyToken,
+    asyncApiHandler(updateHiringRateApi)
 )
 router.get(
     "/:id", 
@@ -70,6 +73,12 @@ router.get(
     verifyToken , 
     createCriteriaMiddleWare(ProfileSearchCriteria , searchCriteriaBuilderFactory), 
     asyncApiHandler(fetchProfilesApi) 
+)
+
+router.put(
+    "/pin",
+    verifyToken,
+    asyncApiHandler(updatePinApi)
 )
 
 

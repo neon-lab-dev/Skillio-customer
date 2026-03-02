@@ -1,43 +1,51 @@
 import { PersistEntity } from "./PersistEntity";
-import { Column , Entity, Index, JoinColumn, OneToOne } from "typeorm";
+import { Column , Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { Portfolio } from "./portfolio";
+import { SocialMeida } from "../modules/registration/enums/registrationEnum";
+import { AutoMap } from "@automapper/classes";
 
 
 @Entity("follows")
-@Index("IDX_instFollowers_facebookFollowers",["instaFollwers" , "facebookFollowers"])
-@Index("IDX_instFollowing_facebookFollowing",["instaFollowing" , "facebookFollowing"])
 export class Follows extends PersistEntity{
     constructor(){
         super()
     }
 
     @Column({
-        type: "int",
-        nullable: true
+        type: "enum" ,
+        enum:SocialMeida ,
+        default:SocialMeida.FACEBOOK,
+        nullable:false
     })
-    instaFollwers?: number
+    @AutoMap()
+    socialMedia!: SocialMeida
 
     @Column({
-        type: "int",
-        nullable: true
+        type:"text",
+        nullable:false
     })
-    instaFollowing?: number
+    @AutoMap()
+    link!: string
 
     @Column({
-        type: "int",
-        nullable: true
+        type:"int",
+        nullable:true,
+        default:0
     })
-    facebookFollowers?: number
+    followers?:number
 
     @Column({
-        nullable: true
+        type:"int",
+        nullable:true,
+        default:0
     })
-    facebookFollowing?: number
+    following?:number
+
 
     @Column({type: "uuid"})
     portfolioId!: string
 
-    @OneToOne(()=> Portfolio  ,portfolio=> portfolio.follows , {
+    @ManyToOne(()=> Portfolio  ,portfolio=> portfolio.follows , {
         onDelete: "CASCADE"
     })
     @JoinColumn({name: "portfolioId"})

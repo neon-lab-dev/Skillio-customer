@@ -1,6 +1,6 @@
 import { AppResponseData } from "@neon-lab-dev/platform";
 import { TAddress, TFollows, THiringRate } from "../../interface/registration.interface";
-import { proficiecy } from "../../enums/registrationEnum";
+import { proficiecy, SocialMeida } from "../../enums/registrationEnum";
 
 export class FetchProfileDetailsResponseDto implements AppResponseData{
     firstName?: string;
@@ -30,7 +30,12 @@ export class FetchProfileDetailsResponseDto implements AppResponseData{
           proficiency: proficiecy;
           bio?: string;
           totalEvents?: number;
-          follows?: TFollows | undefined;
+          follows: {
+            socialMedia: SocialMeida,
+            link: string,
+            followers?: number,
+            following?:number
+          }[];
           hiringRate: THiringRate;
         }
         

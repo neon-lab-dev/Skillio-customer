@@ -24,5 +24,13 @@ export class UserSubscriptionRepository extends BaseRepository<UserSubscriptionE
         );
     }
 
+    async fetchActiveUserSubscriptionsCount():Promise<number>{
+        return await this.repository.count({
+            where:{
+                status: SubscriptionStatus.SUCCESS
+            }
+        })
+    }
+
 
 }

@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { ProfileType, contactType, proficiecy, profileStatus, roles } from "./enums/registrationEnum";
+import { ProfileType, SocialMeida, contactType, proficiecy, profileStatus, roles } from "./enums/registrationEnum";
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
-import { IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
+import { IS_MANDATORY, IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
 
 
 const emailSchema = z.string().email("Invalid email address");
@@ -161,12 +161,13 @@ const hiringRateSchema=z.object({
     monthlyPricing: z.number()
 })
 
+
 const followsSchema= z.object({
-    instaFollowers: IS_MANDATORY_NUMBER_SCHEMA("instaFollowers").int().nonnegative().optional(),
-    instaFollowing: IS_MANDATORY_NUMBER_SCHEMA("instaFollowing").int().nonnegative().optional(),
-    facebookFollowers: IS_MANDATORY_NUMBER_SCHEMA("facebookFollowers").int().nonnegative().optional(),
-    facebookFollowing: IS_MANDATORY_NUMBER_SCHEMA("facebookFollowing").int().nonnegative().optional()
-}).optional()
+    socialMedia: z.nativeEnum(SocialMeida),
+    link: IS_MANDATORY_SCHEMA("link"),
+    followers: IS_MANDATORY_NUMBER_SCHEMA("followers").optional(),
+    following: IS_MANDATORY_NUMBER_SCHEMA("following").optional()
+})
 
 const portfolioSchema = z.object({
     category: IS_MANDATORY_SCHEMA("Category")
@@ -177,16 +178,18 @@ const portfolioSchema = z.object({
     totalEvents: totalEventsSchema.optional(),
     bio: TYPE_VALIDATION_SCHEMA("bio").optional(),
     hiringRate: hiringRateSchema,
-    follows: followsSchema,
-    videoDocumentId: IS_MANDATORY_SCHEMA("Video Document Id"),
-    imageDocumentId: IS_MANDATORY_SCHEMA("Image document ID"),
-    eventsDoneDocumentId: TYPE_VALIDATION_SCHEMA("Events Document Id").optional()
+    follows: z.array(followsSchema, {
+            error: mandatoryTypeError("follows", "array")
+        }),
+    videoDocumentIds: IS_MANDATORY_STRING_ARRAY_SCHEMA("Video Document Id"),
+    imageDocumentIds: IS_MANDATORY_STRING_ARRAY_SCHEMA("Image document ID"),
+    eventsDoneDocumentIds: IS_MANDATORY_STRING_ARRAY_SCHEMA("Events Document Id").optional()
 }, {
     error: mandatoryTypeError("Portfolio", "object")
 }).refine(
     (data) => {
         if (data.proficiency === proficiecy.PROFESSIONAL) {
-            return !!data.eventsDoneDocumentId;
+            return !!data.eventsDoneDocumentIds && data.eventsDoneDocumentIds.length!=0;
         }
         return true;
     },
@@ -326,6 +329,19 @@ export const updateProfileSchema= z.object({
 export const fetchHiringRateSchema=z.object({
     portfolioId: IS_MANDATORY_SCHEMA("portfolioId")
 })
+
+export const updateHiringRateSchema=z.object({
+    id: idSchema,
+    hourlyPricing: z.number(),
+    dailyPricing: z.number(),
+    weeklyPricing: z.number(),
+    monthlyPricing: z.number()
+}).strict()
+
+export const updatePinSchema=z.object({
+    credential:IS_MANDATORY_SCHEMA("credential"),
+    pin:IS_MANDATORY_SCHEMA("pin")
+}).strict()
 
 export const fetchProfileDetailsSchema= z.object({
     id: idSchema

@@ -55,10 +55,10 @@ export class Portfolio extends BaseEntity{
     })
     hiringRate!: HiringRate
 
-    @OneToOne(()=>Follows , follows=>follows.portfolio, {
+    @OneToMany(()=>Follows , follows=>follows.portfolio, {
         cascade:true,
     })
-    follows?: Follows
+    follows!: Follows[]
 
     @OneToOne(()=> PlanAggregator , planAggregator=> planAggregator.portfolio,{
         cascade:true,

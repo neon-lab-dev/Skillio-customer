@@ -2,7 +2,7 @@ import { AppDataSource } from "../db/dataSource";
 import { DeepPartial } from "typeorm";
 import { Profile } from "../entity/profile";
 import { Contact } from "../entity/contact";
-import { contactType, proficiecy, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
+import { contactType, proficiecy, profileStatus, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
 import { BaseRepository } from "@neon-lab-dev/platform";
 import { HiringRate } from "../entity/hiringRate";
 import { Portfolio } from "../entity/portfolio";
@@ -13,18 +13,41 @@ class RegistrationRepository extends BaseRepository<Profile>{
     private hiringRateRepository= AppDataSource.getRepository<HiringRate>("HiringRate");
     private portfolioReposiotry= AppDataSource.getRepository<Portfolio>("portfolio");
 
+
     private buildCountQuery(
-        profileType: ProfileType = ProfileType.INDIVIDUAL,
+        profileType: ProfileType,
         proficiency: proficiecy
     ) {
-        const query = this.repository
+        return this.repository
         .createQueryBuilder("profile")
         .leftJoinAndSelect("profile.portfolio", "portfolio")
-        .where("profile.profileType = :profileType", { profileType })
-        .andWhere("portfolio.proficiency = :proficiency", { proficiency });
-    
-        return query.getCount();
+        .andWhere("portfolio.proficiency = :proficiency", { proficiency })
+        .andWhere("profile.profileType = :profileType", { profileType })
+        .getCount()
     }
+
+    private proficiencyCountQuery(proficiency:proficiecy){
+        return this.repository.
+        createQueryBuilder("profile")
+        .leftJoinAndSelect("profile.portfolio", "portfolio")
+        .where("portfolio.proficiency = :proficiency", { proficiency })
+        .getCount()
+    }
+
+    private profileTypeCountQuery(profileType: ProfileType){
+        return this.repository.
+        createQueryBuilder("profile")
+        .where("profile.profileType = :profileType", { profileType })
+        .getCount();
+    }
+
+    private prfileStatusCountQuery(profileStatus: profileStatus){
+        return this.repository.
+        createQueryBuilder("profile")
+        .where("profile.status= :profileStatus" , {profileStatus})
+        .getCount()
+    }
+
 
     constructor() {
         super(AppDataSource , Profile)
@@ -52,6 +75,7 @@ class RegistrationRepository extends BaseRepository<Profile>{
         return await this.repository
             .createQueryBuilder("profile")
             .leftJoinAndSelect("profile.contacts", "contact")
+            .leftJoinAndSelect("profile.portfolio" , "portfolio")
             .where("profile.nickName = :credential", { credential })
             .orWhere(
                 "contact.value = :credential AND contact.type IN (:...types)",
@@ -61,7 +85,7 @@ class RegistrationRepository extends BaseRepository<Profile>{
                 }
             )
             .getOne();
-    }
+    } 
 
     findProfileByContactValue= async(value:string)=>{
         return await this.repository
@@ -87,23 +111,42 @@ class RegistrationRepository extends BaseRepository<Profile>{
         })
     }
 
+    async findHiringRateById(id: string):Promise<HiringRate | null>{
+        return await this.hiringRateRepository.findOneBy({
+            id: id
+        });
+    }
+    
+    async updateHiringRate(id:string , updatedData: DeepPartial<HiringRate>){
+        return await this.hiringRateRepository.update(id , updatedData);
+    }
+
     getProfileCount= async()=>{
         const totalCount= await this.repository.count();
+        const totalIndividuals= await this.profileTypeCountQuery(ProfileType.INDIVIDUAL)
         const individualProfessional= await this.buildCountQuery(ProfileType.INDIVIDUAL , proficiecy.PROFESSIONAL);
         const individualSkilled= await this.buildCountQuery(ProfileType.INDIVIDUAL , proficiecy.SKILLED);
+        const totalGroup= await this.profileTypeCountQuery(ProfileType.GROUP);
         const groupProfessional= await this.buildCountQuery(ProfileType.GROUP , proficiecy.PROFESSIONAL);
         const groupSkilled= await this.buildCountQuery(ProfileType.GROUP , proficiecy.SKILLED);
-
+        const totalProfessional= await this.proficiencyCountQuery(proficiecy.PROFESSIONAL)
+        const totalSkilled= await this.proficiencyCountQuery(proficiecy.SKILLED)
+        const pendingVerifications= await this.prfileStatusCountQuery(profileStatus.PENDING);
         return{
             totalCount: totalCount,
             individualsCount:{
+                total: totalIndividuals,
                 professional: individualProfessional,
                 skilled: individualSkilled
             },
             groupCount:{
+                total: totalGroup,
                 professional: groupProfessional,
                 skilled: groupSkilled
-            }
+            },
+            totalProfessional: totalProfessional,
+            totalSkilled: totalSkilled,
+            pendingVerifications: pendingVerifications
         }
     }
 

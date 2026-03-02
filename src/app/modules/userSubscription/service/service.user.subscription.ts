@@ -175,6 +175,11 @@ class UserSubscriptionService {
         throw new NotFoundError(`User Subscription not found with id ${id}`);
     }
 
+    @Loggable()
+    public async fetchActiveSubscriptionsCount():Promise<number>{
+        return await this.repository.fetchActiveUserSubscriptionsCount();
+    }
+
 }
 
 export const userSubscriptionService = new UserSubscriptionService();
