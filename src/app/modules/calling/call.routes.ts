@@ -6,9 +6,11 @@ import callController from "./call.controller";
 import { FetchTokenApi } from "./api/fetchTokenApi";
 import { asyncApiHandler } from "@neon-lab-dev/platform";
 import twilioWebhook from "./webhook/twilioWebhook";
+import { FetchCallsApi } from "./api/fetchCallsApi";
 
 const router=Router();
 const fetchTokenApi= new FetchTokenApi()
+const fetchCallsApi = new FetchCallsApi()
 
 router.post("/" , verifyToken , validateRequest(createCallSchema) , callController.createCall)
 router.put("/accept" , verifyToken , validateRequest(acceptCallSchema) , callController.accecptCall)
@@ -18,6 +20,11 @@ router.get(
     "/token",
     verifyToken,
     asyncApiHandler(fetchTokenApi)
+)
+router.get(
+    "/:profileId",
+    verifyToken,
+    asyncApiHandler(fetchCallsApi)
 )
 router.post(
     "/twiml",

@@ -39,6 +39,9 @@ import { HiringRate } from "../../entity/hiringRate";
 import { UpdatePinRequest } from "./models/request/updatePinRequest";
 import { DeepPartial } from "typeorm";
 import { Follows } from "../../entity/follows";
+import { DeleteProfileRequest } from "./models/request/deleteProfileRequest";
+import { getPublicIdFromUrl } from "../document/utils/getPublicIdFromCloudinaryUrl";
+import cloudinaryServices from "../document/services/cloudinaryServices";
 
 class RegistrationService{
 
@@ -189,7 +192,7 @@ class RegistrationService{
             profilePictureUrl: document[0].url
         }
 
-        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
@@ -331,7 +334,11 @@ class RegistrationService{
 
     @Loggable()
     public async getProfileDetails(req: FetchProfileDetailsRequest):Promise<FetchProfileDetailsResponseDto>{
-        const profile= await this.checkExisting(req.id);
+        const profile= await registrationRepository.findProfileById(req.id);
+
+        if(!profile){
+            throw new NotFoundError("profile not found");
+        }
 
         return FetchProfileDetailsDtoBuilder.builder().of(profile).build();
     }
@@ -409,6 +416,35 @@ class RegistrationService{
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(req.pin, salt);
         await registrationRepository.updateProfile(profile.id , {pin: hashedPin});
+    }
+
+    @Loggable()
+    public async delete(req: DeleteProfileRequest){
+        await this.checkExisting(req.id);
+        await this.authorizeProfile(req.id);
+        const referenceId={
+            referenceId: req.id
+        }
+        this.producer.produce(Events.CUSTOMER_DELETED , {referenceId})
+        const loggedInUserProfile= await profileService.fetchWithPortfolio(req.id);
+        const existingDocuments= await documentServices.fetchDocuments({
+            portfolioId: loggedInUserProfile.portfolio.id
+        })
+        const publicIds= existingDocuments.map((doc)=> getPublicIdFromUrl(doc.url));
+        await Promise.all(publicIds.map(async(id)=>{
+            await cloudinaryServices.deleteFile(id as string);
+        }))
+        await registrationRepository.delete(req.id);
+    }
+
+    @Loggable()
+    public async fetchPortfolio(id:string){
+        const portfolio= await registrationRepository.findPortfolioById(id);
+
+        if(portfolio){
+            return portfolio;
+        }
+        throw new NotFoundError("portfolio not found")
     }
 
 }

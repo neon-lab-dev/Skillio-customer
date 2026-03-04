@@ -31,6 +31,15 @@ class CallRepository{
         })
     }
 
+    async findCalls(profileId:string):Promise<Call[]>{
+        return await this.callRepository.find({
+            where:[
+                {callerId: profileId},
+                {recipientId: profileId}
+            ]
+        })
+    }
+
 
 }
 
