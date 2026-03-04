@@ -40,3 +40,7 @@ export const fetchTokenSchema= z.object({
     provider: IS_MANDATORY_SCHEMA("provider"),
     callerId: IS_MANDATORY_SCHEMA("callerID")
 })
+
+export const fetchCallsSchema= z.object({
+    profileId: IS_MANDATORY_SCHEMA("profileId")
+}).strict()

@@ -1,5 +1,5 @@
 import { AppDataSource } from "../db/dataSource";
-import { DeepPartial } from "typeorm";
+import { DeepPartial, DeleteResult } from "typeorm";
 import { Profile } from "../entity/profile";
 import { Contact } from "../entity/contact";
 import { contactType, proficiecy, profileStatus, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
@@ -162,6 +162,17 @@ class RegistrationRepository extends BaseRepository<Profile>{
 
     async findByRole(role: roles){
         return await this.repository.findBy({role})
+    }
+
+    async findPortfolioById(id: string){
+        return await this.portfolioReposiotry.findOne({
+            where:{
+                id:id
+            },
+            relations:{
+                profile: true
+            }
+        })
     }
 }
 

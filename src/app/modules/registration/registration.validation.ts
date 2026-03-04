@@ -94,10 +94,18 @@ const contactSchema = z.object({
     value: IS_MANDATORY_SCHEMA("contact value"),
     primary: z.boolean().default(false).optional(),
     isVerified: z.boolean().default(false).optional(),
-    verificationId: IS_MANDATORY_SCHEMA("Verification ID")
+    verificationId: IS_MANDATORY_SCHEMA("Verification ID").optional()
 }, {
     error: mandatoryTypeError("contact body", "object")
 })
+    .refine((data)=>{
+        if(data.type== contactType.PHONE){
+                return !!data.verificationId;
+        }
+        return true
+    } , {
+        message:"verificationId is required for phone number"
+    })
     .superRefine(
         (data, ctx) => {
             if (data.type == contactType.EMAIL) {
@@ -344,5 +352,9 @@ export const updatePinSchema=z.object({
 }).strict()
 
 export const fetchProfileDetailsSchema= z.object({
+    id: idSchema
+}).strict()
+
+export const deleteProfileSchema= z.object({
     id: idSchema
 }).strict()
