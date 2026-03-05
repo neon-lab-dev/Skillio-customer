@@ -16,6 +16,7 @@ import { FetchProfileDetailsApi } from "./api/fetchProfileDetailsApi";
 import { UpdateProfileApi } from "./api/updateProfileApi";
 import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
 import { UpdatePinApi } from "./api/updatePinApi";
+import { DeleteProfileApi } from "./api/deleteProfileApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
@@ -24,6 +25,7 @@ const fetchProfileDetailsApi = new FetchProfileDetailsApi();
 const updateProfileApi= new UpdateProfileApi();
 const updateHiringRateApi = new UpdateHiringRateApi()
 const updatePinApi= new UpdatePinApi();
+const deleteProfileApi = new DeleteProfileApi()
 
 router.post(
     "/" ,
@@ -79,6 +81,12 @@ router.put(
     "/pin",
     verifyToken,
     asyncApiHandler(updatePinApi)
+)
+
+router.delete(
+    "/:id",
+    verifyToken,
+    asyncApiHandler(deleteProfileApi)
 )
 
 

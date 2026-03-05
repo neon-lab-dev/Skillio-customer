@@ -6,6 +6,7 @@ import { AutoMap } from "@automapper/classes";
 
 
 @Entity("follows")
+@Index("IDX_PORTFOLIOID" , ["portfolioId"])
 export class Follows extends PersistEntity{
     constructor(){
         super()
