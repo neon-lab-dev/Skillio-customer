@@ -14,7 +14,8 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
 
     private ID: string ='id';
     private nickName: string='nickName';
-    private profileType: string= 'profileType'
+    private profileType: string= 'profileType';
+    private status: string= 'status';
 
 
     applyFilters(qb: SelectQueryBuilder<Profile>): void {
@@ -30,18 +31,19 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         this.filterByCountry(criteria, qb);
         this.filterByProfileType(criteria , qb);
         this.filterByProficiency(criteria, qb);
+        this.filterByCategory(criteria , qb);
+        this.filterBySubCategory(criteria , qb);
+        this.filterByStatus(criteria ,qb);
+
     }
 
     private applySelectiveJoins(qb: SelectQueryBuilder<Profile>): void {
-        qb.leftJoin(`${this.alias}.address`, 'address')
-          .addSelect(['address.city', 'address.country']);
-
-        qb.leftJoin(`${this.alias}.contacts`, 'contact')
-          .addSelect(['contact.type', 'contact.value']);
-
-        qb.leftJoin(`${this.alias}.portfolio`, 'portfolio')
-          .addSelect(['portfolio.proficiency']);
-    }
+     qb.leftJoinAndSelect(`${this.alias}.address`, 'address')
+      .leftJoinAndSelect(`${this.alias}.contacts`, 'contact')
+      .leftJoinAndSelect(`${this.alias}.portfolio`, 'portfolio')
+      .leftJoinAndSelect('portfolio.document' , 'document')
+      .andWhere(`${this.alias}.role != :role` , {role: 'ADMIN'})
+    } 
 
     private filterByIdsIn(
         criteria: ProfileSearchCriteria,
@@ -65,7 +67,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         
         return qb.andWhere(
             `${this.alias}.${this.nickName} LIKE :nic`,
-            {nic: criteria.nickName}
+            { nic: `%${criteria.nickName}%` }
         )
     }
 
@@ -108,7 +110,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         return qb.andWhere(
             `address.city LIKE :city`,
             {
-                city: criteria.city
+                city: `%${criteria.city}%`
             }
         )
     }
@@ -122,7 +124,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         return qb.andWhere(
             `address.country LIKE :country`,
             {
-                country: criteria.country
+                country: `%${criteria.country}%`
             }
         )
     }
@@ -154,5 +156,49 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
             }
         )
     }
+
+    private filterByCategory(
+        criteria: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!criteria.category) return qb;
+
+        return qb.andWhere(
+            `portfolio.category = :cat`,
+            {
+                cat: criteria.category
+            }
+        )
+    }
+
+    private filterBySubCategory(
+        criteria: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!criteria.subCategory) return qb;
+
+        return qb.andWhere(
+            `portfolio.subCategory= :subCat`,
+            {
+                subCat: criteria.subCategory
+            }
+        )
+    }
+
+    private filterByStatus(
+        critera: ProfileSearchCriteria,
+        qb: SelectQueryBuilder<Profile>
+    ): SelectQueryBuilder<Profile>{
+        if(!critera.status) return qb;
+
+        const statusSet= SearchCriteriaUtils.toStringSet(critera.status);
+        if(!statusSet || statusSet.size===0) return qb;
+
+        return qb.andWhere(
+            `${this.alias}.${this.status} IN (:...allStatus)`,
+            {allStatus: Array.from(statusSet)}
+        )
+    }
+
 
 }

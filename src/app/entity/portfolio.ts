@@ -6,6 +6,8 @@ import { Document } from "./documentEntity";
 import { UserSubscriptionEntity } from "../modules/entity/UserSubscriptionEntity";
 import { Sensitive } from "@neon-lab-dev/platform";
 import { HiringRate } from "./hiringRate";
+import { Follows } from "./follows";
+import { PlanAggregator } from "../modules/entity/planAggregator";
 
 @Entity("portfolio")
 @Index("IDX_CATEGORY_SUBCATEGORY" , ["category" , "subCategory"])
@@ -29,7 +31,7 @@ export class Portfolio extends BaseEntity{
     @OneToMany(()=>Document , document=> document.portfolio , {
         cascade:true,
     })
-    document!: Document;
+    document!: Document[];
 
     @Column({type:"uuid"})
     profileId!: string;
@@ -52,5 +54,16 @@ export class Portfolio extends BaseEntity{
         lazy: true
     })
     hiringRate!: HiringRate
+
+    @OneToMany(()=>Follows , follows=>follows.portfolio, {
+        cascade:true,
+    })
+    follows!: Follows[]
+
+    @OneToOne(()=> PlanAggregator , planAggregator=> planAggregator.portfolio,{
+        cascade:true,
+        lazy:true
+    })
+    planAggregator?: PlanAggregator
     
 }

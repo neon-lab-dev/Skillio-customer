@@ -2,11 +2,11 @@ import { Api, HTTP_STATUS, RESPONSE_MESSAGES } from "@neon-lab-dev/platform";
 import { AppResponse } from "@neon-lab-dev/platform";
 import { ProfileSearchCriteria } from "../models/request/searchCriteria/profileSearchCriteria";
 import registrationServices from "../registration.services";
-import fetchProfileValidator from "../validators/fetchProfileValidator";
+import fetchProfilesValidator from "../validators/fetchProfilesValidator";
 
 export class FetchProfilesApi implements Api<ProfileSearchCriteria , AppResponse>{
     async preprocess(req: ProfileSearchCriteria):  Promise<void> | never {
-        await fetchProfileValidator.validate(req)
+        await fetchProfilesValidator.validate(req)
     }
 
     async process(req: ProfileSearchCriteria): Promise<AppResponse> {

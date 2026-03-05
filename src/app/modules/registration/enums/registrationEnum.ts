@@ -14,8 +14,9 @@ export enum proficiecy{
 }
 
 export enum profileStatus{
-    CREATED="CREATED",
-    REQUESTED="REQUESTED"
+    PENDING="PENDING",
+    APPROVED="APPROVED",
+    BLOCKED= "BLOCKED"
 }
 
 export enum onlineStatus{
@@ -26,4 +27,9 @@ export enum onlineStatus{
 export enum roles{
     USER= "USER",
     ADMIN= "ADMIN"
+}
+
+export enum SocialMeida{
+    INSTAGRAM= "INSTAGRAM",
+    FACEBOOK= "FACEBOOK"
 }

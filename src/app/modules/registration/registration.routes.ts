@@ -11,9 +11,21 @@ import { FetchProfilesApi } from "./api/fetchProfilesApi";
 import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import updateProfileStatusApi from "./api/updateProfileStatusApi";
 import { searchCriteriaBuilderFactory } from "../searchCriteria/search.criteria.builder.factory";
+import { FetchHiringRateApi } from "./api/fetchHiringRateApi";
+import { FetchProfileDetailsApi } from "./api/fetchProfileDetailsApi";
+import { UpdateProfileApi } from "./api/updateProfileApi";
+import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
+import { UpdatePinApi } from "./api/updatePinApi";
+import { DeleteProfileApi } from "./api/deleteProfileApi";
 
 const router= Router();
-const fetchProfilesApi= new FetchProfilesApi()
+const fetchProfilesApi= new FetchProfilesApi();
+const fetchHiringRateApi= new FetchHiringRateApi();
+const fetchProfileDetailsApi = new FetchProfileDetailsApi();
+const updateProfileApi= new UpdateProfileApi();
+const updateHiringRateApi = new UpdateHiringRateApi()
+const updatePinApi= new UpdatePinApi();
+const deleteProfileApi = new DeleteProfileApi()
 
 router.post(
     "/" ,
@@ -28,25 +40,54 @@ router.post(
 router.put(
     "/" , 
     verifyToken , 
+    asyncApiHandler(updateProfileApi)
+);
+router.put(
+    "/status" , 
+    verifyToken , 
     authorizeRole.validateRole(roles.ADMIN) , 
     asyncApiHandler(updateProfileStatusApi)
 );
 router.get(
-    "/count" , 
-    verifyToken , 
-    authorizeRole.validateRole(roles.ADMIN) , 
-    registrationController.getProfileCount
-);
+    "/hiringRate",
+    verifyToken,
+    asyncApiHandler(fetchHiringRateApi)
+)
+router.put(
+    "/hiringRate",
+    verifyToken,
+    asyncApiHandler(updateHiringRateApi)
+)
 router.get(
     "/:id", 
-    registrationController.getProfile
+    registrationController.getShortProfile
 );
+
+router.get(
+    "/full/:id",
+    verifyToken,
+    authorizeRole.validateRole(roles.ADMIN),
+    asyncApiHandler(fetchProfileDetailsApi)
+)
+
 router.get(
     "/" ,
     verifyToken , 
-    authorizeRole.validateRole(roles.ADMIN) ,
     createCriteriaMiddleWare(ProfileSearchCriteria , searchCriteriaBuilderFactory), 
     asyncApiHandler(fetchProfilesApi) 
 )
+
+router.put(
+    "/pin",
+    verifyToken,
+    asyncApiHandler(updatePinApi)
+)
+
+router.delete(
+    "/:id",
+    verifyToken,
+    asyncApiHandler(deleteProfileApi)
+)
+
 
 export const registrationRoutes = router;

@@ -20,7 +20,7 @@ class VerificationService {
       logger.error("Phone number and purpose are required");
       throw new AppError(400, "Phone number and purpose are required");
     }
-
+    
     const exisitingNonTerminatingVerification =
       await verificationRepository.findOneByPhoneNumberPurposeAndNonTerminating(
         phoneNumber,

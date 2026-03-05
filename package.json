@@ -4,10 +4,10 @@
   "description": "admin backend",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/app/app.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app/app.ts",
     "build": "tsc -p .",
-    "build:dev": "tsc -p . && node dist/server.js",
+    "build:dev": "tsc -p . && node dist/app/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "npm run typeorm migration:generate -- -d src/app/db/dataSource.ts",

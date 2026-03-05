@@ -5,4 +5,4 @@ export class DeletePlanMasterDto extends BaseDeleteDto implements AppRequest {
 
     ids!: Set<string>;
 
-}
+}   

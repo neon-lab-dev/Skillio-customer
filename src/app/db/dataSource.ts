@@ -12,11 +12,14 @@ export const AppDataSource = new DataSource({
   username: config.db_username_development,
   password: config.db_password_development,
   database: config.db_databse_development,
+  ssl: isProduction &&{
+    rejectUnauthorized:false
+  },
   synchronize: true,
   logging: true,
   entities: [
     path.join(__dirname, "..", "entity", "*{ts,js}"),
-    path.join(__dirname, "..", "modules", "entity", "*.{ts, js}")
+    path.join(__dirname, "..", "modules", "entity", "*.{ts,js}")
   ],
   migrations: [
     path.join(__dirname, "..", "migration", "development", "*{ts,js}")

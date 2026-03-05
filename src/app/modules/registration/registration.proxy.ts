@@ -6,11 +6,14 @@ import AppError from "../../errors/appError";
 import documentRepository from "../../repository/documentRepository";
 import { DocumentType } from "../document/enums/documentEnum";
 import { proxyLogging } from "../../utils/proxyLogging";
+import { profileStatus } from "./enums/registrationEnum";
+import { LoggerService, NotFoundError } from "@neon-lab-dev/platform";
 
 
 class RegistrationProxy{
 
     private checkExistingDocument= async(documentId:string , documentType:DocumentType)=>{
+        console.log("hehe" , documentId);
         const existingDocument= await documentRepository.findByIdAndType(documentId , documentType);
 
         if(!existingDocument){
@@ -43,12 +46,24 @@ class RegistrationProxy{
 
         await this.checkExistingDocument(profileDocumentId , DocumentType.PROFILE_PHOTO);
 
-        await this.checkExistingDocument(portfolio.videoDocumentId , DocumentType.VIDEO);
+        await Promise.all(
+            portfolio.videoDocumentIds.map(async(video)=>{
+                await this.checkExistingDocument(video , DocumentType.VIDEO)
+            })
+        )
 
-        await this.checkExistingDocument(portfolio.imageDocumentId , DocumentType.IMAGE);
+        await Promise.all(
+            portfolio.imageDocumentIds.map(async(image)=>{
+                await this.checkExistingDocument(image , DocumentType.IMAGE);
+            })
+        )
 
-        if(portfolio.eventsDoneDocumentId){
-            await this.checkExistingDocument(portfolio.eventsDoneDocumentId , DocumentType.EVENT);
+        if(portfolio.eventsDoneDocumentIds){
+            await Promise.all(
+                portfolio.eventsDoneDocumentIds.map(async(event)=>{
+                await this.checkExistingDocument(event , DocumentType.EVENT)
+            })
+        )
         }
 
         return await registrationServices.createProfile(profileData);
@@ -60,20 +75,20 @@ class RegistrationProxy{
         async(credential:string , pin:string)=>{
         const profile= await registrationRepository.findProfileByCredential(credential);
         
-        if(!profile){
-            logger.error(`  Profile doesnot exist.`);
-            throw new AppError(404, `Profile doesnot exist.`);
+        if(!profile || profile.status=== profileStatus.BLOCKED){
+            LoggerService.error(`  Profile doesnot exist or you are blocked.`);
+            throw new NotFoundError(`Profile doesnot exist or you are blocked.`);
         }
 
         return await registrationServices.loginUser(pin , profile)
     })
 
     // get profile
-    getProfile= proxyLogging(
+    getShortProfile= proxyLogging(
         "RegistrationProxy",
         "getProfile",
         async(id:string)=>{
-        return await registrationServices.getProfile(id);
+        return await registrationServices.getShortProfile(id);
     })
 
 

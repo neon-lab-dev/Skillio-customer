@@ -1,4 +1,4 @@
-import { contactType, proficiecy, ProfileType, roles } from "../enums/registrationEnum";
+import { contactType, proficiecy, ProfileType, roles, SocialMeida } from "../enums/registrationEnum";
 import Decimal from "decimal.js"
 
 export interface Location {
@@ -39,6 +39,20 @@ export interface TAddress {
   location: Location
 }
 
+export interface THiringRate{
+  hourlyPricing: Decimal;
+  dailyPricing: Decimal;
+  weeklyPricing: Decimal;
+  monthlyPricing: Decimal;
+}
+
+export interface TFollows{
+  socialMedia: SocialMeida,
+  link: string,
+  followers?: number,
+  following?:number
+}
+
 export interface TPortfolio {
   category: string;
   subCategory: string;
@@ -46,17 +60,12 @@ export interface TPortfolio {
   bio?: string;
   totalEvents?: number;
   hiringRate: THiringRate;
-  videoDocumentId:string;
-  imageDocumentId:string;
-  eventsDoneDocumentId?:string;
+  follows?: TFollows[];
+  videoDocumentIds:string[];
+  imageDocumentIds:string[];
+  eventsDoneDocumentIds?:string[];
 }
 
-export interface THiringRate{
-  hourlyPricing: Decimal;
-  dailyPricing: Decimal;
-  weeklyPricing: Decimal;
-  monthlyPricing: Decimal;
-}
 
 export interface TProfile {
   firstName?: string;

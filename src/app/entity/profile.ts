@@ -31,7 +31,7 @@ export class Profile extends BaseEntity{
     @Column({unique:true})
     nickName!: string;
 
-    @Column({type: "enum", enum: profileStatus, default: profileStatus.REQUESTED})
+    @Column({type: "enum", enum: profileStatus, default: profileStatus.PENDING})
     status!: profileStatus
 
     @Column({type: "enum", enum: ProfileType, default: ProfileType.INDIVIDUAL})

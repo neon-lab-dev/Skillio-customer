@@ -1,4 +1,4 @@
-import { ProfileType, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
+import { ProfileType, SocialMeida, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
 import { Location, THiringRate } from "../../interface/registration.interface";
 import Decimal from "decimal.js"
 
@@ -81,9 +81,15 @@ export class PortfolioDTO {
   totalEvents?: number;
   bio?: string;
   hiringRate: THiringRate;
-  videoDocumentId:string;
-  imageDocumentId:string;
-  eventsDoneDocumentId:string;
+  follows: {
+    socialMedia: SocialMeida,
+    link:string,
+    followers?: number,
+    following?: number
+  }[];
+  videoDocumentIds:string[];
+  imageDocumentIds:string[];
+  eventsDoneDocumentIds:string[];
 
   constructor(data: {
     category: string;
@@ -92,19 +98,26 @@ export class PortfolioDTO {
     totalEvents?: number;
     bio?: string;
     hiringRate: THiringRate;
-    videoDocumentId:string;
-    imageDocumentId:string;
-    eventsDoneDocumentId:string;
+    follows: {
+    socialMedia: SocialMeida,
+    link:string,
+    followers?: number,
+    following?: number
+  }[];
+    videoDocumentIds:string[];
+    imageDocumentIds:string[];
+    eventsDoneDocumentIds:string[];
   }) {
     this.category = data.category;
     this.subCategory = data.subCategory;
     this.proficiency = data.proficiency;
     this.totalEvents = data.totalEvents;
     this.bio = data.bio;
+    this.follows= data.follows?.map(follow=> new FollowsDTO(follow));
     this.hiringRate= data.hiringRate;
-    this.videoDocumentId=data.videoDocumentId;
-    this.imageDocumentId=data.imageDocumentId;
-    this.eventsDoneDocumentId=data.eventsDoneDocumentId;
+    this.videoDocumentIds=data.videoDocumentIds;
+    this.imageDocumentIds=data.imageDocumentIds;
+    this.eventsDoneDocumentIds=data.eventsDoneDocumentIds;
   }
 
   toJSON() {
@@ -115,9 +128,10 @@ export class PortfolioDTO {
       totalEvents: this.totalEvents,
       bio: this.bio,
       hiringRate: this.hiringRate,
-      videoDocumentId:this.videoDocumentId,
-      imageDocumentId:this.imageDocumentId,
-      eventsDoneDocumentId:this.eventsDoneDocumentId
+      follows: this.follows,
+      videoDocumentIds:this.videoDocumentIds,
+      imageDocumentIds:this.imageDocumentIds,
+      eventsDoneDocumentIds:this.eventsDoneDocumentIds
     };
   }
 }
@@ -244,33 +258,6 @@ export class GetAddressDTO {
   }
 }
 
-export class HiringRateDTO{
-    dailyPricing!: Decimal;
-    hourlyPricing!: Decimal;
-    weeklyPricing!: Decimal;
-    monthlyPricing!: Decimal;
-
-    constructor(data: {
-      dailyPricing: Decimal;
-      hourlyPricing: Decimal;
-      weeklyPricing: Decimal;
-      monthlyPricing: Decimal;
-    }){
-      this.dailyPricing= data.dailyPricing;
-      this.hourlyPricing= data.hourlyPricing;
-      this.weeklyPricing= data.weeklyPricing;
-      this.monthlyPricing= data.monthlyPricing;
-    }
-
-    toJSON(){
-      return {
-        dailyPricing: this.dailyPricing,
-        hourlyPricing: this.hourlyPricing,
-        weeklyPricing: this.weeklyPricing,
-        monthlyPricing: this.monthlyPricing
-      }
-    }
-}
 
 export class GetPortfolioDTO {
   category: string;
@@ -278,7 +265,6 @@ export class GetPortfolioDTO {
   proficiency: proficiecy;
   totalEvents?: number;
   bio?: string;
-  hiringRate: HiringRateDTO
 
   constructor(data: {
     category: string;
@@ -286,19 +272,12 @@ export class GetPortfolioDTO {
     proficiency: proficiecy;
     totalEvents?: number;
     bio?: string;
-    hiringRate: {
-      dailyPricing: Decimal;
-      hourlyPricing: Decimal;
-      weeklyPricing: Decimal;
-      monthlyPricing: Decimal;
-    };
   }) {
     this.category = data.category;
     this.subCategory = data.subCategory;
     this.proficiency = data.proficiency;
     this.totalEvents = data.totalEvents;
     this.bio = data.bio;
-    this.hiringRate= new HiringRateDTO(data.hiringRate);
   }
 
   toJSON() {
@@ -308,7 +287,6 @@ export class GetPortfolioDTO {
       proficiency: this.proficiency,
       totalEvents: this.totalEvents,
       bio: this.bio,
-      hiringRate: this.hiringRate.toJSON()
     };
   }
 }
@@ -354,7 +332,13 @@ export class GetRegistrationDTO {
         hourlyPricing: Decimal;
         weeklyPricing: Decimal;
         monthlyPricing: Decimal;
-      }
+      };
+      follows: {
+        socialMedia: SocialMeida;
+        link: string;
+        followers?: number;
+        following?: number;
+      }[]
     };
   }) {
     this.firstName = data.firstName;
@@ -371,7 +355,7 @@ export class GetRegistrationDTO {
     
     this.portfolio =  new GetPortfolioDTO(data.portfolio) 
   }
-
+  
   toJSON() {
     return {
       firstName: this.firstName,
@@ -386,22 +370,55 @@ export class GetRegistrationDTO {
   }
 }
 
+export class FollowsDTO{
+    socialMedia: SocialMeida;
+    link: string;
+    followers?: number;
+    following?:number;
+
+    constructor(data: {
+      socialMedia: SocialMeida,
+      link: string,
+      followers?: number,
+      following?: number
+    }){
+      this.socialMedia= data.socialMedia;
+      this.link= data.link;
+      this.followers= data?.followers;
+      this.following= data?.following;
+    }
+
+    toJSON(){
+      return{
+        socialMedia: this.socialMedia,
+        link: this.link,
+        followers: this.followers,
+        following: this.following
+      }
+    }
+}
 export class GetProfilePortfolioDTO{
   id:string;
   bio?: string;
+  follows? : FollowsDTO[]; 
 
   constructor(data:{
     id:string;
     bio?: string;
+    follows?: FollowsDTO[];
   }){
     this.id=data.id;
     this.bio=data.bio;
+    this.follows= data.follows?.map(
+      follow=> new FollowsDTO(follow)
+    );
   }
 
   toJSON(){
     return {
       id: this.id,
-      bio: this.bio
+      bio: this.bio,
+      follows: this.follows
     }
   }
 }
@@ -434,7 +451,14 @@ export class GetProfileDTO{
     }>;
     portfolio:{
       id:string;
-      bio?: string;
+      bio?: string; 
+      hiringRate: THiringRate;
+         follows: {
+        socialMedia: SocialMeida;
+        link: string;
+        followers?: number;
+        following?: number;
+      }[];
     };
     online?:{
       status: onlineStatus;
@@ -450,7 +474,8 @@ export class GetProfileDTO{
     this.contacts=data.contacts.map(contact=>new GetContactDTO(contact));
     this.portfolio=new GetProfilePortfolioDTO({
       id: data.portfolio.id,
-      bio: data.portfolio.bio || ""
+      bio: data.portfolio.bio || "",
+      follows: data.portfolio?.follows?.map(follow=> new FollowsDTO(follow))
     })
     this.online=data.online?{
       status: data.online.status,

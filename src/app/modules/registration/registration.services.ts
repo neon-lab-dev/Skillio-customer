@@ -11,13 +11,13 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { proficiecy, ProfileType, roles } from "./enums/registrationEnum";
+import { proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
 import { Producer } from "../../kafka/producer/producer";
 import documentServices from "../document/services/document.services";
-import { JwtService, Loggable, Page, Pageable } from "@neon-lab-dev/platform";
+import { AsyncContextService, JwtService, Loggable, LoggerService, NotFoundError, Page, Pageable, UnauthorizedError } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
 import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
@@ -26,6 +26,22 @@ import { UpdateProfileStatusRequest } from "./models/request/updateProfileStatus
 import notificationServices from "../notification/services/notification.services";
 import { Medium } from "../notification/enums/notificationEnum";
 import bodyText from "../../providers/appNotification/bodyText";
+import { FetchHiringRateRequest } from "./models/request/fetchHiringRateRequest";
+import { HiringRateDto } from "./models/dto/dto.hiringRate";
+import { HiringRateDtoBuilder } from "./models/builder/hiringRateDtoBuilder";
+import { FetchProfileDetailsRequest } from "./models/request/fetchProfileDetailsRequest";
+import { FetchProfileDetailsDtoBuilder } from "./models/builder/fetchProfileDetailsDtoBuilder";
+import { FetchProfileDetailsResponseDto } from "./models/dto/dto.fetch.profile.details";
+import { UpdateProfileRequest } from "./models/request/updateProfileRequest";
+import { profileService } from "../profile/service.profile";
+import { UpdateHiringRateRequest } from "./models/request/updateHiringRateRequest";
+import { HiringRate } from "../../entity/hiringRate";
+import { UpdatePinRequest } from "./models/request/updatePinRequest";
+import { DeepPartial } from "typeorm";
+import { Follows } from "../../entity/follows";
+import { DeleteProfileRequest } from "./models/request/deleteProfileRequest";
+import { getPublicIdFromUrl } from "../document/utils/getPublicIdFromCloudinaryUrl";
+import cloudinaryServices from "../document/services/cloudinaryServices";
 import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 
 class RegistrationService{
@@ -50,6 +66,28 @@ class RegistrationService{
             })
     }
 
+    private async checkExisting(id:string):Promise<Profile>{
+        const profile= await registrationRepository.findProfileById(id);
+        if(!profile || profile.status=== profileStatus.BLOCKED){
+            throw new NotFoundError("profile not found");
+        }
+        return profile;
+    }
+
+    private async checkExistingHiringRate(id:string):Promise<void>{
+        const hiringRate= await registrationRepository.findHiringRateById(id);
+        if(!hiringRate){
+            throw new NotFoundError("hiring rate does not exist");
+        }
+    }
+
+    public async authorizeProfile(id:string){
+        const profileId= AsyncContextService.getUserId();
+        if(profileId!=id){
+            throw new UnauthorizedError("unauthorized access");
+        }
+    }
+
     // create/register a profile
     createProfile= serviceLogging(
         "RegistrationService",
@@ -60,6 +98,8 @@ class RegistrationService{
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(pin, salt);
 
+        const status= portfolio.proficiency== proficiecy.SKILLED ? profileStatus.APPROVED : profileStatus.PENDING;
+
         const bio= censorSensitiveInfo.censor(portfolio.bio as string);
 
         const newProfile= await registrationRepository.createProfile({
@@ -69,6 +109,7 @@ class RegistrationService{
             nickName,
             pin:hashedPin,
             profileType , 
+            status,
             role,   
             contacts: contacts.map(contact=>({
                 type:contact.type,
@@ -89,7 +130,15 @@ class RegistrationService{
                 proficiency: portfolio.proficiency,
                 totalEvents: portfolio.totalEvents,
                 bio: bio || "",
-                hiringRate: portfolio.hiringRate
+                hiringRate: portfolio.hiringRate,
+                follows: portfolio.follows?.map(
+                    follow=>({
+                        socialMedia: follow.socialMedia,
+                        link: follow.link,
+                        followers: follow.followers,
+                        following: follow.following
+                    })
+                ) as DeepPartial<Follows[]>
             }
         })
 
@@ -111,26 +160,39 @@ class RegistrationService{
             portfolioId: newProfile.portfolio.id
         })
 
-        await this.updateDocument(portfolio.videoDocumentId, {
-            portfolioId: newProfile.portfolio.id
-        })
-
-        await this.updateDocument(portfolio.imageDocumentId , {
-            portfolioId: newProfile.portfolio.id
-        })
-
-        if(portfolio.eventsDoneDocumentId){
-            await this.updateDocument(portfolio.eventsDoneDocumentId , {
-                portfolioId: newProfile.portfolio.id
+        await Promise.all(
+            portfolio.videoDocumentIds.map(async(video)=>{
+                await this.updateDocument(video, {
+                    portfolioId: newProfile.portfolio.id
+                })
             })
+        )
+
+        await Promise.all(
+            portfolio.imageDocumentIds.map(async(image)=>{
+                await this.updateDocument(image, {
+                    portfolioId: newProfile.portfolio.id
+                })
+            })
+        )
+
+
+        if(portfolio.eventsDoneDocumentIds){
+            await Promise.all(
+                portfolio.eventsDoneDocumentIds.map(async(event)=>{
+                    await this.updateDocument(event, {
+                        portfolioId: newProfile.portfolio.id
+                    })
+                })
+            )
         }
 
-        const document= await documentServices.getDocument(profileDocumentId)
+        const document= await documentServices.getDocument([profileDocumentId])
 
         const shortUser={
             referenceId: newProfile.id,
             nickName: newProfile.nickName,
-            profilePictureUrl: document.document.url
+            profilePictureUrl: document[0].url
         }
 
         this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
@@ -183,6 +245,7 @@ class RegistrationService{
         return{
             profile:{
                 id: profile.id,
+                portfolioId: profile.portfolio.id,
                 nickName: profile.nickName,
                 role: profile.role
             },
@@ -192,16 +255,11 @@ class RegistrationService{
     })
 
     // get profile
-    getProfile= serviceLogging(
+    getShortProfile= serviceLogging(
         "RegistrationService",
         "getProfile",
         async(id:string)=>{
-        const profile= await registrationRepository.findProfileById(id);
-
-        if(!profile){
-            logger.error("Profile with this Id doesnot exist");
-            throw new AppError(404, "Profile does not exist");
-        }
+        const profile= await this.checkExisting(id);
 
         const fetchedProfile= new GetProfileDTO(profile).toJSON();
 
@@ -217,6 +275,7 @@ class RegistrationService{
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
+                    follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
@@ -233,6 +292,7 @@ class RegistrationService{
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
+                    follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
@@ -247,6 +307,7 @@ class RegistrationService{
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
                         bio: fetchedProfile.portfolio.bio || "",
+                        follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed,
                         online:fetchedProfile.online,
                     },
@@ -265,6 +326,7 @@ class RegistrationService{
                         portfolioId: fetchedProfile.portfolio.id,
                         online:fetchedProfile.online,
                         bio: fetchedProfile.portfolio.bio || "",
+                        follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed
                         },
                     profilePictureId: profilePhotoId
@@ -272,6 +334,17 @@ class RegistrationService{
                 }
         }
     })
+
+    @Loggable()
+    public async getProfileDetails(req: FetchProfileDetailsRequest):Promise<FetchProfileDetailsResponseDto>{
+        const profile= await registrationRepository.findProfileById(req.id);
+
+        if(!profile){
+            throw new NotFoundError("profile not found");
+        }
+
+        return FetchProfileDetailsDtoBuilder.builder().of(profile).build();
+    }
 
     // get profiles
     @Loggable()
@@ -296,7 +369,85 @@ class RegistrationService{
 
     @Loggable()
     public async updateProfileStatus(req: UpdateProfileStatusRequest):Promise<void>{
+        await this.checkExisting(req.id);
         await registrationRepository.updateProfile(req.id , {status: req.status});
+    }
+
+    @Loggable()
+    public async updateProfile(req:UpdateProfileRequest):Promise<void>{
+        await this.checkExisting(req.id);
+        await this.authorizeProfile(req.id);
+        const loggedInUserProfile=await profileService.fetchWithPortfolio(req.id);
+        await registrationRepository.updateProfile(req.id,{
+            firstName: req.firstName,
+            lastName: req.lastName
+        })
+        await registrationRepository.updatePortfolio(loggedInUserProfile.portfolio.id , {totalEvents:req.totalEvents});
+    }
+
+    @Loggable()
+    public async fetchHiringRate(req: FetchHiringRateRequest): Promise<HiringRateDto>{
+        const res= await registrationRepository.findHiringRate(req.portfolioId);
+
+        if(!res){
+            LoggerService.error("Hiring rate not found")
+            throw new NotFoundError("Hiring reat not found")
+        }
+
+        return HiringRateDtoBuilder.Builder().of(res).build()
+    }
+
+    @Loggable()
+    public async updateHiringRate(req: UpdateHiringRateRequest){
+        await this.checkExistingHiringRate(req.id);
+        const updatedData={
+            hourlyPricing: req.hourlyPricing,
+            dailyPricing: req.dailyPricing,
+            weeklyPricing: req.weeklyPricing,
+            monthlyPricing: req.monthlyPricing
+        }
+        return await registrationRepository.updateHiringRate(req.id , updatedData)
+    }
+
+    @Loggable()
+    public async updatePin(req:UpdatePinRequest){
+        const profile= await registrationRepository.findProfileByCredential(req.credential);
+        if(!profile){
+            throw new NotFoundError("profile not found")
+        }
+        await this.authorizeProfile(profile.id);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPin = await bcrypt.hash(req.pin, salt);
+        await registrationRepository.updateProfile(profile.id , {pin: hashedPin});
+    }
+
+    @Loggable()
+    public async delete(req: DeleteProfileRequest){
+        await this.checkExisting(req.id);
+        await this.authorizeProfile(req.id);
+        const referenceId={
+            referenceId: req.id
+        }
+        this.producer.produce(Events.CUSTOMER_DELETED , {referenceId})
+        const loggedInUserProfile= await profileService.fetchWithPortfolio(req.id);
+        const existingDocuments= await documentServices.fetchDocuments({
+            portfolioId: loggedInUserProfile.portfolio.id
+        })
+        const publicIds= existingDocuments.map((doc)=> getPublicIdFromUrl(doc.url));
+        await Promise.all(publicIds.map(async(id)=>{
+            await cloudinaryServices.deleteFile(id as string);
+        }))
+        await registrationRepository.delete(req.id);
+    }
+
+    @Loggable()
+    public async fetchPortfolio(id:string){
+        const portfolio= await registrationRepository.findPortfolioById(id);
+
+        if(portfolio){
+            return portfolio;
+        }
+        throw new NotFoundError("portfolio not found")
     }
 
 }

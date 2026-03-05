@@ -21,9 +21,13 @@ class DocumentRepository{
 
     // find one by id
     findOneById= async(id:string)=>{
-        return await this.documentRepository.findOneBy({
-            id
-        });
+        return await this.documentRepository.findOne({
+            where:{
+                id: id
+            },
+            relations:{portfolio: true}
+        },
+    );
     }
 
     findByIds= async(ids:string[])=>{
@@ -51,6 +55,10 @@ class DocumentRepository{
             },
             select: ["id"]
         });
+    }
+
+    async fetchDocumentByPortfolio(portfolioId:string){
+        return await this.documentRepository.findBy({portfolioId});
     }
 
     // update a document

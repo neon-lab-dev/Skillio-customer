@@ -24,29 +24,36 @@ export class FetchProfileDtoBuilder {
         this.dto.city= entity.address.city;
         this.dto.country= entity.address.country;
         this.dto.proficiency= entity.portfolio.proficiency;
+        this.dto.portfolioId= entity.portfolio.id;
         this.dto.email= this.ofEmail(entity);
         this.dto.phoneNumber= this.ofPhoneNum(entity);
+        this.dto.document= this.setDocument(entity);
 
         return this;
     }
 
     private ofPhoneNum(entity:Profile):(string | undefined)[]{
-        const phoneNum= entity.contacts.map((contact=>{
-            if(contact.type=== contactType.PHONE){
-                return contact.value;
-            }
-        }))
-        return phoneNum;
+        return entity.contacts
+        .filter(contact => contact.type === contactType.PHONE)
+        .map(contact => contact.value);
     }
 
-    private ofEmail(entiy: Profile):(string | undefined)[]{
-        const email= entiy.contacts.map((contact=>{
-            if(contact.type=== contactType.EMAIL){
-                return contact.value;
-            }
-        }))
-        return email;
+    private ofEmail(entity: Profile):(string | undefined)[]{
+        return entity.contacts
+        .filter(contact => contact.type === contactType.EMAIL)
+        .map(contact => contact.value);
+
     }
+
+    private setDocument(entity: Profile){
+        return entity.portfolio.document.map((doc)=>{
+            return {
+                url: doc.url,
+                type: doc.type
+            }
+        })
+    }
+
 
     public build(): FetchProfileDto{
         return this.dto;

@@ -16,5 +16,6 @@ export class CreatePlanMasterRequest implements AppRequest {
     profileVisibility!:ProfileVisibility;
     status!: PlanMasterStatus;
     active!:boolean;
+    priority!:number;
     
 }

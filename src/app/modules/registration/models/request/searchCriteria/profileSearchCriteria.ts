@@ -1,6 +1,6 @@
 import { AppRequest } from "@neon-lab-dev/platform";
 import { SearchCriteria } from "@neon-lab-dev/platform";
-import { proficiecy, ProfileType } from "../../../enums/registrationEnum";
+import { proficiecy, profileStatus, ProfileType } from "../../../enums/registrationEnum";
 
 export class ProfileSearchCriteria extends SearchCriteria implements AppRequest{
     constructor(){
@@ -8,6 +8,8 @@ export class ProfileSearchCriteria extends SearchCriteria implements AppRequest{
     }
 
     ids!: Set<string>;
+
+    status!: Set<profileStatus>;
 
     nickName!: string;
 
@@ -21,6 +23,10 @@ export class ProfileSearchCriteria extends SearchCriteria implements AppRequest{
 
     profileType!: ProfileType;
 
-    proficiency!: proficiecy
+    proficiency!: proficiecy;
+
+    category!: string;
+
+    subCategory!: string;
 
 }

@@ -10,6 +10,11 @@ import { Call } from "../../entity/call";
 import { GetCallDTO } from "./call.dto";
 import callProviderFactory from "./managers/callProviderFactory";
 import { FetchTokenRequest } from "./models/request/fetchTokenRequest";
+import { Loggable } from "@neon-lab-dev/platform";
+import { FetchCallsRequest } from "./models/request/fetchCallsRequest";
+import { FetchCallResponseDto } from "./models/response/fetchCallResponseDto";
+import { FetchCallResponseBuilder } from "./models/builder/fetchCallResponseBuilder";
+import registrationServices from "../registration/registration.services";
 
 class CallService{
 
@@ -114,6 +119,13 @@ class CallService{
         const callProvider=await callProviderFactory.get(req.provider);
         const token= await callProvider.getToken(req.callerId)
         return token;
+    }
+
+    @Loggable()
+    public async fetchCalls(req: FetchCallsRequest):Promise<FetchCallResponseDto[]>{
+        await registrationServices.authorizeProfile(req.profileId);
+        const res= await callRepository.findCalls(req.profileId);
+        return FetchCallResponseBuilder.builder().ofArray(res);
     }
 }
 

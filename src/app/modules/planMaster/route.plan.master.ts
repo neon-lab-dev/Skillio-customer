@@ -45,6 +45,6 @@ router.get(
     asyncApiHandler(fetchPlanApi)
 )
 router.get("/:id" , asyncApiHandler(fetchByIdApi));
-router.delete("/" , asyncApiHandler(deletePlanApi));
+router.post("/delete" , asyncApiHandler(deletePlanApi));
 
 export const planMasterRouter = router;
