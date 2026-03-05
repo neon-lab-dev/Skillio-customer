@@ -12,6 +12,7 @@ import { verifyToken } from "../../middlewares/requireAuth";
 import authorizeRole from "../../middlewares/authorizeRole";
 import { roles } from "../registration/enums/registrationEnum";
 import { UserPlanMasterSearchCriteria } from "./models/request/search.criteria.user.plan.master";
+import { FetchFullPlanDetailsApi } from "./api/api.fetch.full.details";
 
 
 const router = Router();
@@ -20,6 +21,7 @@ const updatePlanApi = new UpdatePlanMasterApi();
 const fetchPlanApi = new FetchPlanApi();
 const fetchByIdApi= new FetchByIdApi();
 const deletePlanApi= new DeletePlanApi();
+const fetchFullPlanDetailsApi = new FetchFullPlanDetailsApi();
 
 router.post(
     "/",
@@ -36,7 +38,7 @@ router.get(
     verifyToken,
     authorizeRole.validateRole(roles.ADMIN),
     createCriteriaMiddleWare(PlanMasterSearchCriteria, searchCriteriaBuilderFactory),
-    asyncApiHandler(fetchPlanApi)
+    asyncApiHandler(fetchFullPlanDetailsApi)
 );
 router.get(
     "/plans",
