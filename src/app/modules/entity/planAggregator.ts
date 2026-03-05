@@ -40,7 +40,7 @@ export class PlanAggregator extends PersistEntity{
         nullable:false
     })
     @AutoMap()
-    planIds!: string[]
+    userSubscriptionIds!: string[]
 
     @Column({
         type:"int",
@@ -49,6 +49,14 @@ export class PlanAggregator extends PersistEntity{
     })
     @AutoMap()
     acitvePlans!: number
+
+    @Column({
+        type:"int",
+        nullable:false,
+        default:0
+    })
+    @AutoMap()
+    version!: number
 
     @Column({
         type:"uuid",

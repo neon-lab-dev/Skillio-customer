@@ -32,5 +32,12 @@ export class UserSubscriptionRepository extends BaseRepository<UserSubscriptionE
         })
     }
 
+    
+    async updateStatus(id: string){
+        return await this.repository.update(id , {
+            status: SubscriptionStatus.EXPIRED
+        })
+    }
+
 
 }

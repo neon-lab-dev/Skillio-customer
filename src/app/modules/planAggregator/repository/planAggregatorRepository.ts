@@ -19,19 +19,29 @@ export class PlanAggregatorRepository extends BaseRepository<PlanAggregator>{
         return await this.repository.findOneBy({portfolioId})
     }
 
-    async reduceCallLimits(portfolioId: string){
+    async reduceCallLimits(portfolioId: string, existingVersion: number , amount?: number){
+        const reducedAmount= amount? amount :1;
+        await this.repository.update(
+            {portfolioId , version: existingVersion},
+            {version: existingVersion+1}
+        )
         return await this.repository.decrement(
             {portfolioId} , 
             "callLimits",
-            1
+            reducedAmount
         )
-    }
+    }   
 
-    async reduceChatLimits(portfolioId: string){
+    async reduceChatLimits(portfolioId: string ,existingVersion: number, amount?:number){
+        const reducedAmount= amount? amount :1;
+        await this.repository.update(
+            {portfolioId , version:existingVersion },
+            {version: existingVersion+1}
+        )
         return await this.repository.decrement(
             {portfolioId},
             "chatLimits",
-            1
+            reducedAmount
         )
     }
 }
