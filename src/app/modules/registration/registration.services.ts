@@ -42,6 +42,7 @@ import { Follows } from "../../entity/follows";
 import { DeleteProfileRequest } from "./models/request/deleteProfileRequest";
 import { getPublicIdFromUrl } from "../document/utils/getPublicIdFromCloudinaryUrl";
 import cloudinaryServices from "../document/services/cloudinaryServices";
+import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 
 class RegistrationService{
 
@@ -99,6 +100,8 @@ class RegistrationService{
 
         const status= portfolio.proficiency== proficiecy.SKILLED ? profileStatus.APPROVED : profileStatus.PENDING;
 
+        const bio= censorSensitiveInfo.censor(portfolio.bio as string);
+
         const newProfile= await registrationRepository.createProfile({
             firstName,
             lastName,
@@ -126,7 +129,7 @@ class RegistrationService{
                 subCategory: portfolio.subCategory,
                 proficiency: portfolio.proficiency,
                 totalEvents: portfolio.totalEvents,
-                bio: portfolio.bio || "",
+                bio: bio || "",
                 hiringRate: portfolio.hiringRate,
                 follows: portfolio.follows?.map(
                     follow=>({
@@ -139,7 +142,7 @@ class RegistrationService{
             }
         })
 
-        Promise.all(contacts.map(async(contact)=>{
+        await Promise.all(contacts.map(async(contact)=>{
             const verification= await verificationRepository.findOneById(contact.verificationId);
             const existingContact= await registrationRepository.findContactByValue(contact.value);
             if(verification?.otpCodeStatus==="VERIFIED"){
