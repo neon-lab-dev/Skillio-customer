@@ -202,6 +202,15 @@ class PlanMasterService {
         }
     }
 
+    @Loggable()
+    public async fetchFullDetails(req: PlanMasterSearchCriteria): Promise<Page<ShortPlanMasterDto>> {
+        const spec = new PlanMasterSpecification(req);
+        const entityPage = await this.repository.findPage(spec, req);
+        const dtoItems = PlanMasterDetailsBuilder.builder().ofArray(entityPage.items);
+        return Pageable.buildPage(dtoItems, entityPage.total, req);
+    }
+
+
 }
 
 export const planMasterService = new PlanMasterService();
