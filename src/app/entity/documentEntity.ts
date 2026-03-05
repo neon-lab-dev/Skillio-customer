@@ -35,7 +35,9 @@ export class Document extends BaseEntity{
     @AutoMap()
     portfolioId?: string;
 
-    @ManyToOne(()=>Portfolio , portfolio=> portfolio.document)
+    @ManyToOne(()=>Portfolio , portfolio=> portfolio.document,{
+        onDelete: "CASCADE"
+    })
     @JoinColumn({name:"portfolioId"})
     portfolio?: Portfolio;
 }

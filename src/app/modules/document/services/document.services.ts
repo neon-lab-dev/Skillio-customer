@@ -12,8 +12,15 @@ import { Loggable } from "@neon-lab-dev/platform";
 import { FetchDocumentsRequest } from "../models/request/fetchDocumentsRequest";
 import { FetchDocumentsResponseDtoBuilder } from "../models/builders/fetchDocumentsResponseDtoBuilder";
 import { FetchDocumentsResponseDto } from "../models/response/fetchDocumentsResponseDto";
+import { profileService } from "../../profile/service.profile";
+import { Producer } from "../../../kafka/producer/producer";
+import { Events } from "../../../kafka/events";
+import registrationServices from "../../registration/registration.services";
 
 class DocumentService{
+
+    private producer: Producer= new Producer()
+    
 
     private getFileNameAndMimeType=(file:Express.Multer.File)=>{
         const fileName= file?.originalname;
@@ -99,6 +106,15 @@ class DocumentService{
          });
 
         const updatedDocument= await documentRepository.findOneById(id);
+
+        const portfolio= await registrationServices.fetchPortfolio(updatedDocument?.portfolioId as string);
+
+        const updatedData={
+            referenceId: portfolio.profile.id,
+            profilePictureUrl: updatedDocument?.url
+        }
+
+        this.producer.produce(Events.CUSTOMER_UPDATED , {updatedData});
 
         return {
             updatedDocument:{
