@@ -7,9 +7,6 @@ import { AutoMap } from "@automapper/classes";
 
 @Entity("follows")
 @Index("IDX_PORTFOLIOID" , ["portfolioId"])
-@Index("IDX_socialMedia_followers" , ["socialMedia" , "followers"])
-@Index("IDX_socialMedia_following" , ["socialMedia" , "following"])
-@Index("IDX_socialMedia_link" , ["socialMedia" , "link"])
 export class Follows extends PersistEntity{
     constructor(){
         super()
