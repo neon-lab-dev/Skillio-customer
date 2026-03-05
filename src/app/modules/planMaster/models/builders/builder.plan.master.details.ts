@@ -34,4 +34,10 @@ export class PlanMasterDetailsBuilder {
         return this;
     }
 
+    
+    public ofArray(entities: PlanMasterEntity[]){
+        return entities.map((entity)=> PlanMasterDetailsBuilder.builder().of(entity).build());
+    }
+
+
 }
