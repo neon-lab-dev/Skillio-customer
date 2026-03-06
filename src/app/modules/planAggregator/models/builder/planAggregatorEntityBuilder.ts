@@ -1,6 +1,5 @@
-import { globalMapper } from "../../../../mapper.global";
 import { PlanAggregator } from "../../../entity/planAggregator";
-import { PlanAggregatorRequestDto } from "../request/planAggregatorRequestDto";
+import { PlanAggregatorInterface } from "../interface/planAggregatorInterface";
 
 export class PlanAggregatorEntityBuilder {
     private entity: PlanAggregator;
@@ -13,8 +12,12 @@ export class PlanAggregatorEntityBuilder {
         return new PlanAggregatorEntityBuilder()
     }
 
-    public of(req: PlanAggregatorRequestDto):PlanAggregatorEntityBuilder{
-        this.entity= globalMapper.map(req , PlanAggregatorRequestDto , PlanAggregator);
+    public of(req: PlanAggregatorInterface):PlanAggregatorEntityBuilder{
+        this.entity.callLimits= req.callLimits;
+        this.entity.chatLimits= req.chatLimits;
+        this.entity.activePlans= req.activePlans;
+        this.entity.userSubscriptionIds= req.userSubscriptionIds;
+        this.entity.portfolioId=req.portfolioId;
         return this;
     }
 

@@ -11,7 +11,7 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
+import { contactType, proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
@@ -42,6 +42,7 @@ import { Follows } from "../../entity/follows";
 import { DeleteProfileRequest } from "./models/request/deleteProfileRequest";
 import { getPublicIdFromUrl } from "../document/utils/getPublicIdFromCloudinaryUrl";
 import cloudinaryServices from "../document/services/cloudinaryServices";
+import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 
 class RegistrationService{
 
@@ -99,6 +100,8 @@ class RegistrationService{
 
         const status= portfolio.proficiency== proficiecy.SKILLED ? profileStatus.APPROVED : profileStatus.PENDING;
 
+        const bio= censorSensitiveInfo.censor(portfolio.bio as string);
+
         const newProfile= await registrationRepository.createProfile({
             firstName,
             lastName,
@@ -126,7 +129,7 @@ class RegistrationService{
                 subCategory: portfolio.subCategory,
                 proficiency: portfolio.proficiency,
                 totalEvents: portfolio.totalEvents,
-                bio: portfolio.bio || "",
+                bio: bio || "",
                 hiringRate: portfolio.hiringRate,
                 follows: portfolio.follows?.map(
                     follow=>({
@@ -139,7 +142,7 @@ class RegistrationService{
             }
         })
 
-        Promise.all(contacts.map(async(contact)=>{
+        await Promise.all(contacts.map(async(contact)=>{
             const verification= await verificationRepository.findOneById(contact.verificationId);
             const existingContact= await registrationRepository.findContactByValue(contact.value);
             if(verification?.otpCodeStatus==="VERIFIED"){
@@ -184,15 +187,22 @@ class RegistrationService{
             )
         }
 
+        const phoneNumber= newProfile.contacts.map((contact)=> {
+            if(contact.type=== contactType.PHONE){
+                return contact.value;
+            }
+        });
+
         const document= await documentServices.getDocument([profileDocumentId])
 
         const shortUser={
             referenceId: newProfile.id,
             nickName: newProfile.nickName,
-            profilePictureUrl: document[0].url
+            profilePictureUrl: document[0].url,
+            phoneNo: phoneNumber[0]
         }
 
-        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);

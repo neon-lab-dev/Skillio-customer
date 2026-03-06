@@ -6,7 +6,11 @@ import { asyncApiHandler } from "@neon-lab-dev/platform";
 const router= Router();
 const fetchPlanAggregatorApi = new FetchPlanAggregatorApi();
 
-router.get("/:portfolioId" , verifyToken, asyncApiHandler(fetchPlanAggregatorApi));
+router.get(
+    "/:portfolioId" , 
+    verifyToken, 
+    asyncApiHandler(fetchPlanAggregatorApi)
+);
 
 export const planAggregatorRoutes= router;
 

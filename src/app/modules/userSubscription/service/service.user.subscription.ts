@@ -44,7 +44,7 @@ class UserSubscriptionService {
             callLimits: planMaster.callLimits,
             chatLimits:planMaster.chatLimits,
             profileVisibility: planMaster.profileVisibility,
-            planId: planMaster.id
+            userSubscriptionId: savedEntity!.id
         } , loggedInUserProfile.portfolio.id)
         return UserSubscriptionBuilder.builder()
                 .of(savedEntity!)
@@ -167,7 +167,7 @@ class UserSubscriptionService {
 
     }
 
-    private async fetchById( id: string): Promise<UserSubscriptionEntity> {
+    public async fetchById( id: string): Promise<UserSubscriptionEntity> {
         let retVal = await this.repository.findById(id);
         if (retVal){
             return retVal;
@@ -178,6 +178,11 @@ class UserSubscriptionService {
     @Loggable()
     public async fetchActiveSubscriptionsCount():Promise<number>{
         return await this.repository.fetchActiveUserSubscriptionsCount();
+    }
+
+    @Loggable()
+    public async expire(id:string){
+        return await this.repository.updateStatus(id);
     }
 
 }

@@ -15,6 +15,8 @@ export class PlanAggregatorResponseDtoBuilder{
 
     public of(entity: PlanAggregator):PlanAggregatorResponseDtoBuilder{
         this.dto= globalMapper.map(entity , PlanAggregator , planAggregatorResponseDto)
+        this.dto.profileVisibility=entity.profileVisibility;
+        this.dto.userSubscriptionIds= entity.userSubscriptionIds;
         return this;
     }
 

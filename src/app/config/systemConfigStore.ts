@@ -9,6 +9,7 @@ import { loadPinConfig } from "../modules/registration/config/pinConfig";
 import { loadAddressPinConfig } from "../modules/registration/config/addressPinCodeConfig";
 import { loadFcmServiceAccountConfig } from "../modules/chat/config/fcmServiceAccountConfig";
 import { loadTwilioConfig } from "../modules/calling/config/twilioConfig";
+import { loadCronConfig } from "../modules/planAggregator/cron/config/cron.config";
 
 class SystemConfigStore{
 
@@ -34,6 +35,8 @@ class SystemConfigStore{
             await loadFcmServiceAccountConfig()
 
             await loadTwilioConfig()
+
+            await loadCronConfig()
 
         } catch (error) {
             logger.error("Error loading system  configurations:", error);

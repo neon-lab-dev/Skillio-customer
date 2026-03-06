@@ -5,5 +5,5 @@ export class PlanAggregatorRequestDto implements AppRequest{
     callLimits!: number;
     chatLimits!: number;
     profileVisibility!: ProfileVisibility;
-    planId!: string;
+    userSubscriptionId!: string;
 }
