@@ -48,7 +48,7 @@ export class PlanAggregator extends PersistEntity{
         default: 0
     })
     @AutoMap()
-    acitvePlans!: number
+    activePlans!: number
 
     @Column({
         type:"int",

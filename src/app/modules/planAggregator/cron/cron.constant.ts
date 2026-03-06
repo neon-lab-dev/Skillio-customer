@@ -1,1 +1,0 @@
-export const triggeredTime= "0 23 * * *" as const;

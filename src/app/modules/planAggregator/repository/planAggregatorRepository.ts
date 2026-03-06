@@ -8,15 +8,17 @@ export class PlanAggregatorRepository extends BaseRepository<PlanAggregator>{
         super(AppDataSource, PlanAggregator)
     }
 
-    async upsert(updated: DeepPartial<PlanAggregator> , portfolioId: string){
-        return await this.repository.upsert({
-            portfolioId,
-            ...updated
-        }, ['portfolioId']);
+    async update(updated: DeepPartial<PlanAggregator> , portfolioId: string){
+        return await this.repository.update({portfolioId} , updated);
     }
 
     async findByPortfolioId(portfolioId:string):Promise<PlanAggregator | null>{
-        return await this.repository.findOneBy({portfolioId})
+            console.log('Is valid UUID?:',portfolioId); 
+        return await this.repository.findOne({
+            where:{
+                portfolioId: portfolioId
+            }
+        })
     }
 
     async reduceCallLimits(portfolioId: string, existingVersion: number , amount?: number){

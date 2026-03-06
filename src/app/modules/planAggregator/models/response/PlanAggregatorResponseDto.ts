@@ -13,7 +13,7 @@ export class planAggregatorResponseDto implements AppResponseData{
     profileVisibility!: ProfileVisibility;
 
     @AutoMap()
-    planIds!: string[]
+    userSubscriptionIds!: string[]
 
     @AutoMap()
     activePlans!: number;

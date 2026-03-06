@@ -11,7 +11,7 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
+import { contactType, proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
@@ -187,15 +187,22 @@ class RegistrationService{
             )
         }
 
+        const phoneNumber= newProfile.contacts.map((contact)=> {
+            if(contact.type=== contactType.PHONE){
+                return contact.value;
+            }
+        });
+
         const document= await documentServices.getDocument([profileDocumentId])
 
         const shortUser={
             referenceId: newProfile.id,
             nickName: newProfile.nickName,
-            profilePictureUrl: document[0].url
+            profilePictureUrl: document[0].url,
+            phoneNo: phoneNumber[0]
         }
 
-        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
