@@ -17,6 +17,7 @@ import { UpdateProfileApi } from "./api/updateProfileApi";
 import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
 import { UpdatePinApi } from "./api/updatePinApi";
 import { DeleteProfileApi } from "./api/deleteProfileApi";
+import { verify } from "crypto";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
@@ -60,6 +61,7 @@ router.put(
 )
 router.get(
     "/:id", 
+    verifyToken,
     registrationController.getShortProfile
 );
 

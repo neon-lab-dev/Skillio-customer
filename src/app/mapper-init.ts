@@ -4,8 +4,12 @@ import { userSubscriptionMapperProfile } from "./modules/userSubscription/models
 import { documentMapper } from "./modules/document/models/mapper/documentMapper";
 import { planAggregatorMapper } from "./modules/planAggregator/models/mapper/planAggregatorMapper";
 import { callMapper } from "./modules/calling/models/mapper/callMapper";
+import { privacyMapper } from "./modules/privacy/models/manager/privacyMapper";
+import { followMapper } from "./modules/follow/models/mapper/followMapper";
 
 addProfile(globalMapper, userSubscriptionMapperProfile);
 addProfile(globalMapper , documentMapper);
 addProfile(globalMapper, planAggregatorMapper);
 addProfile(globalMapper, callMapper);
+addProfile(globalMapper, privacyMapper);
+addProfile(globalMapper, followMapper);

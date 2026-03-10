@@ -35,7 +35,6 @@ import { FetchProfileDetailsResponseDto } from "./models/dto/dto.fetch.profile.d
 import { UpdateProfileRequest } from "./models/request/updateProfileRequest";
 import { profileService } from "../profile/service.profile";
 import { UpdateHiringRateRequest } from "./models/request/updateHiringRateRequest";
-import { HiringRate } from "../../entity/hiringRate";
 import { UpdatePinRequest } from "./models/request/updatePinRequest";
 import { DeepPartial } from "typeorm";
 import { Follows } from "../../entity/follows";
@@ -43,6 +42,8 @@ import { DeleteProfileRequest } from "./models/request/deleteProfileRequest";
 import { getPublicIdFromUrl } from "../document/utils/getPublicIdFromCloudinaryUrl";
 import cloudinaryServices from "../document/services/cloudinaryServices";
 import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
+import { privacyType } from "../privacy/enums/privacyEnum";
+import followService from "../follow/followService";
 
 class RegistrationService{
 
@@ -66,7 +67,7 @@ class RegistrationService{
             })
     }
 
-    private async checkExisting(id:string):Promise<Profile>{
+    public async checkExisting(id:string):Promise<Profile>{
         const profile= await registrationRepository.findProfileById(id);
         if(!profile || profile.status=== profileStatus.BLOCKED){
             throw new NotFoundError("profile not found");
@@ -139,6 +140,9 @@ class RegistrationService{
                         following: follow.following
                     })
                 ) as DeepPartial<Follows[]>
+            }, 
+            privacy:{
+                type: privacyType.PUBLIC,
             }
         })
 
@@ -271,7 +275,19 @@ class RegistrationService{
         const fetchedProfile= new GetProfileDTO(profile).toJSON();
 
         const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.PROFILE_PHOTO);
+        
+        let followingStatus= null;
 
+        const proifleId= AsyncContextService.getUserId();
+
+        if(id!==proifleId){
+            const existing= await followService.checkExisting(proifleId as string, id);
+            if(existing){
+                followingStatus= true;
+            }else{
+                followingStatus= false;
+            }
+        }
 
         if(fetchedProfile.profileType===ProfileType.INDIVIDUAL){
             const name= getFullName(fetchedProfile.firstName as string, fetchedProfile.lastName as string);
@@ -286,6 +302,8 @@ class RegistrationService{
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
+                    privacy: fetchedProfile.privacy.type,
+                    following: followingStatus,
                     propritaryDetails:{
                         firstName: profile.firstName,
                         lastName: profile.lastName,
@@ -303,6 +321,8 @@ class RegistrationService{
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
+                    following: followingStatus,
+                    privacy: fetchedProfile.privacy.type,
                     }
                 }
             }
@@ -317,6 +337,8 @@ class RegistrationService{
                         follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed,
                         online:fetchedProfile.online,
+                        following: followingStatus,
+                        privacy: fetchedProfile.privacy.type,
                     },
                     profilePictureId: profilePhotoId,
                     propritaryDetails:{
@@ -334,7 +356,9 @@ class RegistrationService{
                         online:fetchedProfile.online,
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
-                        isSubscribed: fetchedProfile.isSubscribed
+                        isSubscribed: fetchedProfile.isSubscribed,
+                        following: followingStatus,
+                        privacy: fetchedProfile.privacy.type,
                         },
                     profilePictureId: profilePhotoId
                     }

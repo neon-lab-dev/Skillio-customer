@@ -3,7 +3,6 @@ import verificationRepository from "../../../repository/verificationRepository";
 import { OtpCodeStatus } from "../enums/verificationEnum";
 import { getOtpConfig } from "../config/otpConfig";
 
-// Generate a 6 digit OTP
 export const generateOtp = async () => {
   const otpConfig = await getOtpConfig();
 
@@ -14,17 +13,16 @@ export const generateOtp = async () => {
   const otpLength = otpConfig.otpLength;
 
   if (otpConfig.testMode) {
-    return "000000";
+    return "0000";
   }
 
   const otp = (crypto.randomInt(0, Math.pow(10, otpLength)) + 1000000)
     .toString()
     .substring(1);
 
-  // Ensure the OTP is always 6 digits
   if (otp.length < otpLength) {
     return (
-      Array(6 - otp.length)
+      Array(otpLength - otp.length)
         .fill(0)
         .join("") + otp
     );

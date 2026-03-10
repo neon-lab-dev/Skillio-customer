@@ -10,6 +10,7 @@ import { Contact } from "./contact";
 import { Address } from "./address";
 import { Portfolio } from "./portfolio";
 import { Online } from "./online";
+import { Privacy } from "./privacy";
 
 
 @Entity("profile")
@@ -62,4 +63,9 @@ export class Profile extends BaseEntity{
       cascade:true,
     })
     online?: Online;
+
+    @OneToOne(()=>Privacy , privacy=> privacy.profile, {
+      cascade: true
+    })
+    privacy!: Privacy
 }

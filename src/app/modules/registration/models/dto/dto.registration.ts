@@ -1,3 +1,4 @@
+import { privacyType } from "../../../privacy/enums/privacyEnum";
 import { ProfileType, SocialMeida, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
 import { Location, THiringRate } from "../../interface/registration.interface";
 import Decimal from "decimal.js"
@@ -436,6 +437,9 @@ export class GetProfileDTO{
   online?:{
     status: onlineStatus;
     lastSeen: Date | null;
+  };
+  privacy:{
+    type: privacyType
   }
 
   constructor(data:{
@@ -463,6 +467,9 @@ export class GetProfileDTO{
     online?:{
       status: onlineStatus;
       lastSeen: Date | null;
+    };
+    privacy:{
+      type: privacyType
     }
   }){
     this.firstName=data.firstName;
@@ -481,6 +488,7 @@ export class GetProfileDTO{
       status: data.online.status,
       lastSeen: data.online.lastSeen
     } : undefined;
+    this.privacy= data.privacy;
   }
 
   toJSON(){
@@ -493,7 +501,8 @@ export class GetProfileDTO{
       isSubscribed: this.isSubscribed,
       contacts: this.contacts.map(contact=>contact.toJSON()),
       portfolio: this.portfolio.toJSON(),
-      online: this.online
+      online: this.online,
+      privacy: this.privacy
     }
   }
 }
