@@ -426,6 +426,7 @@ export class GetProfilePortfolioDTO{
 
 // get profile dto
 export class GetProfileDTO{
+  id:string;
   firstName?: string;
   lastName?: string
   groupName?: string;
@@ -443,6 +444,7 @@ export class GetProfileDTO{
   }
 
   constructor(data:{
+    id:string;
     firstName?: string;
     lastName?: string
     groupName?: string;
@@ -472,6 +474,7 @@ export class GetProfileDTO{
       type: privacyType
     }
   }){
+    this.id= data.id;
     this.firstName=data.firstName;
     this.lastName=data.lastName;
     this.groupName=data.groupName;
@@ -493,6 +496,7 @@ export class GetProfileDTO{
 
   toJSON(){
     return {
+      id: this.id,
       firstName: this.firstName,
       lastName: this.lastName,
       groupName: this.groupName,

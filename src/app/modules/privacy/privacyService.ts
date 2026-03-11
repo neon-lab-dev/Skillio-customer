@@ -1,4 +1,4 @@
-import { AsyncContextService, NotFoundError } from "@neon-lab-dev/platform";
+import { AsyncContextService, Loggable, NotFoundError } from "@neon-lab-dev/platform";
 import { FetchPrivacyRequest } from "./models/request/fetchPrivacyRequest";
 import { UpdatePrivacyRequest } from "./models/request/updatePrivacyRequest";
 import { PrivacyDto } from "./models/response/privacyDto";
@@ -17,6 +17,7 @@ class PrivacyService{
         return existing;
     }
 
+    @Loggable()
     public async update(req: UpdatePrivacyRequest){
         await this.checkExisting(req.id);
         const updatedData= {
@@ -25,6 +26,7 @@ class PrivacyService{
         return await this.repository.update(req.id , updatedData);
     }
 
+    @Loggable()
     public async fetch(req: FetchPrivacyRequest):Promise<PrivacyDto>{
         const profileId= AsyncContextService.getUserId()
         const res= await this.repository.findByProfileId(profileId as string);

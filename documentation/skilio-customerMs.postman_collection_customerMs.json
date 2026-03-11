@@ -15872,6 +15872,1137 @@
           ]
         }
       ]
+    },
+    {
+      "name": "privacy",
+      "item": [
+        {
+          "name": "get privacy of a profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/privacy",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "privacy"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: privacy fetched successfully for a proifle",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/privacy",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "privacy"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "142"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"8e-pkeV0Ue7PJdov1OktGknn7tKVlY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 09 Mar 2026 11:22:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"profileId\": \"30dc3d01-1ed9-42dc-89f4-1ce1c62eb352\",\n        \"id\": \"pr20260309110054ba0e7810\",\n        \"type\": \"PUBLIC\"\n    }\n}"
+            },
+            {
+              "name": "Error: authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/privacy",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "privacy"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "113"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"71-MTO5rcz5F669OdWW70AbcSOmTRs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 09 Mar 2026 11:22:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Authentication failed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Authentication failed\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "update privacy",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIzMGRjM2QwMS0xZWQ5LTQyZGMtODlmNC0xY2UxYzYyZWIzNTIiLCJuaWNrTmFtZSI6ImFsaWNlMiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzczMDU0MDYzLCJleHAiOjE3NzMwNTc2NjN9.eHSAP3uYKIXBBC7_R4S0nPh9tF8TdmMAbtzySM2iYfc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\":\"pr20260309110054ba0e7810\",\r\n    \"type\":\"PRIVATE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/privacy",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "privacy"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: privacy updated successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\":\"pr20260309110054ba0e7810\",\r\n    \"type\":\"PRIVATE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/privacy",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "privacy"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-sKicOz3R7Idwlfpd1P/Jrd4ouNQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 09 Mar 2026 11:26:54 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Resource updated successfully\"\n}"
+            },
+            {
+              "name": "Error: record not found",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\":\"pr20260309110054ba0e7811\",\r\n    \"type\":\"PRIVATE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/privacy",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "privacy"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "103"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 09 Mar 2026 11:27:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Error: type is required (PUBLIC | FOLLOWERS| PRIVATE",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\":\"pr20260309110054ba0e7810\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/privacy",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "privacy"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "164"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a4-AT9BoV0PF7fOsSWCJuGZ+AkRRx8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 09 Mar 2026 11:27:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"type\",\n            \"message\": \"Invalid option: expected one of \\\"PUBLIC\\\"|\\\"FOLLOWERS\\\"|\\\"PRIVATE\\\"\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Error: id is mandatory",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"type\":\"PRIVATE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/privacy",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "privacy"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "110"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6e-AgJOE650BQVh5IHoSgqWFsErP4Q\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 09 Mar 2026 11:28:24 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"id\",\n            \"message\": \"id is mandatory.\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "follow",
+      "item": [
+        {
+          "name": "create /follow another user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIwODNiYTI1Ni05MWEyLTQ5NjItODI0ZC04NDc5NzY1MTlmZTkiLCJuaWNrTmFtZSI6ImFsaWNlMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3MzIxOTg1NCwiZXhwIjoxNzczMjIzNDU0fQ.QU0GatL6kUasvdewnEneU65KPfUxcxEBj6j6AMRDF_Q",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f0\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/follow",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "follow"
+              ]
+            },
+            "description": "## Follow a User\n\nThis endpoint allows an authenticated user to follow another user by providing the target user's ID in the request body.\n\n---\n\n## Authentication\n\nThis endpoint requires a valid Bearer token passed in the `Authorization` header:\n\n```\nAuthorization: Bearer {{token}}\n```\n\nRequests without a valid token will result in an authentication failure response.\n\n---\n\n## Request Body\n\nThe request body must be sent as **JSON** (`application/json`).\n\n| Parameter | Type | Required | Description |\n|---|---|---|---|\n| `followingId` | `string` (UUID) | ✅ Yes | The unique ID of the user to follow. |\n\n**Example:**\n```json\n{\n  \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f0\"\n}\n```\n\n---\n\n## Responses\n\n### ✅ Success — `200 OK`\nThe follow action was completed successfully.\n\n### ❌ Error — Authentication Failed (`401` / `500`)\nReturned when the request is missing or contains an invalid Bearer token.\n\n```json\n{\n  \"success\": false,\n  \"message\": \"Authentication failed\",\n  \"errorSourse\": [\n    {\n      \"path\": \"\",\n      \"message\": \"Authentication failed\"\n    }\n  ]\n}\n```\n\n### ❌ Error — `followingId` Not Found (`404`)\nReturned when the provided `followingId` does not correspond to an existing user.\n\n```json\n{\n  \"success\": false,\n  \"message\": \"User not found\"\n}\n```"
+          },
+          "response": [
+            {
+              "name": "Success: followed successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f0\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "170"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"aa-bQfOU6yYmjdiw4tp6pL2F83pRRk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 06:18:39 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"followerId\": \"30dc3d01-1ed9-42dc-89f4-1ce1c62eb352\",\n        \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f0\"\n    }\n}"
+            },
+            {
+              "name": "Error: followingId  not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f1\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "103"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 06:20:32 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Error: profile already followed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f0\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "116"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"74-YHMRRcF4dgCZTJaGRpQHS8DhG50\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 06:27:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Profile already followed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Something went wrong!\"\n        }\n    ]\n}"
+            },
+            {
+              "name": "Error: authenticaion failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"followingId\": \"113d3efa-8f70-46fb-8583-feab01f796f0\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "113"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"71-MTO5rcz5F669OdWW70AbcSOmTRs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 06:27:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"message\": \"Authentication failed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Authentication failed\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "get followers",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIxMTNkM2VmYS04ZjcwLTQ2ZmItODU4My1mZWFiMDFmNzk2ZjAiLCJuaWNrTmFtZSI6ImFsaWNlMyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzczMTIzNTk4LCJleHAiOjE3NzMxMjcxOTh9.3Q0aSrdpWL8Jdf-GzVD6goxj2GFwmUI2uZgpZvgyp4c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/follow/followers",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "follow",
+                "followers"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success: followers fetched successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow/followers?page=1&perPage=10",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow",
+                    "followers"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "873"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"369-0jEYn8rX384MxLCCtG+UNSo5OA8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 10:14:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"followers\": [\n            {\n                \"profile\": {\n                    \"id\": \"ed7789ae-a310-442f-b013-b46831c15ee2\",\n                    \"groupName\": \"nirvana\",\n                    \"nickName\": \"alice4\",\n                    \"portfolioId\": \"d384eb93-ef13-4a44-8b6a-e350b2066427\",\n                    \"bio\": \"hello ***** how  are you *****.\",\n                    \"follows\": [\n                        {\n                            \"socialMedia\": \"INSTAGRAM\",\n                            \"link\": \"hdlkflsd\",\n                            \"followers\": 23,\n                            \"following\": 33\n                        }\n                    ],\n                    \"isSubscribed\": false,\n                    \"following\": false,\n                    \"privacy\": \"PUBLIC\"\n                },\n                \"profilePictureUrl\": \"http://res.cloudinary.com/dyq7iqdyc/image/upload/v1773053946/skilioDocument/ip6p8xntarylinxbisdc.jpg\"\n            },\n            {\n                \"profile\": {\n                    \"id\": \"083ba256-91a2-4962-824d-847976519fe9\",\n                    \"groupName\": \"nirvana\",\n                    \"nickName\": \"alice1\",\n                    \"portfolioId\": \"7767d8ec-e118-4be4-b861-bef429620131\",\n                    \"bio\": \"hello ***** how  are you *****.\",\n                    \"follows\": [\n                        {\n                            \"socialMedia\": \"INSTAGRAM\",\n                            \"link\": \"hdlkflsd\",\n                            \"followers\": 23,\n                            \"following\": 33\n                        }\n                    ],\n                    \"isSubscribed\": false,\n                    \"following\": false,\n                    \"privacy\": \"PUBLIC\"\n                }\n            }\n        ],\n        \"totalCount\": 2\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get following",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsIn5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIzMGRjM2QwMS0xZWQ5LTQyZGMtODlmNC0xY2UxYzYyZWIzNTIiLCJuaWNrTmFtZSI6ImFsaWNlMiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzczMTIzMjMyLCJleHAiOjE3NzMxMjY4MzJ9.RLvDKmSUJYYx627RRNSx2CFf8xMgDFpItuzd4yg7h8o",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/follow/following",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "follow",
+                "following"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: following fetched successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow/following",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow",
+                    "following"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "749"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2ed-Oy2A5N5HwH6XOPGZlCekkdi+F/E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 10:14:11 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"following\": [\n            {\n                \"profile\": {\n                    \"id\": \"113d3efa-8f70-46fb-8583-feab01f796f0\",\n                    \"groupName\": \"nirvana\",\n                    \"nickName\": \"alice3\",\n                    \"portfolioId\": \"aa1ddb4a-3977-4278-ad99-8eba799a75ad\",\n                    \"bio\": \"hello ***** how  are you *****.\",\n                    \"follows\": [\n                        {\n                            \"socialMedia\": \"INSTAGRAM\",\n                            \"link\": \"hdlkflsd\",\n                            \"followers\": 23,\n                            \"following\": 33\n                        }\n                    ],\n                    \"isSubscribed\": false,\n                    \"following\": true,\n                    \"privacy\": \"PUBLIC\"\n                }\n            },\n            {\n                \"profile\": {\n                    \"id\": \"30dc3d01-1ed9-42dc-89f4-1ce1c62eb352\",\n                    \"groupName\": \"nirvana\",\n                    \"nickName\": \"alice2\",\n                    \"portfolioId\": \"54ad66be-78dd-4526-8483-cd3eba642643\",\n                    \"bio\": \"hello ***** how  are you *****.\",\n                    \"follows\": [\n                        {\n                            \"socialMedia\": \"INSTAGRAM\",\n                            \"link\": \"hdlkflsd\",\n                            \"followers\": 23,\n                            \"following\": 33\n                        }\n                    ],\n                    \"isSubscribed\": false,\n                    \"following\": true,\n                    \"privacy\": \"PRIVATE\"\n                }\n            }\n        ],\n        \"totalCount\": 2\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "get count",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": [
+            {
+              "name": "Success: follow count fetche successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow/count",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow",
+                    "count"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "81"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"51-zE8FsEUU8nJJ4h0JXOnN8DTeP30\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 10 Mar 2026 07:24:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"followersCount\": 0,\n        \"followingCount\": 1\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "unfollow",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIzMGRjM2QwMS0xZWQ5LTQyZGMtODlmNC0xY2UxYzYyZWIzNTIiLCJuaWNrTmFtZSI6ImFsaWNlMiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzczMjI0MDczLCJleHAiOjE3NzMyMjc2NzN9.yQCbFlJopu2HAW8E-MfYB0PVKtZitD0nmtGP9frv6xg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/follow/",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "follow",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: unfollowed successfully",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/follow/30dc3d01-1ed9-42dc-89f4-1ce1c62eb352",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "follow",
+                    "30dc3d01-1ed9-42dc-89f4-1ce1c62eb352"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-1i4MW0NifJmDc9CHqMMohDKb4Iw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Mar 2026 10:50:57 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Resource deleted successfully\"\n}"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

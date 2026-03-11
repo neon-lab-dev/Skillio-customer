@@ -6,6 +6,7 @@ import { planAggregatorMapper } from "./modules/planAggregator/models/mapper/pla
 import { callMapper } from "./modules/calling/models/mapper/callMapper";
 import { privacyMapper } from "./modules/privacy/models/manager/privacyMapper";
 import { followMapper } from "./modules/follow/models/mapper/followMapper";
+import { userReachMapper } from "./modules/userReach/models/mapper/userReachMapper";
 
 addProfile(globalMapper, userSubscriptionMapperProfile);
 addProfile(globalMapper , documentMapper);
@@ -13,3 +14,4 @@ addProfile(globalMapper, planAggregatorMapper);
 addProfile(globalMapper, callMapper);
 addProfile(globalMapper, privacyMapper);
 addProfile(globalMapper, followMapper);
+addProfile(globalMapper, userReachMapper);

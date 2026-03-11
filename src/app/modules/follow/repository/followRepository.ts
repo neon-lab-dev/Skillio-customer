@@ -21,7 +21,7 @@ export class FollowRepository extends BaseRepository<Follow>{
         const limit= perPage? parseInt(perPage): 10;
         const skip= (followersPage-1)*limit;
 
-        const [res, total]= await this.repository.findAndCount({
+        const res= await this.repository.find({
             where:{
                 followingId: profileId
             },
@@ -30,10 +30,7 @@ export class FollowRepository extends BaseRepository<Follow>{
             order: {createdAt: "DESC"}
         })
 
-        return{
-            data: res,
-            count: total
-        }
+        return res
 
     }
 
@@ -42,7 +39,7 @@ export class FollowRepository extends BaseRepository<Follow>{
         const limit= perPage? parseInt(perPage): 10;
         const skip= (followingPage-1)*limit;
 
-        const[res, total]= await this.repository.findAndCount({
+        const res= await this.repository.find({
             where:{
                 followerId: profileId
             },
@@ -51,28 +48,16 @@ export class FollowRepository extends BaseRepository<Follow>{
             order: {createdAt:"DESC"}
         })
 
-        return{
-            data: res,
-            count: total
-        }
+        return res;
     }
 
-    async fetchCount(profileId:string){
-        const followersCount= await this.repository.count({
-            where:{
-                followingId: profileId
-            }
+    async unFollow(followerId: string , followingId: string){
+        return await this.repository.delete({
+            followerId,
+            followingId
         })
-
-        const followingCount= await this.repository.count({
-            where:{
-                followerId: profileId
-            }
-        })
-
-        return{
-            followersCount: followersCount,
-            followingCount: followingCount
-        }
     }
+
+
+    
 }

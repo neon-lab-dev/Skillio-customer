@@ -1,6 +1,6 @@
 import {  Validator } from "@neon-lab-dev/platform";
 import { CreateFollowRequest } from "../models/request/createFollowRequest";
-import { CreateFollowSchema } from "../models/schema/createFollowSchema";
+import { CreateFollowSchema } from "../models/schema/followSchema";
 
 class CreateFollowValidator implements Validator{
     async validate(req: CreateFollowRequest): Promise<void> | never {

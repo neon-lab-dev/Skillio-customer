@@ -274,7 +274,9 @@ class RegistrationService{
 
         const fetchedProfile= new GetProfileDTO(profile).toJSON();
 
-        const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.PROFILE_PHOTO);
+        const documents= await documentServices.fetchDocuments({portfolioId: fetchedProfile.portfolio.id});
+
+        const profilePicture= documents.filter((doc)=> doc.type===DocumentType.PROFILE_PHOTO);
         
         let followingStatus= null;
 
@@ -294,13 +296,14 @@ class RegistrationService{
             
                 if(fetchedProfile.isSubscribed){
                     return {
+                    id: fetchedProfile.id,
                     name: name,
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
-                    profilePictureId: profilePhotoId,
+                    profilePictureUrl: profilePicture[0]?.url,
                     online:fetchedProfile.online,
                     privacy: fetchedProfile.privacy.type,
                     following: followingStatus,
@@ -313,13 +316,14 @@ class RegistrationService{
                     }
                 }else{
                     return{
+                    id: fetchedProfile.id,
                     name: name,
                     nickName: fetchedProfile.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
-                    profilePictureId: profilePhotoId,
+                    profilePictureUrl: profilePicture[0]?.url,
                     online:fetchedProfile.online,
                     following: followingStatus,
                     privacy: fetchedProfile.privacy.type,
@@ -330,6 +334,7 @@ class RegistrationService{
                 if(fetchedProfile.isSubscribed){
                     return{
                     profile:{
+                        id: fetchedProfile.id,
                         groupName: fetchedProfile.groupName,
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
@@ -340,7 +345,7 @@ class RegistrationService{
                         following: followingStatus,
                         privacy: fetchedProfile.privacy.type,
                     },
-                    profilePictureId: profilePhotoId,
+                    profilePictureUrl: profilePicture[0]?.url,
                     propritaryDetails:{
                         groupName: profile.groupName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
@@ -350,6 +355,7 @@ class RegistrationService{
                 }else{
                     return{
                     profile:{
+                        id: fetchedProfile.id,
                         groupName: fetchedProfile.groupName,
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
@@ -360,7 +366,7 @@ class RegistrationService{
                         following: followingStatus,
                         privacy: fetchedProfile.privacy.type,
                         },
-                    profilePictureId: profilePhotoId
+                        profilePictureUrl: profilePicture[0]?.url,
                     }
                 }
         }

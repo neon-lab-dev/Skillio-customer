@@ -11,6 +11,7 @@ import { Address } from "./address";
 import { Portfolio } from "./portfolio";
 import { Online } from "./online";
 import { Privacy } from "./privacy";
+import { UserReach } from "./userReach";
 
 
 @Entity("profile")
@@ -68,4 +69,9 @@ export class Profile extends BaseEntity{
       cascade: true
     })
     privacy!: Privacy
+
+    @OneToOne(()=> UserReach , userReach=>userReach.profile, {
+      cascade: true
+    })
+    userReach!: UserReach
 }
