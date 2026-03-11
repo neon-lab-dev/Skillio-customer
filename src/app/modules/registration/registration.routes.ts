@@ -74,7 +74,6 @@ router.get(
 
 router.get(
     "/" ,
-    verifyToken , 
     createCriteriaMiddleWare(ProfileSearchCriteria , searchCriteriaBuilderFactory), 
     asyncApiHandler(fetchProfilesApi) 
 )
