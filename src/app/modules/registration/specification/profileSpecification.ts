@@ -41,7 +41,9 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
      qb.leftJoinAndSelect(`${this.alias}.address`, 'address')
       .leftJoinAndSelect(`${this.alias}.contacts`, 'contact')
       .leftJoinAndSelect(`${this.alias}.portfolio`, 'portfolio')
+      .leftJoinAndSelect(`${this.alias}.online` , 'online')
       .leftJoinAndSelect('portfolio.document' , 'document')
+      .leftJoinAndSelect('portfolio.follows' , 'follows')
       .andWhere(`${this.alias}.role != :role` , {role: 'ADMIN'})
     } 
 

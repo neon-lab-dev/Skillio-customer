@@ -25,8 +25,11 @@ export class FetchProfileDtoBuilder {
         this.dto.country= entity.address.country;
         this.dto.proficiency= entity.portfolio.proficiency;
         this.dto.portfolioId= entity.portfolio.id;
+        this.dto.eventsDone= entity.portfolio.totalEvents;
+        this.dto.onlineStatus= entity.online?.status;
         this.dto.email= this.ofEmail(entity);
         this.dto.phoneNumber= this.ofPhoneNum(entity);
+        this.dto.follows= this.setFollows(entity);
         this.dto.document= this.setDocument(entity);
 
         return this;
@@ -50,6 +53,17 @@ export class FetchProfileDtoBuilder {
             return {
                 url: doc.url,
                 type: doc.type
+            }
+        })
+    }
+
+    private setFollows(entity: Profile){
+        return entity.portfolio.follows.map((val)=>{
+            return {
+                socialMedia: val.socialMedia,
+                link: val.link,
+                followers: val.followers,
+                following: val.following
             }
         })
     }
