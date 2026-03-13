@@ -53,14 +53,12 @@ class PostProxyService{
     @Loggable()
     public async fetchPrivacy(req: FetchPrivacyRequest):Promise<PrivacyResponseDto>{
         let baseUrl= postProxyConfig.baseUrl as string;
-
+        const headers= paymentProxyService.getHeaders();
         let url= `${baseUrl}/privacy`;
         let response= await this.restService.get<AppResponse>(
             url,
             req,
-            {
-                [HEADERS.CONTENT_TYPE]: CONTENT_TYPES.APPLICATION_JSON
-            }
+            headers
         );
         if(response.status===HTTP_STATUS.SUCCESS){
             return JsonUtils.fromJson(JsonUtils.toJson(response.data.data) , PrivacyResponseDto);
