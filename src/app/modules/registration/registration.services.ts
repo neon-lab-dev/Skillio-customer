@@ -43,6 +43,8 @@ import { DeleteProfileRequest } from "./models/request/deleteProfileRequest";
 import { getPublicIdFromUrl } from "../document/utils/getPublicIdFromCloudinaryUrl";
 import cloudinaryServices from "../document/services/cloudinaryServices";
 import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
+import servicePostProxy from "../../service/post-proxy/service.post-proxy";
+import { Privacy } from "../../service/post-proxy/enum/privacyEnum";
 
 class RegistrationService{
 
@@ -140,6 +142,11 @@ class RegistrationService{
                     })
                 ) as DeepPartial<Follows[]>
             }
+        })
+
+        await servicePostProxy.createPrivacy({
+            type: Privacy.PUBLIC,
+            userReferenceId: newProfile.id
         })
 
         await Promise.all(contacts.map(async(contact)=>{
@@ -272,6 +279,24 @@ class RegistrationService{
 
         const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.PROFILE_PHOTO);
 
+        const privacy= await servicePostProxy.fetchPrivacy({
+            userReferenceId: profile.id
+        });
+
+        let following= null;
+
+        const loggedInUserProfile = AsyncContextService.getUserId();
+
+        if(profile.id!=loggedInUserProfile){
+            const follow= await servicePostProxy.fetchFollow({
+                followingId: profile.id
+            })
+            if(follow){
+                following= true;
+            }else{
+                following=false;
+            }
+        }
 
         if(fetchedProfile.profileType===ProfileType.INDIVIDUAL){
             const name= getFullName(fetchedProfile.firstName as string, fetchedProfile.lastName as string);
@@ -286,6 +311,8 @@ class RegistrationService{
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
+                    privacy: privacy?.type,
+                    following: following,
                     propritaryDetails:{
                         firstName: profile.firstName,
                         lastName: profile.lastName,
@@ -302,6 +329,8 @@ class RegistrationService{
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
+                    following: following,
+                    privacy: privacy?.type,
                     online:fetchedProfile.online,
                     }
                 }
@@ -316,6 +345,8 @@ class RegistrationService{
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed,
+                        following: following,
+                        privacy: privacy?.type,  
                         online:fetchedProfile.online,
                     },
                     profilePictureId: profilePhotoId,
@@ -331,6 +362,8 @@ class RegistrationService{
                         groupName: fetchedProfile.groupName,
                         nickName: fetchedProfile.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
+                        following: following,
+                        privacy: privacy?.type,
                         online:fetchedProfile.online,
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
