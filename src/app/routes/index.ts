@@ -9,6 +9,7 @@ import { userSubscriptionRouter } from "../modules/userSubscription/route.user.s
 import { callRoutes } from "../modules/calling/call.routes";
 import { planAggregatorRoutes } from "../modules/planAggregator/planAggregator.routes";
 import { dashboardRouter } from "../modules/dashboard/dashboard.routes";
+import { tokenRouter } from "../modules/token/token.routes";
 
 const router = Router();
 
@@ -54,6 +55,10 @@ const moduleRoutes = [
     {
         path: "/v1/dashboard",
         route: dashboardRouter
+    },
+    {
+        path:"/v1/token",
+        route: tokenRouter
     }
 ]
 
