@@ -60,6 +60,7 @@ router.put(
 )
 router.get(
     "/:id", 
+    verifyToken,
     registrationController.getShortProfile
 );
 
@@ -72,7 +73,7 @@ router.get(
 
 router.get(
     "/" ,
-    verifyToken , 
+    verifyToken,
     createCriteriaMiddleWare(ProfileSearchCriteria , searchCriteriaBuilderFactory), 
     asyncApiHandler(fetchProfilesApi) 
 )

@@ -1,6 +1,7 @@
 import admin from 'firebase-admin';
 import { getFcmServiceAccountConfig } from '../modules/chat/config/fcmServiceAccountConfig';
 import logger from '../utils/logger';
+import { AppError, ERROR_CODES, HTTP_STATUS } from '@neon-lab-dev/platform';
 
 let messaging: admin.messaging.Messaging | undefined;
 let isInitialized = false;
@@ -23,6 +24,8 @@ export const initializeFirebase = ()=> {
 
   } catch (error) {
     logger.error(' Failed to initialize Firebase:', error);
+    throw new AppError(ERROR_CODES.UNSUPPORTED_OPERATION , HTTP_STATUS.INTERNAL_SERVER_ERROR , `failed to send push notification ${error}`)
+    
   }
 };
 
