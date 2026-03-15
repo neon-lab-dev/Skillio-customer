@@ -114,7 +114,7 @@ class DocumentService{
             profilePictureUrl: updatedDocument?.url
         }
 
-        // this.producer.produce(Events.CUSTOMER_UPDATED , {updatedData});
+        this.producer.produce(Events.CUSTOMER_UPDATED , {updatedData});
 
         return {
             updatedDocument:{

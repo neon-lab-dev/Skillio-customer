@@ -209,7 +209,7 @@ class RegistrationService{
             phoneNo: phoneNumber[0]
         }
 
-        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
