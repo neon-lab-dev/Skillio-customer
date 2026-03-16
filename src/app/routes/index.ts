@@ -10,6 +10,8 @@ import { callRoutes } from "../modules/calling/call.routes";
 import { planAggregatorRoutes } from "../modules/planAggregator/planAggregator.routes";
 import { dashboardRouter } from "../modules/dashboard/dashboard.routes";
 import { tokenRouter } from "../modules/token/token.routes";
+import { categoryRouter } from "../modules/category/category.routes";
+import { subCategoryRouter } from "../modules/subCategory/subCategory.routes";
 
 const router = Router();
 
@@ -59,6 +61,14 @@ const moduleRoutes = [
     {
         path:"/v1/token",
         route: tokenRouter
+    },
+    {
+        path:"/v1/category",
+        route:categoryRouter
+    },
+    {
+        path:"/v1/subCategory",
+        route: subCategoryRouter
     }
 ]
 

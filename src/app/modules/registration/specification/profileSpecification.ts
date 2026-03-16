@@ -166,9 +166,9 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         if(!criteria.category) return qb;
 
         return qb.andWhere(
-            `portfolio.category = :cat`,
+            `portfolio.category LIKE :cat`,
             {
-                cat: criteria.category
+                cat: `%${criteria.category}%`
             }
         )
     }
@@ -180,9 +180,9 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         if(!criteria.subCategory) return qb;
 
         return qb.andWhere(
-            `portfolio.subCategory= :subCat`,
+            `portfolio.subCategory LIKE :subCat`,
             {
-                subCat: criteria.subCategory
+                subCat:  `%${criteria.subCategory}%`
             }
         )
     }
