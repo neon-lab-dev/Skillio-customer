@@ -10923,7 +10923,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJiNmM5YjliYy00MjU2LTQ2YTItYTIwMS02MjdlMmZjMDIxZTIiLCJuaWNrTmFtZSI6ImFsaWNlNDIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3MDE5NjE3NiwiZXhwIjoxNzcwMTk5Nzc2fQ.VZlwOFzwmdYmLGhgdDnKAgkNRI14IMLDNE87BMJGRs4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJjMDgyMzViZi0xYmNiLTQwODUtYTM5Ni05NzA3NmJkMTQ5NzUiLCJuaWNrTmFtZSI6ImFsaWNlOSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcyNTI1MzgwLCJleHAiOjE3NzI1Mjg5ODB9.kJSsHzuGJ_xfxSxtQFoEStTCuR8hLKJ3BPGuKCYmW1A",
                   "type": "string"
                 }
               ]
@@ -10932,7 +10932,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"callId\": \"c227d7d8-14eb-46e5-9470-f6c846475996\"\r\n}",
+              "raw": "{\r\n  \"callId\": \"9e3c794c-ebd2-4843-90f7-ca24567bd390\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -15868,6 +15868,596 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fcm token",
+      "item": [
+        {
+          "name": "create fcm token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\": \"hello\", \r\n    \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/token",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "token"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: token create successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"token\": \"hello\", \r\n    \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/token",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "token"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "233"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e9-xYmTiXlKxGyilB/AV0Lh6/ihTk0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 14 Mar 2026 15:02:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\",\n        \"token\": \"hello\",\n        \"id\": \"ft20260314150256d0ae3dbc\",\n        \"createdAt\": \"2026-03-14T15:02:56.355Z\",\n        \"updatedAt\": \"2026-03-14T15:02:56.355Z\",\n        \"deleted\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "fetch token",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"hello\", \n    \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/v1/token?userId=5d6f3cce-dbda-49d4-a496-a6b736ccf2db",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "v1",
+                "token"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "5d6f3cce-dbda-49d4-a496-a6b736ccf2db"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: fetch token successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"token\": \"hello\", \n    \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3001/api/v1/token?userId=5d6f3cce-dbda-49d4-a496-a6b736ccf2db",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3001",
+                  "path": [
+                    "api",
+                    "v1",
+                    "token"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5d6f3cce-dbda-49d4-a496-a6b736ccf2db"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "233"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e9-W99iLZOyk//xEBoCDiEuyooWNfE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 14 Mar 2026 15:05:23 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"ft20260314150256d0ae3dbc\",\n        \"deleted\": false,\n        \"createdAt\": \"2026-03-14T15:02:56.355Z\",\n        \"updatedAt\": \"2026-03-14T15:02:56.355Z\",\n        \"token\": \"hello\",\n        \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "item": [
+        {
+          "name": "create category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/category",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "category"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: category fetched successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Music\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/category",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "category"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "207"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"cf-a5Z0vbkXKZtfsHyXiXhy7OWndaQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 09:30:24 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"name\": \"Music\",\n        \"id\": \"cat20260316093024b6bafa1c\",\n        \"createdAt\": \"2026-03-16T09:30:24.674Z\",\n        \"updatedAt\": \"2026-03-16T09:30:24.674Z\",\n        \"deleted\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "fetch category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/category",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "category"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: Cateogry fetched successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/category",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "category"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "187"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"bb-p6Vt8r8eeNwBu2Ij878ljZhdHgc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 09:31:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"cat20260316093024b6bafa1c\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-16T09:30:24.674Z\",\n            \"updatedAt\": \"2026-03-16T09:30:24.674Z\",\n            \"name\": \"Music\"\n        }\n    ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "subCategory",
+      "item": [
+        {
+          "name": "create sub category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"Classical\",\r\n    \"categoryId\": \"cat20260316093024b6bafa1c\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/subCategory",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "subCategory"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: sub category create successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\":\"Classical\",\r\n    \"categoryId\": \"cat20260316093024b6bafa1c\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/subCategory",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subCategory"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "253"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"fd-VKouronUJBQeszUT2hJX38WlcAU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 09:59:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"name\": \"Classical\",\n        \"categoryId\": \"cat20260316093024b6bafa1c\",\n        \"id\": \"subc202603160959426f806d2c\",\n        \"createdAt\": \"2026-03-16T09:59:42.370Z\",\n        \"updatedAt\": \"2026-03-16T09:59:42.370Z\",\n        \"deleted\": false\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "fetch sub category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{serverUrl}}/v1/subCategory",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "subCategory"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: sub category fetched successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{serverUrl}}/v1/subCategory?categoryId=cat20260316093024b6bafa1c",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subCategory"
+                  ],
+                  "query": [
+                    {
+                      "key": "categoryId",
+                      "value": "cat20260316093024b6bafa1c",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "233"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e9-MHFlmC9llEdNOS21/W1pptzB2LM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 16 Mar 2026 10:00:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"subc202603160959426f806d2c\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-16T09:59:42.370Z\",\n            \"updatedAt\": \"2026-03-16T09:59:42.370Z\",\n            \"name\": \"Classical\",\n            \"categoryId\": \"cat20260316093024b6bafa1c\"\n        }\n    ]\n}"
             }
           ]
         }

@@ -14,6 +14,9 @@ import conversationParticipantRepository from "../../repository/conversationPart
 import { hasSameId } from "./utils/checkIfConversationExists";
 import conversationRepository from "../../repository/conversationRepository";
 import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
+import { profileService } from "../profile/service.profile";
+import planAggregatorService from "../planAggregator/planAggregator.service";
+import { AppValidationError, ERROR_CODES } from "@neon-lab-dev/platform";
 
 class ChatService{
 
@@ -35,7 +38,15 @@ class ChatService{
         async ( messageData: TMessage , req: Request)=>{
             const {  recipientId , content , fcmRegistrationToken }= messageData;
 
-            const senderId= req.user.profileId
+            const senderId= req.user.profileId;
+
+            const loggedInUserProfile= await profileService.fetchWithPortfolio(senderId);
+
+            const planAggregator= await planAggregatorService.fetch({portfolioId: loggedInUserProfile.portfolio.id});
+
+            if(!planAggregator || planAggregator.chatLimits===0){
+                throw new AppValidationError("can not send message , please check your subscription status" , ERROR_CODES.ACCESS_DENIED)
+            }
 
             let url:string | undefined;
 
@@ -141,6 +152,9 @@ class ChatService{
                 )
                 message= new GetChatDTO(newMessage).toJSON();
             }
+
+            await planAggregatorService.reduceChatLimits(loggedInUserProfile.portfolio.id);
+
 
             return message;
         }

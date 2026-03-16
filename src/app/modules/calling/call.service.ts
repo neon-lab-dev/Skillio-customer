@@ -10,11 +10,13 @@ import { Call } from "../../entity/call";
 import { GetCallDTO } from "./call.dto";
 import callProviderFactory from "./managers/callProviderFactory";
 import { FetchTokenRequest } from "./models/request/fetchTokenRequest";
-import { Loggable } from "@neon-lab-dev/platform";
+import { AppValidationError, ERROR_CODES, Loggable } from "@neon-lab-dev/platform";
 import { FetchCallsRequest } from "./models/request/fetchCallsRequest";
 import { FetchCallResponseDto } from "./models/response/fetchCallResponseDto";
 import { FetchCallResponseBuilder } from "./models/builder/fetchCallResponseBuilder";
 import registrationServices from "../registration/registration.services";
+import { profileService } from "../profile/service.profile";
+import planAggregatorService from "../planAggregator/planAggregator.service";
 
 class CallService{
 
@@ -25,6 +27,14 @@ class CallService{
         async(recipientId:string , registrationToken: string,req:Request)=>{
 
             const callerId= req.user.profileId
+
+            const loggedInUserProfile= await profileService.fetchWithPortfolio(callerId);
+
+            const planAggregator= await planAggregatorService.fetch({portfolioId: loggedInUserProfile.portfolio.id});
+
+            if(!planAggregator || planAggregator.callLimits===0){
+                throw new AppValidationError("can not make a call , please check your subscription status" , ERROR_CODES.ACCESS_DENIED)
+            }
 
             const callerConversationIds= await conversationParticipantRepository.getAllConversationIdsByParticipantId(callerId);
             
@@ -79,6 +89,10 @@ class CallService{
         "acceptCall",
         async(call:Call )=>{
              await callRepository.updateCall(call.id , { callStatus: status.ACCEPTED});
+
+             const loggedInUserProfile= await profileService.fetchWithPortfolio(call.callerId);
+
+             await planAggregatorService.reduceCallLimits(loggedInUserProfile.portfolio.id);
             
             acceptCall(call.callerId , call.id )
     

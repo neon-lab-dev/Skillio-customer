@@ -2,7 +2,6 @@ import { content } from "../modules/chat/interface/chat.interface";
 import logger from "./logger";
 import registrationRepository from "../repository/registrationRepository";
 import { initializeFirebase , getMessaging } from "../config/firebaseConfig";
-import { AppError, ERROR_CODES, HTTP_STATUS } from "@neon-lab-dev/platform";
 
 
 export const sendSinglePushNotification = async (senderId:string,content: Partial<content> ,type:string, registrationToken:string)=>{
@@ -31,6 +30,5 @@ export const sendSinglePushNotification = async (senderId:string,content: Partia
         }
     }catch(error){
         logger.error("Error sending push notification", error);
-        throw new AppError(ERROR_CODES.UNSUPPORTED_OPERATION , HTTP_STATUS.INTERNAL_SERVER_ERROR , `failed to send push notification ${error}`)
     }
 }

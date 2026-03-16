@@ -1,4 +1,4 @@
-import { Loggable, NotFoundError } from "@neon-lab-dev/platform";
+import { AppValidationError, ERROR_CODES, Loggable, NotFoundError } from "@neon-lab-dev/platform";
 import { PlanAggregator } from "../entity/planAggregator";
 import { ProfileVisibility } from "../planMaster/enum/ProfileVisibility";
 import { FetchPlanAggregatorRequestDto } from "./models/request/fetchPlanAggregatorRequestDto";
@@ -14,11 +14,8 @@ import { PlanAggregatorEntityBuilder } from "./models/builder/planAggregatorEnti
 class PlanAggregatorService {
   private repository: PlanAggregatorRepository = new PlanAggregatorRepository();
 
-  private async checkExisting(portfolioId: string): Promise<PlanAggregator> {
+  private async checkExisting(portfolioId: string): Promise<PlanAggregator | null> {
     const existing = await this.repository.findByPortfolioId(portfolioId);
-    if (!existing) {
-      throw new NotFoundError("Plan aggregator does not exist");
-    }
     return existing;
   }
 
@@ -78,6 +75,9 @@ class PlanAggregatorService {
     req: FetchPlanAggregatorRequestDto,
   ): Promise<planAggregatorResponseDto> {
     const res = await this.checkExisting(req.portfolioId);
+    if(!res){
+      throw new AppValidationError(" please check your subscription status" , ERROR_CODES.RECORD_NOT_FOUND)
+    }
     return PlanAggregatorResponseDtoBuilder.builder().of(res).build();
   }
 
@@ -90,6 +90,9 @@ class PlanAggregatorService {
   @Loggable()
   public async reduceCallLimits(portfolioId: string, amount?: number) {
     const planAggregator = await this.checkExisting(portfolioId);
+    if(!planAggregator){
+      throw new NotFoundError("plan Aggregator does not exist");
+    }
     const result = await this.repository.reduceCallLimits(
       portfolioId,
       planAggregator.version,
@@ -103,6 +106,9 @@ class PlanAggregatorService {
   @Loggable()
   public async reduceChatLimits(portfolioId: string, amount?: number) {
     const planAggregator = await this.checkExisting(portfolioId);
+    if(!planAggregator){
+      throw new NotFoundError("plan Aggregator does not exist");
+    }
     const result = await this.repository.reduceChatLimits(
       portfolioId,
       planAggregator.version,
