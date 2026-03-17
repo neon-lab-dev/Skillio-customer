@@ -7,4 +7,10 @@ export class SubCategoryRepository extends BaseRepository<SubCategory>{
         super(AppDataSource , SubCategory)
     }
 
+    async findByCategoryId(categoryId:string):Promise<SubCategory[]>{
+        return this.repository.findBy({
+            categoryId
+        })
+    }
+
 }

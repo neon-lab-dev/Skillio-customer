@@ -18,7 +18,7 @@ class SubCategoryService {
 
     @Loggable()
     public async fetch(req: FetchSubCategoryRequest):Promise<SubCategory[]>{
-        return this.repository.findAll();
+        return this.repository.findByCategoryId(req.categoryId);
     }
 }
 
