@@ -16281,11 +16281,21 @@
         {
           "name": "create sub category",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI0MTEyMTc3My1kOTIxLTRjYzktYmQ0MC01NWI2ZmIzOTU2YWEiLCJuaWNrTmFtZSI6ImFsaWNlMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3MzcyMTg0NywiZXhwIjoxNzczNzI1NDQ3fQ.yMS0KxycfuegklL90mRhQFLzX2xRBGK_wNImJTlVpYc",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"Classical\",\r\n    \"categoryId\": \"cat20260316093024b6bafa1c\"\r\n}",
+              "raw": "{\r\n    \"name\":\"Playback\",\r\n    \"categoryId\": \"cat2026031704313198658c64\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"

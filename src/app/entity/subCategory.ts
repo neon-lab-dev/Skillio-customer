@@ -11,14 +11,12 @@ export class SubCategory extends PersistEntity{
     @Column({
         type:"text",
         nullable:false,
-        unique:true
     })
     name!:String
 
     @Column({
         type:"uuid",
         nullable:false,
-        unique:true
     })
     categoryId!:String
 
