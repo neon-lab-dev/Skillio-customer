@@ -6,5 +6,5 @@ export class TokenRequest implements AppRequest{
     userId!:string;
 
     @AutoMap()
-    token!:string;
+    token?:string;
 }

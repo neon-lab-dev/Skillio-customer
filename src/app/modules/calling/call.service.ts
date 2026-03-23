@@ -17,12 +17,13 @@ import { FetchCallResponseBuilder } from "./models/builder/fetchCallResponseBuil
 import registrationServices from "../registration/registration.services";
 import { profileService } from "../profile/service.profile";
 import planAggregatorService from "../planAggregator/planAggregator.service";
+import tokenService from "../token/service/tokenService";
 
 class CallService{
 
     // create a call
         @Loggable()
-        public async createCall(recipientId:string , registrationToken: string,req:Request){
+        public async createCall(recipientId:string,req:Request){
 
             const callerId= req.user.profileId
 
@@ -73,8 +74,8 @@ class CallService{
 
                 call= new GetCallDTO(newCall).toJSON();
             }
-
-            startCall(call.callerId , call.recipientId ,call.id , registrationToken || " ")
+            const fcmToken= await tokenService.fetchByUserId({userId: call.recipientId});
+            startCall(call.callerId , call.recipientId ,call.id , fcmToken.token || " ")
 
             return call;
         }

@@ -10,9 +10,9 @@ class callController{
     createCall=controllerLogging(
         "callController.createCall",
         catchAsyncError(async(req:Request , res:Response , )=>{
-            const {recipientId , registrationToken}=req.body;
+            const {recipientId}=req.body;
 
-            const result= await callProxy.createCall(recipientId , registrationToken , req)
+            const result= await callProxy.createCall(recipientId  , req)
 
             return sendResponse(res , {
                 success: true, 

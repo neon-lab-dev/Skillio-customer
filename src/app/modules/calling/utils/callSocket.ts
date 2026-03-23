@@ -3,6 +3,7 @@ import callRepository from "../../../repository/callRepository";
 import { sendSinglePushNotification } from "../../../utils/pushNotification";
 import { getIO , onlineUsers } from "../../../utils/sockets";
 import { status } from "../enums/callEnum";
+import registrationServices from "../../registration/registration.services";
 
 
 export const startCall= async(callerId:string , recipientId:string ,callId:string , registrationToken:string)=>{ 
@@ -20,8 +21,10 @@ export const startCall= async(callerId:string , recipientId:string ,callId:strin
 
         LoggerService.info(`calling reciever:${recipientId}`)
     }else{
+        const caller= await registrationServices.getShortProfile(callerId);
         sendSinglePushNotification(recipientId,{
-            text: "you have recieved a call"
+            text: `you have recieved a call from ${caller.name? caller.name : caller.profile?.groupName}`,
+            callerId: callerId
         },"call", registrationToken )
     }
 }
