@@ -24,7 +24,7 @@ class TokenService{
     public async createOrUpdate(req: TokenRequest){
         let entity= await this.findByUserId(req);
         if(entity){
-            entity.token= req.token;
+            entity.token!= req.token;
         }else{
             entity= TokenBuilder.builder().of(req).build();
         }

@@ -34,10 +34,10 @@ class CallProxy{
     createCall= proxyLogging(
         "callProxy",
         "createCall",
-        async(recipientId:string,registrationToken: string, req:Request)=>{
+        async(recipientId:string, req:Request)=>{
             await this.checkExistingProfile(recipientId);
             
-            return await callService.createCall(recipientId ,registrationToken, req);
+            return await callService.createCall(recipientId , req);
         }
     ) 
 
