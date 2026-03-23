@@ -116,6 +116,7 @@ class CallService{
     
         }
 
+    @Loggable()
     public async getToken(req: FetchTokenRequest): Promise<string>{
         const callProvider=await callProviderFactory.get(req.provider);
         const token= await callProvider.getToken(req.callerId)
