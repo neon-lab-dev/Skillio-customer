@@ -1,4 +1,4 @@
-import { NotFoundError } from "@neon-lab-dev/platform";
+import { Loggable, NotFoundError } from "@neon-lab-dev/platform";
 import { FcmToken } from "../../../entity/fcmToken";
 import { TokenRepository } from "../../../repository/tokenRepository";
 import { TokenBuilder } from "../models/builder/tokenBuilder";
@@ -8,10 +8,12 @@ class TokenService{
 
     private reposiotry: TokenRepository= new TokenRepository;
 
+    @Loggable()
     private async findByUserId(req: TokenRequest): Promise<FcmToken | null>{
         return await this.reposiotry.findByUserId(req.userId);
     }
 
+    @Loggable()
     public async fetchByUserId(req: TokenRequest): Promise<FcmToken>{
         const res= await this.reposiotry.findByUserId(req.userId);
         if(!res){
@@ -21,6 +23,7 @@ class TokenService{
         return res;
     }
 
+    @Loggable()
     public async createOrUpdate(req: TokenRequest){
         let entity= await this.findByUserId(req);
         if(entity){

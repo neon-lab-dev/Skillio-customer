@@ -11,8 +11,7 @@ export const startCall= async(callerId:string , recipientId:string ,callId:strin
     
     const socketId= onlineUsers.get(recipientId);
     
-    if(socketId){
-        io.to(socketId).emit("incomingCall" , {
+        io.to(socketId!).emit("incomingCall" , {
             callerId,
             callId,
             }
@@ -20,13 +19,12 @@ export const startCall= async(callerId:string , recipientId:string ,callId:strin
         await callRepository.updateCall(callId , {  callStatus: status.RINGING})
 
         LoggerService.info(`calling reciever:${recipientId}`)
-    }else{
         const caller= await registrationServices.getShortProfile(callerId);
+
         sendSinglePushNotification(recipientId,{
             text: `you have recieved a call from ${caller.name? caller.name : caller.profile?.groupName}`,
             callerId: callerId
         },"call", registrationToken )
-    }
 }
 
 export const acceptCall=(callerId:string,callId:string)=>{
