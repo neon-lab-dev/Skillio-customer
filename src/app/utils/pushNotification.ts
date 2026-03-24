@@ -4,13 +4,15 @@ import registrationRepository from "../repository/registrationRepository";
 import { initializeFirebase , getMessaging } from "../config/firebaseConfig";
 
 
-export const sendSinglePushNotification = async (senderId:string,content: Partial<content> ,type:string, registrationToken:string)=>{
-    const profile= await registrationRepository.findProfileById(senderId);
+export const sendSinglePushNotification = async (callerId:string,content: Partial<content> ,type:string, registrationToken:string)=>{
+    const profile= await registrationRepository.findProfileById(callerId);
 
     const message={
         data:{
             title: `${type} from ${profile?.firstName} ${profile?.lastName}`,
             body: content.text || "You have received a new message",
+            callerId: callerId,
+            callId: content.callId as string | ""
         },
         token: registrationToken
     }

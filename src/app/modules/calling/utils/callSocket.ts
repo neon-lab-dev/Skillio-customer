@@ -21,9 +21,9 @@ export const startCall= async(callerId:string , recipientId:string ,callId:strin
         LoggerService.info(`calling reciever:${recipientId}`)
         const caller= await registrationServices.getShortProfile(callerId);
 
-        sendSinglePushNotification(recipientId,{
+        sendSinglePushNotification(callerId,{
             text: `you have recieved a call from ${caller.name? caller.name : caller.profile?.groupName}`,
-            callerId: callerId
+            callId: callId
         },"call", registrationToken )
 }
 
