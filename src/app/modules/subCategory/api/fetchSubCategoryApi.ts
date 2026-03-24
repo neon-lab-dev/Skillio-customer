@@ -18,3 +18,4 @@ export class FetchSubCategoryApi implements Api<FetchSubCategoryRequest, AppResp
         }
     }
 }
+
