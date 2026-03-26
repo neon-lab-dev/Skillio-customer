@@ -17,6 +17,7 @@ class TwilioProvider implements CallProviderInterface{
         const voiceGrant = new voice({
             outgoingApplicationSid: config.TWILIO_TWIML_APP_SID,
             incomingAllow: true, 
+            pushCredentialSid: config.TWILIO_PUSH_CREDENTIAL_SID
         });
 
         token.addGrant(voiceGrant);

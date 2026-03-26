@@ -6,7 +6,7 @@ class TwilioWebhook {
     @Loggable()
     public async twimlPost(req:Request , res: Response) {
         console.log("hello twiml")
-        const to= req.body.To;
+        const to= req.body.to;
 
         const twimlResponse = create({ version: '1.0' })
             .ele('Response')
