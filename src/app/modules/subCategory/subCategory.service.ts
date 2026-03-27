@@ -4,19 +4,9 @@ import { CreateSubCategoryRequest } from "./models/request/createSubCategoryRequ
 import { SubCategory } from "../../entity/subCategory";
 import { SubCategoryEntityBuilder } from "./models/builder/subCategoryEntityBuilder";
 import { FetchSubCategoryRequest } from "./models/request/fetchSubCategoryRequest";
-import { CategoryRepository } from "../category/repository/category.repository";
-
-
+import CategoryService from "../category/category.service";
 class SubCategoryService {
     private repository: SubCategoryRepository = new SubCategoryRepository();
-    private categoryRepository: CategoryRepository = new CategoryRepository();
-
-    private async checkIfCategoryExists(categoryId: string): Promise<void> {
-        const category = await this.categoryRepository.findById(categoryId);
-        if (!category) {
-            throw new NotFoundError("Category not found");
-        }
-    }
 
     private async checkIfSubCategoryExists(
         name: string,
@@ -33,7 +23,7 @@ class SubCategoryService {
 
     @Loggable()
     public async create(req: CreateSubCategoryRequest): Promise<SubCategory> {
-        await this.checkIfCategoryExists(req.categoryId);
+        await CategoryService.checkIfCategoryExistsById(req.categoryId);
         await this.checkIfSubCategoryExists(req.name, req.categoryId);
         const entity = SubCategoryEntityBuilder.builder().of(req).build();
 
@@ -42,7 +32,7 @@ class SubCategoryService {
 
     @Loggable()
     public async fetch(req: FetchSubCategoryRequest): Promise<SubCategory[]> {
-        await this.checkIfCategoryExists(req.categoryId);
+        await CategoryService.checkIfCategoryExistsById(req.categoryId);
         return this.repository.findByCategoryId(req.categoryId);
     }
 }

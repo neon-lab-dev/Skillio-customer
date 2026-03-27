@@ -1,4 +1,4 @@
-import { Loggable,AppValidationError, ERROR_CODES } from "@neon-lab-dev/platform";
+import { Loggable,AppValidationError,NotFoundError, ERROR_CODES } from "@neon-lab-dev/platform";
 import { Category } from "../../entity/category";
 import { CategoryEntityBuilder } from "./models/builder/categoryEntityBuilder";
 import { CreateCategoryRequest } from "./models/request/createCategoryRequest";
@@ -8,9 +8,18 @@ import { CategoryRepository } from "./repository/category.repository";
 class CategoryService {
     private repository: CategoryRepository = new CategoryRepository();
 
-    private async checkIfCategoryExists(name: string): Promise<void> {
-        const exists = await this.repository.findByName(name);
-        if (exists) {
+    public async checkIfCategoryExistsById(id: string): Promise<void> {
+        const categoryidexists = await this.repository.findById(id);
+        if (!categoryidexists) {
+            throw new NotFoundError(
+                "Category not found in Database"
+            );
+        }
+    }
+
+    private async checkIfCategoryExistsbyname(name: string): Promise<void> {
+        const categorynameexists = await this.repository.findByName(name);
+        if (categorynameexists) {
             throw new AppValidationError(
                 "Category already exists in Database",
                 ERROR_CODES.DUPLICATE_ENTRY
@@ -20,7 +29,7 @@ class CategoryService {
 
     @Loggable()
     public async create(req: CreateCategoryRequest): Promise<Category> {
-        await this.checkIfCategoryExists(req.name);
+        await this.checkIfCategoryExistsbyname(req.name);
         const entity = CategoryEntityBuilder.builder().of(req).build();
         return this.repository.create(entity);
     }

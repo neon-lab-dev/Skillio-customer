@@ -16472,6 +16472,800 @@
           ]
         }
       ]
-    }
+    },
+    
+    {
+	"info": {
+		"name": "Category"},
+	"item": [
+		{
+			"name": "CreateCategory-Duplicate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Country\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CreateCategory-Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"smart-Device\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"category"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "214"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d6-kQzTQTcBURIKQHBGu9l3+AJ7cCU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:46:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"name\": \"smart-Device\",\n        \"id\": \"cat202603270346212e0dbc67\",\n        \"createdAt\": \"2026-03-27T03:46:21.207Z\",\n        \"updatedAt\": \"2026-03-27T03:46:21.207Z\",\n        \"deleted\": false\n    }\n}"
+				},
+				{
+					"name": "CreateCategory-Duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"smart-Device\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"category"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7f-um2zC8DySbPQpTTlgnf+3pBbJis\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:48:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Category already exists in Database\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Something went wrong!\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetCategory-Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"category"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "934"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3a6-noyjo7/Mnw+Lvk7jSrChl/y04J8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:51:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"cat202603200325112bca2ed4\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-20T03:25:11.043Z\",\n            \"updatedAt\": \"2026-03-20T03:25:11.043Z\",\n            \"name\": \"Vechicles\"\n        },\n        {\n            \"id\": \"cat20260324101722b75d1ca6\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-24T10:17:22.943Z\",\n            \"updatedAt\": \"2026-03-24T10:17:22.943Z\",\n            \"name\": \"programming-language\"\n        },\n        {\n            \"id\": \"cat20260326122928779a422e\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-26T12:29:28.469Z\",\n            \"updatedAt\": \"2026-03-26T12:29:28.469Z\",\n            \"name\": \"music\"\n        },\n        {\n            \"id\": \"cat20260326123031d463b017\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-26T12:30:31.899Z\",\n            \"updatedAt\": \"2026-03-26T12:30:31.899Z\",\n            \"name\": \"Country\"\n        },\n        {\n            \"id\": \"cat202603270305009c7c3361\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-27T03:05:00.111Z\",\n            \"updatedAt\": \"2026-03-27T03:05:00.111Z\",\n            \"name\": \"city\"\n        },\n        {\n            \"id\": \"cat202603270346212e0dbc67\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-27T03:46:21.207Z\",\n            \"updatedAt\": \"2026-03-27T03:46:21.207Z\",\n            \"name\": \"smart-Device\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2ODAwMzc0YS0zYzUzLTRkODQtYjg4MS0yZGQyOTYwMGNkNjkiLCJuaWNrTmFtZSI6InRlc3R1c2VyMiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDU4OTc3NSwiZXhwIjoxNzc0NTkzMzc1fQ.Fv-7mAdQFwg3poYBDJr78dV_V77u8QbbAhVvhEcCNH8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+    },
+
+    {
+	"info": {
+		"name": "Sub-Category"
+	},
+	"item": [
+		{
+			"name": "CreateCategory-Duplicate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"hip-hop\",\n    \"categoryId\":\"cat20260326122928779a422e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/subCategory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"subCategory"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CreateSubCategory-Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"jaz\",\n    \"categoryId\":\"cat20260326122928779a422e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/subCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"subCategory"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "247"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f7-v45Vvcy8zPvgwlW8NqzSE5oMCLI\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:55:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"name\": \"pop\",\n        \"categoryId\": \"cat20260326122928779a422e\",\n        \"id\": \"subc2026032703554124988341\",\n        \"createdAt\": \"2026-03-27T03:55:41.092Z\",\n        \"updatedAt\": \"2026-03-27T03:55:41.092Z\",\n        \"deleted\": false\n    }\n}"
+				},
+				{
+					"name": "CreateSubCategory -Duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"pop\",\n    \"categoryId\":\"cat20260326122928779a422e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/subCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"subCategory"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "118"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"76-qjyW0Snd2BT+ApauFVMKUsajOs8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:56:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"SubCategory already exists\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Something went wrong!\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "CreateCategory-RecordNotFound",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"hip-hop\",\n    \"categoryId\":\"wrongcategoryid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/subCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"subCategory"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 05:41:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"categoryId\":\"cat20260316093024b6bafa1c\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/subCategory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"subCategory"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetSubCategory-Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoryId\":\"cat20260326122928779a422e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/subCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"subCategory"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "605"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"25d-39KRXW7FvwhbxIdjz7l4aGICRlU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:58:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"id\": \"subc20260327033146a059ad5e\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-27T03:31:46.873Z\",\n            \"updatedAt\": \"2026-03-27T03:31:46.873Z\",\n            \"name\": \"hip-hop\",\n            \"categoryId\": \"cat20260326122928779a422e\"\n        },\n        {\n            \"id\": \"subc2026032703553306f7f370\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-27T03:55:33.187Z\",\n            \"updatedAt\": \"2026-03-27T03:55:33.187Z\",\n            \"name\": \"classical\",\n            \"categoryId\": \"cat20260326122928779a422e\"\n        },\n        {\n            \"id\": \"subc2026032703554124988341\",\n            \"deleted\": false,\n            \"createdAt\": \"2026-03-27T03:55:41.092Z\",\n            \"updatedAt\": \"2026-03-27T03:55:41.092Z\",\n            \"name\": \"pop\",\n            \"categoryId\": \"cat20260326122928779a422e\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "GetSubCategory-Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoryId\":\"wrongcategoryid\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/subCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"subCategory"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "103"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"67-Z08XOPFG/yZ+8CHAWDLzBe9HiDo\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 27 Mar 2026 03:59:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2ODAwMzc0YS0zYzUzLTRkODQtYjg4MS0yZGQyOTYwMGNkNjkiLCJuaWNrTmFtZSI6InRlc3R1c2VyMiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3NDU4OTc3NSwiZXhwIjoxNzc0NTkzMzc1fQ.Fv-7mAdQFwg3poYBDJr78dV_V77u8QbbAhVvhEcCNH8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
+
+
+
+
   ]
 }
+
