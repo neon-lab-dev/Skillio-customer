@@ -17,14 +17,13 @@ import { FetchCallResponseBuilder } from "./models/builder/fetchCallResponseBuil
 import registrationServices from "../registration/registration.services";
 import { profileService } from "../profile/service.profile";
 import planAggregatorService from "../planAggregator/planAggregator.service";
+import tokenService from "../token/service/tokenService";
 
 class CallService{
 
     // create a call
-    createCall= serviceLogging(
-        "callService",
-        "createCall",
-        async(recipientId:string , registrationToken: string,req:Request)=>{
+        @Loggable()
+        public async createCall(recipientId:string,req:Request){
 
             const callerId= req.user.profileId
 
@@ -75,19 +74,15 @@ class CallService{
 
                 call= new GetCallDTO(newCall).toJSON();
             }
-
-            startCall(call.callerId , call.recipientId ,call.id , registrationToken || " ")
+            const fcmToken= await tokenService.fetchByUserId({userId: call.recipientId});
+            startCall(call.callerId , call.recipientId ,call.id , fcmToken.token || " ")
 
             return call;
         }
-    )
   
     // accept call
-    acceptCall= 
-        serviceLogging(
-        "callService",
-        "acceptCall",
-        async(call:Call )=>{
+        @Loggable()
+        public async acceptCall(call:Call ){
              await callRepository.updateCall(call.id , { callStatus: status.ACCEPTED});
 
              const loggedInUserProfile= await profileService.fetchWithPortfolio(call.callerId);
@@ -97,26 +92,19 @@ class CallService{
             acceptCall(call.callerId , call.id )
     
         }
-    )
 
 
     // reject call
-    rejectCall=serviceLogging(
-        "callService",
-        "rejectCall",
-        async(call:Call)=>{
+        @Loggable()
+        public async rejectCall(call:Call){
             await callRepository.updateCall(call.id, {callStatus:status.REJECTED , endedAt: new Date()})
 
             rejectCall(call.callerId , call.id)
         }
-    )
 
     // end call
-    endCall= 
-        serviceLogging(
-        "callService",
-        "endCall",
-        async(call:Call)=>{
+        @Loggable()
+        public async endCall(call:Call){
              await callRepository.updateCall(call.id , {
                 callStatus: status.ENDED,
                 endedAt:  new Date()
@@ -127,8 +115,8 @@ class CallService{
             })
     
         }
-    )
 
+    @Loggable()
     public async getToken(req: FetchTokenRequest): Promise<string>{
         const callProvider=await callProviderFactory.get(req.provider);
         const token= await callProvider.getToken(req.callerId)
