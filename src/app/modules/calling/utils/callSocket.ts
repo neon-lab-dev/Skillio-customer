@@ -10,20 +10,23 @@ export const startCall= async(callerId:string , recipientId:string ,callId:strin
     const io = getIO();
     
     const socketId= onlineUsers.get(recipientId);
+
+    const caller= await registrationServices.getShortProfile(callerId);
+    const name= caller.name? caller.name: caller.profile?.groupName;
     
         io.to(socketId!).emit("incomingCall" , {
             callerId,
             callId,
+            name
             }
         )
         await callRepository.updateCall(callId , {  callStatus: status.RINGING})
 
         LoggerService.info(`calling reciever:${recipientId}`)
-        const caller= await registrationServices.getShortProfile(callerId);
 
-        sendSinglePushNotification(recipientId,{
-            text: `you have recieved a call from ${caller.name? caller.name : caller.profile?.groupName}`,
-            callerId: callerId
+        sendSinglePushNotification(callerId,{
+            text: `you have recieved a call from ${name}`,
+            callId: callId
         },"call", registrationToken )
 }
 

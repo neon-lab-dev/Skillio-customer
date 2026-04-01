@@ -3,7 +3,7 @@ export interface content{
     text?: string;
     postId?: string;
     fileUrl?: string;
-    callerId?:string;
+    callId?:string;
 }
 
 export interface TMessage{
