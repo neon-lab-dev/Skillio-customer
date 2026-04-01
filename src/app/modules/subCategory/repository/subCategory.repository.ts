@@ -12,5 +12,15 @@ export class SubCategoryRepository extends BaseRepository<SubCategory>{
             categoryId
         })
     }
+       async findByNameAndCategoryId(
+        name: string,
+        categoryId: string
+    ): Promise<SubCategory | null> {
+        return this.repository.findOneBy({ 
+            name, 
+            categoryId, 
+            deleted: false 
+        })
+    } 
 
 }
