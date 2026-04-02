@@ -28,7 +28,7 @@
     "@types/node": "^22.15.3",
     "express": "^5.1.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.2"
   },
   "dependencies": {
     "@automapper/classes": "^8.8.1",

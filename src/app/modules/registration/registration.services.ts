@@ -45,6 +45,7 @@ import cloudinaryServices from "../document/services/cloudinaryServices";
 import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 import servicePostProxy from "../../service/post-proxy/service.post-proxy";
 import { Privacy } from "../../service/post-proxy/enum/privacyEnum";
+import { FetchDocumentsResponseDtoBuilder } from "../document/models/builders/fetchDocumentsResponseDtoBuilder";
 
 class RegistrationService{
 
@@ -311,6 +312,8 @@ class RegistrationService{
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
+                    category: fetchedProfile.portfolio.category,
+                    subCategory: fetchedProfile.portfolio.subCategory,
                     privacy: privacy?.type,
                     following: following,
                     propritaryDetails:{
@@ -330,6 +333,8 @@ class RegistrationService{
                     isSubscribed:  fetchedProfile.isSubscribed,
                     profilePictureId: profilePhotoId,
                     following: following,
+                    category: fetchedProfile.portfolio.category,
+                    subCategory: fetchedProfile.portfolio.subCategory,
                     privacy: privacy?.type,
                     online:fetchedProfile.online,
                     }
@@ -346,6 +351,8 @@ class RegistrationService{
                         follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed,
                         following: following,
+                        category: fetchedProfile.portfolio.category,
+                        subCategory: fetchedProfile.portfolio.subCategory,
                         privacy: privacy?.type,  
                         online:fetchedProfile.online,
                     },
@@ -365,6 +372,8 @@ class RegistrationService{
                         following: following,
                         privacy: privacy?.type,
                         online:fetchedProfile.online,
+                        category: fetchedProfile.portfolio.category,
+                        subCategory: fetchedProfile.portfolio.subCategory,
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed

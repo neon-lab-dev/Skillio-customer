@@ -401,14 +401,20 @@ export class GetProfilePortfolioDTO{
   id:string;
   bio?: string;
   follows? : FollowsDTO[]; 
+  category!:string;
+  subCategory!:string;
 
   constructor(data:{
     id:string;
     bio?: string;
     follows?: FollowsDTO[];
+    category: string;
+    subCategory:string;
   }){
     this.id=data.id;
     this.bio=data.bio;
+    this.category= data.category;
+    this.subCategory= data.subCategory;
     this.follows= data.follows?.map(
       follow=> new FollowsDTO(follow)
     );
@@ -418,6 +424,8 @@ export class GetProfilePortfolioDTO{
     return {
       id: this.id,
       bio: this.bio,
+      category: this.category,
+      subCategory: this.subCategory,
       follows: this.follows
     }
   }
@@ -452,6 +460,8 @@ export class GetProfileDTO{
     portfolio:{
       id:string;
       bio?: string; 
+      category:string;
+      subCategory: string;
       hiringRate: THiringRate;
          follows: {
         socialMedia: SocialMeida;
@@ -475,6 +485,8 @@ export class GetProfileDTO{
     this.portfolio=new GetProfilePortfolioDTO({
       id: data.portfolio.id,
       bio: data.portfolio.bio || "",
+      category: data.portfolio.category,
+      subCategory: data.portfolio.subCategory,
       follows: data.portfolio?.follows?.map(follow=> new FollowsDTO(follow))
     })
     this.online=data.online?{

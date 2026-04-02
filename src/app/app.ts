@@ -22,8 +22,8 @@ AppDataSource.initialize()
     await systemConfigStore.loadConfigs();
     NotificationProviderFactory.initializeProviders();
 
-    await consumer.loadConsumers()
-    await prodcuer.connect()
+    // await consumer.loadConsumers()
+    // await prodcuer.connect()
 
     await cron.planAggregatorCron();
 

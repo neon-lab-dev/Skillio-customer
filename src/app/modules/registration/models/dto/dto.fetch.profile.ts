@@ -19,6 +19,8 @@ export class FetchProfileDto implements AppResponseData{
     portfolioId!: string;
     eventsDone?:number;
     onlineStatus?: onlineStatus;
+    category!:string;
+    subCategory!: string;
     follows?:{
         socialMedia: SocialMeida,
         link: string,
