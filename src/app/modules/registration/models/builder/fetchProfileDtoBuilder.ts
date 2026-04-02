@@ -27,6 +27,8 @@ export class FetchProfileDtoBuilder {
         this.dto.portfolioId= entity.portfolio.id;
         this.dto.eventsDone= entity.portfolio.totalEvents;
         this.dto.onlineStatus= entity.online?.status;
+        this.dto.category= entity.portfolio.category;
+        this.dto.subCategory= entity. portfolio.subCategory;
         this.dto.email= this.ofEmail(entity);
         this.dto.phoneNumber= this.ofPhoneNum(entity);
         this.dto.follows= this.setFollows(entity);
