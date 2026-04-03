@@ -201,11 +201,17 @@ class RegistrationService{
             }
         });
 
-        const document= await documentServices.getDocument([profileDocumentId])
+        const document= await documentServices.getDocument([profileDocumentId]);
+
+        const fullName= firstName&& lastName&& getFullName(newProfile.firstName as string, newProfile.lastName as string);
+
+        const name= fullName || newProfile.groupName;
+        
 
         const shortUser={
             referenceId: newProfile.id,
             nickName: newProfile.nickName,
+            name: name,
             profilePictureUrl: document[0].url,
             phoneNo: phoneNumber[0]
         }
