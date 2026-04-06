@@ -213,7 +213,9 @@ class RegistrationService{
             nickName: newProfile.nickName,
             name: name,
             profilePictureUrl: document[0].url,
-            phoneNo: phoneNumber[0]
+            phoneNo: phoneNumber[0],
+            category: newProfile.portfolio.category,
+            subCategory: newProfile.portfolio.subCategory
         }
 
         this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
