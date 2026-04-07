@@ -3,6 +3,7 @@ import { ProfileType, SocialMeida, contactType, proficiecy, profileStatus, roles
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
 import { IS_MANDATORY, IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
+import { credential } from "firebase-admin";
 
 
 const emailSchema = z.string().email("Invalid email address");
@@ -21,6 +22,8 @@ const proficiencySchema=z.nativeEnum(proficiecy, {
     });
 
 const totalEventsSchema= NUMBER_SCHEMA("totalEvents");
+
+const credentialSchema= IS_MANDATORY_SCHEMA("credential");
 
 
 const validateNicknameUniqueness = (data: {
@@ -346,9 +349,11 @@ export const updateHiringRateSchema=z.object({
     monthlyPricing: z.number()
 }).strict()
 
+const pinSchema= IS_MANDATORY_SCHEMA("pin");
+
 export const updatePinSchema=z.object({
-    credential:IS_MANDATORY_SCHEMA("credential"),
-    pin:IS_MANDATORY_SCHEMA("pin")
+    credential: credentialSchema,
+    pin: pinSchema
 }).strict()
 
 export const fetchProfileDetailsSchema= z.object({
@@ -357,4 +362,10 @@ export const fetchProfileDetailsSchema= z.object({
 
 export const deleteProfileSchema= z.object({
     id: idSchema
+}).strict()
+
+export const forgotPinSchema= z.object({
+        credential: credentialSchema,
+        pin: pinSchema,
+        confirmPin: IS_MANDATORY_SCHEMA("confirmPin")
 }).strict()
