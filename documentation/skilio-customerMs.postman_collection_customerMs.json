@@ -3203,7 +3203,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"groupName\": \"nirvana\",\r\n  \"nickName\": \"alice08\",\r\n  \"profileType\": \"GROUP\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"c352f983-5410-48ce-898f-0bc494be979d\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876511018\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice08@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"follows\":[{\r\n        \"socialMedia\": \"INSTAGRAM\", \r\n        \"link\":\"hdlkflsd\",\r\n        \"followers\": 0,\r\n        \"following\":0\r\n    }],\r\n    \"videoDocumentIds\": [\"3cf04c8f-7122-4130-aa20-3896f0bbd758\"],\r\n    \"imageDocumentIds\": [\"9feba304-96bb-485b-a5c5-8f95025a3179\"],\r\n    \"eventsDoneDocumentIds\": [\"eaeff723-b498-4661-91f7-b1bbccecdb4c\"]\r\n  } \r\n}",
+              "raw": "{\r\n    \"groupName\": \"nirvana\",\r\n  \"nickName\": \"alice012\",\r\n  \"profileType\": \"GROUP\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"a3a0cd16-2d55-41b5-a224-650e14473e41\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"8210464851\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice012@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"follows\":[{\r\n        \"socialMedia\": \"INSTAGRAM\", \r\n        \"link\":\"hdlkflsd\",\r\n        \"followers\": 0,\r\n        \"following\":0\r\n    }],\r\n    \"videoDocumentIds\": [\"4c8d7b58-ebcb-489e-ab82-12fa91326a46\"],\r\n    \"imageDocumentIds\": [\"045809ec-0818-49cc-9f8a-794d65a5d7ed\"],\r\n    \"eventsDoneDocumentIds\": [\"9f361e88-7423-4ed6-9d5c-f732b5bb2e78\"]\r\n  } \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -6484,7 +6484,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"credential\":\"shreya5516\",\r\n    \"pin\":\"0000\"\r\n}   ",
+              "raw": "{\r\n    \"credential\":\"8210464851\",\r\n    \"pin\":\"1234\"\r\n}   ",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8568,7 +8568,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\":\"dca78f89-a1b6-46f1-b603-e822952b41be\",\r\n    \"pin\":\"1357\"\r\n}",
+              "raw": "{\r\n    \"credential\":\"8210464851\",\r\n    \"pin\":\"1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8576,9 +8576,9 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/profile/pin",
+              "raw": "{{skillio-customer}}/v1/profile/pin",
               "host": [
-                "{{serverUrl}}"
+                "{{skillio-customer}}"
               ],
               "path": [
                 "v1",
@@ -8588,6 +8588,76 @@
             }
           },
           "response": [
+            {
+              "name": "Success: pin updated successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"credential\":\"alice2\",\r\n    \"pin\":\"1345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{customer-server-url}}/v1/profile/pin",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "pin"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "56"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"38-sKicOz3R7Idwlfpd1P/Jrd4ouNQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 Apr 2026 06:35:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Resource updated successfully\"\n}"
+            },
             {
               "name": "Error: profile does not exist",
               "originalRequest": {
@@ -8727,76 +8797,6 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"message\": \"Authentication failed\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Authentication failed\"\n        }\n    ]\n}"
-            },
-            {
-              "name": "Success: update pin",
-              "originalRequest": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"credential\":\"alice7\",\r\n    \"pin\":\"1234\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{serverUrl}}/v1/profile/pin",
-                  "host": [
-                    "{{serverUrl}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "profile",
-                    "pin"
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": null,
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Credentials",
-                  "value": "true"
-                },
-                {
-                  "key": "Vary",
-                  "value": "Origin"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "56"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"38-sKicOz3R7Idwlfpd1P/Jrd4ouNQ\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Mon, 02 Mar 2026 06:26:33 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"status\": 200,\n    \"message\": \"Resource updated successfully\"\n}"
             }
           ]
         },
@@ -8949,6 +8949,318 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"message\": \"Record not found\",\n    \"errorSourse\": [\n        {\n            \"path\": \"\",\n            \"message\": \"Record not found\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "forgot pin",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"credential\":\"alice2\",\r\n    \"pin\":\"1342\",\r\n    \"confirmPin\":\"1345\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{customer-server-url}}/v1/profile/forgotPin",
+              "host": [
+                "{{customer-server-url}}"
+              ],
+              "path": [
+                "v1",
+                "profile",
+                "forgotPin"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: pin updated successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"credential\":\"alice2\",\r\n    \"pin\":\"1345\",\r\n    \"confirmPin\":\"1345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{customer-server-url}}/v1/profile/forgotPin",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "forgotPin"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "52"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"34-Lw+cnkpsWJg5D2b1Qlt65W9ZGpI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 Apr 2026 07:28:09 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"pin updated successfullly\"\n}"
+            },
+            {
+              "name": "Error: profile does not exist , please register first",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"credential\":\"alice323\",\r\n    \"pin\":\"1345\",\r\n    \"confirmPin\":\"1345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{customer-server-url}}/v1/profile/forgotPin",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "forgotPin"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "104"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"68-DFSRxWb5eAJt7iS2NOsYE7PN5xE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 Apr 2026 07:32:56 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"Record not found\",\n    \"message\": \"Profile does not exist , please register first.\"\n}"
+            },
+            {
+              "name": "Error: pin does not match",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"credential\":\"alice2\",\r\n    \"pin\":\"1342\",\r\n    \"confirmPin\":\"1345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{customer-server-url}}/v1/profile/forgotPin",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "forgotPin"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "76"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4c-2n+gDNXy9GtsTJRhFyCUZIzYr70\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 Apr 2026 07:34:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"message\": \"pin does not match\"\n}"
+            },
+            {
+              "name": "Error: Entered pin's does not match",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"credential\":\"alice2\",\r\n    \"pin\":\"1342\",\r\n    \"confirmPin\":\"1345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{customer-server-url}}/v1/profile/forgotPin",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "forgotPin"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "86"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"56-7Dgu4mbRzNMi86u6woc5kGME1vs\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 07 Apr 2026 07:35:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"message\": \"Entered pin's does not match\"\n}"
             }
           ]
         }

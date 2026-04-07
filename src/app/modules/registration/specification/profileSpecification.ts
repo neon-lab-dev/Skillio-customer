@@ -2,7 +2,7 @@ import { BaseSpecification, SearchCriteriaUtils } from "@neon-lab-dev/platform";
 import { Profile } from "../../../entity/profile";
 import { ProfileSearchCriteria } from "../models/request/searchCriteria/profileSearchCriteria";
 import { SelectQueryBuilder } from "typeorm";
-import { contactType } from "../enums/registrationEnum";
+import { contactType, profileStatus, roles } from "../enums/registrationEnum";
 
 export class ProfileSpecification extends BaseSpecification<Profile>{
 
@@ -44,7 +44,8 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
       .leftJoinAndSelect(`${this.alias}.online` , 'online')
       .leftJoinAndSelect('portfolio.document' , 'document')
       .leftJoinAndSelect('portfolio.follows' , 'follows')
-      .andWhere(`${this.alias}.role != :role` , {role: 'ADMIN'})
+      .andWhere(`${this.alias}.role != :role` , {role: roles.ADMIN})
+      .andWhere(`${this.alias}.status != :status` , {status: profileStatus.BLOCKED})
     } 
 
     private filterByIdsIn(

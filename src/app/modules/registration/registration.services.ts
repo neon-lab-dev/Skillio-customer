@@ -17,7 +17,7 @@ import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
 import { Producer } from "../../kafka/producer/producer";
 import documentServices from "../document/services/document.services";
-import { AsyncContextService, JwtService, Loggable, LoggerService, NotFoundError, Page, Pageable, UnauthorizedError } from "@neon-lab-dev/platform";
+import { AppValidationError, AsyncContextService, ERROR_CODES, JwtService, Loggable, LoggerService, NotFoundError, Page, Pageable, UnauthorizedError } from "@neon-lab-dev/platform";
 import { ProfileSpecification } from "./specification/profileSpecification";
 import { ProfileSearchCriteria } from "./models/request/searchCriteria/profileSearchCriteria";
 import { FetchProfileDtoBuilder } from "./models/builder/fetchProfileDtoBuilder";
@@ -46,6 +46,7 @@ import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 import servicePostProxy from "../../service/post-proxy/service.post-proxy";
 import { Privacy } from "../../service/post-proxy/enum/privacyEnum";
 import { FetchDocumentsResponseDtoBuilder } from "../document/models/builders/fetchDocumentsResponseDtoBuilder";
+import { ForgotPinRequest } from "./models/request/forgotPinRequest";
 
 class RegistrationService{
 
@@ -82,6 +83,15 @@ class RegistrationService{
         if(!hiringRate){
             throw new NotFoundError("hiring rate does not exist");
         }
+    }
+
+    @Loggable()
+    private async findProfileByCredential(credential: string):Promise<Profile>{
+        const profile=await registrationRepository.findProfileByCredential(credential);
+        if(!profile){
+            throw new NotFoundError("Profile does not exist , please register first.");
+        }
+        return profile;
     }
 
     public async authorizeProfile(id:string){
@@ -468,10 +478,7 @@ class RegistrationService{
 
     @Loggable()
     public async updatePin(req:UpdatePinRequest){
-        const profile= await registrationRepository.findProfileByCredential(req.credential);
-        if(!profile){
-            throw new NotFoundError("profile not found")
-        }
+        const profile= await this.findProfileByCredential(req.credential);
         await this.authorizeProfile(profile.id);
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(req.pin, salt);
@@ -505,6 +512,17 @@ class RegistrationService{
             return portfolio;
         }
         throw new NotFoundError("portfolio not found")
+    }
+
+    @Loggable()
+    public async forgotPin(req: ForgotPinRequest):Promise<void>{
+        const profile= await this.findProfileByCredential(req.credential);
+        if(req.confirmPin!== req.pin){
+            throw new AppValidationError("Entered pin's does not match" , ERROR_CODES.VALIDATION_ERROR);
+        }
+        const salt = await bcrypt.genSalt(10);
+        const hashedPin = await bcrypt.hash(req.pin, salt);
+        await registrationRepository.updateProfile(profile.id , {pin: hashedPin});
     }
 
 }

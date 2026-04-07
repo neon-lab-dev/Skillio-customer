@@ -17,6 +17,7 @@ import { UpdateProfileApi } from "./api/updateProfileApi";
 import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
 import { UpdatePinApi } from "./api/updatePinApi";
 import { DeleteProfileApi } from "./api/deleteProfileApi";
+import { ForgotPinApi } from "./api/forgotPinApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
@@ -25,7 +26,8 @@ const fetchProfileDetailsApi = new FetchProfileDetailsApi();
 const updateProfileApi= new UpdateProfileApi();
 const updateHiringRateApi = new UpdateHiringRateApi()
 const updatePinApi= new UpdatePinApi();
-const deleteProfileApi = new DeleteProfileApi()
+const deleteProfileApi = new DeleteProfileApi();
+const forgotPinApi= new ForgotPinApi();
 
 router.post(
     "/" ,
@@ -82,6 +84,11 @@ router.put(
     "/pin",
     verifyToken,
     asyncApiHandler(updatePinApi)
+)
+
+router.put(
+    "/forgotPin",
+    asyncApiHandler(forgotPinApi)
 )
 
 router.delete(
