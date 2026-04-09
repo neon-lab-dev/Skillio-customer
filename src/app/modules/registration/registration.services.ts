@@ -449,6 +449,16 @@ class RegistrationService{
             firstName: req.firstName,
             lastName: req.lastName
         })
+
+        const name= getFullName(req.firstName as string, req.lastName as string);
+
+        const updatedData={
+            referenceId: loggedInUserProfile.id,
+            name: name
+        }
+
+        this.producer.produce(Events.CUSTOMER_UPDATED , {updatedData});
+
         await registrationRepository.updatePortfolio(loggedInUserProfile.portfolio.id , {totalEvents:req.totalEvents});
     }
 
