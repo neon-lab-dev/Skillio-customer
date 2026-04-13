@@ -18,6 +18,7 @@ import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
 import { UpdatePinApi } from "./api/updatePinApi";
 import { DeleteProfileApi } from "./api/deleteProfileApi";
 import { ForgotPinApi } from "./api/forgotPinApi";
+import { RefreshTokenApi } from "./api/refreshAccessTokenApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
@@ -28,6 +29,7 @@ const updateHiringRateApi = new UpdateHiringRateApi()
 const updatePinApi= new UpdatePinApi();
 const deleteProfileApi = new DeleteProfileApi();
 const forgotPinApi= new ForgotPinApi();
+const refreshTokenApi = new RefreshTokenApi()
 
 router.post(
     "/" ,
@@ -97,5 +99,9 @@ router.delete(
     asyncApiHandler(deleteProfileApi)
 )
 
+router.post(
+    "/refreshToken", 
+    asyncApiHandler(refreshTokenApi)
+);
 
 export const registrationRoutes = router;
