@@ -47,6 +47,8 @@ import servicePostProxy from "../../service/post-proxy/service.post-proxy";
 import { Privacy } from "../../service/post-proxy/enum/privacyEnum";
 import { FetchDocumentsResponseDtoBuilder } from "../document/models/builders/fetchDocumentsResponseDtoBuilder";
 import { ForgotPinRequest } from "./models/request/forgotPinRequest";
+import { RefreshTokenRequest } from "./models/request/refreshTokenRequest";
+import { RefreshTokenResponseDto } from "./models/dto/dto.refresh.access.token";
 
 class RegistrationService{
 
@@ -533,6 +535,34 @@ class RegistrationService{
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(req.pin, salt);
         await registrationRepository.updateProfile(profile.id , {pin: hashedPin});
+    }
+
+    @Loggable()
+    public async refreshAccessToken(
+      req: RefreshTokenRequest,
+    ): Promise<RefreshTokenResponseDto> {
+      const jwtConfig = await getJwtConfig();
+
+      const decoded = (await JwtService.validateAndDecodeToken(
+        req.refreshToken,
+        jwtConfig.JWT_REFRESH_SECRET,
+      )) as { profileId: string; nickName: string; role: string };
+
+      await this.checkExisting(decoded.profileId);
+
+      const jwtPayload: { profileId: string; nickName: string; role: string } = {
+        profileId: decoded.profileId,
+        nickName: decoded.nickName,
+        role: decoded.role,
+      };
+
+      const newAccessToken = JwtService.createToken(
+        jwtPayload,
+        jwtConfig.JWT_ACCESS_SECRET,
+        jwtConfig.JWT_ACCESS_EXPIRES_IN,
+      );
+
+      return { accessToken: newAccessToken };
     }
 
 }
