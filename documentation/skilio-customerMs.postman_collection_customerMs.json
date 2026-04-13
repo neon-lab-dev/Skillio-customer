@@ -1,9 +1,9 @@
 {
   "info": {
-    "_postman_id": "fc45d7b4-dcbb-447f-a602-19e47a95d751",
-    "name": "skilio-customerMs",
+    "_postman_id": "a61b4981-02af-4fce-a79c-2471cd207cf8",
+    "name": "skilio-customerMs Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "25633623"
+    "_exporter_id": "41763276"
   },
   "item": [
     {
@@ -1895,7 +1895,9 @@
                     {
                       "key": "file",
                       "type": "file",
-                      "src": "/C:/Users/Roshan Chaudhary/Downloads/groot.jpg"
+                      "src": [
+                        "/C:/Users/Roshan Chaudhary/Downloads/groot.jpg"
+                      ]
                     }
                   ]
                 },
@@ -1912,7 +1914,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Server",
@@ -2001,7 +2003,9 @@
                     {
                       "key": "file",
                       "type": "file",
-                      "src": "/C:/Users/Roshan Chaudhary/Downloads/marvels.jpg"
+                      "src": [
+                        "/C:/Users/Roshan Chaudhary/Downloads/marvels.jpg"
+                      ]
                     },
                     {
                       "key": "id",
@@ -2029,7 +2033,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -3058,7 +3062,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -3147,7 +3151,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -3253,7 +3257,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -7525,7 +7529,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -7647,7 +7651,7 @@
               },
               "status": "Unauthorized",
               "code": 401,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -7778,7 +7782,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8039,7 +8043,7 @@
               },
               "status": "Unauthorized",
               "code": 401,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8109,7 +8113,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8179,7 +8183,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8270,7 +8274,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Server",
@@ -8331,7 +8335,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "Server",
@@ -8438,7 +8442,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8507,7 +8511,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8616,7 +8620,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8686,7 +8690,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8756,7 +8760,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8847,7 +8851,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -8908,7 +8912,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -9010,7 +9014,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -9080,7 +9084,7 @@
               },
               "status": "Not Found",
               "code": 404,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -9150,7 +9154,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -9220,7 +9224,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -9261,6 +9265,245 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"message\": \"Entered pin's does not match\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "generate access token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIxNWRjZjBlZi0xODlkLTQzZDYtOGU4Yi04MmJiYWVhZGJkNGIiLCJuaWNrTmFtZSI6ImRyZWFtZXIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzYwMTE4NDIsImV4cCI6MTc4Mzc4Nzg0Mn0.VyaO4EkynQ8ZfIL5Vys_I29gtNr7g6SE24PIYhA4jDE\"\r\n}   ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{serverUrl}}/v1/profile/refreshToken",
+              "host": [
+                "{{serverUrl}}"
+              ],
+              "path": [
+                "v1",
+                "profile",
+                "refreshToken"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: access token generated using refresh token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIxNWRjZjBlZi0xODlkLTQzZDYtOGU4Yi04MmJiYWVhZGJkNGIiLCJuaWNrTmFtZSI6ImRyZWFtZXIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzYwMTE4NDIsImV4cCI6MTc4Mzc4Nzg0Mn0.VyaO4EkynQ8ZfIL5Vys_I29gtNr7g6SE24PIYhA4jDE\"\r\n}   ",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/refreshToken",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "refreshToken"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "304"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"130-/W7ueETbEOsrcF1XONjqDc1yumo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 16:46:24 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIxNWRjZjBlZi0xODlkLTQzZDYtOGU4Yi04MmJiYWVhZGJkNGIiLCJuaWNrTmFtZSI6ImRyZWFtZXIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzYwMTIzODQsImV4cCI6MTc3NjAxNTk4NH0.SRKLComKDUsg1J-d63fdPsnCe__-shPf7WYSS8sscpo\"\n    }\n}"
+            },
+            {
+              "name": "Error: invalid refresh token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"refreshToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIxNWRjZjBlZi0xODlkLTQzZDYtOGU4Yi04MmJiYWVhZGJkNGIiLCJuaWNrTmFtZSI6ImRyZWFtZXIiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzYwMTE4NDIsImV4cCI6MTc4Mzc4Nzg0Mn0.VyaO4EkynQ8ZfIL5Vys_I29gtNr7g6SE24PIYhA4jD\"\r\n}   ",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/refreshToken",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "refreshToken"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "90"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"5a-A1Y/hQseYPquSBW1hd2LDVHz7Sc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 17:15:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"message\": \"Invalid or expired refresh token\"\n}"
+            },
+            {
+              "name": "Error: Refresh token is required",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{serverUrl}}/v1/profile/refreshToken",
+                  "host": [
+                    "{{serverUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "profile",
+                    "refreshToken"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "83"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"53-8ntkIbt0HuKEuSvz66eZ906VcSg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 12 Apr 2026 17:28:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"message\": \"Refresh token is required\"\n}"
             }
           ]
         }
@@ -11294,7 +11537,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -11574,7 +11817,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -12544,7 +12787,7 @@
               },
               "status": "Bad Request",
               "code": 400,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -12635,7 +12878,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -12696,7 +12939,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -12803,7 +13046,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -12869,7 +13112,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -12936,7 +13179,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -13003,7 +13246,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -14791,7 +15034,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -15561,15 +15804,6 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{serverUrl}}/v1/planAggregator/e415d0df-12ed-466a-949f-16cefb257499",
                   "host": [
@@ -15584,7 +15818,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -15631,15 +15865,6 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{serverUrl}}/v1/planAggregator/e415d0df-12ed-466a-949f-16cefb257498",
                   "host": [
@@ -15654,7 +15879,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -15777,15 +16002,6 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b3",
                   "host": [
@@ -15807,7 +16023,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -15854,15 +16070,6 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b",
                   "host": [
@@ -15884,7 +16091,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -15931,15 +16138,6 @@
               "originalRequest": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{serverUrl}}/v1/profile/hiringRate?portfolioId=d7429da5-051f-4465-aed2-343ae1ea76b2",
                   "host": [
@@ -15961,7 +16159,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16070,7 +16268,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16140,7 +16338,7 @@
               },
               "status": "Internal Server Error",
               "code": 500,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16242,7 +16440,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16339,15 +16537,6 @@
                     "value": "application/json"
                   }
                 ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"token\": \"hello\", \n    \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "http://localhost:3001/api/v1/token?userId=5d6f3cce-dbda-49d4-a496-a6b736ccf2db",
                   "protocol": "http",
@@ -16370,7 +16559,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16463,7 +16652,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16542,7 +16731,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16654,7 +16843,7 @@
               },
               "status": "Created",
               "code": 201,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -16747,7 +16936,7 @@
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": null,
+              "_postman_previewlanguage": "Text",
               "header": [
                 {
                   "key": "X-Powered-By",
