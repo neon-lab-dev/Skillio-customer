@@ -154,10 +154,10 @@ class RegistrationService{
             isOnboarded: true
         })
 
-        // await servicePostProxy.createPrivacy({
-        //     type: Privacy.PUBLIC,
-        //     userReferenceId: profileId
-        // })
+        await servicePostProxy.createPrivacy({
+            type: Privacy.PUBLIC,
+            userReferenceId: profileId
+        })
 
 
         await this.updateDocument(profileDocumentId , {
@@ -216,7 +216,7 @@ class RegistrationService{
             subCategory: newProfile.portfolio?.subCategory
         }
 
-        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
 
         if(newProfile.portfolio?.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
