@@ -2,44 +2,39 @@ import {
   Entity,
   Column,
   OneToOne,
-  OneToMany , Index
+  OneToMany
 } from "typeorm";
 import { BaseEntity } from "./baseEntity";
-import { profileStatus, ProfileType, roles } from "../modules/registration/enums/registrationEnum";
+import { roles } from "../modules/registration/enums/registrationEnum";
 import { Contact } from "./contact";
 import { Address } from "./address";
 import { Portfolio } from "./portfolio";
 import { Online } from "./online";
-
+import { ProfileDetails } from "./profileDetails";
 
 @Entity("profile")
-@Index("IDX_NICKNAME_PIN" , ["nickName" , "pin"])
 export class Profile extends BaseEntity{
-
-    @Column({nullable:true})
-    firstName?: string;
-
-    @Column({nullable:true})
-    lastName?: string;
-
-    @Column({nullable:true})
-    groupName?:string;
-
-    @Column()
-    pin!:string;
-    
-    @Column({unique:true})
-    nickName!: string;
-
-    @Column({type: "enum", enum: profileStatus, default: profileStatus.PENDING})
-    status!: profileStatus
-
-    @Column({type: "enum", enum: ProfileType, default: ProfileType.INDIVIDUAL})
-    profileType!: ProfileType;
 
     @Column({type:"boolean",default:false})
     isSubscribed!: boolean;
 
+    @Column({
+      type:"boolean",
+      default:false
+    })
+    isOnboarded!:boolean
+
+    @Column({
+      type:"boolean",
+      default:false
+    })
+    isCreator!:boolean
+
+    @Column({
+        nullable:true
+    })
+    pin?:string;
+        
     @Column({type: "enum" ,enum: roles, default: roles.USER , nullable: false })
     role! : roles
 
@@ -48,15 +43,20 @@ export class Profile extends BaseEntity{
     })
     contacts!: Contact[];
 
+    @OneToOne(()=>ProfileDetails , profileDetails=>profileDetails.profile,{
+      cascade:true
+    })
+    profileDetails?: ProfileDetails;
+
     @OneToOne(() => Address , address => address.profile , {
       cascade: true,
     })
-    address!: Address;
+    address?: Address;
 
     @OneToOne(()=>Portfolio , portfolio=> portfolio.profile , {
       cascade: true,
     })
-    portfolio!: Portfolio;
+    portfolio?: Portfolio;
 
     @OneToOne(()=>Online, online=>online.profile,{
       cascade:true,

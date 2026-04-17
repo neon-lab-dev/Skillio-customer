@@ -7,13 +7,12 @@ import { controllerLogging } from "../../utils/controllerLogging";
 
 class RegistrationController{
 
-    // create/register a profile
-    createProfile= controllerLogging(
+    registerProfile= controllerLogging(
         "RegistrationController.createProfile",
         catchAsyncError(async(req:Request , res:Response)=>{
         const profileData= new RegistrationDTO(req.body);
 
-        const result= await registrationProxy.createProfile({...profileData.toJSON()})
+        const result= await registrationProxy.registerProfile({...profileData.toJSON()})
 
         return sendResponse(res , {
             statusCode: 200,

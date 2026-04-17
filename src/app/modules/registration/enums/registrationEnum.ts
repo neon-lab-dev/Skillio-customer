@@ -1,6 +1,7 @@
 export enum ProfileType{
     INDIVIDUAL= "INDIVIDUAL",
-    GROUP= "GROUP"
+    GROUP= "GROUP",
+    HIRER="HIRER"
 }
 
 export enum contactType{

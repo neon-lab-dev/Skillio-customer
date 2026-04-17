@@ -6,13 +6,16 @@ import { contactType, proficiecy, profileStatus, ProfileType, roles } from "../m
 import { BaseRepository } from "@neon-lab-dev/platform";
 import { HiringRate } from "../entity/hiringRate";
 import { Portfolio } from "../entity/portfolio";
+import { ProfileDetails } from "../entity/profileDetails";
+import { Address } from "../entity/address";
 
 class RegistrationRepository extends BaseRepository<Profile>{
 
     private contactRepository= AppDataSource.getRepository<Contact>("Contact");
     private hiringRateRepository= AppDataSource.getRepository<HiringRate>("HiringRate");
     private portfolioReposiotry= AppDataSource.getRepository<Portfolio>("portfolio");
-
+    private profileDetailsRepository = AppDataSource.getRepository<ProfileDetails>("ProfileDetails")
+    private addressRepository= AppDataSource.getRepository<Address>("Address");
 
     private buildCountQuery(
         profileType: ProfileType,
@@ -53,10 +56,23 @@ class RegistrationRepository extends BaseRepository<Profile>{
         super(AppDataSource , Profile)
     }
 
+    registerProfile = async (profileData: DeepPartial<Profile>) => {
+        const existing = await this.repository.findOne({
+            where: { id: profileData.id as string },
+            relations: ['profileDetails', 'address', 'portfolio']
+        });
 
-    // create/register a profile
+        if (existing) {
+            const merged = this.repository.merge(existing, profileData);
+            return await this.repository.save(merged);
+        }
+
+        const newProfile = this.repository.create(profileData);
+        return await this.repository.save(newProfile);
+    }
+
     createProfile= async(profileData: DeepPartial<Profile>)=>{
-        const newProfile=this.repository.create(profileData);
+        const newProfile = this.repository.create(profileData);
         return await this.repository.save(newProfile);
     }
 
@@ -69,14 +85,32 @@ class RegistrationRepository extends BaseRepository<Profile>{
         return await this.portfolioReposiotry.update({id:portfolioId }, portfolioData);
     }
 
+    async updateProfileDetailsByProfileId(profileId:string, profileDetails: DeepPartial<ProfileDetails>){
+        return await this.profileDetailsRepository.update({profileId} , profileDetails)
+    }
+
+    async createProfileDetails(profileDetails: DeepPartial<ProfileDetails>){
+        const entity= this.profileDetailsRepository.create(profileDetails);
+        return await this.profileDetailsRepository.save(entity);
+    }
+
+    async createPortfolio(portfolio: DeepPartial<Portfolio>){
+        const entity= this.portfolioReposiotry.create(portfolio);
+        return await this.portfolioReposiotry.save(entity);
+    }
+
+    async createAddress(address: DeepPartial<Address>){
+        const entity= this.addressRepository.create(address);
+        return await this.addressRepository.save(entity);
+    }
 
     // findProfileByContactValue
     findProfileByCredential = async(credential: string) => {
         return await this.repository
             .createQueryBuilder("profile")
             .leftJoinAndSelect("profile.contacts", "contact")
-            .leftJoinAndSelect("profile.portfolio" , "portfolio")
-            .where("profile.nickName = :credential", { credential })
+            .leftJoinAndSelect("profile.profileDetails", "profile_details")
+            .where("profile_details.nickName = :credential", { credential })
             .orWhere(
                 "contact.value = :credential AND contact.type IN (:...types)",
                 { 
@@ -99,7 +133,7 @@ class RegistrationRepository extends BaseRepository<Profile>{
     findProfileById= async(id:string)=>{
         return await this.repository.findOne({
             where:{id},
-            relations:["contacts" , "address" , "portfolio" , "portfolio.follows" , "portfolio.hiringRate"   , "online"]
+            relations:["contacts" ,"profileDetails", "address" , "portfolio" , "portfolio.follows" , "portfolio.hiringRate"   , "online"]
         });
     }
 

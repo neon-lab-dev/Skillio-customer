@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import verificationRepository from "../../../repository/verificationRepository";
-import { OtpCodeStatus } from "../enums/verificationEnum";
+import { OtpCodeStatus, verificationPurpose } from "../enums/verificationEnum";
 import { getOtpConfig } from "../config/otpConfig";
 
 export const generateOtp = async () => {
@@ -78,3 +78,29 @@ export const verifyOtp = async (otpCode: string, phoneNumber: string , verifciat
     reason: "MISMATCH",
   };
 };
+
+
+export const checkIfExpired= async(phoneNumber: string )=>{
+  const existingVerification= await verificationRepository.findOneByPhoneNumber(phoneNumber);
+  if(!existingVerification){
+    return{
+      expired: true
+    }
+  }
+  const now = Date.now();
+  const expiresAt = new Date(existingVerification.expirationDate).getTime();
+
+  if (expiresAt < now) {
+      await verificationRepository.update(existingVerification.id, {
+        otpCodeStatus: OtpCodeStatus.EXPIRED,
+      });
+
+      return {
+        expired: true
+      };
+  }
+  
+  return{
+    expired: false
+  }
+}

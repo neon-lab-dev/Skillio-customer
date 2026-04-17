@@ -3,7 +3,7 @@ import registrationRepository from "../../repository/registrationRepository";
 import verificationRepository from "../../repository/verificationRepository";
 import { logger } from "../../utils/logger";
 import { getJwtConfig } from "./config/jwtConfig";
-import { TProfile } from "./interface/registration.interface";
+import { TContact, TProfile } from "./interface/registration.interface";
 import { GetProfileDTO, GetRegistrationDTO } from "./models/dto/dto.registration";
 import bcrypt from "bcrypt";
 import { TDocument } from "../document/interface/document.interface";
@@ -45,12 +45,17 @@ import cloudinaryServices from "../document/services/cloudinaryServices";
 import censorSensitiveInfo from "../../utils/censorSensitiveInfo";
 import servicePostProxy from "../../service/post-proxy/service.post-proxy";
 import { Privacy } from "../../service/post-proxy/enum/privacyEnum";
-import { FetchDocumentsResponseDtoBuilder } from "../document/models/builders/fetchDocumentsResponseDtoBuilder";
 import { ForgotPinRequest } from "./models/request/forgotPinRequest";
+import { CheckIfPinSetRequest } from "./models/request/checkIfPinSetRequest";
+import { CreateProfileDetailsRequest } from "./models/request/createProfileDetailsRequest";
+import { ProfileDetails } from "../../entity/profileDetails";
+import { ProfileDetailsEntityBuilder } from "./models/builder/profileDetailsEntityBuilder";
+import { ProfileDetailsRepository } from "../../repository/profileDetailsRepository";
 
 class RegistrationService{
 
 
+    private profileDetailsRepository= new ProfileDetailsRepository();
 
     private producer: Producer= new Producer()
 
@@ -72,7 +77,7 @@ class RegistrationService{
 
     private async checkExisting(id:string):Promise<Profile>{
         const profile= await registrationRepository.findProfileById(id);
-        if(!profile || profile.status=== profileStatus.BLOCKED){
+        if(!profile || profile.profileDetails?.status=== profileStatus.BLOCKED){
             throw new NotFoundError("profile not found");
         }
         return profile;
@@ -86,14 +91,12 @@ class RegistrationService{
     }
 
     @Loggable()
-    private async findProfileByCredential(credential: string):Promise<Profile>{
+    public async findProfileByCredential(credential: string):Promise<Profile | null>{
         const profile=await registrationRepository.findProfileByCredential(credential);
-        if(!profile){
-            throw new NotFoundError("Profile does not exist , please register first.");
-        }
         return profile;
     }
 
+    @Loggable()
     public async authorizeProfile(id:string){
         const profileId= AsyncContextService.getUserId();
         if(profileId!=id){
@@ -101,50 +104,36 @@ class RegistrationService{
         }
     }
 
-    // create/register a profile
-    createProfile= serviceLogging(
+    registerProfile= serviceLogging(
         "RegistrationService",
         "createProfile",
         async(profileData:TProfile)=>{
-        const {firstName , lastName , groupName , nickName , pin , profileType ,role, contacts , address , portfolio , profileDocumentId}=profileData;
-
-        const salt = await bcrypt.genSalt(10);
-        const hashedPin = await bcrypt.hash(pin, salt);
-
+        const {profileDetails , address , portfolio , profileDocumentId}=profileData;
         const status= portfolio.proficiency== proficiecy.SKILLED ? profileStatus.APPROVED : profileStatus.PENDING;
 
         const bio= censorSensitiveInfo.censor(portfolio.bio as string);
 
-        const newProfile= await registrationRepository.createProfile({
-            firstName,
-            lastName,
-            groupName,
-            nickName,
-            pin:hashedPin,
-            profileType , 
-            status,
-            role,   
-            contacts: contacts.map(contact=>({
-                type:contact.type,
-                value:contact.value,
-                primary:contact.primary,
-            })),
-            address:{
-                streetAddress: address.streetAddress,
-                city: address.city,
-                state: address.state,
-                country: address.country,
-                pinCode: address.pinCode,
-                location: address.location
-            }, 
+        const profileId= AsyncContextService.getUserId() as string;
+
+        const newProfile= await registrationRepository.registerProfile({
+            id: profileId,
+            profileDetails:{
+            firstName: profileDetails.firstName,
+            lastName: profileDetails.lastName,
+            groupName: profileDetails.groupName,
+            nickName: profileDetails.nickName,
+            profileType: profileDetails.profileType,
+            status: status,
+            profileId: profileId
+            },
             portfolio:{
-                category: portfolio.category,
-                subCategory: portfolio.subCategory,
-                proficiency: portfolio.proficiency,
-                totalEvents: portfolio.totalEvents,
-                bio: bio || "",
-                hiringRate: portfolio.hiringRate,
-                follows: portfolio.follows?.map(
+            category:portfolio.category,
+            subCategory: portfolio.subCategory,
+            proficiency: portfolio.proficiency,
+            totalEvents: portfolio.totalEvents,
+            bio: bio || "",
+            hiringRate: portfolio.hiringRate,
+            follows: portfolio.follows?.map(
                     follow=>({
                         socialMedia: follow.socialMedia,
                         link: follow.link,
@@ -152,14 +141,144 @@ class RegistrationService{
                         following: follow.following
                     })
                 ) as DeepPartial<Follows[]>
+            },
+            address:{
+            streetAddress: address.streetAddress,
+            city: address.city,
+            state: address.state,
+            country: address.country,
+            pinCode: address.pinCode,
+            location: address.location
+            },
+            isCreator: true,
+            isOnboarded: true
+        })
+
+        // await servicePostProxy.createPrivacy({
+        //     type: Privacy.PUBLIC,
+        //     userReferenceId: profileId
+        // })
+
+
+        await this.updateDocument(profileDocumentId , {
+            portfolioId: newProfile.portfolio?.id
+        })
+
+        await Promise.all(
+            portfolio.videoDocumentIds.map(async(video)=>{
+                await this.updateDocument(video, {
+                    portfolioId: newProfile.portfolio?.id
+                })
+            })
+        )
+
+        await Promise.all(
+            portfolio.imageDocumentIds.map(async(image)=>{
+                await this.updateDocument(image, {
+                    portfolioId: newProfile.portfolio?.id
+                })
+            })
+        )
+
+
+        if(portfolio.eventsDoneDocumentIds){
+            await Promise.all(
+                portfolio.eventsDoneDocumentIds.map(async(event)=>{
+                    await this.updateDocument(event, {
+                        portfolioId: newProfile.portfolio?.id
+                    })
+                })
+            )
+        }
+
+        const existingProfile= await this.checkExisting(profileId);
+
+        const phoneNumber= existingProfile.contacts.map((contact)=> {
+            if(contact.type=== contactType.PHONE){
+                return contact.value;
             }
+        });
+
+        const document= await documentServices.getDocument([profileDocumentId]);
+
+        const fullName= profileDetails.firstName&& profileDetails.lastName&& getFullName(profileDetails.firstName as string, profileDetails.lastName as string);
+
+        const name= fullName || profileDetails.groupName;
+        
+
+        const shortUser={
+            referenceId: profileId,
+            nickName: newProfile.profileDetails?.nickName,
+            name: name,
+            profilePictureUrl: document[0].url,
+            phoneNo: phoneNumber[0],
+            category: newProfile.portfolio?.category,
+            subCategory: newProfile.portfolio?.subCategory
+        }
+
+        // this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+
+        if(newProfile.portfolio?.proficiency=== proficiecy.PROFESSIONAL){
+            const admin= await registrationRepository.findByRole(roles.ADMIN);
+
+            Promise.all(admin.map((admin)=> this.sendNotification(admin , newProfile.profileDetails?.nickName!)))
+        }
+
+    const data = {
+    profileDetails: {
+        firstName:   newProfile.profileDetails?.firstName,
+        lastName:    newProfile.profileDetails?.lastName,
+        groupName:   newProfile.profileDetails?.groupName,
+        nickName:    newProfile.profileDetails?.nickName!,   
+        status:      newProfile.profileDetails?.status!,
+        profileType: newProfile.profileDetails?.profileType!,
+    },
+    address: {
+        streetAddress: newProfile.address?.streetAddress!,
+        city:          newProfile.address?.city!,
+        country:       newProfile.address?.country!,
+        state:         newProfile.address?.state!,
+        pinCode:       newProfile.address?.pinCode!,
+        location:      newProfile.address?.location!,
+    },
+    portfolio: {
+        category:    newProfile.portfolio?.category!,
+        subCategory: newProfile.portfolio?.subCategory!,
+        proficiency: newProfile.portfolio?.proficiency!,
+        totalEvents: newProfile.portfolio?.totalEvents,
+        bio:         newProfile.portfolio?.bio,
+        hiringRate:  newProfile.portfolio?.hiringRate!,
+        follows:     newProfile.portfolio?.follows ?? [],
+    }
+    }
+        const profile= new GetRegistrationDTO(data).toJSON();
+
+        return profile;
+    })
+
+    @Loggable()
+    public async createProfile(contacts: TContact[]):Promise<Profile>{
+
+        const existingProfileByContact= await Promise.all(contacts.map(async(contact)=>{
+                return await registrationRepository.findProfileByContactValue(contact.value)
+        }));
+        
+        if(existingProfileByContact.some(profile=>profile!==null)){
+            LoggerService.error("Profile with these contacts value already exists");
+            throw new AppError(409, `Profile with these contacts already exists`);
+        }
+
+        const profile= await registrationRepository.createProfile({
+            role: roles.USER,
+            contacts: contacts.map(contact=>({
+                type:contact.type,
+                value:contact.value,
+                primary:contact.primary,
+            })),
+            isOnboarded:true
         })
 
-        await servicePostProxy.createPrivacy({
-            type: Privacy.PUBLIC,
-            userReferenceId: newProfile.id
-        })
-
+        
         await Promise.all(contacts.map(async(contact)=>{
             const verification= await verificationRepository.findOneById(contact.verificationId);
             const existingContact= await registrationRepository.findContactByValue(contact.value);
@@ -174,72 +293,23 @@ class RegistrationService{
             }
         }))
 
-        await this.updateDocument(profileDocumentId , {
-            portfolioId: newProfile.portfolio.id
-        })
-
-        await Promise.all(
-            portfolio.videoDocumentIds.map(async(video)=>{
-                await this.updateDocument(video, {
-                    portfolioId: newProfile.portfolio.id
-                })
-            })
-        )
-
-        await Promise.all(
-            portfolio.imageDocumentIds.map(async(image)=>{
-                await this.updateDocument(image, {
-                    portfolioId: newProfile.portfolio.id
-                })
-            })
-        )
-
-
-        if(portfolio.eventsDoneDocumentIds){
-            await Promise.all(
-                portfolio.eventsDoneDocumentIds.map(async(event)=>{
-                    await this.updateDocument(event, {
-                        portfolioId: newProfile.portfolio.id
-                    })
-                })
-            )
-        }
-
-        const phoneNumber= newProfile.contacts.map((contact)=> {
-            if(contact.type=== contactType.PHONE){
-                return contact.value;
-            }
-        });
-
-        const document= await documentServices.getDocument([profileDocumentId]);
-
-        const fullName= firstName&& lastName&& getFullName(newProfile.firstName as string, newProfile.lastName as string);
-
-        const name= fullName || newProfile.groupName;
-        
-
-        const shortUser={
-            referenceId: newProfile.id,
-            nickName: newProfile.nickName,
-            name: name,
-            profilePictureUrl: document[0].url,
-            phoneNo: phoneNumber[0],
-            category: newProfile.portfolio.category,
-            subCategory: newProfile.portfolio.subCategory
-        }
-
-        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
-
-        if(newProfile.portfolio.proficiency=== proficiecy.PROFESSIONAL){
-            const admin= await registrationRepository.findByRole(roles.ADMIN);
-
-            Promise.all(admin.map((admin)=> this.sendNotification(admin , newProfile.nickName)))
-        }
-
-        const profile= new GetRegistrationDTO(newProfile).toJSON();
-
         return profile;
-    })
+
+    }
+
+    @Loggable()
+    public async createProfileDetails(req: CreateProfileDetailsRequest): Promise<ProfileDetails>{
+        
+        const existingProfile= await registrationRepository.findProfileByCredential(req.nickName);
+        
+        if(existingProfile){
+            LoggerService.error("Profile with this nickname already exists");
+            throw new AppValidationError( "Profile with this nickname already exists" , ERROR_CODES.CONFLICT);
+        }
+        
+        const entity=  (await ProfileDetailsEntityBuilder.builder().of(req)).build();
+        return await this.profileDetailsRepository.create(entity);
+    }
 
 
     // login a user
@@ -248,7 +318,7 @@ class RegistrationService{
         "loginUser",
         async( pin:string , profile:Profile)=>{
 
-        const isPinMatch= await bcrypt.compare(pin, profile.pin);
+        const isPinMatch= await bcrypt.compare(pin, profile?.pin!);
 
         if(!isPinMatch){
             logger.error(`Pin doesnot match , please try again.`);
@@ -257,13 +327,12 @@ class RegistrationService{
 
         const jwtPayload={
             profileId: profile.id,
-            nickName: profile.nickName,
             role: profile.role
         }
 
         const jwtConfig= await getJwtConfig();
 
-        const acessToken=JwtService.createToken(
+        const accessToken=JwtService.createToken(
             jwtPayload,
             jwtConfig.JWT_ACCESS_SECRET,
             jwtConfig.JWT_ACCESS_EXPIRES_IN
@@ -278,11 +347,13 @@ class RegistrationService{
         return{
             profile:{
                 id: profile.id,
-                portfolioId: profile.portfolio.id,
-                nickName: profile.nickName,
+                portfolioId: profile.portfolio?.id,
+                isOnboarded: profile.isOnboarded,
+                isCreator: profile.isCreator,
+                nickName: profile.profileDetails?.nickName,
                 role: profile.role
             },
-            accessToken: acessToken,
+            accessToken: accessToken,
             refreshToken: refreshToken
         }
     })
@@ -294,7 +365,17 @@ class RegistrationService{
         async(id:string)=>{
         const profile= await this.checkExisting(id);
 
-        const fetchedProfile= new GetProfileDTO(profile).toJSON();
+        const data={
+            profileDetails: {...profile.profileDetails!},
+            portfolio:{...profile.portfolio!},
+            contacts: {...profile.contacts!},
+            isSubscribed: profile.isSubscribed,
+            online:{
+                ...profile.online!
+            }
+        }
+
+        const fetchedProfile= new GetProfileDTO(data).toJSON();
 
         const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.PROFILE_PHOTO);
 
@@ -317,13 +398,13 @@ class RegistrationService{
             }
         }
 
-        if(fetchedProfile.profileType===ProfileType.INDIVIDUAL){
-            const name= getFullName(fetchedProfile.firstName as string, fetchedProfile.lastName as string);
+        if(fetchedProfile.profileDetails?.profileType===ProfileType.INDIVIDUAL){
+            const name= getFullName(fetchedProfile.profileDetails?.firstName as string, fetchedProfile.profileDetails?.lastName as string);
             
                 if(fetchedProfile.isSubscribed){
                     return {
                     name: name,
-                    nickName: fetchedProfile.nickName,
+                    nickName: fetchedProfile.profileDetails.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
@@ -335,8 +416,8 @@ class RegistrationService{
                     privacy: privacy?.type,
                     following: following,
                     propritaryDetails:{
-                        firstName: profile.firstName,
-                        lastName: profile.lastName,
+                        firstName: fetchedProfile.profileDetails.firstName,
+                        lastName: fetchedProfile.profileDetails.lastName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
                         email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
                         } 
@@ -344,7 +425,7 @@ class RegistrationService{
                 }else{
                     return{
                     name: name,
-                    nickName: fetchedProfile.nickName,
+                    nickName: fetchedProfile.profileDetails.nickName,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
@@ -362,8 +443,8 @@ class RegistrationService{
                 if(fetchedProfile.isSubscribed){
                     return{
                     profile:{
-                        groupName: fetchedProfile.groupName,
-                        nickName: fetchedProfile.nickName,
+                        groupName: fetchedProfile.profileDetails.groupName,
+                        nickName: fetchedProfile.profileDetails.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
@@ -376,7 +457,7 @@ class RegistrationService{
                     },
                     profilePictureId: profilePhotoId,
                     propritaryDetails:{
-                        groupName: profile.groupName,
+                        groupName: fetchedProfile.profileDetails.groupName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
                         email: profile.contacts.find(contact=>contact.type==="EMAIL")?.value,
                         }
@@ -384,8 +465,8 @@ class RegistrationService{
                 }else{
                     return{
                     profile:{
-                        groupName: fetchedProfile.groupName,
-                        nickName: fetchedProfile.nickName,
+                        groupName: fetchedProfile.profileDetails.groupName,
+                        nickName: fetchedProfile.profileDetails.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
                         following: following,
                         privacy: privacy?.type,
@@ -437,7 +518,7 @@ class RegistrationService{
     @Loggable()
     public async updateProfileStatus(req: UpdateProfileStatusRequest):Promise<void>{
         await this.checkExisting(req.id);
-        await registrationRepository.updateProfile(req.id , {status: req.status});
+        await registrationRepository.updateProfileDetailsByProfileId(req.id , {status: req.status});
     }
 
     @Loggable()
@@ -445,7 +526,7 @@ class RegistrationService{
         await this.checkExisting(req.id);
         await this.authorizeProfile(req.id);
         const loggedInUserProfile=await profileService.fetchWithPortfolio(req.id);
-        await registrationRepository.updateProfile(req.id,{
+        await registrationRepository.updateProfileDetailsByProfileId(req.id,{
             firstName: req.firstName,
             lastName: req.lastName
         })
@@ -459,7 +540,7 @@ class RegistrationService{
 
         this.producer.produce(Events.CUSTOMER_UPDATED , {updatedData});
 
-        await registrationRepository.updatePortfolio(loggedInUserProfile.portfolio.id , {totalEvents:req.totalEvents});
+        await registrationRepository.updatePortfolio(loggedInUserProfile.portfolio!.id , {totalEvents:req.totalEvents});
     }
 
     @Loggable()
@@ -489,6 +570,9 @@ class RegistrationService{
     @Loggable()
     public async updatePin(req:UpdatePinRequest){
         const profile= await this.findProfileByCredential(req.credential);
+        if(!profile){
+            throw new NotFoundError("profile does not exist , please register first.")
+        }
         await this.authorizeProfile(profile.id);
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(req.pin, salt);
@@ -505,7 +589,7 @@ class RegistrationService{
         this.producer.produce(Events.CUSTOMER_DELETED , {referenceId})
         const loggedInUserProfile= await profileService.fetchWithPortfolio(req.id);
         const existingDocuments= await documentServices.fetchDocuments({
-            portfolioId: loggedInUserProfile.portfolio.id
+            portfolioId: loggedInUserProfile.portfolio!.id
         })
         const publicIds= existingDocuments.map((doc)=> getPublicIdFromUrl(doc.url));
         await Promise.all(publicIds.map(async(id)=>{
@@ -527,12 +611,28 @@ class RegistrationService{
     @Loggable()
     public async forgotPin(req: ForgotPinRequest):Promise<void>{
         const profile= await this.findProfileByCredential(req.credential);
+        if(!profile){
+            throw new NotFoundError("profile does not exist , please register first.")
+        }
         if(req.confirmPin!== req.pin){
             throw new AppValidationError("Entered pin's does not match" , ERROR_CODES.VALIDATION_ERROR);
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPin = await bcrypt.hash(req.pin, salt);
         await registrationRepository.updateProfile(profile.id , {pin: hashedPin});
+    }
+
+    @Loggable()
+    public async checkIfPinSet(req:CheckIfPinSetRequest){
+        const profile= await this.findProfileByCredential(req.credential);
+        if(!profile || !profile?.pin){
+            return {
+                ifPinSet: false
+            };
+        }
+        return {
+            isPinSet: true
+        };
     }
 
 }

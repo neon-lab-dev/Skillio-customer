@@ -2,7 +2,7 @@ import { logger } from "../../utils/logger";
 import AppError from "../../errors/appError";
 import { OtpCodeStatus } from "./enums/verificationEnum";
 import { TVerification } from "./interface/verification.interface";
-import { generateOtp, verifyOtp } from "./utils/otp";
+import { checkIfExpired, generateOtp, verifyOtp } from "./utils/otp";
 import verificationRepository from "../../repository/verificationRepository";
 import { Medium } from "../notification/enums/notificationEnum";
 import notificationServices from "../notification/services/notification.services";
@@ -10,30 +10,55 @@ import { getOtpConfig } from "./config/otpConfig";
 import { getVerificationConfig } from "./config/verificationAttemptsConfig";
 import sendResponse from "../../middlewares/sendResponse";
 import { Response } from "express";
+import registrationServices from "../registration/registration.services";
+import { AppValidationError, JwtService } from "@neon-lab-dev/platform";
+import { getJwtConfig } from "../registration/config/jwtConfig";
+import { contactType } from "../registration/enums/registrationEnum";
 
 class VerificationService {
+
   // create a verification request
   verificationRequest = async (verificationData: Partial<TVerification>) => {
-    const { phoneNumber, purpose } = verificationData;
+    const { phoneNumber } = verificationData;
 
-    if (!phoneNumber || !purpose) {
-      logger.error("Phone number and purpose are required");
-      throw new AppError(400, "Phone number and purpose are required");
+    if (!phoneNumber) {
+      logger.error("Phone number is required");
+      throw new AppError(400, "Phone number is required");
+    }
+
+    const profile= await registrationServices.findProfileByCredential(phoneNumber);
+
+    const existingVerification= await verificationRepository.findOneByPhoneNumber(phoneNumber);
+    
+    if(profile){
+      if(profile.pin){
+        return{
+          isPinSet: true,
+          message: "welcome back , please login with pin"
+        }
+      }else{
+        return{
+          isPinSet: false,
+          message: "welcome back , please login otp",
+          verificationId: existingVerification?.id
+        }
+      }
     }
     
+    const verificationExpiry= await checkIfExpired(phoneNumber);
+
     const exisitingNonTerminatingVerification =
-      await verificationRepository.findOneByPhoneNumberPurposeAndNonTerminating(
+      await verificationRepository.findOneByPhoneNumberAndNonTerminating(
         phoneNumber,
-        purpose
       );
 
-    if (exisitingNonTerminatingVerification) {
+    if (exisitingNonTerminatingVerification && !verificationExpiry.expired && exisitingNonTerminatingVerification.otpCodeStatus===OtpCodeStatus.VERIFIED) {
       logger.error(
-        "A verification for this phone number and purpose already exists and in progress or sent state"
+        "A verification for this phone number already exists."
       );
       throw new AppError(
         409,
-        "A verification for this phone number and purpose already exists and in progress or sent state"
+        "A verification for this phone number already exists."
       );
     }
 
@@ -43,7 +68,6 @@ class VerificationService {
 
     const verification= await verificationRepository.createVerification({
       phoneNumber: phoneNumber,
-      purpose: purpose,
       otpCode,
       expirationDate: new Date(Date.now() + otpConfig.otpExpirationTime),
       otpCodeStatus: OtpCodeStatus.IN_PROGRESS,
@@ -62,7 +86,6 @@ class VerificationService {
     return {
       verification: {
         id: verification.id,
-        purpose: verification.purpose,
         notificationSent: res.notification.res.ok,
       },
     };
@@ -109,7 +132,6 @@ class VerificationService {
       return {
         verification: {
           id: existingVerification.id,
-          purpose: existingVerification.purpose,
         },
         success: true,
       };
@@ -117,7 +139,6 @@ class VerificationService {
       return {
         verification: {
           id: existingVerification.id,
-          purpose: existingVerification.purpose,
         },
         success: false,
       };
@@ -141,14 +162,14 @@ class VerificationService {
       throw new AppError(404, "Verification not found");
     }
 
-    if (existingVerification.otpCodeStatus === OtpCodeStatus.VERIFIED) {
-      return sendResponse(res, {
-        statusCode: 409, 
-        success: false,
-        message: "OTP has already been verified",
-        data: { verificationId: existingVerification.id },
-      });
-    }
+    // if (existingVerification.otpCodeStatus === OtpCodeStatus.VERIFIED) {
+    //   return sendResponse(res, {
+    //     statusCode: 409, 
+    //     success: false,
+    //     message: "OTP has already been verified",
+    //     data: { verificationId: existingVerification.id },
+    //   });
+    // }
 
     const result = await verifyOtp( otpCode, existingVerification.phoneNumber, existingVerification.id);
 
@@ -160,8 +181,49 @@ class VerificationService {
     existingVerification = await verificationRepository.findOneById(
       verificationId
     );
+    
+    let accessToken= null;
+    let refreshToken=null;
 
-    return { verificationId: existingVerification?.id };
+    let profile= await registrationServices.findProfileByCredential(existingVerification?.phoneNumber!);
+
+    if(!profile){
+      profile= await registrationServices.createProfile([{
+        type:contactType.PHONE,
+        value: existingVerification?.phoneNumber as string,
+        isVerified: true,
+        verificationId: existingVerification?.id as string
+      }])
+    }
+ 
+    const jwtPayload={
+        profileId: profile.id,
+        role: profile.role
+    }
+
+    const jwtConfig= await getJwtConfig();
+
+    accessToken=JwtService.createToken(
+        jwtPayload,
+        jwtConfig.JWT_ACCESS_SECRET,
+        jwtConfig.JWT_ACCESS_EXPIRES_IN
+    )
+
+    refreshToken=JwtService.createToken(
+        jwtPayload,
+        jwtConfig.JWT_REFRESH_SECRET,
+        jwtConfig.JWT_REFRESH_EXPIRES_IN
+    )
+
+    return { 
+      verificationId: existingVerification?.id,
+      profileId: profile.id,
+      isOnboarded: profile.isOnboarded,
+      isCreator: profile.isCreator,
+      portfolioId: profile.portfolio?.id,
+      accessToken,
+      refreshToken
+    };
   };
 }
 

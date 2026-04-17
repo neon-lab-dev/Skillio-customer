@@ -34,14 +34,12 @@ class VerificationRepository {
   };
 
   // findOne by phoneNumber and purpose
-  findOneByPhoneNumberPurposeAndNonTerminating = async (
+  findOneByPhoneNumberAndNonTerminating = async (
     phoneNumber: string,
-    purpose: verificationPurpose
   ) => {
     return await this.verificationRepository.findOne({
       where:{
         phoneNumber,
-        purpose,
         otpCodeStatus: In([OtpCodeStatus.SENT, OtpCodeStatus.IN_PROGRESS])
       }
     });
@@ -63,6 +61,12 @@ findOneByIdAndInProgressOrSent = async (
   update = async (id: string, updateData: Partial<Verification>) => {
     return await this.verificationRepository.update({ id }, updateData);
   };
+
+  async findOneByPhoneNumber(phoneNumber:string){
+    return await this.verificationRepository.findOneBy({
+      phoneNumber,
+    })
+  }
 }
 
 export default new VerificationRepository();

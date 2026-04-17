@@ -9,7 +9,7 @@ export const sendSinglePushNotification = async (callerId:string,content: Partia
 
     const message={
         data:{
-            title: `${type} from ${profile?.firstName} ${profile?.lastName}`,
+            title: `${type} from ${profile?.profileDetails?.firstName} ${profile?.profileDetails?.lastName}`,
             body: content.text || "You have received a new message",
             callerId: callerId,
             callId: content.callId as string | ""

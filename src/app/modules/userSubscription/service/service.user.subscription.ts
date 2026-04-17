@@ -45,7 +45,7 @@ class UserSubscriptionService {
             chatLimits:planMaster.chatLimits,
             profileVisibility: planMaster.profileVisibility,
             userSubscriptionId: savedEntity!.id
-        } , loggedInUserProfile.portfolio.id)
+        } , loggedInUserProfile.portfolio!.id)
         return UserSubscriptionBuilder.builder()
                 .of(savedEntity!)
                 .build();
@@ -57,7 +57,7 @@ class UserSubscriptionService {
     ){
         let portfolio = loggedInUserProfile.portfolio;
         let existing = await this.findByPortfolioIdPlanCodeAndStatusIn(
-            portfolio.id,
+            portfolio!.id,
             plan.code,
             [SubscriptionStatus.INITIATED]
         );
@@ -79,7 +79,7 @@ class UserSubscriptionService {
         retVal.paymentId = paymentResponse.id;
         retVal.paymentLink = paymentResponse.fetchPaymentLink();
         retVal.planCode = planMaster.code;
-        retVal.portfolioId = loggedInUserProfile.portfolio.id;
+        retVal.portfolioId = loggedInUserProfile.portfolio!.id;
         return retVal;
     }
 
@@ -106,7 +106,7 @@ class UserSubscriptionService {
         let planMaster = await planMasterService.checkExisting(req.planId);
         let portfolio = loggedInUserProfile.portfolio;
         let existing = await this.findByPortfolioIdPlanCodeAndStatusIn(
-            portfolio.id,
+            portfolio!.id,
             planMaster.code,
             [SubscriptionStatus.INITIATED]
         );

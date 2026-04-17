@@ -7,7 +7,7 @@ import documentRepository from "../../repository/documentRepository";
 import { DocumentType } from "../document/enums/documentEnum";
 import { proxyLogging } from "../../utils/proxyLogging";
 import { profileStatus } from "./enums/registrationEnum";
-import { LoggerService, NotFoundError } from "@neon-lab-dev/platform";
+import { AppValidationError, ERROR_CODES, LoggerService, NotFoundError } from "@neon-lab-dev/platform";
 
 
 class RegistrationProxy{
@@ -22,26 +22,17 @@ class RegistrationProxy{
         }
     }
 
-    createProfile= proxyLogging(
+    registerProfile= proxyLogging(
         "RegistrationProxy",
         "createProfile",
         async(profileData:TProfile)=>{
-        const { nickName , contacts , profileDocumentId , portfolio}=profileData;
+        const { profileDetails , profileDocumentId , portfolio}=profileData;
 
-        const existingProfile= await registrationRepository.findProfileByCredential(nickName);
+        const existingProfile= await registrationRepository.findProfileByCredential(profileDetails?.nickName!);
 
-        if(existingProfile){
+        if(existingProfile && !existingProfile.profileDetails){
             logger.error("Profile with this nickname already exists");
             throw new AppError(409, "Profile with this nickname already exists");
-        }
-
-        const existingProfileByContact= await Promise.all(contacts.map(async(contact)=>{
-            return await registrationRepository.findProfileByContactValue(contact.value)
-        }));
-
-        if(existingProfileByContact.some(profile=>profile!==null)){
-            logger.error("Profile with these contacts value already exists");
-            throw new AppError(409, `Profile with these contacts already exists`);
         }
 
         await this.checkExistingDocument(profileDocumentId , DocumentType.PROFILE_PHOTO);
@@ -66,7 +57,7 @@ class RegistrationProxy{
         )
         }
 
-        return await registrationServices.createProfile(profileData);
+        return await registrationServices.registerProfile(profileData);
     })
 
     loginUser= proxyLogging(
@@ -75,9 +66,17 @@ class RegistrationProxy{
         async(credential:string , pin:string)=>{
         const profile= await registrationRepository.findProfileByCredential(credential);
         
-        if(!profile || profile.status=== profileStatus.BLOCKED){
-            LoggerService.error(`  Profile doesnot exist or you are blocked.`);
-            throw new NotFoundError(`Profile doesnot exist or you are blocked.`);
+        if(!profile){
+            LoggerService.error(`  Profile doesnot exist`);
+            throw new NotFoundError(`Profile doesnot exist `);
+        }
+
+        if(profile.profileDetails&& profile.profileDetails.status=== profileStatus.BLOCKED){
+            throw new AppValidationError("You are blocked on  this platform" , ERROR_CODES.ACCESS_DENIED)
+        }
+
+        if(!profile.pin){
+            throw new AppValidationError("Can not login with pin , pin not set", ERROR_CODES.ACCESS_DENIED)
         }
 
         return await registrationServices.loginUser(pin , profile)
