@@ -30,6 +30,6 @@ export class FetchProfileDto implements AppResponseData{
     document!:{
         url:string,
         type: DocumentType
-    }[]
+    }[] | undefined
 
 }

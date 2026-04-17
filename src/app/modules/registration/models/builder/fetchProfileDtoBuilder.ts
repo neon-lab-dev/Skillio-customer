@@ -15,20 +15,20 @@ export class FetchProfileDtoBuilder {
 
     public of(entity: Profile):FetchProfileDtoBuilder{
         this.dto.id= entity.id;
-        this.dto.nickName= entity.nickName;
-        this.dto.firstName= entity.firstName;
-        this.dto.lastName= entity.lastName;
-        this.dto.groupName= entity.groupName;
-        this.dto.profileType= entity.profileType;
-        this.dto.status= entity.status;
-        this.dto.city= entity.address.city;
-        this.dto.country= entity.address.country;
-        this.dto.proficiency= entity.portfolio.proficiency;
-        this.dto.portfolioId= entity.portfolio.id;
-        this.dto.eventsDone= entity.portfolio.totalEvents;
+        this.dto.nickName= entity.profileDetails?.nickName!;
+        this.dto.firstName= entity.profileDetails?.firstName;
+        this.dto.lastName= entity.profileDetails?.lastName;
+        this.dto.groupName= entity.profileDetails?.groupName;
+        this.dto.profileType= entity.profileDetails?.profileType!;
+        this.dto.status= entity.profileDetails?.status!;
+        this.dto.city= entity.address?.city!;
+        this.dto.country= entity.address?.country!;
+        this.dto.proficiency= entity.portfolio?.proficiency!;
+        this.dto.portfolioId= entity.portfolio?.id!;
+        this.dto.eventsDone= entity.portfolio?.totalEvents;
         this.dto.onlineStatus= entity.online?.status;
-        this.dto.category= entity.portfolio.category;
-        this.dto.subCategory= entity. portfolio.subCategory;
+        this.dto.category= entity.portfolio?.category!;
+        this.dto.subCategory= entity.portfolio?.subCategory!;
         this.dto.email= this.ofEmail(entity);
         this.dto.phoneNumber= this.ofPhoneNum(entity);
         this.dto.follows= this.setFollows(entity);
@@ -51,7 +51,7 @@ export class FetchProfileDtoBuilder {
     }
 
     private setDocument(entity: Profile){
-        return entity.portfolio.document.map((doc)=>{
+        return entity.portfolio?.document.map((doc)=>{
             return {
                 url: doc.url,
                 type: doc.type
@@ -60,7 +60,7 @@ export class FetchProfileDtoBuilder {
     }
 
     private setFollows(entity: Profile){
-        return entity.portfolio.follows.map((val)=>{
+        return entity.portfolio?.follows.map((val)=>{
             return {
                 socialMedia: val.socialMedia,
                 link: val.link,

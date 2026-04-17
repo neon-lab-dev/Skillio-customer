@@ -18,6 +18,8 @@ import { UpdateHiringRateApi } from "./api/updateHiringRateApi";
 import { UpdatePinApi } from "./api/updatePinApi";
 import { DeleteProfileApi } from "./api/deleteProfileApi";
 import { ForgotPinApi } from "./api/forgotPinApi";
+import { CheckIfPinSetApi } from "./api/checkIfPinSetApi";
+import { CreateProfileDetailsApi } from "./api/createProfileDetailsApi";
 
 const router= Router();
 const fetchProfilesApi= new FetchProfilesApi();
@@ -28,16 +30,24 @@ const updateHiringRateApi = new UpdateHiringRateApi()
 const updatePinApi= new UpdatePinApi();
 const deleteProfileApi = new DeleteProfileApi();
 const forgotPinApi= new ForgotPinApi();
+const checkIfPinSetApi = new CheckIfPinSetApi();
+const createProfileDetailsApi = new CreateProfileDetailsApi();
 
 router.post(
     "/" ,
     validateRequest(registrationSchema), 
-    registrationController.createProfile
+    verifyToken,
+    registrationController.registerProfile
 );
 router.post(
     "/login",
     validateRequest(LoginSchema), 
     registrationController.loginUser
+);
+router.post(
+    "/details",
+    verifyToken,
+    asyncApiHandler(createProfileDetailsApi)
 );
 router.put(
     "/" , 
@@ -75,7 +85,6 @@ router.get(
 
 router.get(
     "/" ,
-    verifyToken,
     createCriteriaMiddleWare(ProfileSearchCriteria , searchCriteriaBuilderFactory), 
     asyncApiHandler(fetchProfilesApi) 
 )
@@ -97,5 +106,9 @@ router.delete(
     asyncApiHandler(deleteProfileApi)
 )
 
+router.get(
+    "/pin/check",
+    asyncApiHandler(checkIfPinSetApi)
+)
 
 export const registrationRoutes = router;

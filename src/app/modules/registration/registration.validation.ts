@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 import { ProfileType, SocialMeida, contactType, proficiecy, profileStatus, roles } from "./enums/registrationEnum";
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
@@ -210,33 +210,23 @@ const portfolioSchema = z.object({
     }
 )
 
-export const registrationSchema = z.object({
-    body: z.object({
-        firstName: TYPE_VALIDATION_SCHEMA("firstName")
+const firstNameSchema=TYPE_VALIDATION_SCHEMA("firstName")
             .optional()
-            .nullable(),
-        lastName: TYPE_VALIDATION_SCHEMA("lastName")
-            .optional().nullable(),
-        groupName: TYPE_VALIDATION_SCHEMA("groupName")
+            .nullable()
+const lastNameSchema=TYPE_VALIDATION_SCHEMA("lastName")
+            .optional().nullable()
+
+const groupNameSchema= TYPE_VALIDATION_SCHEMA("groupName")
             .optional()
-            .nullable(),
-        nickName: nickNameSchema,
-        pin: IS_MANDATORY_SCHEMA("pin")
-            .regex(/^\d+$/, "Pin must contain only digits"),
-        profileType: profileTypeSchema,
-        profileDocumentId: IS_MANDATORY_SCHEMA("Profile document ID"),
-        role: z.nativeEnum(roles,{
-            error: mandatoryTypeError("role", "role")
-        }),
-        contacts: z.array(contactSchema, {
-            error: mandatoryTypeError("contacts", "array")
-        }),
-        address: addressSchema,
-        portfolio: portfolioSchema
-    }, {
-        error: requestMandatoryError
-    })
-        .superRefine((data, ctx) => {
+            .nullable()
+
+export const ProfileDetailsSchema=z.object({
+    firstName: firstNameSchema,
+    lastName: lastNameSchema,
+    groupName: groupNameSchema,
+    nickName: nickNameSchema,
+    profileType: profileTypeSchema
+}).strict().superRefine((data, ctx) => {
             if (data.firstName && !/^[A-Za-z]+$/.test(data.firstName)) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
@@ -281,14 +271,62 @@ export const registrationSchema = z.object({
                 });
             }
         })
-        .superRefine(async (data, ctx: z.RefinementCtx) => {
-            const pinConfig = await getPinConfig();
 
-            if (data.pin.toString().length != pinConfig.MAX_LENGTH) {
+export const registrationSchema = z.object({
+    body: z.object({
+        profileDetails: ProfileDetailsSchema,
+        profileDocumentId: IS_MANDATORY_SCHEMA("Profile document ID"),
+        role: z.nativeEnum(roles,{
+            error: mandatoryTypeError("role", "role")
+        }),
+        address: addressSchema,
+        portfolio: portfolioSchema
+    }, {
+        error: requestMandatoryError
+    })
+        .superRefine((data, ctx) => {
+            if (data.profileDetails.firstName && !/^[A-Za-z]+$/.test(data.profileDetails.firstName)) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
-                    message: `Pin must be ${pinConfig.MAX_LENGTH} digits long`,
-                })
+                    message: "First name must contain only alphabets",
+                    path: ["firstName"],
+                });
+            }
+
+            if (data.profileDetails.lastName && !/^[A-Za-z]+$/.test(data.profileDetails.lastName)) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: "Last name must contain only alphabets",
+                    path: ["lastName"],
+                });
+            }
+
+            if (data.profileDetails.groupName && !/^[A-Za-z\s]+$/.test(data.profileDetails.groupName)) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: "Group name must contain only alphabets and spaces",
+                    path: ["groupName"],
+                });
+            }
+        })
+        .superRefine((data, ctx) => {
+            const result = validateNicknameUniqueness(data.profileDetails);
+            if (!result.valid) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: result.message!,
+                    path: ["nickName"],
+                });
+            }
+        })
+
+        .superRefine((data, ctx) => {
+            const result = validateNamesWithProfileType(data.profileDetails);
+            if (!result.valid) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    message: result.message!,
+                });
             }
         })
 })
@@ -368,4 +406,8 @@ export const forgotPinSchema= z.object({
         credential: credentialSchema,
         pin: pinSchema,
         confirmPin: IS_MANDATORY_SCHEMA("confirmPin")
+}).strict()
+
+export const checkIfPinSetSchema=z.object({
+    credential: credentialSchema
 }).strict()

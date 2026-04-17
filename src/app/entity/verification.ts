@@ -10,14 +10,11 @@ import { BaseEntity } from "./baseEntity";
 
 
 @Entity("verification")
-@Index("IDX_PHONE_PURPOSE",["phoneNumber", "purpose"]) 
+@Index("IDX_PHONE",["phoneNumber"]) 
 export class Verification extends BaseEntity{
 
     @Column()
     phoneNumber!: string;
-
-    @Column({type: "enum" , enum: verificationPurpose})
-    purpose!: verificationPurpose;
 
     @Column()
     otpCode!: string;

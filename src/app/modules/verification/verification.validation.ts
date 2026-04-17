@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { verificationPurpose } from './enums/verificationEnum';
 import { IS_MANDATORY_SCHEMA, mandatoryTypeError } from '@neon-lab-dev/platform';
 
 const phoneSchema = IS_MANDATORY_SCHEMA("Phone number")
@@ -12,9 +11,6 @@ const requestRequiredError = mandatoryTypeError("Request body", "object");
 export const verificationRequestSchema = z.object({
     body: z.object({
         phoneNumber: phoneSchema,
-        purpose: z.nativeEnum(verificationPurpose, {
-            error: mandatoryTypeError("purpose", "VerificationPurpose")
-        })
     }, {
         error: requestRequiredError
     })

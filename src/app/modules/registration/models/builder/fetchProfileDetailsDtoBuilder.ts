@@ -13,16 +13,16 @@ export class FetchProfileDetailsDtoBuilder{
     }
 
     public of(entity: Profile):FetchProfileDetailsDtoBuilder{
-        this.dto.firstName= entity.firstName;
-        this.dto.lastName= entity.lastName;
-        this.dto.nickName= entity.nickName;
-        this.dto.groupName= entity.groupName;
+        this.dto.firstName= entity.profileDetails?.firstName;
+        this.dto.lastName= entity.profileDetails?.lastName;
+        this.dto.nickName= entity.profileDetails?.nickName!;
+        this.dto.groupName= entity.profileDetails?.groupName;
         this.dto.isSubscribed= entity.isSubscribed;
-        this.dto.profileType= entity.profileType;
-        this.dto.status= entity.status;
+        this.dto.profileType= entity.profileDetails?.profileType!;
+        this.dto.status= entity.profileDetails?.status!;
         this.dto.createdAt= entity.createdAt;
         this.dto.updatedAt= entity.updatedAt;
-        this.dto.portfolio= entity.portfolio;
+        this.dto.portfolio= entity.portfolio!;
         return this;
     }
 

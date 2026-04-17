@@ -1,4 +1,4 @@
-import { ProfileType, SocialMeida, contactType, onlineStatus, proficiecy, roles } from "../../enums/registrationEnum";
+import { ProfileType, SocialMeida, contactType, onlineStatus, proficiecy, profileStatus, roles } from "../../enums/registrationEnum";
 import { Location, THiringRate } from "../../interface/registration.interface";
 import Decimal from "decimal.js"
 
@@ -136,45 +136,28 @@ export class PortfolioDTO {
   }
 }
 
-// Registration DTO
-export class RegistrationDTO {
+export class ProfileDetailsDto {
   firstName?: string;
-  lastName?: string;
+  lastName?:string;
   groupName?: string;
-  pin: string;
-  nickName: string;
-  profileType: ProfileType;
-  profileDocumentId:string;
-  role: roles;
-
-  contacts: ContactDTO[];
-  address: AddressDTO;
-  portfolio: PortfolioDTO;
+  nickName!: string;
+  status!: profileStatus;
+  profileType!:ProfileType
 
   constructor(data: {
-    firstName?: string;
-    lastName?: string;
-    groupName?: string;
-    pin: string;
-    nickName: string;
-    profileType: ProfileType;
-    profileDocumentId:string;
-    contacts: ContactDTO[];
-    address: AddressDTO;
-    portfolio: PortfolioDTO;
-    role: roles;
+    firstName?: string,
+    lastName?:string,
+    groupName?:string,
+    nickName:string,
+    status: profileStatus,
+    profileType: ProfileType
   }) {
-    this.firstName = data.firstName;
-    this.lastName = data.lastName;
-    this.groupName = data.groupName;
-    this.pin = data.pin;
-    this.nickName = data.nickName;
-    this.profileType = data.profileType;
-    this.profileDocumentId=data.profileDocumentId;
-    this.contacts = data.contacts.map(contact => new ContactDTO(contact));
-    this.address = new AddressDTO(data.address);
-    this.portfolio = new PortfolioDTO(data.portfolio);
-    this.role= data.role
+    this.firstName= data.firstName;
+    this.lastName= data.lastName;
+    this.groupName= data.groupName;
+    this.nickName= data.nickName;
+    this.status= data.status;
+    this.profileType= data.profileType;
   }
 
   toJSON() {
@@ -182,17 +165,83 @@ export class RegistrationDTO {
       firstName: this.firstName,
       lastName: this.lastName,
       groupName: this.groupName,
-      pin: this.pin,
       nickName: this.nickName,
-      profileType: this.profileType,
-      profileDocumentId:this.profileDocumentId,
+      status: this.status,
+      profileType:this.profileType
+    };
+  }
+}
+
+
+// Registration DTO
+export class RegistrationDTO {
+  profileDetails: ProfileDetailsDto
+  profileDocumentId:string;
+  role: roles;
+  address: AddressDTO;
+  portfolio: PortfolioDTO;
+
+  constructor(data: {
+    profileDetails: ProfileDetailsDto,
+    profileDocumentId:string;
+    role: roles;
+    address: AddressDTO;
+    portfolio: PortfolioDTO;
+  }) {
+    this.profileDetails=  new ProfileDetailsDto(data.profileDetails);
+    this.profileDocumentId=data.profileDocumentId;
+    this.role= data.role;
+    this.address = new AddressDTO(data.address);
+    this.portfolio = new PortfolioDTO(data.portfolio);
+  }
+
+  toJSON() {
+    return {
+      profileDetails: this.profileDetails.toJSON(),
       role: this.role,
-      contacts: this.contacts.map(contact => contact.toJSON()),
+      profileDocumentId: this.profileDocumentId,
       address: this.address.toJSON(),
       portfolio: this.portfolio.toJSON()
     };
   }
 }
+
+export class GetProfileDetailsDto {
+  firstName?: string | undefined;
+  lastName?:string | undefined;
+  groupName?: string | undefined;
+  nickName: string |undefined;
+  status: profileStatus;
+  profileType:ProfileType
+
+  constructor(data: {
+    firstName?: string | undefined,
+    lastName?:string | undefined,
+    groupName?:string | undefined,
+    nickName:string|undefined,
+    status: profileStatus,
+    profileType: ProfileType
+  }) {
+    this.firstName= data.firstName;
+    this.lastName= data.lastName;
+    this.groupName= data.groupName;
+    this.nickName= data.nickName;
+    this.status= data.status;
+    this.profileType= data.profileType;
+  }
+
+  toJSON() {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      groupName: this.groupName,
+      nickName: this.nickName,
+      status: this.status,
+      profileType:this.profileType
+    };
+  }
+}
+
 
 export class GetContactDTO {
   type: contactType;
@@ -292,27 +341,19 @@ export class GetPortfolioDTO {
 }
 
 export class GetRegistrationDTO {
-  firstName?: string;
-  lastName?: string;
-  groupName?: string;
-  nickName: string;
-  profileType: ProfileType;
-  contacts: GetContactDTO[];
+  profileDetails: GetProfileDetailsDto;
   address: GetAddressDTO;
   portfolio: GetPortfolioDTO;
 
   constructor(data: {
-    firstName?: string;
-    lastName?: string;
-    groupName?: string;
-    nickName: string;
-    profileType: ProfileType;
-    contacts: Array<{
-      type: contactType;
-      value: string;
-      primary?: boolean;
-      isVerified?: boolean;
-    }>;
+    profileDetails:{
+      firstName?: string | undefined,
+      lastName?:string | undefined,
+      groupName?: string | undefined,
+      nickName: string | undefined,
+      status: profileStatus,
+      profileType:ProfileType
+    },
     address: {
       streetAddress: string;
       city: string;
@@ -341,15 +382,8 @@ export class GetRegistrationDTO {
       }[]
     };
   }) {
-    this.firstName = data.firstName;
-    this.lastName = data.lastName;
-    this.groupName = data.groupName;
-    this.nickName = data.nickName;
-    this.profileType = data.profileType;
+    this.profileDetails= new GetProfileDetailsDto(data.profileDetails)
     
-    this.contacts = data.contacts.map(
-      contact => new GetContactDTO(contact)
-    );
     
     this.address = new GetAddressDTO(data.address) 
     
@@ -358,12 +392,7 @@ export class GetRegistrationDTO {
   
   toJSON() {
     return {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      groupName: this.groupName,
-      nickName: this.nickName,
-      profileType: this.profileType,
-      contacts: this.contacts.map(contact => contact.toJSON()),
+      profileDetails: this.profileDetails?.toJSON(),
       address: this.address.toJSON(),
       portfolio: this.portfolio.toJSON()
     };
@@ -433,11 +462,7 @@ export class GetProfilePortfolioDTO{
 
 // get profile dto
 export class GetProfileDTO{
-  firstName?: string;
-  lastName?: string
-  groupName?: string;
-  profileType!: ProfileType;
-  nickName!: string;
+  profileDetails: GetProfileDetailsDto;
   portfolio: GetProfilePortfolioDTO;
   contacts: GetContactDTO[];
   isSubscribed: boolean;
@@ -447,11 +472,14 @@ export class GetProfileDTO{
   }
 
   constructor(data:{
-    firstName?: string;
-    lastName?: string
-    groupName?: string;
-    nickName: string;
-    profileType:string;
+    profileDetails: {
+      firstName?: string | undefined,
+      lastName?:string | undefined,
+    groupName?: string | undefined,
+    nickName: string,
+    status: profileStatus,
+    profileType:ProfileType
+    },
     isSubscribed: boolean;
     contacts: Array<{
       type: contactType;
@@ -475,13 +503,9 @@ export class GetProfileDTO{
       lastSeen: Date | null;
     }
   }){
-    this.firstName=data.firstName;
-    this.lastName=data.lastName;
-    this.groupName=data.groupName;
-    this.nickName=data.nickName;
-    this.profileType=data.profileType as ProfileType;
     this.isSubscribed=data.isSubscribed;
     this.contacts=data.contacts.map(contact=>new GetContactDTO(contact));
+    this.profileDetails= new GetProfileDetailsDto(data.profileDetails);
     this.portfolio=new GetProfilePortfolioDTO({
       id: data.portfolio.id,
       bio: data.portfolio.bio || "",
@@ -497,11 +521,7 @@ export class GetProfileDTO{
 
   toJSON(){
     return {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      groupName: this.groupName,
-      nickName: this.nickName,
-      profileType: this.profileType,
+      profileDetails: this.profileDetails,
       isSubscribed: this.isSubscribed,
       contacts: this.contacts.map(contact=>contact.toJSON()),
       portfolio: this.portfolio.toJSON(),
