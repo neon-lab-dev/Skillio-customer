@@ -504,7 +504,7 @@ export class GetProfileDTO{
     }
   }){
     this.isSubscribed=data.isSubscribed;
-    this.contacts=data.contacts.map(contact=>new GetContactDTO(contact));
+    this.contacts = Array.isArray(data.contacts) ? data.contacts.map(contact => new GetContactDTO(contact)) : [];
     this.profileDetails= new GetProfileDetailsDto(data.profileDetails);
     this.portfolio=new GetProfilePortfolioDTO({
       id: data.portfolio.id,
