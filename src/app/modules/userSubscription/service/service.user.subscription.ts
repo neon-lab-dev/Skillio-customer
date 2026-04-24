@@ -35,6 +35,9 @@ class UserSubscriptionService {
         req: UserSubscriptionRequest,
         loggedInUserProfile: Profile
     ): Promise<UserSubscriptionResponse>{
+        if(!loggedInUserProfile.isOnboarded){
+            throw new AppValidationError("User has not completed onboarding" ,ERROR_CODES.ACCESS_DENIED)
+        }
         let planMaster = await planMasterService.checkExisting(req.planId);
         await this.validateExistingNonTerminalSubscription(planMaster, loggedInUserProfile);
         let paymentResponse = await this.initiatePayment(planMaster, loggedInUserProfile);
@@ -45,7 +48,7 @@ class UserSubscriptionService {
             chatLimits:planMaster.chatLimits,
             profileVisibility: planMaster.profileVisibility,
             userSubscriptionId: savedEntity!.id
-        } , loggedInUserProfile.portfolio!.id)
+        } , loggedInUserProfile!.id)
         return UserSubscriptionBuilder.builder()
                 .of(savedEntity!)
                 .build();
@@ -55,9 +58,8 @@ class UserSubscriptionService {
         plan: PlanMasterEntity,
         loggedInUserProfile: Profile
     ){
-        let portfolio = loggedInUserProfile.portfolio;
-        let existing = await this.findByPortfolioIdPlanCodeAndStatusIn(
-            portfolio!.id,
+        let existing = await this.findByPorfileIdPlanCodeAndStatusIn(
+            loggedInUserProfile!.id,
             plan.code,
             [SubscriptionStatus.INITIATED]
         );
@@ -79,7 +81,7 @@ class UserSubscriptionService {
         retVal.paymentId = paymentResponse.id;
         retVal.paymentLink = paymentResponse.fetchPaymentLink();
         retVal.planCode = planMaster.code;
-        retVal.portfolioId = loggedInUserProfile.portfolio!.id;
+        retVal.profileId = loggedInUserProfile.id;
         return retVal;
     }
 
@@ -91,22 +93,21 @@ class UserSubscriptionService {
         return await paymentProxyService.initate(request);
     }
 
-    private async findByPortfolioIdPlanCodeAndStatusIn(
-        portfolioId: string,
+    private async findByPorfileIdPlanCodeAndStatusIn(
+        profileId: string,
         planCode: string,
         statuses: SubscriptionStatus[]
     ): Promise<UserSubscriptionEntity[]>{
-        return await this.repository.findByPortfolioIdPlanCodeAndStatusIn(
-            portfolioId, planCode, statuses
+        return await this.repository.findByPorfileIdPlanCodeAndStatusIn(
+            profileId, planCode, statuses
         );
     }
 
     @Loggable()
     public async fetch(req: UserSubscriptionRequest, loggedInUserProfile: Profile): Promise<UserSubscriptionResponse | null>{
         let planMaster = await planMasterService.checkExisting(req.planId);
-        let portfolio = loggedInUserProfile.portfolio;
-        let existing = await this.findByPortfolioIdPlanCodeAndStatusIn(
-            portfolio!.id,
+        let existing = await this.findByPorfileIdPlanCodeAndStatusIn(
+            loggedInUserProfile!.id,
             planMaster.code,
             [SubscriptionStatus.INITIATED]
         );

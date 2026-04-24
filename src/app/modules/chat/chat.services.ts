@@ -42,7 +42,7 @@ class ChatService{
 
             const loggedInUserProfile= await profileService.fetchWithPortfolio(senderId);
 
-            const planAggregator= await planAggregatorService.fetch({portfolioId: loggedInUserProfile.portfolio!.id});
+            const planAggregator= await planAggregatorService.fetch({profileId: loggedInUserProfile!.id});
 
             if(!planAggregator || planAggregator.chatLimits===0){
                 throw new AppValidationError("can not send message , please check your subscription status" , ERROR_CODES.ACCESS_DENIED)

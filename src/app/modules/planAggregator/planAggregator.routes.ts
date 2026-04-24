@@ -7,7 +7,7 @@ const router= Router();
 const fetchPlanAggregatorApi = new FetchPlanAggregatorApi();
 
 router.get(
-    "/:portfolioId" , 
+    "/:profileId" , 
     verifyToken, 
     asyncApiHandler(fetchPlanAggregatorApi)
 );

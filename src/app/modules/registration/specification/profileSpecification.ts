@@ -44,8 +44,9 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
       .leftJoinAndSelect(`${this.alias}.online` , 'online')
       .leftJoinAndSelect('portfolio.document' , 'document')
       .leftJoinAndSelect('portfolio.follows' , 'follows')
+      .leftJoinAndSelect(`${this.alias}.profileDetails`, 'profileDetails')
       .andWhere(`${this.alias}.role != :role` , {role: roles.ADMIN})
-      .andWhere(`${this.alias}.status != :status` , {status: profileStatus.BLOCKED})
+    .andWhere(`profileDetails.status != :status`, { status: profileStatus.BLOCKED })
     } 
 
     private filterByIdsIn(
@@ -198,7 +199,7 @@ export class ProfileSpecification extends BaseSpecification<Profile>{
         if(!statusSet || statusSet.size===0) return qb;
 
         return qb.andWhere(
-            `${this.alias}.${this.status} IN (:...allStatus)`,
+            `profileDetails.${this.status} IN (:...allStatus)`,
             {allStatus: Array.from(statusSet)}
         )
     }

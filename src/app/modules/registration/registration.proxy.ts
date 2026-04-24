@@ -24,13 +24,13 @@ class RegistrationProxy{
 
     registerProfile= proxyLogging(
         "RegistrationProxy",
-        "createProfile",
+        "registerProfile",
         async(profileData:TProfile)=>{
         const { profileDetails , profileDocumentId , portfolio}=profileData;
 
         const existingProfile= await registrationRepository.findProfileByCredential(profileDetails?.nickName!);
 
-        if(existingProfile && !existingProfile.profileDetails){
+        if(existingProfile && existingProfile.isCreator){
             logger.error("Profile with this nickname already exists");
             throw new AppError(409, "Profile with this nickname already exists");
         }

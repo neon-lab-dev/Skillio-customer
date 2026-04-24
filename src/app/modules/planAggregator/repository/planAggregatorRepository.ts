@@ -8,40 +8,39 @@ export class PlanAggregatorRepository extends BaseRepository<PlanAggregator>{
         super(AppDataSource, PlanAggregator)
     }
 
-    async update(updated: DeepPartial<PlanAggregator> , portfolioId: string){
-        return await this.repository.update({portfolioId} , updated);
+    async update(updated: DeepPartial<PlanAggregator> , profileId: string){
+        return await this.repository.update({profileId} , updated);
     }
 
-    async findByPortfolioId(portfolioId:string):Promise<PlanAggregator | null>{
-            console.log('Is valid UUID?:',portfolioId); 
+    async findByProfileId(profileId:string):Promise<PlanAggregator | null>{
         return await this.repository.findOne({
             where:{
-                portfolioId: portfolioId
+                profileId
             }
         })
     }
 
-    async reduceCallLimits(portfolioId: string, existingVersion: number , amount?: number){
+    async reduceCallLimits(profileId: string, existingVersion: number , amount?: number){
         const reducedAmount= amount? amount :1;
         await this.repository.update(
-            {portfolioId , version: existingVersion},
+            {profileId , version: existingVersion},
             {version: existingVersion+1}
         )
         return await this.repository.decrement(
-            {portfolioId} , 
+            {profileId} , 
             "callLimits",
             reducedAmount
         )
     }   
 
-    async reduceChatLimits(portfolioId: string ,existingVersion: number, amount?:number){
+    async reduceChatLimits(profileId: string ,existingVersion: number, amount?:number){
         const reducedAmount= amount? amount :1;
         await this.repository.update(
-            {portfolioId , version:existingVersion },
+            {profileId , version:existingVersion },
             {version: existingVersion+1}
         )
         return await this.repository.decrement(
-            {portfolioId},
+            {profileId},
             "chatLimits",
             reducedAmount
         )

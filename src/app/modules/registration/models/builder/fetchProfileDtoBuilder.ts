@@ -1,6 +1,7 @@
 import { FetchProfileDto } from "../dto/dto.fetch.profile";
 import { Profile } from "../../../../entity/profile";
 import { contactType } from "../../enums/registrationEnum";
+import servicePostProxy from "../../../../service/post-proxy/service.post-proxy";
 
 export class FetchProfileDtoBuilder {
     private dto: FetchProfileDto;
@@ -13,7 +14,7 @@ export class FetchProfileDtoBuilder {
         return new FetchProfileDtoBuilder()
     }
 
-    public of(entity: Profile):FetchProfileDtoBuilder{
+    public async of(entity: Profile):Promise<FetchProfileDtoBuilder>{
         this.dto.id= entity.id;
         this.dto.nickName= entity.profileDetails?.nickName!;
         this.dto.firstName= entity.profileDetails?.firstName;
@@ -33,6 +34,7 @@ export class FetchProfileDtoBuilder {
         this.dto.phoneNumber= this.ofPhoneNum(entity);
         this.dto.follows= this.setFollows(entity);
         this.dto.document= this.setDocument(entity);
+        await this.setFollowCount(entity.id);
 
         return this;
     }
@@ -70,12 +72,22 @@ export class FetchProfileDtoBuilder {
         })
     }
 
+    private  async setFollowCount(profileId: string){
+        const userReach= await servicePostProxy.fetchUserReach({userReferenceId: profileId});
+        this.dto.userReach={
+            followerCount: userReach?.followerCount,
+            followingCount: userReach?.followingCount,
+            likeCount: userReach?.likeCount,
+            reactionCount: userReach?.reactionCount
+        }
+    }
 
-    public build(): FetchProfileDto{
+
+    public async build(): Promise<FetchProfileDto>{
         return this.dto;
     }
 
-    public ofArray(entities: Profile[]):FetchProfileDto[]{
-        return entities.map(entity=> FetchProfileDtoBuilder.builder().of(entity).build())
+    public async ofArray(entities: Profile[]):Promise<FetchProfileDto[]>{
+        return await Promise.all(entities.map(async entity=>(await FetchProfileDtoBuilder.builder().of(entity)).build()))
     }
 }

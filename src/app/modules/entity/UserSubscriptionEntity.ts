@@ -2,10 +2,9 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { PersistEntity } from "../../entity/PersistEntity";
 import { SubscriptionStatus } from "../userSubscription/enums/SubscriptionStatus";
 import { PlanDetails } from "../userSubscription/models/dto/dto.plan.details";
-import { Portfolio } from "../../entity/portfolio";
-import { string } from "zod";
 import { AutoMap } from "@automapper/classes";
 import { Sensitive , addDays } from "@neon-lab-dev/platform";
+import { Profile } from "../../entity/profile";
 
 @Entity(
     {
@@ -13,7 +12,7 @@ import { Sensitive , addDays } from "@neon-lab-dev/platform";
     }
 )
 @Index(
-    "IDX_PORTFOLIO_ID", ["portfolioId"]
+    "IDX_PORFILE_ID", ["profileId"]
 )
 @Index(
     "IDX_PAYMENT_ID", ["paymentId"]
@@ -76,7 +75,7 @@ export class UserSubscriptionEntity extends PersistEntity {
     status!: SubscriptionStatus;
 
     @ManyToOne(
-        () => Portfolio,
+        () => Profile,
         p => p.subscriptions,
         {
             onDelete: "CASCADE",
@@ -84,15 +83,15 @@ export class UserSubscriptionEntity extends PersistEntity {
         }
     )
     @JoinColumn({
-        foreignKeyConstraintName: "FK_PORTFOLIO_ID",
+        foreignKeyConstraintName: "FK_PROFILE_ID",
+        name:"profileId"
     })
-    portfolio!: Promise<Portfolio>;
+    profile!: Promise<Profile>;
 
     @Column({
         type:"varchar"
     })
-    portfolioId!: string;
-
+    profileId!: string;
 
 
     protected getPrefix(): string {

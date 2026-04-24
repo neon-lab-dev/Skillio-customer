@@ -14,8 +14,8 @@ import { PlanAggregatorEntityBuilder } from "./models/builder/planAggregatorEnti
 class PlanAggregatorService {
   private repository: PlanAggregatorRepository = new PlanAggregatorRepository();
 
-  private async checkExisting(portfolioId: string): Promise<PlanAggregator | null> {
-    const existing = await this.repository.findByPortfolioId(portfolioId);
+  private async checkExisting(profileId: string): Promise<PlanAggregator | null> {
+    const existing = await this.repository.findByProfileId(profileId);
     return existing;
   }
 
@@ -48,16 +48,16 @@ class PlanAggregatorService {
   }
 
   @Loggable()
-  public async aggregate(req: PlanAggregatorRequestDto, portfolioId: string) {
+  public async aggregate(req: PlanAggregatorRequestDto, profileId: string) {
     const existingPlanAggregator =
-      await this.repository.findByPortfolioId(portfolioId);
+      await this.repository.findByProfileId(profileId);
     const updated = existingPlanAggregator
       ? this.merge(existingPlanAggregator, req)
       : this.project(req);
     if(existingPlanAggregator){
-      await this.update(updated , portfolioId);
+      await this.update(updated , profileId);
     }else{
-      const entity= PlanAggregatorEntityBuilder.builder().of({...updated , portfolioId: portfolioId}).build();
+      const entity= PlanAggregatorEntityBuilder.builder().of({...updated , profileId: profileId}).build();
       await this.repository.save(entity);
     }
   }
@@ -65,16 +65,16 @@ class PlanAggregatorService {
   @Loggable()
   private async update(
     planAggregator: Partial<PlanAggregator>,
-    portfolioId: string,
+    profileId: string,
   ) {
-    await this.repository.update(planAggregator, portfolioId);
+    await this.repository.update(planAggregator, profileId);
   }
 
   @Loggable()
   public async fetch(
     req: FetchPlanAggregatorRequestDto,
   ): Promise<planAggregatorResponseDto> {
-    const res = await this.checkExisting(req.portfolioId);
+    const res = await this.checkExisting(req.profileId);
     if(!res){
       throw new AppValidationError(" please check your subscription status" , ERROR_CODES.RECORD_NOT_FOUND)
     }
@@ -88,13 +88,13 @@ class PlanAggregatorService {
 
 
   @Loggable()
-  public async reduceCallLimits(portfolioId: string, amount?: number) {
-    const planAggregator = await this.checkExisting(portfolioId);
+  public async reduceCallLimits(profileId: string, amount?: number) {
+    const planAggregator = await this.checkExisting(profileId);
     if(!planAggregator){
       throw new NotFoundError("plan Aggregator does not exist");
     }
     const result = await this.repository.reduceCallLimits(
-      portfolioId,
+      profileId,
       planAggregator.version,
       amount,
     );
@@ -104,13 +104,13 @@ class PlanAggregatorService {
   }
 
   @Loggable()
-  public async reduceChatLimits(portfolioId: string, amount?: number) {
-    const planAggregator = await this.checkExisting(portfolioId);
+  public async reduceChatLimits(profileId: string, amount?: number) {
+    const planAggregator = await this.checkExisting(profileId);
     if(!planAggregator){
       throw new NotFoundError("plan Aggregator does not exist");
     }
     const result = await this.repository.reduceChatLimits(
-      portfolioId,
+      profileId,
       planAggregator.version,
       amount,
     );
@@ -157,10 +157,10 @@ class PlanAggregatorService {
         (planAggregator.callLimits > subscription.planDetails.callLimits ||  (planAggregator.callLimits< subscription.planDetails.callLimits && planAggregator.callLimits > remainingSubscriptionsCallLimit))
       ) {
         const callLimit = planAggregator.callLimits - remainingSubscriptionsCallLimit;
-        await this.reduceCallLimits(planAggregator.portfolioId , callLimit);
+        await this.reduceCallLimits(planAggregator.profileId , callLimit);
       }
       else if (remainingSubscriptions.length == 0 && subscription.planDetails.callLimits) {
-        await this.reduceCallLimits(planAggregator.portfolioId , planAggregator.callLimits);
+        await this.reduceCallLimits(planAggregator.profileId , planAggregator.callLimits);
       }
 
       // for chat limits
@@ -170,9 +170,9 @@ class PlanAggregatorService {
         (planAggregator.chatLimits > subscription.planDetails.chatLimits ||  (planAggregator.chatLimits< subscription.planDetails.chatLimits && planAggregator.chatLimits > remainingSubscriptionsChatLimit))
       ) {
         const chatLimit= planAggregator.chatLimits- remainingSubscriptionsChatLimit;
-        await this.reduceChatLimits(planAggregator.portfolioId , chatLimit);
+        await this.reduceChatLimits(planAggregator.profileId , chatLimit);
       }else if(remainingSubscriptions.length===0 && subscription.planDetails.chatLimits){
-        await this.reduceChatLimits(planAggregator.portfolioId , planAggregator.chatLimits);
+        await this.reduceChatLimits(planAggregator.profileId , planAggregator.chatLimits);
       }
 
       await userSubscriptionService.expire(subscription.id);

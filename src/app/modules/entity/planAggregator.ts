@@ -2,7 +2,7 @@ import { PersistEntity } from "../../entity/PersistEntity";
 import { Entity , Column, OneToOne, JoinColumn } from "typeorm";
 import { ProfileVisibility } from "../planMaster/enum/ProfileVisibility";
 import { AutoMap } from "@automapper/classes";
-import { Portfolio } from "../../entity/portfolio";
+import { Profile } from "../../entity/profile";
 
 @Entity("plan_aggregator")
 export class PlanAggregator extends PersistEntity{
@@ -63,13 +63,13 @@ export class PlanAggregator extends PersistEntity{
         nullable:false,
         unique:true
     })
-    portfolioId!:string
+    profileId!:string
 
-    @OneToOne(()=>Portfolio , Portfolio=> Portfolio.planAggregator,{
+    @OneToOne(()=>Profile , proflie=> proflie.planAggregator,{
         onDelete: "CASCADE"
     })
-    @JoinColumn({name: "portfolioId"})
-    portfolio!: Portfolio
+    @JoinColumn({name: "profileId"})
+    profile!: Profile
 
     protected getPrefix(): string {
         return "pa"

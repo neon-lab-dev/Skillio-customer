@@ -75,7 +75,7 @@ class RegistrationService{
             })
     }
 
-    private async checkExisting(id:string):Promise<Profile>{
+    public async checkExisting(id:string):Promise<Profile>{
         const profile= await registrationRepository.findProfileById(id);
         if(!profile || profile.profileDetails?.status=== profileStatus.BLOCKED){
             throw new NotFoundError("profile not found");
@@ -132,7 +132,12 @@ class RegistrationService{
             proficiency: portfolio.proficiency,
             totalEvents: portfolio.totalEvents,
             bio: bio || "",
-            hiringRate: portfolio.hiringRate,
+            hiringRate: {
+                hourlyPricing: portfolio.hiringRate.hourlyPricing,
+                dailyPricing: portfolio.hiringRate.dailyPricing,
+                weeklyPricing: portfolio.hiringRate.weeklyPricing,
+                monthlyPricing: portfolio.hiringRate.monthlyPricing
+            },
             follows: portfolio.follows?.map(
                     follow=>({
                         socialMedia: follow.socialMedia,
@@ -274,8 +279,7 @@ class RegistrationService{
                 type:contact.type,
                 value:contact.value,
                 primary:contact.primary,
-            })),
-            isOnboarded:true
+            }))
         })
 
         
@@ -383,7 +387,7 @@ class RegistrationService{
             userReferenceId: profile.id
         });
 
-        let following= null;
+        let isFollowing= null;
 
         const loggedInUserProfile = AsyncContextService.getUserId();
 
@@ -392,11 +396,13 @@ class RegistrationService{
                 followingId: profile.id
             })
             if(follow){
-                following= true;
+                isFollowing= true;
             }else{
-                following=false;
+                isFollowing=false;
             }
         }
+
+        const followCount= await servicePostProxy.fetchUserReach({userReferenceId: profile.id});
 
         if(fetchedProfile.profileDetails?.profileType===ProfileType.INDIVIDUAL){
             const name= getFullName(fetchedProfile.profileDetails?.firstName as string, fetchedProfile.profileDetails?.lastName as string);
@@ -409,12 +415,13 @@ class RegistrationService{
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
+                    followCount: followCount,
                     profilePictureId: profilePhotoId,
                     online:fetchedProfile.online,
                     category: fetchedProfile.portfolio.category,
                     subCategory: fetchedProfile.portfolio.subCategory,
                     privacy: privacy?.type,
-                    following: following,
+                    isFollowing: isFollowing,
                     propritaryDetails:{
                         firstName: fetchedProfile.profileDetails.firstName,
                         lastName: fetchedProfile.profileDetails.lastName,
@@ -430,8 +437,9 @@ class RegistrationService{
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
+                    followCount: followCount,
                     profilePictureId: profilePhotoId,
-                    following: following,
+                    isFollowing: isFollowing,
                     category: fetchedProfile.portfolio.category,
                     subCategory: fetchedProfile.portfolio.subCategory,
                     privacy: privacy?.type,
@@ -449,13 +457,14 @@ class RegistrationService{
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed,
-                        following: following,
+                        followCount: followCount,
+                        isFollowing: isFollowing,
                         category: fetchedProfile.portfolio.category,
                         subCategory: fetchedProfile.portfolio.subCategory,
                         privacy: privacy?.type,  
                         online:fetchedProfile.online,
                     },
-                    profilePictureId: profilePhotoId,
+                    profilePictureId: profilePhotoId,   
                     propritaryDetails:{
                         groupName: fetchedProfile.profileDetails.groupName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
@@ -468,7 +477,8 @@ class RegistrationService{
                         groupName: fetchedProfile.profileDetails.groupName,
                         nickName: fetchedProfile.profileDetails.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
-                        following: following,
+                        followCount: followCount,
+                        isFollowing: isFollowing,
                         privacy: privacy?.type,
                         online:fetchedProfile.online,
                         category: fetchedProfile.portfolio.category,
@@ -502,7 +512,7 @@ class RegistrationService{
 
         const entityPage= await registrationRepository.findPage(spec , req);
 
-        const fetchedProfiles= FetchProfileDtoBuilder.builder().ofArray(entityPage.items);
+        const fetchedProfiles= await FetchProfileDtoBuilder.builder().ofArray(entityPage.items);
 
         return Pageable.buildPage(fetchedProfiles, entityPage.total, req);
     }
@@ -549,7 +559,7 @@ class RegistrationService{
 
         if(!res){
             LoggerService.error("Hiring rate not found")
-            throw new NotFoundError("Hiring reat not found")
+            throw new NotFoundError("Hiring rate not found")
         }
 
         return HiringRateDtoBuilder.Builder().of(res).build()

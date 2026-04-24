@@ -80,7 +80,12 @@ export class PortfolioDTO {
   proficiency: proficiecy;
   totalEvents?: number;
   bio?: string;
-  hiringRate: THiringRate;
+  hiringRate: {
+    hourlyPricing: Decimal,
+    dailyPricing: Decimal,
+    weeklyPricing: Decimal,
+    monthlyPricing: Decimal
+  };
   follows: {
     socialMedia: SocialMeida,
     link:string,
@@ -97,7 +102,12 @@ export class PortfolioDTO {
     proficiency: proficiecy;
     totalEvents?: number;
     bio?: string;
-    hiringRate: THiringRate;
+    hiringRate: {
+      hourlyPricing: Decimal,
+      dailyPricing: Decimal,
+      weeklyPricing: Decimal,
+      monthlyPricing: Decimal
+    };
     follows: {
     socialMedia: SocialMeida,
     link:string,
