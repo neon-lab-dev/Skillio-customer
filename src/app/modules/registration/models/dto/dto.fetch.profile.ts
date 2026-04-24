@@ -31,5 +31,10 @@ export class FetchProfileDto implements AppResponseData{
         url:string,
         type: DocumentType
     }[] | undefined
-
+    userReach?:{
+        followerCount?:number,
+        followingCount?: number,
+        likeCount?:number,
+        reactionCount?:number;
+    }
 }

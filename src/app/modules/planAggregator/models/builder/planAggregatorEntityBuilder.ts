@@ -17,7 +17,7 @@ export class PlanAggregatorEntityBuilder {
         this.entity.chatLimits= req.chatLimits;
         this.entity.activePlans= req.activePlans;
         this.entity.userSubscriptionIds= req.userSubscriptionIds;
-        this.entity.portfolioId=req.portfolioId;
+        this.entity.profileId=req.profileId;
         return this;
     }
 

@@ -10,15 +10,15 @@ export class UserSubscriptionRepository extends BaseRepository<UserSubscriptionE
         super(AppDataSource, UserSubscriptionEntity);
     }
 
-    async findByPortfolioIdPlanCodeAndStatusIn(
-        polioId: string,
+    async findByPorfileIdPlanCodeAndStatusIn(
+        profileId: string,
         code: string,
         statuses: SubscriptionStatus[]
     ): Promise<UserSubscriptionEntity[]> {
         return await this.repository.findBy(
             {
                 planCode: code,
-                portfolio: { id: polioId },
+                profileId: profileId,
                 status: In([...statuses])
             }
         );

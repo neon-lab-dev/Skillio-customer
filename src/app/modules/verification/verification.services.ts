@@ -8,42 +8,16 @@ import { Medium } from "../notification/enums/notificationEnum";
 import notificationServices from "../notification/services/notification.services";
 import { getOtpConfig } from "./config/otpConfig";
 import { getVerificationConfig } from "./config/verificationAttemptsConfig";
-import sendResponse from "../../middlewares/sendResponse";
 import { Response } from "express";
 import registrationServices from "../registration/registration.services";
-import { AppValidationError, JwtService } from "@neon-lab-dev/platform";
+import {  JwtService } from "@neon-lab-dev/platform";
 import { getJwtConfig } from "../registration/config/jwtConfig";
 import { contactType } from "../registration/enums/registrationEnum";
+import sendResponse from "../../middlewares/sendResponse";
 
 class VerificationService {
 
-  // create a verification request
-  verificationRequest = async (verificationData: Partial<TVerification>) => {
-    const { phoneNumber } = verificationData;
-
-    if (!phoneNumber) {
-      logger.error("Phone number is required");
-      throw new AppError(400, "Phone number is required");
-    }
-
-    const profile= await registrationServices.findProfileByCredential(phoneNumber);
-
-    const existingVerification= await verificationRepository.findOneByPhoneNumber(phoneNumber);
-    
-    if(profile){
-      if(profile.pin){
-        return{
-          isPinSet: true,
-          message: "welcome back , please login with pin"
-        }
-      }else{
-        return{
-          isPinSet: false,
-          message: "welcome back , please login otp",
-          verificationId: existingVerification?.id
-        }
-      }
-    }
+  private async generateOtp(phoneNumber: string){
     
     const verificationExpiry= await checkIfExpired(phoneNumber);
 
@@ -52,7 +26,7 @@ class VerificationService {
         phoneNumber,
       );
 
-    if (exisitingNonTerminatingVerification && !verificationExpiry.expired && exisitingNonTerminatingVerification.otpCodeStatus===OtpCodeStatus.VERIFIED) {
+    if (exisitingNonTerminatingVerification && !verificationExpiry.expired) {
       logger.error(
         "A verification for this phone number already exists."
       );
@@ -73,10 +47,55 @@ class VerificationService {
       otpCodeStatus: OtpCodeStatus.IN_PROGRESS,
     });
 
+
+    return verification;
+  }
+
+  // create a verification request
+  verificationRequest = async (verificationData: Partial<TVerification>) => {
+    const { phoneNumber } = verificationData;
+
+    if (!phoneNumber) {
+      logger.error("Phone number is required");
+      throw new AppError(400, "Phone number is required");
+    }
+
+    const profile= await registrationServices.findProfileByCredential(phoneNumber);
+
+    if(profile){
+      if(profile.pin){
+        return{
+          isPinSet: true,
+          message: "welcome back , please login with pin"
+        }
+      }else{
+      const verification= await this.generateOtp(phoneNumber);
+        
+      const res = await notificationServices.createNotification({
+        medium: Medium.SMS,
+        to: phoneNumber,
+        bodyText: verification.otpCode,
+      });
+
+      await verificationRepository.update(verification.id,{
+        otpCodeStatus: OtpCodeStatus.SENT
+      });
+
+        return{
+          isPinSet: false,
+          message: "welcome back , please login otp",
+          verificationId: verification?.id,
+          notificationSent: res.notification.res.ok,
+        }
+      }
+    }
+
+    const verification= await this.generateOtp(phoneNumber);
+
     const res = await notificationServices.createNotification({
       medium: Medium.SMS,
       to: phoneNumber,
-      bodyText: otpCode,
+      bodyText: verification.otpCode,
     });
 
      await verificationRepository.update(verification.id,{
@@ -162,14 +181,14 @@ class VerificationService {
       throw new AppError(404, "Verification not found");
     }
 
-    // if (existingVerification.otpCodeStatus === OtpCodeStatus.VERIFIED) {
-    //   return sendResponse(res, {
-    //     statusCode: 409, 
-    //     success: false,
-    //     message: "OTP has already been verified",
-    //     data: { verificationId: existingVerification.id },
-    //   });
-    // }
+    if (existingVerification.otpCodeStatus === OtpCodeStatus.VERIFIED) {
+      return sendResponse(res, {
+        statusCode: 409, 
+        success: false,
+        message: "OTP has already been verified",
+        data: { verificationId: existingVerification.id },
+      });
+    }
 
     const result = await verifyOtp( otpCode, existingVerification.phoneNumber, existingVerification.id);
 

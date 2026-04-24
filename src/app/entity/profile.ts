@@ -11,6 +11,9 @@ import { Address } from "./address";
 import { Portfolio } from "./portfolio";
 import { Online } from "./online";
 import { ProfileDetails } from "./profileDetails";
+import { Sensitive } from "@neon-lab-dev/platform";
+import { UserSubscriptionEntity } from "../modules/entity/UserSubscriptionEntity";
+import { PlanAggregator } from "../modules/entity/planAggregator";
 
 @Entity("profile")
 export class Profile extends BaseEntity{
@@ -62,4 +65,18 @@ export class Profile extends BaseEntity{
       cascade:true,
     })
     online?: Online;
+
+    @OneToMany(
+        () => UserSubscriptionEntity,
+        u => u.profile
+    )
+    @Sensitive()
+    subscriptions!: Promise<UserSubscriptionEntity[]>
+    
+    @OneToOne(()=> PlanAggregator , planAggregator=> planAggregator.profile,{
+        cascade:true,
+        lazy:true
+    })
+    planAggregator?: PlanAggregator
+    
 }

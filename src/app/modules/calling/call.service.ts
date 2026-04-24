@@ -29,7 +29,7 @@ class CallService{
 
             const loggedInUserProfile= await profileService.fetchWithPortfolio(callerId);
 
-            const planAggregator= await planAggregatorService.fetch({portfolioId: loggedInUserProfile.portfolio!.id});
+            const planAggregator= await planAggregatorService.fetch({profileId: loggedInUserProfile!.id});
 
             if(!planAggregator || planAggregator.callLimits===0){
                 throw new AppValidationError("can not make a call , please check your subscription status" , ERROR_CODES.ACCESS_DENIED)

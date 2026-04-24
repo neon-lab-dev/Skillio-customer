@@ -5,6 +5,6 @@ export class PlanAggregatorInterface {
         chatLimits!: number;
         profileVisibility!: ProfileVisibility;
         userSubscriptionIds!: string[];
-        portfolioId!: string;
+        profileId!: string;
         activePlans!: number;
 }

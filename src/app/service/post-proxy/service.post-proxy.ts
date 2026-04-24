@@ -8,6 +8,8 @@ import { FetchFollowRequest } from "./models/fetchFollowRequest";
 import { FollowResponseDto } from "./models/dto.follow.response";
 import { CreatePrivacyRequest } from "./models/createPrivacyRequest";
 import { FetchPrivacyRequest } from "./models/fetchPrivacyRequest";
+import {  UserReachResponseDto } from "./models/dto.user.reach.response";
+import {  FetchUserReachRequest } from "./models/fetchUserReachRequest";
 
 class PostProxyService{
 
@@ -82,6 +84,23 @@ class PostProxyService{
             return JsonUtils.fromJson(JsonUtils.toJson(response.data.data) , FollowResponseDto);
         }
         throw new ExternalApiError("failed to fetch follow");
+    }
+
+    @Loggable()
+    public async fetchUserReach(req: FetchUserReachRequest):Promise<UserReachResponseDto>{
+        let baseUrl= postProxyConfig.baseUrl as string;
+        let url= `${baseUrl}/userReach`;
+ 
+        let response= await this.restService.get<AppResponse>
+        (
+            url,
+            req,
+            undefined
+        )
+        if(response.status===HTTP_STATUS.SUCCESS){
+            return JsonUtils.fromJson(JsonUtils.toJson(response.data.data) , UserReachResponseDto);
+        }
+        throw new ExternalApiError("failed to fetch user reach");
     }
 }
 
