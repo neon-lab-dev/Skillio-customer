@@ -11,7 +11,7 @@ import documentRepository from "../../repository/documentRepository";
 import { Profile } from "../../entity/profile";
 import AppError from "../../errors/appError";
 import { DocumentType } from "../document/enums/documentEnum";
-import { contactType, proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "./enums/registrationEnum";
+import { contactType, proficiecy, profileStatus, ProfileType, roles } from "./enums/registrationEnum";
 import { getFullName } from "./utils/getFullName";
 import { serviceLogging } from "../../utils/serviceLogging";
 import { Events } from "../../kafka/events";
@@ -35,7 +35,6 @@ import { FetchProfileDetailsResponseDto } from "./models/dto/dto.fetch.profile.d
 import { UpdateProfileRequest } from "./models/request/updateProfileRequest";
 import { profileService } from "../profile/service.profile";
 import { UpdateHiringRateRequest } from "./models/request/updateHiringRateRequest";
-import { HiringRate } from "../../entity/hiringRate";
 import { UpdatePinRequest } from "./models/request/updatePinRequest";
 import { DeepPartial } from "typeorm";
 import { Follows } from "../../entity/follows";

@@ -14,8 +14,7 @@ export class TokenBuilder{
 
     public of(req: TokenRequest): TokenBuilder{
         this.entity.userId= req.userId;
-        this.entity.token!= req.token;
-
+        this.entity.token= req.token as string;
         return this;
     }
 

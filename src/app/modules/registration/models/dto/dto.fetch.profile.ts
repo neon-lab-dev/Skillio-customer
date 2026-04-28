@@ -36,5 +36,6 @@ export class FetchProfileDto implements AppResponseData{
         followingCount?: number,
         likeCount?:number,
         reactionCount?:number;
+        viewsCount?:number;
     }
 }
