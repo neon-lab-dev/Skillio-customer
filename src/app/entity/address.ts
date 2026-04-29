@@ -1,4 +1,4 @@
-import { Entity , Column , OneToOne, JoinColumn } from "typeorm";
+import { Entity , Column ,OneToOne, JoinColumn } from "typeorm";
 import { BaseEntity } from "./baseEntity";
 import { Profile } from "./profile";
 import { Location } from "../modules/registration/interface/registration.interface";

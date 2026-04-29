@@ -78,7 +78,8 @@ export class FetchProfileDtoBuilder {
             followerCount: userReach?.followerCount,
             followingCount: userReach?.followingCount,
             likeCount: userReach?.likeCount,
-            reactionCount: userReach?.reactionCount
+            reactionCount: userReach?.reactionCount,
+            viewsCount: userReach?.viewsCount
         }
     }
 

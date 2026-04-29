@@ -13,4 +13,7 @@ export class UserReachResponseDto implements AppResponseData{
 
     @Expose()
     reactionCount!: number;
+
+    @Expose()
+    viewsCount!: number;
 }

@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"phoneNumber\": \"+18777804211\",\r\n    \"purpose\": \"SIGNUP\"\r\n}",
+              "raw": "{\r\n    \"phoneNumber\": \"+919876511024\"\r\n}   ",
               "options": {
                 "raw": {
                   "language": "json"
@@ -24,12 +24,11 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/verificationRequest",
+              "raw": "{{customer-server-url}}/verificationRequest",
               "host": [
-                "{{serverUrl}}"
+                "{{customer-server-url}}"
               ],
               "path": [
-                "v1",
                 "verificationRequest"
               ]
             },
@@ -37,13 +36,13 @@
           },
           "response": [
             {
-              "name": "Sucess: verification req created",
+              "name": "success: verification request created successfully",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n    \"phoneNumber\": \"+18777804236\",\r\n    \"purpose\": \"LOGIN\"\r\n}",
+                  "raw": "{\r\n    \"phoneNumber\": \"+919876511014\"\r\n}   ",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -51,19 +50,18 @@
                   }
                 },
                 "url": {
-                  "raw": "{{serverUrl}}/v1/verificationRequest",
+                  "raw": "{{customer-server-url}}/verificationRequest",
                   "host": [
-                    "{{serverUrl}}"
+                    "{{customer-server-url}}"
                   ],
                   "path": [
-                    "v1",
                     "verificationRequest"
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
-              "_postman_previewlanguage": "Text",
+              "_postman_previewlanguage": null,
               "header": [
                 {
                   "key": "X-Powered-By",
@@ -83,15 +81,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "182"
+                  "value": "164"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"b6-Z8m5NvVZiaMgrnWk/Rbqv+Yzx6A\""
+                  "value": "W/\"a4-vfFh+z6e+3TAys6SsC30yXJJh8w\""
                 },
                 {
                   "key": "Date",
-                  "value": "Wed, 10 Sep 2025 12:48:06 GMT"
+                  "value": "Fri, 17 Apr 2026 06:39:09 GMT"
                 },
                 {
                   "key": "Connection",
@@ -103,7 +101,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Verification request created successfully\",\n    \"data\": {\n        \"verification\": {\n            \"id\": \"0beaff99-6f6a-475c-a7dc-e96eb793f386\",\n            \"purpose\": \"LOGIN\",\n            \"notificationSent\": true\n        }\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Verification request created successfully\",\n    \"data\": {\n        \"verification\": {\n            \"id\": \"2f5a7624-afa1-46b3-bdc4-593a3446edfe\",\n            \"notificationSent\": true\n        }\n    }\n}"
             },
             {
               "name": "Error: already exists(sent or in progress)",
@@ -380,75 +378,6 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"phoneNumber\",\n            \"message\": \"Phone number is required\"\n        }\n    ]\n}"
-            },
-            {
-              "name": "Error: invalid purpose",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"phoneNumber\": \"+18777804236\",\r\n    \"purpose\": \"\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{serverUrl}}/v1/verificationRequest",
-                  "host": [
-                    "{{serverUrl}}"
-                  ],
-                  "path": [
-                    "v1",
-                    "verificationRequest"
-                  ]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "Text",
-              "header": [
-                {
-                  "key": "X-Powered-By",
-                  "value": "Express"
-                },
-                {
-                  "key": "Access-Control-Allow-Credentials",
-                  "value": "true"
-                },
-                {
-                  "key": "Vary",
-                  "value": "Origin"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json; charset=utf-8"
-                },
-                {
-                  "key": "Content-Length",
-                  "value": "205"
-                },
-                {
-                  "key": "ETag",
-                  "value": "W/\"cd-I+V5LjLq+1qJMq3o3fQyG3PfN7M\""
-                },
-                {
-                  "key": "Date",
-                  "value": "Wed, 10 Sep 2025 12:57:37 GMT"
-                },
-                {
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "key": "Keep-Alive",
-                  "value": "timeout=5"
-                }
-              ],
-              "cookie": [],
-              "body": "{\n    \"success\": false,\n    \"message\": \"Zod Validation Error.\",\n    \"errorSourse\": [\n        {\n            \"path\": \"purpose\",\n            \"message\": \"Invalid enum value. Expected 'LOGIN' | 'PHONE_VERIFICATION' | 'EMAIL_VERIFICATION' | 'SIGNUP', received ''\"\n        }\n    ]\n}"
             }
           ]
         },
@@ -909,7 +838,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"otpCode\":\"0000\",\r\n    \"verificationId\":\"774c9bc6-7ed9-4701-a2be-1c9aebd627a1\"\r\n}",
+              "raw": "{\r\n    \"otpCode\":\"0000\",\r\n    \"verificationId\":\"272ee850-47c9-4d4a-9ef1-41373eb253a7\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -917,9 +846,9 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/verificationRequest/verifyOtp",
+              "raw": "{{customer-server-url}}/v1/verificationRequest/verifyOtp",
               "host": [
-                "{{serverUrl}}"
+                "{{customer-server-url}}"
               ],
               "path": [
                 "v1",
@@ -1373,7 +1302,7 @@
               "formdata": [
                 {
                   "key": "type",
-                  "value": "EVENT",
+                  "value": "PROFILE_PHOTO",
                   "type": "text"
                 },
                 {
@@ -1389,12 +1318,11 @@
               ]
             },
             "url": {
-              "raw": "{{customer-server-url}}/v1/document",
+              "raw": "{{customer-server-url}}/document",
               "host": [
                 "{{customer-server-url}}"
               ],
               "path": [
-                "v1",
                 "document"
               ]
             },
@@ -3197,13 +3125,23 @@
       "name": "registration",
       "item": [
         {
-          "name": "create/register profile",
+          "name": "register profile(create profile Details)",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI1Nzc5MDA0Mi02OWY2LTQzMjktYTJhNy02ZjgyYzlhYTVjYzQiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3NjQxNDQ3MCwiZXhwIjoxNzc2NDE4MDcwfQ.K9AnGqqCqTbraz3-CoGL9ASLL9SoWrhTlyUS67jmPMQ",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"groupName\": \"nirvana\",\r\n  \"nickName\": \"alice012\",\r\n  \"profileType\": \"GROUP\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"a3a0cd16-2d55-41b5-a224-650e14473e41\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"8210464851\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice012@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"follows\":[{\r\n        \"socialMedia\": \"INSTAGRAM\", \r\n        \"link\":\"hdlkflsd\",\r\n        \"followers\": 0,\r\n        \"following\":0\r\n    }],\r\n    \"videoDocumentIds\": [\"4c8d7b58-ebcb-489e-ab82-12fa91326a46\"],\r\n    \"imageDocumentIds\": [\"045809ec-0818-49cc-9f8a-794d65a5d7ed\"],\r\n    \"eventsDoneDocumentIds\": [\"9f361e88-7423-4ed6-9d5c-f732b5bb2e78\"]\r\n  } \r\n}",
+              "raw": "{\r\n  \"profileDetails\": {\r\n    \"firstName\": \"john\",\r\n    \"lastName\": \"doe\",\r\n    \"nickName\": \"alice4\",\r\n    \"profileType\": \"INDIVIDUAL\"\r\n  },\r\n  \"profileDocumentId\": \"99d3b0eb-e6cb-4902-8189-2c94b9b789b5\",\r\n  \"role\": \"USER\",\r\n  \"address\": {\r\n    \"streetAddress\": \"New Baneshwor\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 44600,\r\n    \"country\": \"Nepal\", \r\n    \"location\": {\r\n      \"latitude\": 85.3358,\r\n      \"longitude\":  27.7172\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"MUSIC\",\r\n    \"subCategory\": \"DRUMMER\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"Experienced full stack developer specializing in MERN and Prisma\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n      \"hourlyPricing\": 15.5,\r\n      \"dailyPricing\": 100,\r\n      \"weeklyPricing\": 600,\r\n      \"monthlyPricing\": 2000\r\n    },\r\n    \"follows\": [\r\n      {\r\n        \"socialMedia\": \"INSTAGRAM\",\r\n        \"link\": \"https://linkedin.com/in/roshan\",\r\n        \"followers\": 1200,\r\n        \"following\": 300\r\n      }\r\n    ],\r\n    \"videoDocumentIds\": [\r\n        \"e65d955f-ff62-4a0f-a17a-64a399c699e9\"\r\n    ],\r\n    \"imageDocumentIds\": [\r\n        \"86097a23-ac0a-42ce-9c07-b99040e7ca21\"\r\n    ],\r\n    \"eventsDoneDocumentIds\": [\r\n        \"b798de85-b32b-464c-9427-39481facacaf\"\r\n    ]\r\n  }\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -3211,12 +3149,11 @@
               }
             },
             "url": {
-              "raw": "{{skillio-customer}}/v1/profile",
+              "raw": "{{customer-server-url}}/profile",
               "host": [
-                "{{skillio-customer}}"
+                "{{customer-server-url}}"
               ],
               "path": [
-                "v1",
                 "profile"
               ]
             },
@@ -3224,13 +3161,13 @@
           },
           "response": [
             {
-              "name": "success: profile created successfully",
+              "name": "Success: profile registered successfully",
               "originalRequest": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"firstName\": \"john\",\r\n  \"lastName\": \"alice\",\r\n  \"groupName\": \"\",\r\n  \"nickName\": \"alice49\",\r\n  \"profileType\": \"INDIVIDUAL\",\r\n  \"pin\": \"1234\",\r\n  \"role\":\"USER\",\r\n  \"profileDocumentId\": \"30c39642-fc39-4a91-9d0e-23819f96f392\",\r\n  \"contacts\": [\r\n    {\r\n      \"type\": \"PHONE\",\r\n      \"value\": \"+919876541949\",\r\n      \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    } , {\r\n        \"type\": \"EMAIL\",\r\n        \"value\": \"alice49@gmail.com\",\r\n        \"verificationId\": \"137793d3-14eb-4c18-9fbc-8f3cf78b7b25\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"streetAddress\": \"Baneshwor Road\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 323433,\r\n    \"country\": \"India\",\r\n    \"location\": {\r\n      \"latitude\": 27.7172,\r\n      \"longitude\": 85.3240\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"Music\",\r\n    \"subCategory\": \"Guitarist\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n        \"hourlyPricing\": 200.99,\r\n        \"dailyPricing\": 400.23,\r\n        \"weeklyPricing\": 1200.2332,\r\n        \"monthlyPricing\": 15000.222\r\n    },\r\n    \"follows\":{\r\n        \"instaFollwers\": 1500,\r\n        \"instaFollowing\": 320,\r\n        \"facebookFollowers\": 2400,\r\n        \"facebookFollowing\": 180\r\n    },\r\n    \"videoDocumentId\": \"9d73975c-4f99-4e6c-955d-bfd8cc44b98a\",\r\n    \"imageDocumentId\": \"b35c5e00-fb48-4e71-8f51-90d4369ccecc\",\r\n    \"eventsDoneDocumentId\": \"c6d0bc68-a0c4-4071-a995-c9a43553f78a\"\r\n  } \r\n}\r\n",
+                  "raw": "{\r\n  \"profileDetails\": {\r\n    \"firstName\": \"john\",\r\n    \"lastName\": \"doe\",\r\n    \"nickName\": \"alice4\",\r\n    \"profileType\": \"INDIVIDUAL\"\r\n  },\r\n  \"profileDocumentId\": \"99d3b0eb-e6cb-4902-8189-2c94b9b789b5\",\r\n  \"role\": \"USER\",\r\n  \"address\": {\r\n    \"streetAddress\": \"New Baneshwor\",\r\n    \"city\": \"Kathmandu\",\r\n    \"state\": \"Bagmati\",\r\n    \"pinCode\": 44600,\r\n    \"country\": \"Nepal\", \r\n    \"location\": {\r\n      \"latitude\": 85.3358,\r\n      \"longitude\":  27.7172\r\n    }\r\n  },\r\n  \"portfolio\": {\r\n    \"category\": \"MUSIC\",\r\n    \"subCategory\": \"DRUMMER\",\r\n    \"proficiency\": \"PROFESSIONAL\",\r\n    \"bio\": \"Experienced full stack developer specializing in MERN and Prisma\",\r\n    \"totalEvents\": 25,\r\n    \"hiringRate\": {\r\n      \"hourlyPricing\": 15.5,\r\n      \"dailyPricing\": 100,\r\n      \"weeklyPricing\": 600,\r\n      \"monthlyPricing\": 2000\r\n    },\r\n    \"follows\": [\r\n      {\r\n        \"socialMedia\": \"INSTAGRAM\",\r\n        \"link\": \"https://linkedin.com/in/roshan\",\r\n        \"followers\": 1200,\r\n        \"following\": 300\r\n      }\r\n    ],\r\n    \"videoDocumentIds\": [\r\n        \"e65d955f-ff62-4a0f-a17a-64a399c699e9\"\r\n    ],\r\n    \"imageDocumentIds\": [\r\n        \"86097a23-ac0a-42ce-9c07-b99040e7ca21\"\r\n    ],\r\n    \"eventsDoneDocumentIds\": [\r\n        \"b798de85-b32b-464c-9427-39481facacaf\"\r\n    ]\r\n  }\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3238,15 +3175,11 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:3001/api/v1/profile",
-                  "protocol": "http",
+                  "raw": "{{customer-server-url}}/profile",
                   "host": [
-                    "localhost"
+                    "{{customer-server-url}}"
                   ],
-                  "port": "3001",
                   "path": [
-                    "api",
-                    "v1",
                     "profile"
                   ]
                 }
@@ -3273,15 +3206,15 @@
                 },
                 {
                   "key": "Content-Length",
-                  "value": "695"
+                  "value": "547"
                 },
                 {
                   "key": "ETag",
-                  "value": "W/\"2b7-zqaQoiJ65u61wTreIDFNQYo44uc\""
+                  "value": "W/\"223-OsBIgZWSuG99QSKSuBDLMY8Ar/8\""
                 },
                 {
                   "key": "Date",
-                  "value": "Fri, 06 Feb 2026 08:39:52 GMT"
+                  "value": "Fri, 17 Apr 2026 08:26:17 GMT"
                 },
                 {
                   "key": "Connection",
@@ -3293,7 +3226,7 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"success\": true,\n    \"message\": \"Profile created successfully\",\n    \"data\": {\n        \"firstName\": \"john\",\n        \"lastName\": \"alice\",\n        \"groupName\": \"\",\n        \"nickName\": \"alice49\",\n        \"profileType\": \"INDIVIDUAL\",\n        \"contacts\": [\n            {\n                \"type\": \"PHONE\",\n                \"value\": \"+919876541949\",\n                \"primary\": true,\n                \"isVerified\": false\n            },\n            {\n                \"type\": \"EMAIL\",\n                \"value\": \"alice49@gmail.com\",\n                \"primary\": true,\n                \"isVerified\": false\n            }\n        ],\n        \"address\": {\n            \"streetAddress\": \"Baneshwor Road\",\n            \"city\": \"Kathmandu\",\n            \"country\": \"India\",\n            \"state\": \"Bagmati\",\n            \"pinCode\": 323433,\n            \"location\": {\n                \"latitude\": 27.7172,\n                \"longitude\": 85.324\n            }\n        },\n        \"portfolio\": {\n            \"category\": \"Music\",\n            \"subCategory\": \"Guitarist\",\n            \"proficiency\": \"PROFESSIONAL\",\n            \"totalEvents\": 25,\n            \"bio\": \"hello roshan@gmail.com how  are you +919876543210.\",\n            \"hiringRate\": {},\n            \"follows\": {}\n        }\n    }\n}"
+              "body": "{\n    \"success\": true,\n    \"message\": \"Profile created successfully\",\n    \"data\": {\n        \"profileDetails\": {\n            \"firstName\": \"john\",\n            \"lastName\": \"doe\",\n            \"groupName\": null,\n            \"nickName\": \"alice4\",\n            \"status\": \"PENDING\",\n            \"profileType\": \"INDIVIDUAL\"\n        },\n        \"address\": {\n            \"streetAddress\": \"New Baneshwor\",\n            \"city\": \"Kathmandu\",\n            \"country\": \"Nepal\",\n            \"state\": \"Bagmati\",\n            \"pinCode\": 44600,\n            \"location\": {\n                \"latitude\": 85.3358,\n                \"longitude\": 27.7172\n            }\n        },\n        \"portfolio\": {\n            \"category\": \"MUSIC\",\n            \"subCategory\": \"DRUMMER\",\n            \"proficiency\": \"PROFESSIONAL\",\n            \"totalEvents\": 25,\n            \"bio\": \"Experienced full stack developer specializing in MERN and Prisma\"\n        }\n    }\n}"
             },
             {
               "name": "Error:firstName and lastName are required for individual profile types",
@@ -6484,7 +6417,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"credential\":\"8210464851\",\r\n    \"pin\":\"1234\"\r\n}   ",
+              "raw": "{\r\n    \"credential\":\"+919876511021\",\r\n    \"pin\":\"1234\"\r\n}    ",
               "options": {
                 "raw": {
                   "language": "json"
@@ -6492,12 +6425,11 @@
               }
             },
             "url": {
-              "raw": "{{customer-server-url}}/v1/profile/login",
+              "raw": "{{customer-server-url}}/profile/login",
               "host": [
                 "{{customer-server-url}}"
               ],
               "path": [
-                "v1",
                 "profile",
                 "login"
               ]
@@ -7350,7 +7282,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MWY0YWZiNy1lMTZmLTQ5NmUtYTc4Yi03MGQ1OTIxYjNhOWMiLCJuaWNrTmFtZSI6ImFsaWNlMzMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NzIwOTMzNzcsImV4cCI6MTc3MjA5Njk3N30.4jKNsJaXkLCzT8RdTk2nnPhnynCzvx0j8X5QDCyqR8A",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIzM2JlNjc4My1mODMzLTQxYWUtOWZiMi1iOWVhOTA0ZjZiYzMiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3NzM1ODcyOCwiZXhwIjoxNzc3MzYyMzI4fQ.lZX12LKopuDmF7sS41i8wASIEFjd-V68GNhkiFTT8zY",
                   "type": "string"
                 }
               ]
@@ -7358,9 +7290,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{serverUrl}}/profile?perPage=10&page=1&category=Music",
+              "raw": "{{customer-server-url}}/profile?perPage=10&page=1",
               "host": [
-                "{{serverUrl}}"
+                "{{customer-server-url}}"
               ],
               "path": [
                 "profile"
@@ -7423,7 +7355,8 @@
                 },
                 {
                   "key": "category",
-                  "value": "Music"
+                  "value": "Music",
+                  "disabled": true
                 },
                 {
                   "key": "subCategory",
@@ -8392,7 +8325,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"id\":\"b79688ed-3516-47c3-a9e6-a70cf94b8659\",\r\n    \"firstName\":\"john\",\r\n    \"lastName\":\"doe\",\r\n    \"totalEvents\": 3\r\n}",
+              "raw": "{\r\n    \"id\":\"37c9045b-339c-46ff-9112-f588235512b7\",\r\n    \"firstName\":\"peter\",\r\n    \"lastName\":\"parker\",\r\n    \"totalEvents\": 3\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8400,9 +8333,9 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/profile",
+              "raw": "{{skillio-customer}}/v1/profile",
               "host": [
-                "{{serverUrl}}"
+                "{{skillio-customer}}"
               ],
               "path": [
                 "v1",
@@ -8559,7 +8492,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJkY2E3OGY4OS1hMWI2LTQ2ZjEtYjYwMy1lODIyOTUyYjQxYmUiLCJuaWNrTmFtZSI6ImFsaWNlNyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcyNDE2NjMyLCJleHAiOjE3NzI0MjAyMzJ9.Y9ZZGVNAt4g4nslormLbbPfegpYu09gm5RBTWECRyEc",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiIzMGRjM2QwMS0xZWQ5LTQyZGMtODlmNC0xY2UxYzYyZWIzNTIiLCJuaWNrTmFtZSI6ImFsaWNlMiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc1NTQzNjg0LCJleHAiOjE3NzU1NDcyODR9.bGWndFotUbYjlJgd4-C1OB_LjUvGqEKgwXM_Uxckh18",
                   "type": "string"
                 }
               ]
@@ -8568,7 +8501,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"credential\":\"8210464851\",\r\n    \"pin\":\"1234\"\r\n}",
+              "raw": "{\r\n    \"credential\":\"+919876511010\",\r\n    \"pin\":\"1234\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -8576,12 +8509,11 @@
               }
             },
             "url": {
-              "raw": "{{skillio-customer}}/v1/profile/pin",
+              "raw": "{{customer-server-url}}/profile/pin",
               "host": [
-                "{{skillio-customer}}"
+                "{{customer-server-url}}"
               ],
               "path": [
-                "v1",
                 "profile",
                 "pin"
               ]
@@ -9261,6 +9193,273 @@
               ],
               "cookie": [],
               "body": "{\n    \"success\": false,\n    \"error\": \"Validation failed\",\n    \"message\": \"Entered pin's does not match\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "check if pin set",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{customer-server-url}}/profile/pin/check?credential=%2B919876511013",
+              "host": [
+                "{{customer-server-url}}"
+              ],
+              "path": [
+                "profile",
+                "pin",
+                "check"
+              ],
+              "query": [
+                {
+                  "key": "credential",
+                  "value": "%2B919876511013"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success: check if pin set successfull",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{customer-server-url}}/profile/pin/check?credential=%2B919876511013",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "pin",
+                    "check"
+                  ],
+                  "query": [
+                    {
+                      "key": "credential",
+                      "value": "%2B919876511013"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "46"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2e-xmzZTTsuL/xcPONGShVKy7BPQX0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 15 Apr 2026 08:20:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": true\n}"
+            },
+            {
+              "name": "Success: pin not set(data: false)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{customer-server-url}}/profile/pin/check?credential=%2B919876511033",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "pin",
+                    "check"
+                  ],
+                  "query": [
+                    {
+                      "key": "credential",
+                      "value": "%2B919876511033"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "47"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2f-IYNvrm14AHwSepu4i46gfJaLI4E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 15 Apr 2026 08:23:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 200,\n    \"message\": \"Success\",\n    \"data\": false\n}"
+            }
+          ]
+        },
+        {
+          "name": "create profile Details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiI2MmVmYzM2OS1mZmI3LTQzNGMtYTNhNC1lZWNkYzZhMmJlM2EiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3NjQxNTgzOCwiZXhwIjoxNzc2NDE5NDM4fQ.6TpRZPOVH7TMRFRpGgeVyXDT0V0vS12eEjInwl1h_RA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"nickName\": \"doe1\",\r\n  \"profileType\": \"HIRER\"\r\n}   ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{customer-server-url}}/profile/details",
+              "host": [
+                "{{customer-server-url}}"
+              ],
+              "path": [
+                "profile",
+                "details"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success: profile details created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"nickName\": \"johnny\",\r\n  \"profileType\": \"INDIVIDUAL\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{customer-server-url}}/profile/details",
+                  "host": [
+                    "{{customer-server-url}}"
+                  ],
+                  "path": [
+                    "profile",
+                    "details"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "361"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"169-Q7kUy1WrAuAVv8hJisad70T5fz8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 17 Apr 2026 08:09:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": 201,\n    \"message\": \"Resource created successfully\",\n    \"data\": {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"groupName\": null,\n        \"nickName\": \"johnny\",\n        \"profileId\": \"db2632f5-12f9-433e-9d0f-de1ef0f45914\",\n        \"id\": \"pd202604170809104997906f\",\n        \"createdAt\": \"2026-04-17T08:09:10.067Z\",\n        \"updatedAt\": \"2026-04-17T08:09:10.067Z\",\n        \"deleted\": false,\n        \"status\": \"PENDING\",\n        \"profileType\": \"INDIVIDUAL\"\n    }\n}"
             }
           ]
         }
@@ -15517,7 +15716,7 @@
       "name": "planAggregator",
       "item": [
         {
-          "name": "fetch planAggregator with portfolioid",
+          "name": "fetch planAggregator with profileId",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -15527,7 +15726,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJiNzk2ODhlZC0zNTE2LTQ3YzMtYTllNi1hNzBjZjk0Yjg2NTkiLCJuaWNrTmFtZSI6ImFsaWNlMyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzcyNzc2NzQzLCJleHAiOjE3NzI3ODAzNDN9.t2LD7kWHCoHpEsF52JmrYPBVd3Vs4JY2a81QhxO_qvk",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSWQiOiJlZDc3ODlhZS1hMzEwLTQ0MmYtYjAxMy1iNDY4MzFjMTVlZTIiLCJuaWNrTmFtZSI6ImFsaWNlNCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc1MDI4MzgzLCJleHAiOjE3NzUwMzE5ODN9.6cxf5zGYW7chVBp-E-OKe1FBzN3Uo2qvsD-BEqcOX64",
                   "type": "string"
                 }
               ]
@@ -15544,14 +15743,14 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/planAggregator/e415d0df-12ed-466a-949f-16cefb257499",
+              "raw": "{{customer-server-url}}/v1/planAggregator/d384eb93-ef13-4a44-8b6a-e350b2066427",
               "host": [
-                "{{serverUrl}}"
+                "{{customer-server-url}}"
               ],
               "path": [
                 "v1",
                 "planAggregator",
-                "e415d0df-12ed-466a-949f-16cefb257499"
+                "d384eb93-ef13-4a44-8b6a-e350b2066427"
               ]
             }
           },
@@ -16196,7 +16395,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"token\": \"hello\", \r\n    \"userId\": \"5d6f3cce-dbda-49d4-a496-a6b736ccf2db\"\r\n}",
+              "raw": "{\r\n    \"token\": \"\", \r\n    \"userId\": \"33be6783-f833-41ae-9fb2-b9ea904f6bc3\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -16204,12 +16403,11 @@
               }
             },
             "url": {
-              "raw": "{{serverUrl}}/v1/token",
+              "raw": "{{customer-server-url}}/token",
               "host": [
-                "{{serverUrl}}"
+                "{{customer-server-url}}"
               ],
               "path": [
-                "v1",
                 "token"
               ]
             }
