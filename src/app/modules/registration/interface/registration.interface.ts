@@ -56,8 +56,8 @@ export interface THiringRate{
 }
 
 export interface TFollows{
-  socialMedia: SocialMeida,
-  link: string,
+  socialMedia?: SocialMeida,
+  link?: string,
   followers?: number,
   following?:number
 }

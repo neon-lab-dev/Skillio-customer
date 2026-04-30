@@ -221,6 +221,7 @@ class RegistrationService{
         }
 
         this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+        this.producer.produce(Events.PAYMENT_CUSTOMER_CREATED , {shortUser});
 
         if(newProfile.portfolio?.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
@@ -311,7 +312,34 @@ class RegistrationService{
         }
         
         const entity=  (await ProfileDetailsEntityBuilder.builder().of(req)).build();
-        return await this.profileDetailsRepository.create(entity);
+
+        const res= await this.profileDetailsRepository.create(entity);
+
+        await servicePostProxy.createPrivacy({
+            type: Privacy.PUBLIC,
+            userReferenceId: res.profileId
+        })
+
+        const fullName= res.firstName&& res.lastName&& getFullName(res.firstName as string, res.lastName as string);
+
+        const profile= await this.checkExisting(res.profileId);
+
+        const phoneNumber= profile.contacts.map((contact)=> {
+            if(contact.type=== contactType.PHONE){
+                return contact.value;
+            }
+        });
+        
+        const shortUser={
+            referenceId: res.profileId,
+            nickName: res.nickName,
+            name: fullName,
+            phoneNo: phoneNumber[0],
+        }
+
+        this.producer.produce(Events.PAYMENT_CUSTOMER_CREATED , {shortUser});
+
+        return res;
     }
 
 

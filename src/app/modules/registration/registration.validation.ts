@@ -174,11 +174,11 @@ const hiringRateSchema=z.object({
 
 
 const followsSchema= z.object({
-    socialMedia: z.nativeEnum(SocialMeida),
-    link: IS_MANDATORY_SCHEMA("link"),
+    socialMedia: z.nativeEnum(SocialMeida).optional(),
+    link: IS_MANDATORY_SCHEMA("link").optional(),
     followers: IS_MANDATORY_NUMBER_SCHEMA("followers").optional(),
     following: IS_MANDATORY_NUMBER_SCHEMA("following").optional()
-})
+}).optional()
 
 const portfolioSchema = z.object({
     category: IS_MANDATORY_SCHEMA("Category")
@@ -189,9 +189,7 @@ const portfolioSchema = z.object({
     totalEvents: totalEventsSchema.optional(),
     bio: TYPE_VALIDATION_SCHEMA("bio").optional(),
     hiringRate: hiringRateSchema,
-    follows: z.array(followsSchema, {
-            error: mandatoryTypeError("follows", "array")
-        }),
+    follows: z.array(followsSchema).optional(),
     videoDocumentIds: IS_MANDATORY_STRING_ARRAY_SCHEMA("Video Document Id"),
     imageDocumentIds: IS_MANDATORY_STRING_ARRAY_SCHEMA("Image document ID"),
     eventsDoneDocumentIds: IS_MANDATORY_STRING_ARRAY_SCHEMA("Events Document Id").optional()

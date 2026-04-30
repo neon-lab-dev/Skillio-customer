@@ -86,9 +86,9 @@ export class PortfolioDTO {
     weeklyPricing: Decimal,
     monthlyPricing: Decimal
   };
-  follows: {
-    socialMedia: SocialMeida,
-    link:string,
+  follows?: {
+    socialMedia?: SocialMeida,
+    link?:string,
     followers?: number,
     following?: number
   }[];
@@ -108,9 +108,9 @@ export class PortfolioDTO {
       weeklyPricing: Decimal,
       monthlyPricing: Decimal
     };
-    follows: {
-    socialMedia: SocialMeida,
-    link:string,
+    follows?: {
+    socialMedia?: SocialMeida,
+    link?:string,
     followers?: number,
     following?: number
   }[];
@@ -410,19 +410,19 @@ export class GetRegistrationDTO {
 }
 
 export class FollowsDTO{
-    socialMedia: SocialMeida;
-    link: string;
+    socialMedia?: SocialMeida;
+    link?: string;
     followers?: number;
     following?:number;
 
     constructor(data: {
-      socialMedia: SocialMeida,
-      link: string,
+      socialMedia?: SocialMeida,
+      link?: string,
       followers?: number,
       following?: number
     }){
-      this.socialMedia= data.socialMedia;
-      this.link= data.link;
+      this.socialMedia= data?.socialMedia;
+      this.link= data?.link;
       this.followers= data?.followers;
       this.following= data?.following;
     }
