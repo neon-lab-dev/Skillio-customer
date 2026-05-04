@@ -153,7 +153,7 @@ class ChatService{
                 message= new GetChatDTO(newMessage).toJSON();
             }
 
-            await planAggregatorService.reduceChatLimits(loggedInUserProfile.portfolio!.id);
+            await planAggregatorService.reduceChatLimits(loggedInUserProfile.id);
 
 
             return message;

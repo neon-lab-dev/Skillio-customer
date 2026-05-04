@@ -12,6 +12,7 @@ import { dashboardRouter } from "../modules/dashboard/dashboard.routes";
 import { tokenRouter } from "../modules/token/token.routes";
 import { categoryRouter } from "../modules/category/category.routes";
 import { subCategoryRouter } from "../modules/subCategory/subCategory.routes";
+import { followsRouter } from "../modules/follows/follows.routes";
 
 const router = Router();
 
@@ -69,6 +70,10 @@ const moduleRoutes = [
     {
         path:"/v1/subCategory",
         route: subCategoryRouter
+    },
+    {
+        path: "/v1/follows",
+        route: followsRouter
     }
 ]
 

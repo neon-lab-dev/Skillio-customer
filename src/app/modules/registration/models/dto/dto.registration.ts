@@ -1,4 +1,4 @@
-import { ProfileType, SocialMeida, contactType, onlineStatus, proficiecy, profileStatus, roles } from "../../enums/registrationEnum";
+import { ProfileType, SocialMeida, addressType, contactType, onlineStatus, proficiecy, profileStatus, roles } from "../../enums/registrationEnum";
 import { Location, THiringRate } from "../../interface/registration.interface";
 import Decimal from "decimal.js"
 
@@ -39,6 +39,7 @@ export class ContactDTO {
 // Address DTO
 export class AddressDTO {
   streetAddress: string;
+  type: addressType;
   city: string;
   country: string;
   state: string;
@@ -47,6 +48,7 @@ export class AddressDTO {
 
   constructor(data: {
     streetAddress: string;
+    type: addressType;
     city: string;
     country: string;
     state: string;
@@ -54,6 +56,7 @@ export class AddressDTO {
     location: Location;
   }) {
     this.streetAddress = data.streetAddress;
+    this.type= data.type;
     this.city = data.city;
     this.country = data.country;
     this.state = data.state;
@@ -64,6 +67,7 @@ export class AddressDTO {
   toJSON() {
     return {
       streetAddress: this.streetAddress,
+      type: this.type,
       city: this.city,
       country: this.country,
       state: this.state,
@@ -152,7 +156,8 @@ export class ProfileDetailsDto {
   groupName?: string;
   nickName!: string;
   status!: profileStatus;
-  profileType!:ProfileType
+  address: AddressDTO[];
+  profileType!:ProfileType;
 
   constructor(data: {
     firstName?: string,
@@ -161,6 +166,7 @@ export class ProfileDetailsDto {
     nickName:string,
     status: profileStatus,
     profileType: ProfileType
+  address: AddressDTO[];
   }) {
     this.firstName= data.firstName;
     this.lastName= data.lastName;
@@ -168,6 +174,8 @@ export class ProfileDetailsDto {
     this.nickName= data.nickName;
     this.status= data.status;
     this.profileType= data.profileType;
+    this.address = data.address.map(address => new AddressDTO(address));
+
   }
 
   toJSON() {
@@ -177,7 +185,8 @@ export class ProfileDetailsDto {
       groupName: this.groupName,
       nickName: this.nickName,
       status: this.status,
-      profileType:this.profileType
+      profileType:this.profileType,
+      address: this.address.map(address=>address.toJSON())
     };
   }
 }
@@ -188,29 +197,29 @@ export class RegistrationDTO {
   profileDetails: ProfileDetailsDto
   profileDocumentId:string;
   role: roles;
-  address: AddressDTO;
+  contacts: ContactDTO[];
   portfolio: PortfolioDTO;
 
   constructor(data: {
     profileDetails: ProfileDetailsDto,
     profileDocumentId:string;
     role: roles;
-    address: AddressDTO;
+    contacts: ContactDTO[];
     portfolio: PortfolioDTO;
   }) {
     this.profileDetails=  new ProfileDetailsDto(data.profileDetails);
     this.profileDocumentId=data.profileDocumentId;
     this.role= data.role;
-    this.address = new AddressDTO(data.address);
+     this.contacts = data.contacts.map(contact => new ContactDTO(contact));
     this.portfolio = new PortfolioDTO(data.portfolio);
   }
 
   toJSON() {
     return {
       profileDetails: this.profileDetails.toJSON(),
+      contacts: this.contacts.map(contact => contact.toJSON()),
       role: this.role,
       profileDocumentId: this.profileDocumentId,
-      address: this.address.toJSON(),
       portfolio: this.portfolio.toJSON()
     };
   }
@@ -283,6 +292,7 @@ export class GetContactDTO {
 
 export class GetAddressDTO {
   streetAddress: string;
+  type: addressType;
   city: string;
   country: string;
   state: string;
@@ -291,6 +301,7 @@ export class GetAddressDTO {
 
   constructor(data: {
     streetAddress: string;
+  type: addressType;
     city: string;
     country: string;
     state: string;
@@ -298,6 +309,7 @@ export class GetAddressDTO {
     location: Location;
   }) {
     this.streetAddress = data.streetAddress;
+    this.type= data.type;
     this.city = data.city;
     this.country = data.country;
     this.state = data.state;
@@ -308,6 +320,7 @@ export class GetAddressDTO {
   toJSON() {
     return {
       streetAddress: this.streetAddress,
+      type: this.type,
       city: this.city,
       country: this.country,
       state: this.state,
@@ -352,7 +365,8 @@ export class GetPortfolioDTO {
 
 export class GetRegistrationDTO {
   profileDetails: GetProfileDetailsDto;
-  address: GetAddressDTO;
+  address: GetAddressDTO[];
+   contacts: GetContactDTO[];
   portfolio: GetPortfolioDTO;
 
   constructor(data: {
@@ -364,14 +378,21 @@ export class GetRegistrationDTO {
       status: profileStatus,
       profileType:ProfileType
     },
+    contacts: Array<{
+      type: contactType;
+      value: string;
+      primary?: boolean;
+      isVerified?: boolean;
+    }>;
     address: {
       streetAddress: string;
+      type: addressType;
       city: string;
       country: string;
       state: string;
       pinCode: number;
       location: Location;
-    };
+    }[];
     portfolio: {
       category: string;
       subCategory: string;
@@ -394,8 +415,10 @@ export class GetRegistrationDTO {
   }) {
     this.profileDetails= new GetProfileDetailsDto(data.profileDetails)
     
-    
-    this.address = new GetAddressDTO(data.address) 
+    this.contacts = data.contacts.map(
+      contact => new GetContactDTO(contact)
+    );
+    this.address =data.address.map((val)=>new GetAddressDTO(val) ) 
     
     this.portfolio =  new GetPortfolioDTO(data.portfolio) 
   }
@@ -403,7 +426,7 @@ export class GetRegistrationDTO {
   toJSON() {
     return {
       profileDetails: this.profileDetails?.toJSON(),
-      address: this.address.toJSON(),
+      address: this.address.map(val=>val.toJSON()),
       portfolio: this.portfolio.toJSON()
     };
   }

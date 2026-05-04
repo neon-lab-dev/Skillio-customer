@@ -51,10 +51,10 @@ export class Profile extends BaseEntity{
     })
     profileDetails?: ProfileDetails;
 
-    @OneToOne(() => Address , address => address.profile , {
+    @OneToMany(() => Address , address => address.profile , {
       cascade: true,
     })
-    address?: Address;
+    address?: Address[];
 
     @OneToOne(()=>Portfolio , portfolio=> portfolio.profile , {
       cascade: true,

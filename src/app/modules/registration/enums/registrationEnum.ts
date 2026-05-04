@@ -4,6 +4,11 @@ export enum ProfileType{
     HIRER="HIRER"
 }
 
+export enum addressType{
+    PERMANENT="PERMANENT",
+    VENUE="VENUE"
+}
+
 export enum contactType{
     PHONE= "PHONE",
     EMAIL= "EMAIL"

@@ -50,6 +50,7 @@ import { CreateProfileDetailsRequest } from "./models/request/createProfileDetai
 import { ProfileDetails } from "../../entity/profileDetails";
 import { ProfileDetailsEntityBuilder } from "./models/builder/profileDetailsEntityBuilder";
 import { ProfileDetailsRepository } from "../../repository/profileDetailsRepository";
+import addressService from "./modules/address/addressService";
 
 class RegistrationService{
 
@@ -107,56 +108,111 @@ class RegistrationService{
         "RegistrationService",
         "createProfile",
         async(profileData:TProfile)=>{
-        const {profileDetails , address , portfolio , profileDocumentId}=profileData;
+        const {profileDetails ,contacts , portfolio , profileDocumentId}=profileData;
         const status= portfolio.proficiency== proficiecy.SKILLED ? profileStatus.APPROVED : profileStatus.PENDING;
 
         const bio= censorSensitiveInfo.censor(portfolio.bio as string);
 
         const profileId= AsyncContextService.getUserId() as string;
 
-        const newProfile= await registrationRepository.registerProfile({
-            id: profileId,
-            profileDetails:{
-            firstName: profileDetails.firstName,
-            lastName: profileDetails.lastName,
-            groupName: profileDetails.groupName,
-            nickName: profileDetails.nickName,
-            profileType: profileDetails.profileType,
-            status: status,
-            profileId: profileId
-            },
-            portfolio:{
-            category:portfolio.category,
-            subCategory: portfolio.subCategory,
-            proficiency: portfolio.proficiency,
-            totalEvents: portfolio.totalEvents,
-            bio: bio || "",
-            hiringRate: {
-                hourlyPricing: portfolio.hiringRate.hourlyPricing,
-                dailyPricing: portfolio.hiringRate.dailyPricing,
-                weeklyPricing: portfolio.hiringRate.weeklyPricing,
-                monthlyPricing: portfolio.hiringRate.monthlyPricing
-            },
-            follows: portfolio.follows?.map(
-                    follow=>({
-                        socialMedia: follow.socialMedia,
-                        link: follow.link,
-                        followers: follow.followers,
-                        following: follow.following
-                    })
-                ) as DeepPartial<Follows[]>
-            },
-            address:{
-            streetAddress: address.streetAddress,
-            city: address.city,
-            state: address.state,
-            country: address.country,
-            pinCode: address.pinCode,
-            location: address.location
-            },
-            isCreator: true,
-            isOnboarded: true
-        })
+        const exsitingProfileDetails= await registrationRepository.findProfileDetailsByProfileId(profileId);
+
+        let newProfile;
+
+        if(exsitingProfileDetails){
+             newProfile= await registrationRepository.registerProfile({
+                id: profileId,
+                profileDetails:{
+                firstName: profileDetails.firstName,
+                lastName: profileDetails.lastName,
+                groupName: profileDetails.groupName,
+                nickName: profileDetails.nickName,
+                profileType: profileDetails.profileType,
+                status: status
+                },
+                portfolio:{
+                category:portfolio.category,
+                subCategory: portfolio.subCategory,
+                proficiency: portfolio.proficiency,
+                totalEvents: portfolio.totalEvents,
+                bio: bio || "",
+                hiringRate: {
+                    hourlyPricing: portfolio.hiringRate.hourlyPricing,
+                    dailyPricing: portfolio.hiringRate.dailyPricing,
+                    weeklyPricing: portfolio.hiringRate.weeklyPricing,
+                    monthlyPricing: portfolio.hiringRate.monthlyPricing
+                },
+                follows: portfolio.follows?.map(
+                        follow=>({
+                            socialMedia: follow.socialMedia,
+                            link: follow.link,
+                            followers: follow.followers,
+                            following: follow.following
+                        })
+                    ) as DeepPartial<Follows[]>
+                },
+                contacts: contacts.map(contact=>({
+                    type:contact.type,
+                    value:contact.value,
+                    primary:contact.primary,
+                })),
+                isCreator: true,
+                isOnboarded: true
+            })
+
+            await Promise.all(profileDetails.address.map( async addr=>{
+                await addressService.updateByProfileId(profileId , addr)
+            }))
+        }else{
+            newProfile= await registrationRepository.registerProfile({
+                id: profileId,
+                profileDetails:{
+                firstName: profileDetails.firstName,
+                lastName: profileDetails.lastName,
+                groupName: profileDetails.groupName,
+                nickName: profileDetails.nickName,
+                profileType: profileDetails.profileType,
+                status: status
+                },
+                portfolio:{
+                category:portfolio.category,
+                subCategory: portfolio.subCategory,
+                proficiency: portfolio.proficiency,
+                totalEvents: portfolio.totalEvents,
+                bio: bio || "",
+                hiringRate: {
+                    hourlyPricing: portfolio.hiringRate.hourlyPricing,
+                    dailyPricing: portfolio.hiringRate.dailyPricing,
+                    weeklyPricing: portfolio.hiringRate.weeklyPricing,
+                    monthlyPricing: portfolio.hiringRate.monthlyPricing
+                },
+                follows: portfolio.follows?.map(
+                        follow=>({
+                            socialMedia: follow.socialMedia,
+                            link: follow.link,
+                            followers: follow.followers,
+                            following: follow.following
+                        })
+                    ) as DeepPartial<Follows[]>
+                },
+                address: profileDetails.address.map(val=>({
+                streetAddress: val.streetAddress,
+                type: val.type,
+                city: val.city,
+                state: val.state,
+                country: val.country,
+                pinCode: val.pinCode,
+                location: val.location
+                })),
+                contacts: contacts.map(contact=>({
+                    type:contact.type,
+                    value:contact.value,
+                    primary:contact.primary,
+                })),
+                isCreator: true,
+                isOnboarded: true
+            })
+        }
 
         await servicePostProxy.createPrivacy({
             type: Privacy.PUBLIC,
@@ -238,14 +294,21 @@ class RegistrationService{
         status:      newProfile.profileDetails?.status!,
         profileType: newProfile.profileDetails?.profileType!,
     },
-    address: {
-        streetAddress: newProfile.address?.streetAddress!,
-        city:          newProfile.address?.city!,
-        country:       newProfile.address?.country!,
-        state:         newProfile.address?.state!,
-        pinCode:       newProfile.address?.pinCode!,
-        location:      newProfile.address?.location!,
-    },
+    address: newProfile.address!.map(val => ({
+        streetAddress: val?.streetAddress!,
+        type: val?.type!,
+        city:          val?.city!,
+        country:       val?.country!,
+        state:         val?.state!,
+        pinCode:       val?.pinCode!,
+        location:      val?.location!,
+    })),
+    contacts: newProfile.contacts.map(val => ({
+        type: val.type,
+        value: val.value,
+        primary: val.primary,
+        isVerified: val.isVerified
+    })),
     portfolio: {
         category:    newProfile.portfolio?.category!,
         subCategory: newProfile.portfolio?.subCategory!,
@@ -314,6 +377,12 @@ class RegistrationService{
         const entity=  (await ProfileDetailsEntityBuilder.builder().of(req)).build();
 
         const res= await this.profileDetailsRepository.create(entity);
+
+        await Promise.all(req.address.map(
+            async val=>{
+               await addressService.create(val , req.profileId)
+            }
+        ))
 
         await servicePostProxy.createPrivacy({
             type: Privacy.PUBLIC,
@@ -431,13 +500,14 @@ class RegistrationService{
 
         const followCount= await servicePostProxy.fetchUserReach({userReferenceId: profile.id});
 
-        if(fetchedProfile.profileDetails?.profileType===ProfileType.INDIVIDUAL){
+        if(fetchedProfile.profileDetails?.profileType===ProfileType.INDIVIDUAL || fetchedProfile.profileDetails?.profileType===ProfileType.HIRER){
             const name= getFullName(fetchedProfile.profileDetails?.firstName as string, fetchedProfile.profileDetails?.lastName as string);
             
                 if(fetchedProfile.isSubscribed){
                     return {
                     name: name,
                     nickName: fetchedProfile.profileDetails.nickName,
+                    profileType: fetchedProfile.profileDetails.profileType,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
@@ -460,6 +530,7 @@ class RegistrationService{
                     return{
                     name: name,
                     nickName: fetchedProfile.profileDetails.nickName,
+                    profileType: fetchedProfile.profileDetails.profileType,
                     portfolioId: fetchedProfile.portfolio.id,
                     bio: fetchedProfile.portfolio.bio || "",
                     follows: fetchedProfile.portfolio.follows,
@@ -480,6 +551,7 @@ class RegistrationService{
                     profile:{
                         groupName: fetchedProfile.profileDetails.groupName,
                         nickName: fetchedProfile.profileDetails.nickName,
+                        profileType: fetchedProfile.profileDetails.profileType,
                         portfolioId: fetchedProfile.portfolio.id,
                         bio: fetchedProfile.portfolio.bio || "",
                         follows: fetchedProfile.portfolio.follows,
@@ -504,6 +576,7 @@ class RegistrationService{
                         groupName: fetchedProfile.profileDetails.groupName,
                         nickName: fetchedProfile.profileDetails.nickName,
                         portfolioId: fetchedProfile.portfolio.id,
+                        profileType: fetchedProfile.profileDetails.profileType,
                         followCount: followCount,
                         isFollowing: isFollowing,
                         privacy: privacy?.type,

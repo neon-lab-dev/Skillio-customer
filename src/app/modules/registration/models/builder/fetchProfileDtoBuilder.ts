@@ -1,6 +1,6 @@
 import { FetchProfileDto } from "../dto/dto.fetch.profile";
 import { Profile } from "../../../../entity/profile";
-import { contactType } from "../../enums/registrationEnum";
+import { addressType, contactType } from "../../enums/registrationEnum";
 import servicePostProxy from "../../../../service/post-proxy/service.post-proxy";
 
 export class FetchProfileDtoBuilder {
@@ -22,8 +22,6 @@ export class FetchProfileDtoBuilder {
         this.dto.groupName= entity.profileDetails?.groupName;
         this.dto.profileType= entity.profileDetails?.profileType!;
         this.dto.status= entity.profileDetails?.status!;
-        this.dto.city= entity.address?.city!;
-        this.dto.country= entity.address?.country!;
         this.dto.proficiency= entity.portfolio?.proficiency!;
         this.dto.portfolioId= entity.portfolio?.id!;
         this.dto.eventsDone= entity.portfolio?.totalEvents;
@@ -35,6 +33,7 @@ export class FetchProfileDtoBuilder {
         this.dto.follows= this.setFollows(entity);
         this.dto.document= this.setDocument(entity);
         await this.setFollowCount(entity.id);
+        await this.setAddress(entity);
 
         return this;
     }
@@ -68,6 +67,15 @@ export class FetchProfileDtoBuilder {
                 link: val.link,
                 followers: val.followers,
                 following: val.following
+            }
+        })
+    }
+
+    private async setAddress(entity: Profile){
+        entity.address?.map(addr=>{
+            if(addr.type=== addressType.PERMANENT){
+                this.dto.city= addr.city;
+                this.dto.country= addr.country;
             }
         })
     }

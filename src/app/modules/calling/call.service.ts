@@ -87,7 +87,7 @@ class CallService{
 
              const loggedInUserProfile= await profileService.fetchWithPortfolio(call.callerId);
 
-             await planAggregatorService.reduceCallLimits(loggedInUserProfile.portfolio!.id);
+             await planAggregatorService.reduceCallLimits(loggedInUserProfile.id);
             
             acceptCall(call.callerId , call.id )
     
