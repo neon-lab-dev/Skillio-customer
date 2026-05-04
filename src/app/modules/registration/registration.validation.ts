@@ -1,9 +1,8 @@
-import { string, z } from "zod";
-import { ProfileType, SocialMeida, contactType, proficiecy, profileStatus, roles } from "./enums/registrationEnum";
+import {  z } from "zod";
+import { ProfileType, SocialMeida, addressType, contactType, proficiecy, profileStatus, roles } from "./enums/registrationEnum";
 import { getAddressPinCodeConfig } from "./config/addressPinCodeConfig";
 import { getPinConfig } from "./config/pinConfig";
-import { IS_MANDATORY, IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
-import { credential } from "firebase-admin";
+import {  IS_MANDATORY_NUMBER_SCHEMA, IS_MANDATORY_SCHEMA, IS_MANDATORY_STRING_ARRAY_SCHEMA, mandatoryTypeError, NUMBER_SCHEMA, TYPE_VALIDATION_SCHEMA } from "@neon-lab-dev/platform";
 
 
 const emailSchema = z.string().email("Invalid email address");
@@ -140,6 +139,7 @@ const contactSchema = z.object({
 const addressSchema = z.object({
     streetAddress: IS_MANDATORY_SCHEMA("Street address")
         .min(3, "Street address must be at least 3 characters long"),
+    type: z.nativeEnum(addressType),
     city: IS_MANDATORY_SCHEMA("City"),
     country: IS_MANDATORY_SCHEMA("Country"),
     state: IS_MANDATORY_SCHEMA("State"),
@@ -222,9 +222,21 @@ export const ProfileDetailsSchema=z.object({
     firstName: firstNameSchema,
     lastName: lastNameSchema,
     groupName: groupNameSchema,
+    profileId:IS_MANDATORY_SCHEMA("profileId"),
+    address: z.array(addressSchema, {
+        error: mandatoryTypeError("address", "array")
+    }).superRefine((addresses, ctx) => {   
+        const hasPermanent = addresses.some(a => a.type === addressType.PERMANENT);
+        if (!hasPermanent) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "permanent address is required",
+            });
+        }
+    }),
     nickName: nickNameSchema,
     profileType: profileTypeSchema
-}).strict().superRefine((data, ctx) => {
+}).strict().superRefine((data, ctx) =>  {
             if (data.firstName && !/^[A-Za-z]+$/.test(data.firstName)) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
@@ -273,11 +285,13 @@ export const ProfileDetailsSchema=z.object({
 export const registrationSchema = z.object({
     body: z.object({
         profileDetails: ProfileDetailsSchema,
+        contacts: z.array(contactSchema, {
+            error: mandatoryTypeError("contacts", "array")
+        }),
         profileDocumentId: IS_MANDATORY_SCHEMA("Profile document ID"),
         role: z.nativeEnum(roles,{
             error: mandatoryTypeError("role", "role")
         }),
-        address: addressSchema,
         portfolio: portfolioSchema
     }, {
         error: requestMandatoryError

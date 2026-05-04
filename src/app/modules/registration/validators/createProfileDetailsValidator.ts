@@ -4,7 +4,7 @@ import { ProfileDetailsSchema } from "../registration.validation";
 
 class CreateProfileDetailsValidator implements Validator{
     async validate(req: CreateProfileDetailsRequest): Promise<void> | never {
-        ProfileDetailsSchema.parse(req);
+        ProfileDetailsSchema.parseAsync(req);
     }
 }
 

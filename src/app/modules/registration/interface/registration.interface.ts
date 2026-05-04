@@ -1,4 +1,4 @@
-import { contactType, proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "../enums/registrationEnum";
+import { addressType, contactType, proficiecy, profileStatus, ProfileType, roles, SocialMeida } from "../enums/registrationEnum";
 import Decimal from "decimal.js"
 
 export interface Location {
@@ -28,6 +28,7 @@ export interface TProfileDetails{
   nickName:string;
   status: profileStatus;
   profileType: ProfileType
+  address: TAddress[];
 }
 
 export interface TContact {
@@ -41,6 +42,7 @@ export interface TContact {
 
 export interface TAddress {
   streetAddress: string;
+  type: addressType;
   city: string;
   state: string;
   pinCode: number;
@@ -79,7 +81,7 @@ export interface TPortfolio {
 export interface TProfile {
   profileDetails: TProfileDetails;
   profileDocumentId:string;
-  address: TAddress;
+  contacts: TContact[]
   portfolio: TPortfolio;
   role: roles
 }

@@ -13,7 +13,6 @@ import { AppValidationError, ERROR_CODES, LoggerService, NotFoundError } from "@
 class RegistrationProxy{
 
     private checkExistingDocument= async(documentId:string , documentType:DocumentType)=>{
-        console.log("hehe" , documentId);
         const existingDocument= await documentRepository.findByIdAndType(documentId , documentType);
 
         if(!existingDocument){
@@ -26,7 +25,7 @@ class RegistrationProxy{
         "RegistrationProxy",
         "registerProfile",
         async(profileData:TProfile)=>{
-        const { profileDetails , profileDocumentId , portfolio}=profileData;
+        const { profileDetails , contacts, profileDocumentId , portfolio}=profileData;
 
         const existingProfile= await registrationRepository.findProfileByCredential(profileDetails?.nickName!);
 
@@ -34,6 +33,17 @@ class RegistrationProxy{
             logger.error("Profile with this nickname already exists");
             throw new AppError(409, "Profile with this nickname already exists");
         }
+
+        
+        const existingProfileByContact= await Promise.all(contacts.map(async(contact)=>{
+            return await registrationRepository.findProfileByContactValue(contact.value)
+        }));
+
+        if(existingProfileByContact.some(profile=>profile!==null)){
+            logger.error("Profile with these contacts value already exists");
+            throw new AppError(409, `Profile with these contacts already exists`);
+        }
+
 
         await this.checkExistingDocument(profileDocumentId , DocumentType.PROFILE_PHOTO);
 

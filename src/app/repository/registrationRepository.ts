@@ -59,7 +59,7 @@ class RegistrationRepository extends BaseRepository<Profile>{
     registerProfile = async (profileData: DeepPartial<Profile>) => {
         const existing = await this.repository.findOne({
             where: { id: profileData.id as string },
-            relations: ['profileDetails', 'address', 'portfolio']
+            relations: ['profileDetails', 'address', 'portfolio' , 'contacts']
         });
 
         if (existing) {
@@ -83,6 +83,10 @@ class RegistrationRepository extends BaseRepository<Profile>{
 
     async updatePortfolio(portfolioId:string , portfolioData:DeepPartial<Portfolio>){
         return await this.portfolioReposiotry.update({id:portfolioId }, portfolioData);
+    }
+
+    async findProfileDetailsByProfileId(profileId: string): Promise<ProfileDetails | null>{
+        return await this.profileDetailsRepository.findOneBy({profileId});
     }
 
     async updateProfileDetailsByProfileId(profileId:string, profileDetails: DeepPartial<ProfileDetails>){
@@ -109,6 +113,7 @@ class RegistrationRepository extends BaseRepository<Profile>{
         return await this.repository
             .createQueryBuilder("profile")
             .leftJoinAndSelect("profile.contacts", "contact")
+            .leftJoinAndSelect("profile.portfolio" , "portfolio")
             .leftJoinAndSelect("profile.profileDetails", "profile_details")
             .where("profile_details.nickName = :credential", { credential })
             .orWhere(
