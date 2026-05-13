@@ -14,7 +14,7 @@ export const initializeSocket = (app: Application) => {
 
   io = new Server(server, {
     cors: {
-      origin: ["http://localhost:3000" , "https://skillioo.in/customer"],
+      origin: ["http://localhost:3000" , "https://skillioo.mitraconsultancy.co.in/customer"],
       credentials: true,
       methods: ["GET", "POST"],
     },
