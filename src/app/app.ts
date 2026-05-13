@@ -32,7 +32,7 @@ AppDataSource.initialize()
       logger.info(`Listening at port number ${config.port}`);
       logger.info(`Database connection established successfully at ${config.db_databse_development}`);
       logger.info("socket.io server ready")
-    }); 
+    });
   })
   .catch((error) => {
     logger.error(" connection error", error);
