@@ -34,7 +34,7 @@
   "dependencies": {
     "@automapper/classes": "^8.8.1",
     "@automapper/core": "^8.8.1",
-    "@neon-lab-dev/platform": "^0.1.11",
+    "@neon-lab-dev/platform": "^0.1.12",
     "@types/imagekit": "^3.1.5",
     "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
