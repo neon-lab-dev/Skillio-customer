@@ -1,4 +1,4 @@
-import { AppValidationError, ERROR_CODES, Loggable, LoggerService, NotFoundError } from "@neon-lab-dev/platform";
+import { AppValidationError, AsyncContextService, ERROR_CODES, Loggable, LoggerService, NotFoundError } from "@neon-lab-dev/platform";
 import { UserSubscriptionRepository } from "../repository/repository.user.subscription";
 import { UserSubscriptionRequest } from "../models/request/request.create";
 import { Profile } from "../../../entity/profile";
@@ -43,12 +43,6 @@ class UserSubscriptionService {
         let paymentResponse = await this.initiatePayment(planMaster, loggedInUserProfile);
         let entity = await this.fetchEntity(planMaster, loggedInUserProfile, paymentResponse);
         let savedEntity = await this.repository.save(entity);
-        planAggregatorService.aggregate({
-            callLimits: planMaster.callLimits,
-            chatLimits:planMaster.chatLimits,
-            profileVisibility: planMaster.profileVisibility,
-            userSubscriptionId: savedEntity!.id
-        } , loggedInUserProfile!.id)
         return UserSubscriptionBuilder.builder()
                 .of(savedEntity!)
                 .build();
@@ -77,6 +71,7 @@ class UserSubscriptionService {
     ): Promise<UserSubscriptionEntity> {
         let planDetails = globalMapper.map(planMaster, PlanMasterEntity, PlanDetails);
         let retVal = new UserSubscriptionEntity();
+        retVal.planId= planMaster.id;
         retVal.planDetails = planDetails;
         retVal.paymentId = paymentResponse.id;
         retVal.paymentLink = paymentResponse.fetchPaymentLink();
@@ -164,6 +159,14 @@ class UserSubscriptionService {
         entity.status = SubscriptionStatus.SUCCESS;
         entity.startDate = new Date();
         entity.setEndDate();
+        const planMaster= await planMasterService.fetchPlanMasterEntityById({id: entity.planId});
+        const userId= AsyncContextService.getUserId() as string;
+        planAggregatorService.aggregate({
+            callLimits: planMaster.callLimits,
+            chatLimits:planMaster.chatLimits,
+            profileVisibility: planMaster.profileVisibility,
+            userSubscriptionId: entity!.id
+        } ,userId)
         return await this.repository.save(entity) as UserSubscriptionEntity;
 
     }

@@ -212,12 +212,13 @@ class RegistrationService{
                 isCreator: true,
                 isOnboarded: true
             })
+            
+            await servicePostProxy.createPrivacy({
+                type: Privacy.PUBLIC,
+                userReferenceId: profileId
+            })
         }
 
-        await servicePostProxy.createPrivacy({
-            type: Privacy.PUBLIC,
-            userReferenceId: profileId
-        })
 
 
         await this.updateDocument(profileDocumentId , {

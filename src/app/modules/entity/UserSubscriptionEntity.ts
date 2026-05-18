@@ -24,6 +24,12 @@ export class UserSubscriptionEntity extends PersistEntity {
     }
 
     @Column({
+        type:"varchar",
+        nullable:false
+    })
+    planId!:string;
+
+    @Column({
         type: "varchar",
         nullable: false
     })
