@@ -92,6 +92,11 @@ class PlanMasterService {
     }
 
     @Loggable()
+    public async fetchPlanMasterEntityById(req: fetchByIdRequestDto):Promise<PlanMasterEntity>{
+        return await this.checkExisting(req.id);
+    }
+
+    @Loggable()
     public async fetchById(req: fetchByIdRequestDto):Promise<ShortPlanMasterDto>{
         const retVal= await this.checkExisting(req.id);
         return PlanMasterDetailsBuilder.builder().of(retVal).build();

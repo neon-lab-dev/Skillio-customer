@@ -5,6 +5,8 @@ import { ProfileVisibility } from "../../../planMaster/enum/ProfileVisibility";
 export class PlanDetails {
 
     @AutoMap()
+    id?:string;
+    @AutoMap()
     callLimits?: number;
     @AutoMap()
     chatLimits?: number;
