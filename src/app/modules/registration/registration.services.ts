@@ -408,12 +408,10 @@ class RegistrationService{
             nickName: res.nickName,
             ProfileType: res.profileType,
             name: fullName,
-            phoneNo: phoneNumber[0],
-            profileType: res.profileType
+            phoneNo: phoneNumber[0]
         }
 
         this.producer.produce(Events.PAYMENT_CUSTOMER_CREATED , {shortUser});
-        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser});
 
         return res;
     }
