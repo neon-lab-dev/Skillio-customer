@@ -1,6 +1,9 @@
+version: '3.9'
+
 services:
   kafka:
     image: apache/kafka:latest
+
     environment:
       - KAFKA_NODE_ID=1
       - KAFKA_PROCESS_ROLES=controller,broker
@@ -15,8 +18,10 @@ services:
       - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
       - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
       - KAFKA_HEAP_OPTS=-Xmx512m -Xms256m
+
     ports:
       - "9092:9092"
+
     volumes:
       - kafkadata:/var/lib/kafka/data
 
