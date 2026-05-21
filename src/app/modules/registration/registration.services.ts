@@ -217,6 +217,36 @@ class RegistrationService{
                 type: Privacy.PUBLIC,
                 userReferenceId: profileId
             })
+
+            
+            const existingProfile= await this.checkExisting(profileId);
+
+            const phoneNumber= existingProfile.contacts.map((contact)=> {
+                if(contact.type=== contactType.PHONE){
+                    return contact.value;
+                }
+            });
+
+            const document= await documentServices.getDocument([profileDocumentId]);
+
+            const fullName= profileDetails.firstName&& profileDetails.lastName&& getFullName(profileDetails.firstName as string, profileDetails.lastName as string);
+
+            const name= fullName || profileDetails.groupName;
+        
+
+            const shortUser={
+                referenceId: profileId,
+                nickName: newProfile.profileDetails?.nickName,
+                name: name,
+                profilePictureUrl: document[0].url,
+                phoneNo: phoneNumber[0],
+                category: newProfile.portfolio?.category,
+                subCategory: newProfile.portfolio?.subCategory,
+                profileType: newProfile.profileDetails?.profileType
+            }
+
+            this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
+            this.producer.produce(Events.PAYMENT_CUSTOMER_CREATED , {shortUser});
         }
 
 
@@ -252,33 +282,6 @@ class RegistrationService{
             )
         }
 
-        const existingProfile= await this.checkExisting(profileId);
-
-        const phoneNumber= existingProfile.contacts.map((contact)=> {
-            if(contact.type=== contactType.PHONE){
-                return contact.value;
-            }
-        });
-
-        const document= await documentServices.getDocument([profileDocumentId]);
-
-        const fullName= profileDetails.firstName&& profileDetails.lastName&& getFullName(profileDetails.firstName as string, profileDetails.lastName as string);
-
-        const name= fullName || profileDetails.groupName;
-        
-
-        const shortUser={
-            referenceId: profileId,
-            nickName: newProfile.profileDetails?.nickName,
-            name: name,
-            profilePictureUrl: document[0].url,
-            phoneNo: phoneNumber[0],
-            category: newProfile.portfolio?.category,
-            subCategory: newProfile.portfolio?.subCategory
-        }
-
-        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser})
-        this.producer.produce(Events.PAYMENT_CUSTOMER_CREATED , {shortUser});
 
         if(newProfile.portfolio?.proficiency=== proficiecy.PROFESSIONAL){
             const admin= await registrationRepository.findByRole(roles.ADMIN);
@@ -403,11 +406,14 @@ class RegistrationService{
         const shortUser={
             referenceId: res.profileId,
             nickName: res.nickName,
+            ProfileType: res.profileType,
             name: fullName,
             phoneNo: phoneNumber[0],
+            profileType: res.profileType
         }
 
         this.producer.produce(Events.PAYMENT_CUSTOMER_CREATED , {shortUser});
+        this.producer.produce(Events.CUSTOMER_CREATED , {shortUser});
 
         return res;
     }
