@@ -48,7 +48,7 @@ class DocumentRepository{
 
     // find one by portfolioId and type
     findDocumentIdByPortfolioIdAndType= async(portfolioId:string , type:DocumentType)=>{
-        return await this.documentRepository.findOne({
+        return await this.documentRepository.find({
             where: {
                 portfolioId,
                 type
