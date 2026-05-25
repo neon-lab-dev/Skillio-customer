@@ -161,14 +161,20 @@ class UserSubscriptionService {
         entity.setEndDate();
         const planMaster= await planMasterService.fetchPlanMasterEntityById({id: entity.planId});
         const userId= AsyncContextService.getUserId() as string;
+        const planAggregator= await planAggregatorService.fetch({
+            profileId: userId
+        });
+        const userSubscriptionEntity=await this.repository.save(entity) as UserSubscriptionEntity;
+        if(planAggregator.userSubscriptionIds.includes(entity.id)){
+            return userSubscriptionEntity;
+        }
         planAggregatorService.aggregate({
             callLimits: planMaster.callLimits,
             chatLimits:planMaster.chatLimits,
             profileVisibility: planMaster.profileVisibility,
             userSubscriptionId: entity!.id
         } ,userId)
-        return await this.repository.save(entity) as UserSubscriptionEntity;
-
+        return userSubscriptionEntity;
     }
 
     public async fetchById( id: string): Promise<UserSubscriptionEntity> {

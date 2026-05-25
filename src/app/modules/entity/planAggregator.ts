@@ -3,6 +3,7 @@ import { Entity , Column, OneToOne, JoinColumn } from "typeorm";
 import { ProfileVisibility } from "../planMaster/enum/ProfileVisibility";
 import { AutoMap } from "@automapper/classes";
 import { Profile } from "../../entity/profile";
+import { BeforeInsert, BeforeUpdate } from "typeorm";
 
 @Entity("plan_aggregator")
 export class PlanAggregator extends PersistEntity{
@@ -37,7 +38,7 @@ export class PlanAggregator extends PersistEntity{
 
     @Column("text",{
         array:true,
-        nullable:false
+        nullable:false,
     })
     @AutoMap()
     userSubscriptionIds!: string[]
@@ -75,4 +76,11 @@ export class PlanAggregator extends PersistEntity{
         return "pa"
     }
 
+    @BeforeInsert()
+    @BeforeUpdate()
+    dedupeSubscriptionIds() {
+    if (this.userSubscriptionIds) {
+        this.userSubscriptionIds = [...new Set(this.userSubscriptionIds)];
+    }
+}
 }

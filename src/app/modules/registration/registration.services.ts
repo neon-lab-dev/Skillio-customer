@@ -483,6 +483,9 @@ class RegistrationService{
         const fetchedProfile= new GetProfileDTO(data).toJSON();
 
         const profilePhotoId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.PROFILE_PHOTO);
+        const eventDoneDocumentId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.EVENT);
+        const videoDocumentId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.VIDEO);
+        const imageDocumentId= await documentRepository.findDocumentIdByPortfolioIdAndType(fetchedProfile.portfolio.id , DocumentType.IMAGE);
 
         const privacy= await servicePostProxy.fetchPrivacy({
             userReferenceId: profile.id
@@ -518,7 +521,10 @@ class RegistrationService{
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     followCount: followCount,
-                    profilePictureId: profilePhotoId,
+                    profilePictureId: profilePhotoId?.id,
+                    eventDoneDocumentId: eventDoneDocumentId?.id,
+                    imageDocumentId: imageDocumentId?.id,
+                    videoDocumentId: videoDocumentId?.id,
                     online:fetchedProfile.online,
                     category: fetchedProfile.portfolio.category,
                     subCategory: fetchedProfile.portfolio.subCategory,
@@ -541,7 +547,10 @@ class RegistrationService{
                     follows: fetchedProfile.portfolio.follows,
                     isSubscribed:  fetchedProfile.isSubscribed,
                     followCount: followCount,
-                    profilePictureId: profilePhotoId,
+                    profilePictureId: profilePhotoId?.id,
+                    eventDoneDocumentId: eventDoneDocumentId?.id,
+                    imageDocumentId: imageDocumentId?.id,
+                    videoDocumentId: videoDocumentId?.id,
                     isFollowing: isFollowing,
                     category: fetchedProfile.portfolio.category,
                     subCategory: fetchedProfile.portfolio.subCategory,
@@ -568,7 +577,10 @@ class RegistrationService{
                         privacy: privacy?.type,  
                         online:fetchedProfile.online,
                     },
-                    profilePictureId: profilePhotoId,   
+                    profilePictureId: profilePhotoId?.id,
+                    eventDoneDocumentId: eventDoneDocumentId?.id,
+                    imageDocumentId: imageDocumentId?.id,
+                    videoDocumentId: videoDocumentId?.id,
                     propritaryDetails:{
                         groupName: fetchedProfile.profileDetails.groupName,
                         phoneNumber: profile.contacts.find(contact=>contact.type==="PHONE")?.value,
@@ -592,7 +604,10 @@ class RegistrationService{
                         follows: fetchedProfile.portfolio.follows,
                         isSubscribed: fetchedProfile.isSubscribed
                         },
-                    profilePictureId: profilePhotoId
+                    profilePictureId: profilePhotoId?.id,
+                    eventDoneDocumentId: eventDoneDocumentId?.id,
+                    imageDocumentId: imageDocumentId?.id,
+                    videoDocumentId: videoDocumentId?.id,
                     }
                 }
         }
