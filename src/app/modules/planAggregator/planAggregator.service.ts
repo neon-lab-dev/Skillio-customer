@@ -14,7 +14,7 @@ import { PlanAggregatorEntityBuilder } from "./models/builder/planAggregatorEnti
 class PlanAggregatorService {
   private repository: PlanAggregatorRepository = new PlanAggregatorRepository();
 
-  private async checkExisting(profileId: string): Promise<PlanAggregator | null> {
+  public async checkExisting(profileId: string): Promise<PlanAggregator | null> {
     const existing = await this.repository.findByProfileId(profileId);
     return existing;
   }

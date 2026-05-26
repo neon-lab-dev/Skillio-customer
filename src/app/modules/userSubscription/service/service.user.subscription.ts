@@ -161,11 +161,11 @@ class UserSubscriptionService {
         entity.setEndDate();
         const planMaster= await planMasterService.fetchPlanMasterEntityById({id: entity.planId});
         const userId= AsyncContextService.getUserId() as string;
-        const planAggregator= await planAggregatorService.fetch({
-            profileId: userId
-        });
+        const planAggregator= await planAggregatorService.checkExisting(
+           userId
+        );
         const userSubscriptionEntity=await this.repository.save(entity) as UserSubscriptionEntity;
-        if(planAggregator.userSubscriptionIds.includes(entity.id)){
+        if(planAggregator&&planAggregator.userSubscriptionIds.includes(entity.id)){
             return userSubscriptionEntity;
         }
         planAggregatorService.aggregate({
